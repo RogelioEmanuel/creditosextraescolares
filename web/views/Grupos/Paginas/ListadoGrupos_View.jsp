@@ -67,7 +67,7 @@
                                         <td class="bordeTd  justify">${row.periodo}</td>
                                         <td class="bordeTd  justify">${row.nombreMaestro}</td>
                                         <td class="bordeTd">
-                                            <button title="Ver Detalle " data-table="tblListaGrupos" class="btn btn-sm btn-info" id="btnAgregarAlumno"><i class="fa fa-eye"></i></button> 
+                                            <button title="Ver Detalles " data-table="tblListaGrupos" class="btn btn-sm btn-info" id="btnDetallar${row.idGrupo}"><i class="fa fa-eye"></i></button> 
                                         </td>
                                     </tr>
                                 </c:forEach>

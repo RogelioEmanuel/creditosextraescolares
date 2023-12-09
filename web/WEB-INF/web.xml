@@ -68,6 +68,10 @@
         <servlet-name>ReportesMaestro_Srv</servlet-name>
         <servlet-class>Servlets.Maestros.ReportesMaestro_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DetallarGrupos_Srv</servlet-name>
+        <servlet-class>Servlets.Grupos.DetallarGrupos_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -131,6 +135,10 @@
     <servlet-mapping>
         <servlet-name>ReportesMaestro_Srv</servlet-name>
         <url-pattern>/app/maestros/reportesmaestro.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetallarGrupos_Srv</servlet-name>
+        <url-pattern>/app/grupos/detallargrupo.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

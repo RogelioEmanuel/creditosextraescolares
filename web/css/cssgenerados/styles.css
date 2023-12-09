@@ -1,0 +1,55 @@
+.content-center{
+    display: grid;
+    place-content: center;
+}
+
+.btn-file input[type="file"]{
+    appearance: none;
+    display: none;
+    visibility: none;
+    opacity: 0;
+}
+
+.btn-file{
+    display: inline-block;
+    position: relative
+}
+
+.img-table{
+    margin: 1rem;
+    width: 150px;
+    height: 150px;
+}
+
+#mainCaptcha {
+  background-color: #e67e22;
+  color: #FFFFFF;
+  height: 45px;
+  width: 225px;
+  max-width: 190px;
+  max-height: 700px;
+  user-select: none;
+  font-family: "Mr Eaves Mod Bold", sans-serif;
+  font-size: 22px;
+  font-variant: normal;
+  font-weight: 900;
+  font-style: italic;
+  text-align: center;
+}
+
+.scrollable-div {
+    overflow: auto; /* Añade una barra de desplazamiento cuando sea necesario */
+  }
+
+  
+ .checkbox-columnas {
+    column-count: 3;
+    column-gap: 20px; 
+ }
+
+        
+ .checkbox-columnas label {
+    display: block;
+    margin-bottom: 8px;
+ } 
+  

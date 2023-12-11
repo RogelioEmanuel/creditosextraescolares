@@ -29,6 +29,7 @@
                             <li><a href="/creditosextraescolares/app/actividadextraescolar/listaractividad.do"><span class="fa fa-user dropdown-item"></span> Actividad Extraescolar</a></li>
                             <li><a href="/creditosextraescolares/app/creditoextraescolar/listarcredito.do"><span class="fa fa-user dropdown-item"></span>Creditos Extraescolares</a></li>
                             <li><a href="/creditosextraescolares/app/maestros/listarmaestros.do"><span class="fa fa-user dropdown-item"></span>Maestros</a></li>
+                            <li><a href="/creditosextraescolares/app/eventos/listarevento.do"><span class="fa fa-user dropdown-item"></span>Eventos</a></li>
                             
                         </ul>
                     </li>

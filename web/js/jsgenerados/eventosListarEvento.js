@@ -6,10 +6,11 @@ $("#btnCancelar").hide();
 let SeEstaModificando = false;
 let id_fila = "";
 
-var tblListaActividadesExtraescolares = $('#tblListaActividadesExtraescolares').DataTable({
+
+var tblListaEventos = $('#tblListaEventos').DataTable({
     "columnDefs": [
         {
-            targets: [5],
+            targets: [8],
             orderable: false
         }
     ],
@@ -29,38 +30,36 @@ var tblListaActividadesExtraescolares = $('#tblListaActividadesExtraescolares').
 });
 
 
-filtradoColumna(tblListaActividadesExtraescolares, "tblListaActividadesExtraescolares");
-crearTabla("tblListaActividadesExtraescolares", updateRegistro, updateRegistro, updateRegistro, updateRegistro);
-$("#tblListaActividadesExtraescolares_filter").hide();
+filtradoColumna(tblListaEventos, "tblListaEventos");
+crearTabla("tblListaEventos", updateRegistro, updateRegistro, updateRegistro, updateRegistro);
+$("#tblListaEventos_filter").hide();
 
-$("#divGrpActividades").on('click', '#tblListaActividadesExtraescolares tbody tr td', function () {
+$("#divGrpEventos").on('click', '#tblListaEventos tbody tr td', function () {
     if (!SeEstaModificando) {
-        DatosDeLaFila = tblListaActividadesExtraescolares.row($(this)).data();
+        DatosDeLaFila = tblListaEventos.row($(this)).data();
         id_fila = $(this).closest('tr').attr("id");
         if (!$(this).parent('tr').hasClass("selected")) {
             $("#btnEditar").show();
             $("#btnEliminar").show();            
             $("#btnAgregar").hide();
-            $("#btnregresar").hide();
+            $("#btnRegresar").hide();
             $("#btnCancelar").show();
-            
+            $("#generarReporte").hide();
             
         } else {
             $("#btnEditar").hide();
             $("#btnEliminar").hide();            
             $("#btnAgregar").show();
-            $("#btnregresar").show();
+            $("#btnRegresar").show();
             $("#btnCancelar").hide();
+            $("#generarReporte").show();
         }
-        selectLib("tblListaActividadesExtraescolares", $(this).parent().attr('id'));
+        selectLib("tblListaEventos", $(this).parent().attr('id'));
     }
 
 });
 
-$("#divGrpActividades").on("click", "#btnEliminar", function (evento) {
-    let id = id_fila;
-    mensajeConfirmacion(iconoInfo,id);
-});
+
 
 function updateRegistro() {
 
@@ -115,12 +114,12 @@ function eliminarEvento(id) {
         url: '../../app/eventos/eliminarevento.do',
         type: 'POST',
         dataType: 'json',
-        data: {idGrupo: id},
+        data: {idEvento: id},
         success: function (respuesta) {
             $("#pageLoader").hide();
             if (respuesta.status === 0) {
                 TituloMensaje = "¡Evento eliminado!";
-                Mensaje = "El Eventos se ha eliminado correctamente";
+                Mensaje = "El Evento se ha eliminado correctamente";
                 mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '../../app/eventos/listarevento.do');
                 
             } else {
@@ -151,7 +150,7 @@ $("#divGrpEventos").on("click", "#btnEditar", function (evento) {
     let id = id_fila;
     
     if(id !== null && id !== undefined){
-        mostrarEditarGrupo(id);
+        mostrarEditarEvento(id);
     }else{
         TituloMensaje = "ERROR";
         Mensaje = "Es nulo el ID";

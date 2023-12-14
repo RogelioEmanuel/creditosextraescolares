@@ -2,12 +2,10 @@ package dao.eventos;
 
 import ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB;
 import ManageBean.Eventos.Evento_MB;
-import ManageBean.Maestros.Maestros_MB;
 import Utilidades.Constantes;
 import Utilidades.GenericResponse;
 import Utilidades.Validaciones;
 import config.conexion.ConexionMySQL;
-import dao.Grupos.Grupos_ListarGrupos_DAO;
 import dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO;
 import java.sql.Connection;
 import java.sql.Date;
@@ -33,7 +31,8 @@ public class Eventos_CrearEvento_DAO {
         
         try {
             if (conn != null) {
-                String query= "INSERT INTO eventos( nombreEvento, InstituccionOrganizadora, tipoEvento, periodo, fecha,anio, idActividadstatus) VALUES (?,?,?,?)";
+                String query= "INSERT INTO eventos( nombreEvento, InstitucionOrganizadora, tipoEvento, periodo, fecha,anio, idActividad, numParticipantesH,"
+                        + "numParticipantesM,resultado) VALUES (?,?,?,?,?,?,?,?,?,?)";
                 
                 ps = conn.prepareStatement(query);
                 ps.setString(1, evento.getNombreEvento()); 
@@ -43,6 +42,9 @@ public class Eventos_CrearEvento_DAO {
                 ps.setDate(5,new Date(evento.getFecha().getTime()));                
                 ps.setInt(6, anioActual);
                 ps.setInt(7,evento.getIdActividad());
+                ps.setInt(8,evento.getNoParticipantesh());
+                ps.setInt(9,evento.getNoParticipantesm());
+                ps.setString(10, evento.getResultado());
                                
                 ps.executeUpdate();
                 if (!conn.isClosed()) {

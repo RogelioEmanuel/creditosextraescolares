@@ -28,6 +28,7 @@ public class Eventos_ListarEventos_DAO {
         Date fecha = rs.getDate("fecha");
         int anio = rs.getInt("anio");
         int idActividad = rs.getInt("idActividad"); 
+        String resultado=rs.getString("resultado");
         Evento_MB evento = new Evento_MB();  
         ActividadExtraescolar_MB nombre = consultarActividad(idActividad);
         evento.setIdEvento(idEvento);
@@ -42,6 +43,7 @@ public class Eventos_ListarEventos_DAO {
         evento.setIdActividad(idActividad);
         evento.setNombreActividad(nombre.getNombre());
         evento.setFecha(fecha);
+        evento.setResultado(resultado);
         
         return evento;
     }
@@ -58,7 +60,8 @@ public class Eventos_ListarEventos_DAO {
   
         try {
             if (conn != null) {
-                String query = "SELECT idEventos,NombreEvento, numParticipantesH, numParticipantesM, InstitucionOrganizadora, tipoevento, periodo, anio,  idActividad ,fecha\n"
+                String query = "SELECT idEventos,NombreEvento, numParticipantesH, numParticipantesM, InstitucionOrganizadora, tipoevento, periodo, anio,  idActividad "
+                        + ",fecha, resultado\n"
                         + "FROM eventos f \n"                        
                         + "limit 100";
                 ps = conn.prepareStatement(query);

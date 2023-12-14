@@ -18,7 +18,7 @@ public class Evento_MB {
     private int totalParticipantes;
     private String resultado;
 
-    public Evento_MB(int idEvento, String nombreEvento, int noParticipantesh, int noParticipantesm, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int anio, int idActividad,String nombreActividad, int totalParticipantes) {
+    public Evento_MB(int idEvento, String nombreEvento, int noParticipantesh, int noParticipantesm, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int anio, int idActividad,String nombreActividad, int totalParticipantes,String resultado) {
         this.idEvento = idEvento;
         this.nombreEvento = nombreEvento;
         this.noParticipantesh = noParticipantesh;
@@ -33,7 +33,7 @@ public class Evento_MB {
         this.totalParticipantes = totalParticipantes;
     }
 
-    public Evento_MB(int idEvento, String nombreEvento, int noParticipantesh, int noParticipantesm, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int anio, int idActividad) {
+    public Evento_MB(int idEvento, String nombreEvento, int noParticipantesh, int noParticipantesm, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int anio, int idActividad,String resultado) {
         this.idEvento = idEvento;
         this.nombreEvento = nombreEvento;
         this.noParticipantesh = noParticipantesh;
@@ -46,7 +46,7 @@ public class Evento_MB {
         this.idActividad = idActividad;
     }
 
-    public Evento_MB(String nombreEvento, int noParticipantesh, int noParticipantesm, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int anio, int idActividad) {
+    public Evento_MB(String nombreEvento, int noParticipantesh, int noParticipantesm, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int anio, int idActividad,String resultado) {
         this.nombreEvento = nombreEvento;
         this.noParticipantesh = noParticipantesh;
         this.noParticipantesm = noParticipantesm;
@@ -60,7 +60,23 @@ public class Evento_MB {
         
     }
 
-    public Evento_MB(String nombreEvento, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int idActividad) {
+    public Evento_MB(String nombreEvento, int noParticipantesh, int noParticipantesm, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int idActividad, String resultado) {
+        this.nombreEvento = nombreEvento;
+        this.noParticipantesh = noParticipantesh;
+        this.noParticipantesm = noParticipantesm;
+        this.institucionOrganizadora = institucionOrganizadora;
+        this.tipoEvento = tipoEvento;
+        this.periodo = periodo;
+        this.fecha = fecha;
+        this.idActividad = idActividad;
+        this.resultado = resultado;
+    }
+    
+    
+    
+    
+
+    public Evento_MB(String nombreEvento, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int idActividad,String resultado) {
         this.nombreEvento = nombreEvento;
         this.institucionOrganizadora = institucionOrganizadora;
         this.tipoEvento = tipoEvento;

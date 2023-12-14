@@ -31,35 +31,39 @@
                     </h2>
                 </div>
                 <div class="panel-body">
-                   <div class="table" style="font-size: 12px;" id="divGrpActividades">
-                        <table id="tblListaActividadesExtraescolares" class="table table-striped table-bordered tablesorter table-responsive no-footer dtr-inline dataTable table_margen" 
+                   <div class="table" style="font-size: 12px;" id="divGrpEventos">
+                        <table id="tblListaEventos" class="table table-striped table-bordered tablesorter table-responsive no-footer dtr-inline dataTable table_margen" 
                                style="width: 100%; font-size: 14px">
                             <colgroup>
-                                <col span="1" style="width: 15%;">   
+                                <col span="1" style="width: 10%;">   
                                 <col span="1" style="width: 15%;">
-                                <col span="1" style="width: 15%;">
-                                <col span="1" style="width: 15%;">
-                                <col span="1" style="width: 15%;">                                
                                 <col span="1" style="width: 25%;">
+                                <col span="1" style="width: 10%;">
+                                <col span="1" style="width: 10%;">
+                                <col span="1" style="width: 15%;">
                             </colgroup>
                             <thead>
                                 <tr class="info">
-                                    <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch1" type="text" placeholder="Buscar:" style="width: 100%" data-index="1"></th>
-                                    <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch2" type="text" placeholder="Buscar:" style="width: 100%" data-index="2"></th>                                    
-                                    <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch3" type="text" placeholder="Buscar:" style="width: 100%" data-index="3"></th>
-                                    <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch4" type="text" placeholder="Buscar:" style="width: 100%" data-index="4"></th>
-                                    <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch5" type="text" placeholder="Buscar:" style="width: 100%" data-index="5"></th>
-                                    
+                                    <th class="bordeTd"><input id="tblListaEventos-colSearch1" type="text" placeholder="Buscar:" style="width: 100%" data-index="1"></th>
+                                    <th class="bordeTd"><input id="tblListaEventos-colSearch2" type="text" placeholder="Buscar:" style="width: 100%" data-index="2"></th>                                    
+                                    <th class="bordeTd"><input id="tblListaEventos-colSearch3" type="text" placeholder="Buscar:" style="width: 100%" data-index="3"></th>
+                                    <th class="bordeTd"><input id="tblListaEventos-colSearch4" type="text" placeholder="Buscar:" style="width: 100%" data-index="4"></th>
+                                    <th class="bordeTd"><input id="tblListaEventos-colSearch5" type="text" placeholder="Buscar:" style="width: 100%" data-index="5"></th>
+                                    <th class="bordeTd"><input id="tblListaEventos-colSearch6" type="text" placeholder="Buscar:" style="width: 100%" data-index="6"></th>
+                                    <th class="bordeTd"><input id="tblListaEventos-colSearch7" type="text" placeholder="Buscar:" style="width: 100%" data-index="7"></th>
+                                    <th class="bordeTd"><input id="tblListaEventos-colSearch8" type="text" placeholder="Buscar:" style="width: 100%" data-index="8"></th>                                    
                                     <th class="bordeTd"><i class="fa fa-filter iconoFiltro"></i></th>
                                 </tr>
                                 <tr class="info">
-                                    <th class="bordeTd" style="font-size: 10px">Nombre del Evento</th>                                    
-                                    <th class="bordeTd" style="font-size: 10px">Institucion Organizadora</th>
-                                    <th class="bordeTd" style="font-size: 10px">Tipo de Evento (Interno/Externo)</th>
-                                    <th class="bordeTd" style="font-size: 10px">Fecha de Realizacion</th>     
-                                    <th class="bordeTd" style="font-size: 10px">Periodo</th>
-                                    <th class="bordeTd" style="font-size: 10px">Año</th>
-                                    
+                                    <th class="bordeTd" style="font-size: 11px">Nombre Evento</th>
+                                    <th class="bordeTd" style="font-size: 11px">Institucion Organizadora</th>
+                                    <th class="bordeTd" style="font-size: 11px">Evento (Interno/Externo)</th>
+                                    <th class="bordeTd" style="font-size: 11px">Fecha</th>
+                                    <th class="bordeTd" style="font-size: 11px">Periodo</th>
+                                    <th class="bordeTd" style="font-size: 11px">Actividad</th>
+                                    <th class="bordeTd" style="font-size: 11px">Participantes</th>                                    
+                                    <th class="bordeTd" style="font-size: 11px">Resultados</th>
+                                    <th class="bordeTd" style="font-size: 11px"></th>                                   
                                 </tr>
 
                             </thead>
@@ -70,10 +74,13 @@
                                         <td class="bordeTd  justify">${row.institucionOrganizadora}</td>
                                         <td class="bordeTd  justify">${row.tipoEvento}</td>
                                         <td class="bordeTd  justify">${row.fecha}</td>
-                                        <td class="bordeTd  justify">${row.periodo}</td>  
-                                        
+                                        <td class="bordeTd  justify">${row.periodo}</td> 
+                                        <td class="bordeTd  justify">${row.nombreActividad}</td>
+                                        <td class="bordeTd  justify"> H=${row.noParticipantesh} | M= ${row.noParticipantesm}<br> Total=${row.totalParticipantes}</td>
+                                        <td class="bordeTd  justify">${row.resultado}</td>
+                                         
                                         <td class="bordeTd">
-                                            <button title="Ver Detalles " data-table="tblListaActividadesExtraescolares" class="btn btn-sm btn-info" id="btnDetallar${row.idEvento}"><i class="fa fa-eye"></i></button> 
+                                            
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -81,16 +88,16 @@
                         </table>
                         <div class="row" align="right" style="margin: 1rem">
                             <a title="Agregar Actividad" id="btnAgregar" href="/creditosextraescolares/app/actividadextraescolar/crearactividad.do" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar Actividad</a>
-                            <a title="Regresar" id="btnregresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
-                            <button title="Borrar Actividad Extraescolar " data-table="tblListaActividadesExtraescolares" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i></button>
-                            <button title="Editar Actividad Extraescolar" data-table="tblListaActividadesExtraescolares" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i></button>
-                            <button id="generarReporte" data-table="tblListaActividadesExtraescolares"  class="btn btn-primary btn-sm" style="font-size:14px">
+                            <a title="Regresar" id="btnRegresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
+                            <button title="Borrar Actividad Extraescolar " data-table="tblListaEventos" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i></button>
+                            <button title="Editar Actividad Extraescolar" data-table="tblListaEventos" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i></button>
+                            <button id="generarReporte" data-table="tblListaEventos"  class="btn btn-primary btn-sm" style="font-size:14px">
                                     <i class="fa fa-file"></i> Generar reporte
                             </button>
                         </div>
                         <div hidden="true" id="grpBtnGuardar" class="row" align="right" style="margin: 1rem">
-                            <button title="Guardar Actividad Extraescolar" data-table="tblListaActividadesExtraescolares" class="btn btn-primary btn-sm" id="btnGuardar"><i class="fa fa-floppy-o"></i></button>
-                            <button title="Cancelar" data-table="tblListaActividadesExtraescolares" class="btn btn-danger btn-sm" id="btnCancelar"><i class="fa fa-ban"></i></button>
+                            <button title="Guardar Evento" data-table="tblListaEventos" class="btn btn-primary btn-sm" id="btnGuardar"><i class="fa fa-floppy-o"></i></button>
+                            <button title="Cancelar" data-table="tblListaEventos" class="btn btn-danger btn-sm" id="btnCancelar"><i class="fa fa-ban"></i></button>
                         </div>
                     </div>
                     <div style="margin-top: 30px" id="divReporte">

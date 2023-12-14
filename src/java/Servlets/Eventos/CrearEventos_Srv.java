@@ -2,14 +2,11 @@ package Servlets.Eventos;
 
 import ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB;
 import ManageBean.Eventos.Evento_MB;
-import ManageBean.Maestros.Maestros_MB;
 import Servlets.ActividadExtraescolar.CrearActividadExtraescolar;
 import Servlets.Maestros.CrearMaestro_Srv;
 import Utilidades.GenericResponse;
 import com.google.gson.Gson;
-import dao.Grupos.Grupos_CrearGrupo_DAO;
 import dao.eventos.Eventos_CrearEvento_DAO;
-import dao.maestros.Maestros_CrearMaestros_DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -62,13 +59,13 @@ public class CrearEventos_Srv extends HttpServlet {
         //datos dede el request
         PrintWriter out = response.getWriter();    
         String nombre = request.getParameter("nombre");
-        String institucionorganizadora = request.getParameter("institucionorganizadora");
+        String institucionorganizadora = request.getParameter("institucionOrganizadora");
         String tipo = request.getParameter("tipo");        
         String periodo = request.getParameter("periodo");
         int actividad =Integer.parseInt(request.getParameter("actividad"));  
-        
-        
-        
+        String resultado= request.getParameter("resultado");
+        int parth =Integer.parseInt(request.getParameter("parth"));
+        int partm =Integer.parseInt(request.getParameter("partm"));
         //fechas
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");        
         String fecha = request.getParameter("fecha");        
@@ -91,7 +88,7 @@ public class CrearEventos_Srv extends HttpServlet {
         
         
               
-        Evento_MB evento = new Evento_MB(nombre, institucionorganizadora, tipo,periodo,fechaEvento,actividad);
+        Evento_MB evento = new Evento_MB(nombre,parth,partm, institucionorganizadora, tipo,periodo,fechaEvento,actividad,resultado);
         
         
         Eventos_CrearEvento_DAO.insertar(evento, resp);

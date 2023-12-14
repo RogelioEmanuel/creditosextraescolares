@@ -6,13 +6,16 @@ $("#FormCrearEvento").on("click", "#btnRegistrar", function (evento) {
     var periodo = $("#periodo").val();
     var fecha = $("#fecha").val();    
     var actividad = $("#actividad").val();
+    var parth=$("#numeroparticipantesm").val();
+    var partm=$("#numeroparticipantesf").val();
+    var res=$("#resultado").val();
+    alert("no jala pa");
+    enviarDatosActividad(nombre, institucionOrganizadora, tipoEvento,periodo,fecha,actividad,parth,partm,res);
     
-    enviarDatosActividad(nombre, institucionOrganizadora, tipoEvento,periodo,fecha,actividad);
-    //mensajeConfirmacion(iconoInfo);
 
 });
 
-function enviarDatosActividad(nombre, institucionOrganizadora, tipoEvento,periodo,fecha,actividad) {
+function enviarDatosActividad(nombre, institucionOrganizadora, tipoEvento,periodo,fecha,actividad,parth,partm,res) {
     //Creamos un indicador de carga
     $("#pageLoader").show();
     var datos={
@@ -21,11 +24,14 @@ function enviarDatosActividad(nombre, institucionOrganizadora, tipoEvento,period
         tipo: tipoEvento,
         periodo: periodo,
         fecha: fecha,
-        actividad: actividad
+        actividad: actividad,
+        parth: parth,
+        partm: partm,
+        resultado:res
                        
     };
     
-    //mandamos el formdata al servidor con un post
+    
     $.ajax({
         url: '../../app/eventos/crearevento.do',
         type: 'POST',

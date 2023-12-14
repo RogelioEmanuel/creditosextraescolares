@@ -29,7 +29,7 @@
                     </h2>
                 </div>
                 <div class="panel panel-body" color: black; margin: 0">
-                    <form id="formCrearEvento">
+                    <form id="FormCrearEvento">
                         <div class="row" style="margin-bottom: 20px">
                             <div class="col-md-6">
                                 <label>Nombre del Evento:</label>
@@ -42,8 +42,8 @@
                                            placeholder="Nombre delEvento" 
                                            required 
                                            minlength="1"
-                                           maxlength="80"  
-                                           value="${evento.nombreEvento}"
+                                           maxlength="80" 
+                                            value="${evento.nombreEvento}
                                            title="Nombre del Evento">
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                                            required 
                                            minlength="1"
                                            maxlength="80" 
-                                           value="${evento.institucionOrganizadora}"
+                                           value="${evento.institucionOrganizadora}
                                            title="InstitucionOrganizadora">
                                 </div>
                             </div>
@@ -76,13 +76,13 @@
                                             placeholder="Tipo"
                                             class="form-control input-sm"                                             
                                             required >
-                                        <option value="I">Interno</option>
-                                        <option value="E">Externo</option>
+                                        <option value="Interno">Interno</option>
+                                        <option value="Externo">Externo</option>
                                         
                                     </select>
                                 </div>
                             </div>
-                             <div class="col-md-5">
+                             <div class="col-md-6">
                                 <label>Periodo:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
@@ -100,9 +100,46 @@
                             </div>
                                                                 
                         </div>
+                        
+                        <div class="row" style="margin-bottom: 20px">
+                            <div class="col-md-6">
+                                <label>Numero de participantes Masculinos</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                                    <input name="inputnumeroparticipantesm" 
+                                           id="numeroparticipantesm" 
+                                           class="form-control input-sm" 
+                                           autocomplete="off" 
+                                           placeholder="numeroparticipantesm" 
+                                           required 
+                                           value="${evento.noParticipantesh}
+                                           minlength="1"
+                                           maxlength="80"  
+                                           title="numeroparticipantesm">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label>Numero de participantes Femeninos</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                                    <input name="inputnumeroparticipantesf" 
+                                           id="numeroparticipantesf" 
+                                           class="form-control input-sm" 
+                                           autocomplete="off" 
+                                           placeholder="numeroparticipantesf" 
+                                           required 
+                                           value="${evento.noParticipantesm}
+                                           minlength="1"
+                                           maxlength="80"  
+                                           title="numeroparticipantesf">
+                                </div>
+                            </div>
+                            
+                        </div>
                        
                         <div class="row" style="margin-bottom: 20px">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label >Fecha</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -112,15 +149,15 @@
                                            date-date-format="dd/mm/yyyy"
                                            placeholder="dd/mm/yyyy" 
                                            maxlength="10"
+                                           value="${evento.fecha}
                                            class="form-control input-sm datepicker" 
-                                           value="${evento.fecha}"
                                            required >
                                 </div>
                                 
                             </div>
                             
                             
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <label >Actividad Extraescolar</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -139,11 +176,35 @@
                             
                             
                         </div>
+                        
+                        <div class="row" style="margin-bottom: 20px">
+                            <div class="col-md-6">
+                                <label>Resultado</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                                    <input name="resultado" 
+                                           id="resultado" 
+                                           class="form-control input-sm" 
+                                           autocomplete="off" 
+                                           placeholder="resultado" 
+                                           required 
+                                           value="${evento.resultado}
+                                           minlength="1"
+                                           maxlength="80"  
+                                           title="resultado">
+                                </div>
+                            </div>
+                            
+                            
+                            
+                        </div>
                         <div class="row" style="margin-top: 30px">                             
                             <div class="col-md-12" align="right">                                
-                                <button id="btnRegistrar" form="formCrearEvento" type="submit"  class="btn btn-primary btn-sm " style="font-size:14px">
+                                <button id="btnRegistrar" form="FormCrearEvento" type="submit"  class="btn btn-primary btn-sm " style="font-size:14px">
                                     <i class="fa fa-save"></i> 
                                 </button>    
+                                <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/eventos/listarevento.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i></a>
+
                             </div>
                         </div>
                     </form>

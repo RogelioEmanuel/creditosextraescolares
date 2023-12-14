@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class Historico_ListarHistorico {
     
     private static RegistroHistorico_MB convertir(ResultSet rs) throws SQLException {
-       int id = Integer.parseInt("idRrgistrohistorcio");
+       int id = Integer.parseInt(rs.getString("idRegistrohistorico"));
         String periodo = rs.getString("periodo");
         String estado = rs.getString("estado");        
         String tipo = rs.getString("tipo");
@@ -57,10 +57,8 @@ public class Historico_ListarHistorico {
                                 "    tipo,\n" +
                                 "    nocontrolAlumno,\n" +
                                 "    anio,\n" +
-                                "    nombreactividad,\n" +                               
-                                "FROM \n" +
-                                "    registrohistorico f\n" +
-                                "LIMIT 100;";
+                                "    nombreactividad\n" +                               
+                                "FROM registrohistorico;";
                 ps = conn.prepareStatement(query);
                 rs = ps.executeQuery();
                 while (rs.next()) {

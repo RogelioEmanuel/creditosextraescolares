@@ -64,16 +64,16 @@
 
                             </thead>
                             <tbody>
-                                 <c:forEach var="row" items="${actividades}">
-                                    <tr id="${row.idRegistrohistorico}" data-id="${row.idRegistrohistorico}">
+                                 <c:forEach var="row" items="${creditos}">
+                                    <tr id="${row.idRegistroHistorico}" data-id="${row.idRegistroHistorico}">
                                         <td class="bordeTd  justify">${row.estado}</td>
                                         <td class="bordeTd  justify">${row.tipo}</td>
                                         <td class="bordeTd  justify">${row.noControl}</td>                                        
                                         <td class="bordeTd  justify">${row.anio}</td>
-                                        <td class="bordeTd  justify">${row.nombreActividad}</td>
+                                        <td class="bordeTd  justify">${row.nomActividad}</td>
                                         <td class="bordeTd  justify">${row.periodo}</td>
                                         <td class="bordeTd">                                         
-                                         <button title="Ver Grupos " data-table="tblListaActividadesExtraescolares" class="btn btn-sm btn-info" id="btnVerGrupos${row.idActividad_Extraescolar}"><i class="fa fa-eye"></i></button>
+                                         <button title="Ver Grupos " data-table="tblListaActividadesExtraescolares" class="btn btn-sm btn-info" id="btnVerGrupos"><i class="fa fa-eye"></i></button>
                                         </td>
                                     </tr>
                                 </c:forEach>

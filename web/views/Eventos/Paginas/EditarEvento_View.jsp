@@ -43,6 +43,7 @@
                                            required 
                                            minlength="1"
                                            maxlength="80"  
+                                           value="${evento.nombreEvento}"
                                            title="Nombre del Evento">
                                 </div>
                             </div>
@@ -58,7 +59,8 @@
                                            placeholder="Institucion Organizadora" 
                                            required 
                                            minlength="1"
-                                           maxlength="80"  
+                                           maxlength="80" 
+                                           value="${evento.institucionOrganizadora}"
                                            title="InstitucionOrganizadora">
                                 </div>
                             </div>
@@ -111,6 +113,7 @@
                                            placeholder="dd/mm/yyyy" 
                                            maxlength="10"
                                            class="form-control input-sm datepicker" 
+                                           value="${evento.fecha}"
                                            required >
                                 </div>
                                 
@@ -165,7 +168,7 @@
        
         <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
         
-        <script src="../../js/jsgenerados/eventosCrearEvento.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/eventosEditarEvento.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>
     </body>

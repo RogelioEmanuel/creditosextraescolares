@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,31 +82,53 @@ public class ReportesMaestro_Srv extends HttpServlet {
             String jrxmlFile = getClass().getClassLoader().getResource("Reportes/Maestrosinformacion.jrxml").toString().substring(6);            
             JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFile);
             
-         
-            
+             String nombre="lupita";
+             String appaterno="";
+             String apmaterno="";
+             String corre="";
+             String sexo="";
+             Date fecha= null;
+             String direccion="";
+             String telefono ="";
+             String curp="";
+             String rfc = "";
+             String banco = "";
+             String clave = "";
             Maestros_MB[] maesstro = maestros.toArray(new Maestros_MB[0]);
             for (Maestros_MB maestro4 : maesstro) {
-                System.out.println("Nombre"+maestro4.getNombre());
-                System.out.println("apmaterno"+maestro4.getApMaterno());
-                System.out.println("appaterno"+maestro4.getApPaterno());
-                System.out.println("banco"+maestro4.getBanco());
-                System.out.println("clave"+maestro4.getClave());
-                System.out.println("rfc"+maestro4.getRfc());
-                System.out.println("curp"+maestro4.getCurp());
-                System.out.println("telefono"+maestro4.getTelefono());
-                System.out.println("Dir"+maestro4.getDireccion());
-                System.out.println("sex"+maestro4.getSexo());
-                System.out.println("correo"+maestro4.getCorreo());
+               nombre= maestro4.getNombre();
+               appaterno =maestro4.getApPaterno();
+               apmaterno = maestro4.getApMaterno();
+               corre = maestro4.getCorreo();
+               fecha = maestro4.getFecha_nacimiento();
+               sexo= maestro4.getSexo();
+               direccion = maestro4.getDireccion();
+               telefono = maestro4.getTelefono();
+               curp = maestro4.getCurp();
+               rfc = maestro4.getRfc();
+               banco = maestro4.getBanco();
+               clave = maestro4.getClave();
             }
-                   
+            
             JRBeanArrayDataSource ds = new JRBeanArrayDataSource(maesstro);
             Map<String, Object> map = new HashMap<>();
             
             
             
             if(imagenFile.available()>0){
-                map.put(Constantes.NOMBRELOGO, imagenFile);  
-                map.put("ds", ds);                
+                map.put(Constantes.NOMBRELOGO, imagenFile); 
+                map.put("nombre", nombre+" "+appaterno+" "+apmaterno);
+                map.put("Correo",corre);
+                map.put("sexo", sexo);
+                map.put("fecha",fecha);
+                map.put("direccion",direccion);
+                map.put("telefono", telefono);
+                map.put("clave", clave);
+                map.put("banco",banco);
+                map.put("curp",curp);
+                map.put("rfc",rfc);
+                map.put("ds", ds);   
+                
             }
             
             Object[] data = ds.getData();

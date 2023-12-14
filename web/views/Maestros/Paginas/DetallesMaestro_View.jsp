@@ -303,7 +303,7 @@
                                 <button style="font-size:14px" id="btnRegresar" class="btn btn-danger btn-sm">
                                     <i class="fa fa-reply"></i> Regresar
                                 </button>
-                                 <button id="generarReporte" form="FormEditarMaestro"  class="btn btn-primary btn-sm" style="font-size:14px">
+                                <button id="generarReporte" form="FormEditarMaestro"  class="btn btn-primary btn-sm" style="font-size:14px">
                                     <i class="fa fa-file"></i> Generar reporte
                                 </button>    
                                

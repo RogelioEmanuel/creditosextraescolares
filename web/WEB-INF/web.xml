@@ -76,6 +76,18 @@
         <servlet-name>ListarEventos_Srv</servlet-name>
         <servlet-class>Servlets.Eventos.ListarEventos_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CrearEventos_Srv</servlet-name>
+        <servlet-class>Servlets.Eventos.CrearEventos_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Historico_ListarHistorico_Srv</servlet-name>
+        <servlet-class>Servlets.Historico.Historico_ListarHistorico_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportesEventos_Srv</servlet-name>
+        <servlet-class>Servlets.Eventos.ReportesEventos_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -147,6 +159,18 @@
     <servlet-mapping>
         <servlet-name>ListarEventos_Srv</servlet-name>
         <url-pattern>/app/eventos/listarevento.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CrearEventos_Srv</servlet-name>
+        <url-pattern>/app/eventos/crearevento.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Historico_ListarHistorico_Srv</servlet-name>
+        <url-pattern>/app/historico/listarhistorico.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportesEventos_Srv</servlet-name>
+        <url-pattern>/app/eventos/reporteevento.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -6,10 +6,10 @@ $("#btnCancelar").hide();
 let SeEstaModificando = false;
 let id_fila = "";
 
-var tblListaEventos = $('#tblListaEventos').DataTable({
+var tblListaActividadesExtraescolares = $('#tblListaActividadesExtraescolares').DataTable({
     "columnDefs": [
         {
-            targets: [8],
+            targets: [5],
             orderable: false
         }
     ],
@@ -29,15 +29,19 @@ var tblListaEventos = $('#tblListaEventos').DataTable({
 });
 
 
-$("#divGrpEventos").on('click', '#tblListaEventos tbody tr td', function () {
+filtradoColumna(tblListaActividadesExtraescolares, "tblListaActividadesExtraescolares");
+crearTabla("tblListaActividadesExtraescolares", updateRegistro, updateRegistro, updateRegistro, updateRegistro);
+$("#tblListaActividadesExtraescolares_filter").hide();
+
+$("#divGrpActividades").on('click', '#tblListaActividadesExtraescolares tbody tr td', function () {
     if (!SeEstaModificando) {
-        DatosDeLaFila = tblListaEventos.row($(this)).data();
+        DatosDeLaFila = tblListaActividadesExtraescolares.row($(this)).data();
         id_fila = $(this).closest('tr').attr("id");
         if (!$(this).parent('tr').hasClass("selected")) {
             $("#btnEditar").show();
             $("#btnEliminar").show();            
             $("#btnAgregar").hide();
-            $("#btnRegresar").hide();
+            $("#btnregresar").hide();
             $("#btnCancelar").show();
             
             
@@ -45,17 +49,18 @@ $("#divGrpEventos").on('click', '#tblListaEventos tbody tr td', function () {
             $("#btnEditar").hide();
             $("#btnEliminar").hide();            
             $("#btnAgregar").show();
-            $("#btnRegresar").show();
+            $("#btnregresar").show();
             $("#btnCancelar").hide();
         }
-        selectLib("tblListaEventos", $(this).parent().attr('id'));
+        selectLib("tblListaActividadesExtraescolares", $(this).parent().attr('id'));
     }
 
 });
 
-filtradoColumna(tblListaEventos, "tblListaEventos");
-crearTabla("tblListaEventos", updateRegistro, updateRegistro, updateRegistro, updateRegistro);
-$("#tblListaEventos_filter").hide();
+$("#divGrpActividades").on("click", "#btnEliminar", function (evento) {
+    let id = id_fila;
+    mensajeConfirmacion(iconoInfo,id);
+});
 
 function updateRegistro() {
 
@@ -88,7 +93,7 @@ function mensajeConfirmacion(icono, id) {
         },
         callback: function (result) {
             if (result) {
-                eliminarGrupo(id);
+                eliminarEvento(id);
             } else {
                 
             }
@@ -99,15 +104,15 @@ function mensajeConfirmacion(icono, id) {
 $("#divGrpEventos").on("click", "#btnAgregar", function (evento) {
   
     
-    mostrarAgregarGrupo();
+    mostrarAgregarEvento();
     
   
 });
 
-function eliminarGrupo(id) {
+function eliminarEvento(id) {
     $("#pageLoader").show();
     $.ajax({
-        url: '../../app/grupos/eliminargrupo.do',
+        url: '../../app/eventos/eliminarevento.do',
         type: 'POST',
         dataType: 'json',
         data: {idGrupo: id},
@@ -116,7 +121,7 @@ function eliminarGrupo(id) {
             if (respuesta.status === 0) {
                 TituloMensaje = "¡Evento eliminado!";
                 Mensaje = "El Eventos se ha eliminado correctamente";
-                mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '../../app/actividadextraescolar/listaractividad.do');
+                mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '../../app/eventos/listarevento.do');
                 
             } else {
                 TituloMensaje = "ERROR: ";
@@ -155,13 +160,13 @@ $("#divGrpEventos").on("click", "#btnEditar", function (evento) {
     
 });
 
-function mostrarEditarGrupo(id) {
+function mostrarEditarEvento(id) {
     $("#pageLoader").show();
     
     
     if(id!==null){
         $.ajax({
-            url: '../../app/grupos/editargrupo.do',
+            url: '../../app/eventos/editarevento.do',
             type: 'GET',
             dataType: 'html',
             data: {idGrupo:id},
@@ -183,11 +188,11 @@ function mostrarEditarGrupo(id) {
     
 }
 
-function mostrarAgregarGrupo() {
+function mostrarAgregarEvento() {
     $("#pageLoader").show();
     
         $.ajax({
-            url: '../../app/grupos/creargrupo.do',
+            url: '../../app/eventos/crearevento.do',
             type: 'GET',
             dataType: 'html',
             data: {},
@@ -226,7 +231,7 @@ function mostrarDetalleEvento(id) {
         
     if(id!==null){
         $.ajax({
-            url: '../../app/grupos/detallargrupo.do',
+            url: '../../app/eventos/detallarevento.do',
             type: 'GET',
             dataType: 'html',
             data: {idGrupo:id},
@@ -247,4 +252,54 @@ function mostrarDetalleEvento(id) {
     }
     
 }
+
+$(document).ready(function () {
+    $("#divReporte").hide();
+});
+
+
+$("#generarReporte").click(function (evento) {
+    evento.preventDefault();
+  generarReporte();
+});
+
+
+
+function generarReporte() {
+    $("#pageLoader").show();
+    
+    $.ajax({
+        url: '../../app/eventos/reporteevento.do',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            
+        },
+        success: function (respuesta) {
+            $("#pageLoader").hide();
+            
+            if (respuesta.status === 0) {
+                var byteCharacters = atob(respuesta.mensaje);
+                var byteNumbers = new Array(byteCharacters.length);
+                for (var i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                var byteArray = new Uint8Array(byteNumbers);
+                var blob = new Blob([byteArray], {type: 'application/pdf'});
+
+                var url = URL.createObjectURL(blob);
+                $("#ApartadoPDF").attr("src", url);
+                $("#divReporte").show();
+            }
+        },
+        error: function (jqXHR, exception) {
+            $("#pageLoader").hide();
+            TituloMensaje = "ERROR";
+            Mensaje = "Ocurrió un error en el servidor";
+            mostrarMensaje(iconoError, TituloMensaje, Mensaje);
+        }
+    });
+}
+
+
 

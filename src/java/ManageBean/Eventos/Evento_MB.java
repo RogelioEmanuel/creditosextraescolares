@@ -16,6 +16,7 @@ public class Evento_MB {
     private int idActividad;
     private String nombreActividad;
     private int totalParticipantes;
+    private String resultado;
 
     public Evento_MB(int idEvento, String nombreEvento, int noParticipantesh, int noParticipantesm, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int anio, int idActividad,String nombreActividad, int totalParticipantes) {
         this.idEvento = idEvento;
@@ -55,7 +56,21 @@ public class Evento_MB {
         this.fecha = fecha;
         this.anio = anio;
         this.idActividad = idActividad;
+        
+        
     }
+
+    public Evento_MB(String nombreEvento, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int idActividad) {
+        this.nombreEvento = nombreEvento;
+        this.institucionOrganizadora = institucionOrganizadora;
+        this.tipoEvento = tipoEvento;
+        this.periodo = periodo;
+        this.fecha = fecha;
+        this.idActividad = idActividad;
+    }
+    
+    
+    
 
     public Evento_MB() {
     }
@@ -154,6 +169,14 @@ public class Evento_MB {
 
     public void setTotalParticipantes() {
         this.totalParticipantes = getNoParticipantesh()+getNoParticipantesm();
+    }
+
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
     }
     
     

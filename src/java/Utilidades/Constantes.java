@@ -11,7 +11,7 @@ public class Constantes {
      public static final String EXTRAESCOLARESPRUEBA_PASS="";
      
      
-     
+     public static final String NOMBREJEFATURA="IVÁN OMAR ORTEGA ROSALES";
      public static final String NOMBRELOGO="LogoITTol";
      public static final String PERIODOFECHAINICIO="";
      public static final String PERIODOFECHAFINAL="";

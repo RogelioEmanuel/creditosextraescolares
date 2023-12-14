@@ -34,10 +34,14 @@
                         <table id="tblListaActividadesExtraescolares" class="table table-striped table-bordered tablesorter table-responsive no-footer dtr-inline dataTable table_margen" 
                                style="width: 100%; font-size: 14px">
                             <colgroup>
-                                <col span="1" style="width: 10%;">   
-                                <col span="1" style="width: 15%;">
-                                <col span="1" style="width: 25%;">
-                                <col span="1" style="width: 10%;">                               
+                                <col span="1" style="width: 8%;">   
+                                <col span="1" style="width: 4%;">
+                                <col span="1" style="width: 9%;">
+                                <col span="1" style="width: 12%;">
+                                <col span="1" style="width: 20%;"> 
+                                <col span="1" style="width: 8%;">   
+                                <col span="1" style="width: 12%;">
+                                <col span="1" style="width: 12%;">
                                 <col span="1" style="width: 15%;">
                             </colgroup>
                             <thead>
@@ -45,26 +49,37 @@
                                     <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch1" type="text" placeholder="Buscar:" style="width: 100%" data-index="1"></th>
                                     <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch2" type="text" placeholder="Buscar:" style="width: 100%" data-index="2"></th>                                    
                                     <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch3" type="text" placeholder="Buscar:" style="width: 100%" data-index="3"></th>
-                                    <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch4" type="text" placeholder="Buscar:" style="width: 100%" data-index="4"></th>                                    
+                                    <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch4" type="text" placeholder="Buscar:" style="width: 100%" data-index="4"></th> 
+                                    <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch5" type="text" placeholder="Buscar:" style="width: 100%" data-index="5"></th>                                    
+                                    <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch6" type="text" placeholder="Buscar:" style="width: 100%" data-index="6"></th>
+                                    <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch7" type="text" placeholder="Buscar:" style="width: 100%" data-index="7"></th>
+                                    <th class="bordeTd"><input id="tblListaActividadesExtraescolares-colSearch8" type="text" placeholder="Buscar:" style="width: 100%" data-index="8"></th> 
                                     <th class="bordeTd"><i class="fa fa-filter iconoFiltro"></i></th>
                                 </tr>
                                 <tr class="info">
-                                    <th class="bordeTd" style="font-size: 14px">Id Credito</th>
-                                    <th class="bordeTd" style="font-size: 14px">Periodo</th>
+                                    <th class="bordeTd" style="font-size: 14px">Grupo</th>                                  
                                     <th class="bordeTd" style="font-size: 14px">Estado</th>
-                                    <th class="bordeTd" style="font-size: 14px">Numero de control</th>                                    
+                                    <th class="bordeTd" style="font-size: 14px">Tipo</th>
+                                    <th class="bordeTd" style="font-size: 14px">No.control del alumno</th>    
+                                    <th class="bordeTd" style="font-size: 14px">Nombre del alumno</th>
+                                    <th class="bordeTd" style="font-size: 14px">Año</th>
+                                    <th class="bordeTd" style="font-size: 14px">Actividad</th>                                    
+                                    <th class="bordeTd" style="font-size: 14px">Periodo</th> 
                                     <th class="bordeTd" style="font-size: 14px"></th>
                                 </tr>
 
                             </thead>
                             <tbody>
-                                 <c:forEach var="row" items="${actividades}">
-                                    <tr id="${row.idActividad_Extraescolar}" data-id="${row.idActividad_Extraescolar}">
-                                        <td class="bordeTd  justify">${row.idActividad_Extraescolar}</td>
-                                        <td class="bordeTd  justify">${row.nombre}</td>
-                                        <td class="bordeTd  justify">${row.descripcion}</td>
-                                       
-                                        <td class="bordeTd  justify">${row.status != 0 ? 'Activa' : 'Inactiva'}</td>
+                                 <c:forEach var="row" items="${creditos}">
+                                    <tr id="${row.idCredito}" data-id="${row.idCredito}">
+                                        <td class="bordeTd  justify">${row.noGrupo}</td>                                        
+                                        <td class="bordeTd  justify">${row.estado}</td>
+                                        <td class="bordeTd  justify">${row.tipo}</td>
+                                        <td class="bordeTd  justify">${row.noControl}</td>
+                                        <td class="bordeTd  justify">${row.nombreAlumno}</td>
+                                        <td class="bordeTd  justify">${row.anio}</td>
+                                        <td class="bordeTd  justify">${row.nombreActividad}</td>
+                                        <td class="bordeTd  justify">${row.periodo}</td>
                                         <td class="bordeTd">                                         
                                          <button title="Ver Grupos " data-table="tblListaActividadesExtraescolares" class="btn btn-sm btn-info" id="btnVerGrupos${row.idActividad_Extraescolar}"><i class="fa fa-eye"></i></button>
                                         </td>
@@ -73,8 +88,8 @@
                             </tbody>
                         </table>
                         <div class="row" align="right" style="margin: 1rem">
-                            <a title="Agregar Credito" id="btnAgregar" href="/creditosextraescolares/app/actividadextraescolar/crearactividad.do" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>Agregar Credito</a>
-                            <a title="Regresar" id="btnregresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i>Regresar</a>
+                            <a title="Agregar Credito" id="btnAgregar" href="/creditosextraescolares/app/actividadextraescolar/crearactividad.do" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar Credito</a>
+                            <a title="Regresar" id="btnregresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
                             <button title="Borrar Actividad Extraescolar " data-table="tblListaActividadesExtraescolares" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i></button>
                             <button title="Editar Actividad Extraescolar" data-table="tblListaActividadesExtraescolares" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i></button>
                             

@@ -8,7 +8,7 @@ let id_fila = "";
 var tblListaActividadesExtraescolares = $('#tblListaActividadesExtraescolares').DataTable({
     "columnDefs": [
         {
-            targets: [7],
+            targets: [6],
             orderable: false
         }
     ],

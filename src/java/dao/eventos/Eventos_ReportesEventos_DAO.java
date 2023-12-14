@@ -15,9 +15,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class Eventos_ListarEventos_DAO {
+public class Eventos_ReportesEventos_DAO {
     
-    private static Evento_MB convertir(ResultSet rs) throws SQLException {
+    
+    
+     private static Evento_MB convertir(ResultSet rs) throws SQLException {
         int idEvento = rs.getInt("idEventos");
         String nombreEvento = rs.getString("NombreEvento");
         int participantesH = rs.getInt("numParticipantesH");
@@ -58,7 +60,7 @@ public class Eventos_ListarEventos_DAO {
   
         try {
             if (conn != null) {
-                String query = "SELECT idEventos,NombreEvento, numParticipantesH, numParticipantesM, InstitucionOrganizadora, tipoevento, periodo, anio,  idActividad ,fecha\n"
+                String query = "SELECT idEventos,NombreEvento, numParticipantesH, numParticipantesM, InstitucionOrganizadora, tipoevento, periodo, anio,  idActividad,fecha \n"
                         + "FROM eventos f \n"                        
                         + "limit 100";
                 ps = conn.prepareStatement(query);

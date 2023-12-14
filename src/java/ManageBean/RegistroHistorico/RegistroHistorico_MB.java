@@ -3,21 +3,33 @@ package ManageBean.RegistroHistorico;
 
 public class RegistroHistorico_MB {
     private int idRegistroHistorico;
-    private int estado;
-    private int idCredito;
-    private int noControl;
+    private String estado;    
+    private String noControl;
+    private String periodo; 
+    private String nomActividad;
+    private int anio;
+    private String tipo;
 
-    public RegistroHistorico_MB(int idRegistroHistorico, int estado, int idCredito, int noControl) {
+    public RegistroHistorico_MB(int idRegistroHistorico, String estado, String noControl, String periodo, String nomActividad, int anio, String tipo) {
         this.idRegistroHistorico = idRegistroHistorico;
         this.estado = estado;
-        this.idCredito = idCredito;
         this.noControl = noControl;
+        this.periodo = periodo;
+        this.nomActividad = nomActividad;
+        this.anio = anio;
+        this.tipo=tipo;
     }
 
-    public RegistroHistorico_MB(int estado, int idCredito, int noControl) {
+    public RegistroHistorico_MB(String estado, String noControl, String periodo, String nomActividad, int anio,String tipo) {
         this.estado = estado;
-        this.idCredito = idCredito;
         this.noControl = noControl;
+        this.periodo = periodo;
+        this.nomActividad = nomActividad;
+        this.anio = anio;
+        this.tipo=tipo;
+    }
+
+    public RegistroHistorico_MB() {
     }
 
     public int getIdRegistroHistorico() {
@@ -28,30 +40,54 @@ public class RegistroHistorico_MB {
         this.idRegistroHistorico = idRegistroHistorico;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public int getIdCredito() {
-        return idCredito;
-    }
-
-    public void setIdCredito(int idCredito) {
-        this.idCredito = idCredito;
-    }
-
-    public int getNoControl() {
+    public String getNoControl() {
         return noControl;
     }
 
-    public void setNoControl(int noControl) {
+    public void setNoControl(String noControl) {
         this.noControl = noControl;
     }
-    
+
+    public String getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(String periodo) {
+        this.periodo = periodo;
+    }
+
+    public String getNomActividad() {
+        return nomActividad;
+    }
+
+    public void setNomActividad(String nomActividad) {
+        this.nomActividad = nomActividad;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     
     
 }

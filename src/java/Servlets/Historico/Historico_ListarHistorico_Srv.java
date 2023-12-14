@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlets.CreditosExtraescolares;
+package Servlets.Historico;
 
-import ManageBean.CreditoExtraescolar.CreditoExtraescolar_MB;
-import ManageBean.Maestros.Maestros_MB;
+import dao.Historico.Historico_ListarHistorico;
+import ManageBean.RegistroHistorico.RegistroHistorico_MB;
 import Utilidades.GenericResponse;
-import dao.creditos.Creditos_ListarCreditos_DAO;
-import dao.maestros.Maestros_ListarMaestros_DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -23,33 +21,43 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Emanuel
  */
-public class ListarCreditoExtraescolar_Srv extends HttpServlet {
+public class Historico_ListarHistorico_Srv extends HttpServlet {
 
-    
+   
 
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        List<CreditoExtraescolar_MB> credito = new ArrayList<>();
+        List<RegistroHistorico_MB> credito = new ArrayList<>();
         
         GenericResponse respuesta = new GenericResponse<>();
                 
-        credito =Creditos_ListarCreditos_DAO.consultar();
+        credito =Historico_ListarHistorico.consultar();
         request.setAttribute("creditos", credito);
-        request.getRequestDispatcher("/views/Creditos_Extraescolares/Paginas/ListadoCreditoExtraescolar_View.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/Historico/Paginas/ListadoHistorico_View.jsp").forward(request, response);
+        
     }
 
-   
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
-        request.getRequestDispatcher("/views/Creditos_Extraescolares/Paginas/ListadoCreditoExtraescolar_View.jsp").forward(request, response);
+        
     }
 
-    
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";

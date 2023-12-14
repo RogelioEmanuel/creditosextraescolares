@@ -36,6 +36,9 @@ public class CrearGrupos_Srv extends HttpServlet {
         List<Maestros_MB> maestros = new ArrayList<>();  
         maestros = Grupos_CrearGrupo_DAO.consultarMaestro();  
         request.setAttribute("maestros", maestros);     
+        
+        
+        
         int idActividad = Integer.parseInt(request.getParameter("idActividad")); 
         session.setAttribute("idActividad", idActividad); 
         ActividadExtraescolar_MB actividad = new ActividadExtraescolar_MB();  

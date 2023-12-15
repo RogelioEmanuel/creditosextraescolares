@@ -92,6 +92,14 @@
         <servlet-name>EliminarEventos_Srv</servlet-name>
         <servlet-class>Servlets.Eventos.EliminarEventos_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditarEventos_Srv</servlet-name>
+        <servlet-class>Servlets.Eventos.EditarEventos_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarCreditoExtraescolar_Srv</servlet-name>
+        <servlet-class>Servlets.CreditosExtraescolares.EditarCreditoExtraescolar_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -179,6 +187,14 @@
     <servlet-mapping>
         <servlet-name>EliminarEventos_Srv</servlet-name>
         <url-pattern>/app/eventos/eliminarevento.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarEventos_Srv</servlet-name>
+        <url-pattern>/app/eventos/editarevento.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarCreditoExtraescolar_Srv</servlet-name>
+        <url-pattern>/app/creditoextraescolar/editarcredito.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

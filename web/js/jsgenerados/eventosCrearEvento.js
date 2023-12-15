@@ -9,7 +9,7 @@ $("#FormCrearEvento").on("click", "#btnRegistrar", function (evento) {
     var parth=$("#numeroparticipantesm").val();
     var partm=$("#numeroparticipantesf").val();
     var res=$("#resultado").val();
-    alert("no jala pa");
+    
     enviarDatosActividad(nombre, institucionOrganizadora, tipoEvento,periodo,fecha,actividad,parth,partm,res);
     
 

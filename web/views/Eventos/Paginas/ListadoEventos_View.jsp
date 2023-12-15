@@ -87,11 +87,11 @@
                             </tbody>
                         </table>
                         <div class="row" align="right" style="margin: 1rem">
-                            <a title="Agregar Actividad" id="btnAgregar" href="/creditosextraescolares/app/actividadextraescolar/crearactividad.do" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar Actividad</a>
+                            <a title="Agregar Actividad" id="btnAgregar" href="/creditosextraescolares/app/eventos/crearevento.do" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar Evento</a>
                             <a title="Regresar" id="btnRegresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
-                            <button title="Borrar Actividad Extraescolar " data-table="tblListaEventos" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i></button>
-                            <button title="Editar Actividad Extraescolar" data-table="tblListaEventos" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i></button>
-                            <button id="generarReporte" data-table="tblListaEventos"  class="btn btn-primary btn-sm" style="font-size:14px">
+                            <button title="Borrar Evento " data-table="tblListaEventos" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i></button>
+                            <button title="Editar Evento" data-table="tblListaEventos" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i></button>
+                            <button id="generarReporte" data-table="tblListaEventos"  class="btn btn-primary btn-sm" >
                                     <i class="fa fa-file"></i> Generar reporte
                             </button>
                         </div>

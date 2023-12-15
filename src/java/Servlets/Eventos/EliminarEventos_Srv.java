@@ -62,7 +62,7 @@ public class EliminarEventos_Srv extends HttpServlet {
         
         //Obtener el id de la invitacion
         
-        int idEvento = Integer.parseInt(request.getParameter("idevento"));        
+        int idEvento = Integer.parseInt(request.getParameter("idEvento"));        
         HttpSession session = request.getSession();
         session.setAttribute("idEvento", idEvento);  
 

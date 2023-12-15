@@ -84,6 +84,19 @@ public class Evento_MB {
         this.fecha = fecha;
         this.idActividad = idActividad;
     }
+
+    public Evento_MB(int idEvento, String nombreEvento, int noParticipantesh, int noParticipantesm, String institucionOrganizadora, String tipoEvento, String periodo, Date fecha, int idActividad, String resultado) {
+        this.idEvento = idEvento;
+        this.nombreEvento = nombreEvento;
+        this.noParticipantesh = noParticipantesh;
+        this.noParticipantesm = noParticipantesm;
+        this.institucionOrganizadora = institucionOrganizadora;
+        this.tipoEvento = tipoEvento;
+        this.periodo = periodo;
+        this.fecha = fecha;
+        this.idActividad = idActividad;
+        this.resultado = resultado;
+    }
     
     
     

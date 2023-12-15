@@ -25,7 +25,7 @@
             <div id="PanelForm" class="panel panel-primary" style="margin-top: 2em">
                 <div class="panel-heading">
                     <h2 class="panel-title" id="HEADINGDP">
-                        Crear Evento       
+                        Editar Evento    <label id="labelIdEvento" style="display: none;">${idEvento}</label>   
                     </h2>
                 </div>
                 <div class="panel panel-body" color: black; margin: 0">
@@ -43,7 +43,7 @@
                                            required 
                                            minlength="1"
                                            maxlength="80" 
-                                            value="${evento.nombreEvento}
+                                           value="${evento.nombreEvento}"
                                            title="Nombre del Evento">
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                                            required 
                                            minlength="1"
                                            maxlength="80" 
-                                           value="${evento.institucionOrganizadora}
+                                           value="${evento.institucionOrganizadora}"
                                            title="InstitucionOrganizadora">
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
                                            autocomplete="off" 
                                            placeholder="numeroparticipantesm" 
                                            required 
-                                           value="${evento.noParticipantesh}
+                                           value="${evento.noParticipantesh}"
                                            minlength="1"
                                            maxlength="80"  
                                            title="numeroparticipantesm">
@@ -129,7 +129,7 @@
                                            autocomplete="off" 
                                            placeholder="numeroparticipantesf" 
                                            required 
-                                           value="${evento.noParticipantesm}
+                                           value="${evento.noParticipantesm}"
                                            minlength="1"
                                            maxlength="80"  
                                            title="numeroparticipantesf">
@@ -149,7 +149,7 @@
                                            date-date-format="dd/mm/yyyy"
                                            placeholder="dd/mm/yyyy" 
                                            maxlength="10"
-                                           value="${evento.fecha}
+                                           value="${evento.fecha}"
                                            class="form-control input-sm datepicker" 
                                            required >
                                 </div>
@@ -188,7 +188,7 @@
                                            autocomplete="off" 
                                            placeholder="resultado" 
                                            required 
-                                           value="${evento.resultado}
+                                           value="${evento.resultado}"
                                            minlength="1"
                                            maxlength="80"  
                                            title="resultado">
@@ -200,7 +200,7 @@
                         </div>
                         <div class="row" style="margin-top: 30px">                             
                             <div class="col-md-12" align="right">                                
-                                <button id="btnRegistrar" form="FormCrearEvento" type="submit"  class="btn btn-primary btn-sm " style="font-size:14px">
+                                <button id="btnEditarActividad" form="FormCrearEvento" type="submit"  class="btn btn-primary btn-sm " style="font-size:14px">
                                     <i class="fa fa-save"></i> 
                                 </button>    
                                 <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/eventos/listarevento.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i></a>
@@ -226,9 +226,8 @@
         <script type="text/javascript" src ="\CDN-ITT\js\bootstrap-datepicker.es.estandarITT.js"></script>
         
         
-       
-        <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
-        
+        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
+        <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>        
         <script src="../../js/jsgenerados/eventosEditarEvento.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>

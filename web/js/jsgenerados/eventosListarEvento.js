@@ -151,6 +151,8 @@ $("#divGrpEventos").on("click", "#btnEditar", function (evento) {
     
     if(id !== null && id !== undefined){
         mostrarEditarEvento(id);
+        
+        
     }else{
         TituloMensaje = "ERROR";
         Mensaje = "Es nulo el ID";
@@ -168,7 +170,7 @@ function mostrarEditarEvento(id) {
             url: '../../app/eventos/editarevento.do',
             type: 'GET',
             dataType: 'html',
-            data: {idGrupo:id},
+            data: {idEvento:id},
             success: function (respuesta) {
                 $("body").html(respuesta);
             },

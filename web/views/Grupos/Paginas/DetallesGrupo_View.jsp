@@ -19,8 +19,6 @@
     </head>
     <header><%@include file="../../templates/Header_View.jsp" %></header>
     <body>
-       
-            
          <div class="container">
             <div id="PanelForm" class="panel panel-primary" style="margin-top: 2em">
                 <div class="panel-heading">
@@ -179,7 +177,7 @@
                         <div class="row" style="margin-top: 30px">                             
                             <div class="col-md-12" align="right">                                
                                    
-                                 <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/actividadextraescolar/listaractividad.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i> Regresar</a>
+                                 <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/grupos/listargrupos.do?${actividad.idActividad_Extraescolar}" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i> Regresar</a>
                             </div>
                         </div>
                     </form>
@@ -205,7 +203,7 @@
        
         <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
         
-        <script src="../../js/jsgenerados/gruposEditarGrupo.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/gruposDetalleGrupo.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>
     </body>

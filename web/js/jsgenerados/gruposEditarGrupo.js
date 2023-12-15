@@ -145,7 +145,7 @@ function validarFormulario(cupo, horasTotales,noGrupo) {
         errores.push("El campo 'Número de grupo' debe contener solo números.");
     }
 
-    if (!camposnumericosValidos(horasTotales)<=minimohorassemanales) {
+    if (!camposnumericosValidos(horasTotales)) {
         errores.push("El campo 'Horas Totales' debe contener solo números.");
     }    
 

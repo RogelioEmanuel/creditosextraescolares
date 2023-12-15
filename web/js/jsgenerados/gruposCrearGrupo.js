@@ -1,4 +1,3 @@
-//var diasSeleccionados = [];
 var lunesInicio = null;
 var lunesFin = null;
 var martesInicio = null;
@@ -16,20 +15,20 @@ function handleDayCheckboxChange(checkbox, inicioInput, finInput) {
   checkbox.addEventListener('change', (event) => {
     var dia = checkbox.id;      
     if (event.currentTarget.checked) {       
-     // diasSeleccionados.push(dia);
+     
       inicioInput.style.display = "inline";
       finInput.style.display = "inline";
       
       inicioInput.addEventListener('input', () => obtenerDia(dia, inicioInput, finInput));
       finInput.addEventListener('input', () => obtenerDia(dia, inicioInput, finInput));
           
-     //obtenerDia(dia); 
+     ; 
     } else {
-      //diasSeleccionados = diasSeleccionados.filter(d => d !== dia);
+      
       resetDia(dia);
       inicioInput.style.display = "none";
       finInput.style.display = "none";
-      //obtenerDia(dia, inicioInput, finInput);
+      
     }
   });
 }
@@ -141,9 +140,13 @@ function validarFormulario(cupo, horasTotales,noGrupo) {
         errores.push("El campo 'Número de grupo' debe contener solo números.");
     }
 
-    if (!camposnumericosValidos(horasTotales)<=minimohorassemanales) {
+    if (!camposnumericosValidos(horasTotales)) {
         errores.push("El campo 'Horas Totales' debe contener solo números.");
-    }    
+    }   
+    
+     if (horasTotales < minimohorassemanales ) {
+        errores.push("El campo 'Horas Totales' debe ser minimo 1 ");
+    }   
 
     // Validar que los valores sean menores que 100
     if (parseInt(cupo) >= cupoMaximo && parseInt(cupo) <= cupoMinimo ) {

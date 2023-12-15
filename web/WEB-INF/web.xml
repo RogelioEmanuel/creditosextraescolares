@@ -100,6 +100,14 @@
         <servlet-name>EditarCreditoExtraescolar_Srv</servlet-name>
         <servlet-class>Servlets.CreditosExtraescolares.EditarCreditoExtraescolar_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListarGruposMaestro_Srv</servlet-name>
+        <servlet-class>Servlets.Grupos.ListarGruposMaestro_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetalleGrupoMaestro</servlet-name>
+        <servlet-class>Servlets.Grupos.DetalleGrupoMaestro_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -195,6 +203,14 @@
     <servlet-mapping>
         <servlet-name>EditarCreditoExtraescolar_Srv</servlet-name>
         <url-pattern>/app/creditoextraescolar/editarcredito.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarGruposMaestro_Srv</servlet-name>
+        <url-pattern>/app/grupos/listargruposmaestro.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetalleGrupoMaestro</servlet-name>
+        <url-pattern>/app/grupos/detallargrupomaestro.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

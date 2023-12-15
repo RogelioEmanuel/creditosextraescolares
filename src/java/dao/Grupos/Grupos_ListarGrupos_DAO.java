@@ -149,6 +149,63 @@ public class Grupos_ListarGrupos_DAO {
         return grupos;
     }
      
+     public static List<Grupos_MB> consultarGr(int id) {
+        ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
+        int statusConexion = cone.conectar();
+        Connection conn = cone.getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Grupos_MB> grupos = new ArrayList<>();
+        
+         
+        
+  
+        try {
+            if (conn != null) {
+                String query = "SELECT idGrupo,noGrupo,  cupo,  idActividad_extraescolar, idMaestros, periodo, totalhorassemanal \n"
+                        + "FROM Grupos  \n"
+                        + "where idMaestros =?"  ;
+                        
+                        
+                ps = conn.prepareStatement(query);
+                ps.setInt(1,id );
+                rs = ps.executeQuery();
+                
+                
+                
+                while (rs.next()) {
+                    grupos.add(convertir(rs));
+                    
+                }
+                if (!conn.isClosed()) {
+                    conn.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Grupos_MB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Grupos_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Grupos_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return grupos;
+    }
+     
     /**
      *
      * @param idMaestro

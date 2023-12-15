@@ -166,8 +166,6 @@
                                         </label>
                                     </c:forEach>
 
-                                       
-                                        
                                 </div>
                             </div>
                             
@@ -176,7 +174,7 @@
                                            
                         <div class="row" style="margin-top: 30px">                             
                             <div class="col-md-12" align="right">                                
-                                   
+                                 <button title="Alumnos Inscritos" data-table="tblListaGrupos" class="btn btn-warning btn-sm" id="btnAlumnos"><i class="fa fa-pencil"></i>Alumnos Inscritos</button>
                                  <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/grupos/listargrupos.do?idActividad=${actividad.idActividad_Extraescolar}" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i> Regresar</a>
                             </div>
                         </div>

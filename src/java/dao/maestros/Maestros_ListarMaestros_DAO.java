@@ -59,6 +59,8 @@ public class Maestros_ListarMaestros_DAO {
         return maestro;
     }
     
+    
+    
      public static List<Maestros_MB> consultar() {
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();

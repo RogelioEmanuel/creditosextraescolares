@@ -29,29 +29,7 @@ var tblListaGrupos = $('#tblListaGrupos').DataTable({
 });
 
 
-$("#divGrpGrupos").on('click', '#tblListaGrupos tbody tr td', function () {
-    if (!SeEstaModificando) {
-        DatosDeLaFila = tblListaGrupos.row($(this)).data();
-        id_fila = $(this).closest('tr').attr("id");
-        if (!$(this).parent('tr').hasClass("selected")) {
-            $("#btnEditar").show();
-            $("#btnEliminar").show();            
-            $("#btnAgregar").hide();
-            $("#btnRegresar").hide();
-            $("#btnCancelar").show();
-            
-            
-        } else {
-            $("#btnEditar").hide();
-            $("#btnEliminar").hide();            
-            $("#btnAgregar").show();
-            $("#btnRegresar").show();
-            $("#btnCancelar").hide();
-        }
-        selectLib("tblListaGrupos", $(this).parent().attr('id'));
-    }
 
-});
 
 filtradoColumna(tblListaGrupos, "tblListaGrupos");
 crearTabla("tblListaGrupos", updateRegistro, updateRegistro, updateRegistro, updateRegistro);

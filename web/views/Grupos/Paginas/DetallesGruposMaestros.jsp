@@ -102,14 +102,9 @@
                                                                                    
                                     </select>
                                 </div>
-                            </div>
-                            
-                            
-                                                                
+                            </div>                        
                         </div>
                        
-                        
-                        
                         <div class="row" style="margin-bottom: 20px">
                             
                             <div class="col-md-5">
@@ -147,7 +142,6 @@
                                 </div>
                             </div>
                             
-                             
                         </div>
                            <div class="row" style="margin-bottom: 20px">                           
                            
@@ -200,8 +194,7 @@
         
        
         <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
-        
-        <script src="../../js/jsgenerados/gruposDetalleGrupo.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/gruposDetalleGrupoMaestro.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>
     </body>

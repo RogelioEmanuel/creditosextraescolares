@@ -31,6 +31,7 @@
                             <li><a href="/creditosextraescolares/app/maestros/listarmaestros.do"><span class="fa fa-user dropdown-item"></span>Maestros</a></li>
                             <li><a href="/creditosextraescolares/app/eventos/listarevento.do"><span class="fa fa-user dropdown-item"></span>Eventos</a></li>
                             <li><a href="/creditosextraescolares/app/historico/listarhistorico.do"><span class="fa fa-user dropdown-item"></span>Registro Historico de creditos</a></li>
+                            <li><a href="/creditosextraescolares/app/planesdetrabajo/ListarPlan.do"><span class="fa fa-user dropdown-item"></span>Planes de trabajo</a></li>
                             
                         </ul>
                     </li>

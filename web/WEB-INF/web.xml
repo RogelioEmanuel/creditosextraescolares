@@ -108,6 +108,14 @@
         <servlet-name>DetalleGrupoMaestro</servlet-name>
         <servlet-class>Servlets.Grupos.DetalleGrupoMaestro_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CrearPlanTrabajo_Srv</servlet-name>
+        <servlet-class>Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarPlanesdeTrabajo_Srv</servlet-name>
+        <servlet-class>Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -211,6 +219,14 @@
     <servlet-mapping>
         <servlet-name>DetalleGrupoMaestro</servlet-name>
         <url-pattern>/app/grupos/detallargrupomaestro.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CrearPlanTrabajo_Srv</servlet-name>
+        <url-pattern>/app/planesdetrabajo/CrearPlan.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarPlanesdeTrabajo_Srv</servlet-name>
+        <url-pattern>/app/planesdetrabajo/ListarPlan.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

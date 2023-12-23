@@ -26,6 +26,13 @@ public class PlanSemana_MB {
         this.plataforma = plataforma;
         this.llevar_a_cabo = llevar_a_cabo;
     }
+
+    public PlanSemana_MB(int noSemana, String programa, String plataforma, String llevar_a_cabo) {
+        this.noSemana = noSemana;
+        this.programa = programa;
+        this.plataforma = plataforma;
+        this.llevar_a_cabo = llevar_a_cabo;
+    }
     
     
 

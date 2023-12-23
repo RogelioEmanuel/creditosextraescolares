@@ -34,29 +34,31 @@
                                 <label>Actividad :</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                    <select name="actividades" 
-                                            id="actividades" 
-                                            placeholder="actividades"
-                                            class="form-control input-sm"                                             
-                                            required >
-                                        <c:forEach var="actividad" items="${actividades}">
-                                            <option value="${actividad.idActividad_Extraescolar}">${actividad.nombre} </option>
-                                        </c:forEach>
-                                    </select>
+                                    <input name="inputNombreActividadExtraescolar" 
+                                           id="nombre" 
+                                           class="form-control input-sm" 
+                                           autocomplete="off" 
+                                           placeholder="Nombre de la Actividad Extraescolar" 
+                                           required 
+                                           disabled="true"
+                                           minlength="1"
+                                           maxlength="80"  
+                                           title="Nombre de la Actividad Extraescolar">
                                 </div>
                             </div>                            
                             <div class="col-md-6">
                                 <label >Maestro</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                   <select name="inputMaestro" 
-                                            id="maestro" 
-                                            placeholder="Maestro"
-                                            class="form-control input-sm"                                             
+                                    <select name="inputTipo" 
+                                            id="tipo" 
+                                            placeholder="Tipo"
+                                            class="form-control input-sm"   
+                                            disabled="true"
                                             required >
-                                        <c:forEach var="maestro" items="${maestros}">
-                                            <option value="${maestro.idMaestros}">${maestro.nombre} ${maestro.apPaterno} ${maestro.apMaterno}</option>
-                                        </c:forEach>
+                                        <option value="Civico">Civico</option>
+                                        <option value="Deportivo">Deportivo</option>
+                                        <option value="Cultural">Cultural</option>
                                     </select>
                                 </div>
                             </div>                            
@@ -74,7 +76,8 @@
                                            placeholder="programa semana 1" 
                                            required 
                                            minlength="1"
-                                           maxlength="80"  
+                                           maxlength="80"
+                                           disabled="true"
                                            title="programa semana 1">
                                 </div>
                             </div>                            
@@ -87,7 +90,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 1" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 1">
@@ -105,7 +108,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo haría?"></textarea>
@@ -123,7 +126,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 2" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 2">
@@ -138,7 +141,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 2" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 2">
@@ -156,7 +159,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo haría?"></textarea>
@@ -174,7 +177,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 3" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 3">
@@ -189,7 +192,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 3" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 3">
@@ -207,7 +210,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo haría?"></textarea>
@@ -225,7 +228,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 4" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 4">
@@ -240,7 +243,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 4" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 4">
@@ -258,7 +261,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo haría?"></textarea>
@@ -276,7 +279,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 5" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 5">
@@ -291,7 +294,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 5" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 5">
@@ -309,7 +312,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo haría?"></textarea>
@@ -327,7 +330,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 6" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 6">
@@ -342,7 +345,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 6" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 6">
@@ -360,7 +363,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo haría?"></textarea>
@@ -378,7 +381,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 7" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 7">
@@ -393,7 +396,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 7" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 7">
@@ -411,7 +414,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo harían?"></textarea>
@@ -429,7 +432,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 8" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 8">
@@ -444,7 +447,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 8" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 8">
@@ -462,7 +465,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo harían?"></textarea>
@@ -480,7 +483,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 9" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 9">
@@ -495,7 +498,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 9" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 9">
@@ -513,7 +516,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo harían?"></textarea>
@@ -531,7 +534,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 10" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 10">
@@ -546,7 +549,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 10" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 10">
@@ -564,7 +567,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo harían?"></textarea>
@@ -582,7 +585,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 11" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 11">
@@ -597,7 +600,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 11" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 11">
@@ -615,7 +618,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo harían?"></textarea>
@@ -633,7 +636,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 12" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 12">
@@ -648,7 +651,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 12" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 12">
@@ -666,7 +669,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo harían?"></textarea>
@@ -684,7 +687,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 13" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 13">
@@ -699,7 +702,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 13" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 13">
@@ -717,7 +720,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo harían?"></textarea>
@@ -735,7 +738,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 14" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 14">
@@ -750,7 +753,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 14" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 14">
@@ -768,7 +771,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo harían?"></textarea>
@@ -786,7 +789,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 15" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 15">
@@ -801,7 +804,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 15" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 15">
@@ -819,7 +822,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo harían?"></textarea>
@@ -837,7 +840,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="programa semana 16" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="programa semana 16">
@@ -852,7 +855,7 @@
                                            class="form-control input-sm" 
                                            autocomplete="off" 
                                            placeholder="plataforma semana 16" 
-                                           required 
+                                           disabled="true" 
                                            minlength="1"
                                            maxlength="80"  
                                            title="plataforma semana 16">
@@ -870,7 +873,7 @@
                                               class="form-control input-sm" 
                                               autocomplete="off" 
                                               placeholder="¿Cómo lo harían?" 
-                                              required 
+                                              disabled="true" 
                                               minlength="1"
                                               rows="4"
                                               title="¿Cómo lo harían?"></textarea>
@@ -880,9 +883,9 @@
 
                         <div class="row" style="margin-top: 30px">                             
                             <div class="col-md-12" align="right">                                
-                                <button id="btnRegistrar" form="FormCrearPlan" type="submit"   class="btn btn-primary btn-sm " style="font-size:14px">
-                                    <i class="fa fa-save"></i> 
-                                </button>    
+                                <button id="generarReporte" form="FormCrearPlan"  class="btn btn-primary btn-sm" style="font-size:14px">
+                                    <i class="fa fa-file"></i> Generar reporte
+                                </button>     
                                 <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/actividadextraescolar/listaractividad.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i></a>
                             </div>
                         </div>

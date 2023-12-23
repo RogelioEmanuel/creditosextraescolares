@@ -116,6 +116,14 @@
         <servlet-name>ListarPlanesdeTrabajo_Srv</servlet-name>
         <servlet-class>Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DetallarPlanTrabajo</servlet-name>
+        <servlet-class>Servlets.PlandeTrabajo.DetallarPlanTrabajo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportesPlanTrabajo_Srv</servlet-name>
+        <servlet-class>Servlets.PlandeTrabajo.ReportesPlanTrabajo_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -227,6 +235,14 @@
     <servlet-mapping>
         <servlet-name>ListarPlanesdeTrabajo_Srv</servlet-name>
         <url-pattern>/app/planesdetrabajo/ListarPlan.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetallarPlanTrabajo</servlet-name>
+        <url-pattern>/app/planesdetrabajo/DetallarPlan.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportesPlanTrabajo_Srv</servlet-name>
+        <url-pattern>/app/planestrabajo/reporteplan.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

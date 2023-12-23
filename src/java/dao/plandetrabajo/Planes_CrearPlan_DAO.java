@@ -65,7 +65,7 @@ public class Planes_CrearPlan_DAO {
         
         try {
             if (conn != null) {
-                String query= "INSERT INTO planestrabajoactividades ( id_Actividad_Extraescolar, idMaestros) VALUES (?,?,?)";
+                String query= "INSERT INTO planestrabajoactividades ( id_Actividad_Extraescolar, idMaestros) VALUES (?,?)";
                 
                 ps = conn.prepareStatement(query);
                 ps.setInt(1,plan.getActividadExtraescolar());
@@ -163,27 +163,26 @@ public class Planes_CrearPlan_DAO {
         return maestro;
     }
      
-     public static ActividadExtraescolar_MB consultarActividad(int id) {
+     public static List<ActividadExtraescolar_MB> consultarActividad() {
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();
         Connection conn = cone.getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        ActividadExtraescolar_MB actividades = new ActividadExtraescolar_MB();
+        List<ActividadExtraescolar_MB> actividades = new ArrayList<>();
         
         
   
         try {
             if (conn != null) {
                 String query = "SELECT idActividad_Extraescolar, nombre, tipo, status, descripcion \n"
-                        + "FROM actividad_extraescolar f \n"                        
-                        + "WHERE idActividad_Extraescolar = ?";
+                        + "FROM actividad_extraescolar  ";
                 ps = conn.prepareStatement(query);
-                ps.setInt(1,id );
+                
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    actividades=convertirActividad(rs);
-                    
+                    actividades.add(convertirActividad(rs));
+                    System.out.println("a ver");
                 }
                 if (!conn.isClosed()) {
                     conn.close();
@@ -210,7 +209,7 @@ public class Planes_CrearPlan_DAO {
                 }
             }
         }
-
+        
         return actividades;
     }
 
@@ -223,6 +222,7 @@ public class Planes_CrearPlan_DAO {
         ActividadExtraescolar_MB actividad = new ActividadExtraescolar_MB();  
         
         actividad.setIdActividad_Extraescolar(idActividad_Extraescolar);
+       
         actividad.setNombre(nombre);
         actividad.setDescripcion(descripcion);
         actividad.setStatus(status);

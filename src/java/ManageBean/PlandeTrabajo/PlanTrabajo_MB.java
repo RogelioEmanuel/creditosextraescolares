@@ -7,6 +7,8 @@ public class PlanTrabajo_MB {
     private int idPlan;
     private int actividadExtraescolar;
     private int maestro;
+    private String nomMaestro;
+    private String nomactividad;
 
     public PlanTrabajo_MB(int idPlan, int actividadExtraescolar, int maestro) {
         this.idPlan = idPlan;
@@ -24,10 +26,6 @@ public class PlanTrabajo_MB {
     public PlanTrabajo_MB() {
     }
 
-    
-    
-    
-    
     
     public int getIdPlan() {
         return idPlan;
@@ -52,6 +50,24 @@ public class PlanTrabajo_MB {
     public void setMaestro(int maestro) {
         this.maestro = maestro;
     }
+
+    public String getNomMaestro() {
+        return nomMaestro;
+    }
+
+    public void setNomMaestro(String nomMaestro) {
+        this.nomMaestro = nomMaestro;
+    }
+
+    public String getNomactividad() {
+        return nomactividad;
+    }
+
+    public void setNomactividad(String nomactividad) {
+        this.nomactividad = nomactividad;
+    }
+    
+    
     
     
     

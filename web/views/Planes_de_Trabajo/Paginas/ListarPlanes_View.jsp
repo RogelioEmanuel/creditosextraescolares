@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="/CDN-ITT/img/logo.png">
-        <title>Lista de Actividades Extraescolares</title>
+        <title>Lista de Planes de Trabajo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/CDN-ITT/css/base.estandarITT.css" rel="stylesheet">
         <link href="/CDN-ITT/css/font-awesome.estandarITT.css" rel="stylesheet">
@@ -25,7 +25,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h2 class="panel-title">
-                        Lista de Actividades Extraescolares
+                        Lista de Planes de Trabajo
                     </h2>
                 </div>
                 <div class="panel-body">
@@ -51,19 +51,19 @@
 
                             </thead>
                             <tbody>
-                                 <c:forEach var="row" items="${actividades}">
-                                    <tr id="${row.idActividad_Extraescolar}" data-id="${row.idActividad_Extraescolar}">
-                                        <td class="bordeTd  justify">${row.idActividad_Extraescolar}</td>
-                                        <td class="bordeTd  justify">${row.nombre}</td>                                        
+                                 <c:forEach var="row" items="${planes}">
+                                    <tr id="${row.idPlan}" data-id="${row.idPlan}">
+                                        <td class="bordeTd  justify">${row.actividadExtraescolar}</td>
+                                        <td class="bordeTd  justify">${row.maestro}</td>                                        
                                         <td class="bordeTd">                                         
-                                         <button title="Agregar Grupos " data-table="tblListaPlanes" class="btn btn-sm btn-success" id="btnVerDetalle${row.idActividad_Extraescolar}"><i class="fa fa-plus"></i></button>
+                                         <button title="Agregar Grupos " data-table="tblListaPlanes" class="btn btn-sm btn-success" id="btnVerDetalle"><i class="fa fa-plus"></i></button>
                                         </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
                         </table>
                         <div class="row" align="right" style="margin: 1rem">
-                            <a title="Agregar Plan" id="btnAgregar" href="/creditosextraescolares/app/actividadextraescolar/crearactividad.do" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar Actividad</a>
+                            <a title="Agregar Plan" id="btnAgregar" href="/creditosextraescolares/app/planesdetrabajo/CrearPlan.do" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar Plan de trabajo</a>
                             <a title="Regresar" id="btnregresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
                             <button title="Borrar Plan " data-table="tblListaPlanes" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i></button>
                             <button title="Editar Plan" data-table="tblListaPlanes" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i></button>                            

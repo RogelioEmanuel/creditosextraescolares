@@ -1,12 +1,14 @@
+
 package dao.plandetrabajo;
 
 import ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB;
+import ManageBean.Grupos.Grupos_MB;
 import ManageBean.Maestros.Maestros_MB;
+import ManageBean.PlanSemana.PlanSemana_MB;
 import ManageBean.PlandeTrabajo.PlanTrabajo_MB;
 import Utilidades.Constantes;
 import config.conexion.ConexionMySQL;
 import dao.maestros.Maestros_EditarMaestros_DAO;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,75 +20,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class Planes_ListarPlanes_DAO {
+public class Planes_DetallarPlan_DAO {
     
     
-    private static PlanTrabajo_MB convertir(ResultSet rs) throws SQLException {
-        int idActividad_Extraescolar = rs.getInt("id_Actividad_Extraescolar");
-        
-        int id_plan = rs.getInt("id_plan"); 
-        int idMaestros = rs.getInt("idMaestros"); 
-        PlanTrabajo_MB plan = new PlanTrabajo_MB();  
-        plan.setActividadExtraescolar(idActividad_Extraescolar);
-        plan.setIdPlan(id_plan);
-        plan.setMaestro(idMaestros);
-        Maestros_MB a = consultar(idMaestros);
-        plan.setNomMaestro(a.getNombre());
-        ActividadExtraescolar_MB b = consultarActividad(idActividad_Extraescolar);
-        plan.setNomactividad(b.getNombre());
-        
-        return plan;
-    }
-
-    public static List<PlanTrabajo_MB> consultar() {
-        ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
-        int statusConexion = cone.conectar();
-        Connection conn = cone.getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        List<PlanTrabajo_MB> plantrabajo = new ArrayList<>();
-        
-        
-  
-        try {
-            if (conn != null) {
-                String query = "SELECT id_plan, id_Actividad_Extraescolar, idMaestros \n"
-                        + "FROM planestrabajoactividades f \n"                        
-                        + "limit 100";
-                ps = conn.prepareStatement(query);
-                rs = ps.executeQuery();
-                while (rs.next()) {
-                    plantrabajo.add(convertir(rs));
-                    
-                }
-                if (!conn.isClosed()) {
-                    conn.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ActividadExtraescolar_MB.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ActividadExtraescolar_MB.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ActividadExtraescolar_MB.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-
-        return plantrabajo;
-    }
+    
     
     public static ActividadExtraescolar_MB consultarActividad(int id) {
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
@@ -138,7 +75,6 @@ public class Planes_ListarPlanes_DAO {
 
         return actividades;
     }
-        
     public static ActividadExtraescolar_MB convertirActividad(ResultSet rs) throws SQLException {
         int idActividad_Extraescolar = rs.getInt("idActividad_Extraescolar");
         String nombre = rs.getString("nombre");
@@ -154,9 +90,7 @@ public class Planes_ListarPlanes_DAO {
         actividad.setTipo(tipo);
         return actividad;
     }
-    
-    
-    private static Maestros_MB convertir2(ResultSet rs) throws SQLException {
+    private static Maestros_MB convertir(ResultSet rs) throws SQLException {
         
         
         int idMaestros = rs.getInt("idMaestros");
@@ -210,7 +144,7 @@ public class Planes_ListarPlanes_DAO {
                 ps.setInt(1,idMaestro );
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    maestro = convertir2(rs);
+                    maestro = convertir(rs);
                 }
             }
         } catch (SQLException ex) {
@@ -241,4 +175,150 @@ public class Planes_ListarPlanes_DAO {
         }
         return maestro;
     }
+    
+    
+    
+    public static PlanTrabajo_MB consultarPlan(int id) {
+        ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
+        int statusConexion = cone.conectar();
+        Connection conn = cone.getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        PlanTrabajo_MB plantrabajo = new PlanTrabajo_MB();
+        
+        
+  
+        try {
+            if (conn != null) {
+                String query = "SELECT id_plan, id_Actividad_Extraescolar, idMaestros \n"
+                        + "FROM planestrabajoactividades f \n"                        
+                        + "where id_plan = ?";
+                ps = conn.prepareStatement(query);
+                ps.setInt(1,id );
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    plantrabajo=convertir2(rs);
+                    
+                }
+                if (!conn.isClosed()) {
+                    conn.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ActividadExtraescolar_MB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ActividadExtraescolar_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ActividadExtraescolar_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return plantrabajo;
+    }
+    private static PlanTrabajo_MB convertir2(ResultSet rs) throws SQLException {
+        int idActividad_Extraescolar = rs.getInt("id_Actividad_Extraescolar");
+        
+        int id_plan = rs.getInt("id_plan"); 
+        int idMaestros = rs.getInt("idMaestros"); 
+        PlanTrabajo_MB plan = new PlanTrabajo_MB();  
+        plan.setActividadExtraescolar(idActividad_Extraescolar);
+        plan.setIdPlan(id_plan);
+        plan.setMaestro(idMaestros);
+        Maestros_MB a = consultar(idMaestros);
+        plan.setNomMaestro(a.getNombre());
+        ActividadExtraescolar_MB b = consultarActividad(idActividad_Extraescolar);
+        plan.setNomactividad(b.getNombre());
+        return plan;
+    }
+    
+    
+    public static List<PlanSemana_MB> consultarPlanSemanal(int id){
+        ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
+        int statusConexion = cone.conectar();
+        Connection conn = cone.getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<PlanSemana_MB> plansemanales = new ArrayList<>();
+        
+         
+        
+  
+        try {
+            if (conn != null) {
+                String query = "SELECT id_registro ,id_plan,semana,programa,  plataforma,  llevara_acabo \n"
+                        + "FROM semanasactividades  \n"
+                        + "where id_plan =?"  ;
+                        
+                        
+                ps = conn.prepareStatement(query);
+                ps.setInt(1,id );
+                rs = ps.executeQuery();
+                
+                
+                
+                while (rs.next()) {
+                    plansemanales.add(convertirplansemanal(rs));
+                    
+                }
+                if (!conn.isClosed()) {
+                    conn.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Grupos_MB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Grupos_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Grupos_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return plansemanales;
+        
+        
+    }
+    
+    private static PlanSemana_MB convertirplansemanal(ResultSet rs) throws SQLException {
+        
+        
+        int idRegistro = rs.getInt("id_registro");
+        int id_plan = rs.getInt("id_plan");
+        int semana = rs.getInt("semana");
+        String programa = rs.getString("programa");
+        String plataforma = rs.getString("plataforma");
+        String llevara_acabo = rs.getString("llevara_acabo");
+        
+        PlanSemana_MB maestro = new PlanSemana_MB(idRegistro,id_plan,semana,programa,plataforma,llevara_acabo);   
+        
+        return maestro;
+    }
+    
+    
+    
 }

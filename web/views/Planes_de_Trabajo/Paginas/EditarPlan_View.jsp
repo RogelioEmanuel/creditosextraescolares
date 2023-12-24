@@ -38,7 +38,7 @@
                                             id="actividades" 
                                             placeholder="actividades"
                                             class="form-control input-sm"
-                                            disabled="true"
+                                            
                                             required >
                                             <option value="${plant.actividadExtraescolar}">${plant.nomactividad}</option>
                                     </select>
@@ -52,7 +52,7 @@
                                             id="maestro" 
                                             placeholder="Maestro"
                                             class="form-control input-sm" 
-                                            disabled="true"                                            
+                                                                                        
                                             required >
                                         
                                             <option value="${plant.maestro}">${plant.nomMaestro}</option>
@@ -75,7 +75,7 @@
                                                required 
                                                minlength="1"
                                                maxlength="80"
-                                               disabled="true"
+                                               
                                                value="${plan.programa}"
                                                title="programa semana ${plan.noSemana}">
                                     </div>
@@ -89,7 +89,7 @@
                                                class="form-control input-sm" 
                                                autocomplete="off" 
                                                placeholder="plataforma semana ${plan.noSemana}" 
-                                               disabled="true" 
+                                                
                                                minlength="1"
                                                maxlength="80" 
                                                value="${plan.plataforma}"
@@ -108,7 +108,7 @@
                                                   class="form-contro${plan.noSemana} input-sm" 
                                                   autocomplete="off" 
                                                   placeholder="¿Cómo lo harían?" 
-                                                  disabled="true" 
+                                                   
                                                   minlength="1"
                                                   rows="4"
                                                   cols="130"

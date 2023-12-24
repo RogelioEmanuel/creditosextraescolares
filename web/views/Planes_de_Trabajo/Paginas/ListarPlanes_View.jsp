@@ -53,10 +53,10 @@
                             <tbody>
                                  <c:forEach var="row" items="${planes}">
                                     <tr id="${row.idPlan}" data-id="${row.idPlan}">
-                                        <td class="bordeTd  justify">${row.actividadExtraescolar}</td>
-                                        <td class="bordeTd  justify">${row.maestro}</td>                                        
+                                        <td class="bordeTd  justify">${row.nomactividad}</td>
+                                        <td class="bordeTd  justify">${row.nomMaestro}</td>                                        
                                         <td class="bordeTd">                                         
-                                         <button title="Agregar Grupos " data-table="tblListaPlanes" class="btn btn-sm btn-success" id="btnVerDetalle"><i class="fa fa-plus"></i></button>
+                                         <button title="Detalles Plan " data-table="tblListaPlanes" class="btn btn-sm btn-info" id="btnVerDetalle${row.idPlan}"><i class="fa fa-eye"></i></button>
                                         </td>
                                     </tr>
                                 </c:forEach>

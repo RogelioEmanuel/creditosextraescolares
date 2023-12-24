@@ -70,7 +70,7 @@ $("[id^='btnVerDetalle']").on("click", function (evento) {
     let id = $(this).attr("id").replace("btnVerDetalle", "");
     
     if(id !== null && id !== undefined){
-        mostrarGrupos(id);
+        mostrarDetalle(id);
     }else{
         TituloMensaje = "ERROR";
         Mensaje = "Es nulo el ID";
@@ -118,15 +118,15 @@ function mostrarEditarActividad(id) {
     
 }
 
-function mostrarGrupos(id) {
+function mostrarDetalle(id) {
     $("#pageLoader").show();
-        
+    
     if(id!==null){
         $.ajax({
-            url: '../../app/grupos/listargrupos.do',
+            url: '../../app/planesdetrabajo/DetallarPlan.do',
             type: 'GET',
             dataType: 'html',
-            data: {idActividad:id},
+            data: {idPlan:id},
             success: function (respuesta) {
                 $("body").html(respuesta);
             },

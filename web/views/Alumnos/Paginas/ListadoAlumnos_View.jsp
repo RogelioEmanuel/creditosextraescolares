@@ -20,6 +20,11 @@
     </head>
     <body>
         <header><%@include file="../../templates/HeaderMaestro_View.jsp" %></header>
+        <div id="pageLoader">
+            <div id="pageSpinner">
+                <%@include file="../../templates/spinner.estandarITT.jsp" %>
+            </div>
+        </div>
         <div class="container">
             
             <div class="panel panel-primary">
@@ -38,10 +43,11 @@
                                 <col span="1" style="width: 5%;">
                                 <col span="1" style="width: 5%;">
                                 <col span="1" style="width: 5%;">
-                                <col span="1" style="width: 20%;">
-                                <col span="1" style="width: 5%;">
                                 <col span="1" style="width: 15%;">
-                                <col span="1" style="width: 15%;"
+                                <col span="1" style="width: 5%;">
+                                <col span="1" style="width: 10%;">
+                                <col span="1" style="width: 10%;">
+                                <col span="1" style="width: 15%;">
                             </colgroup>
                             <thead>
                                 <tr class="info">
@@ -53,6 +59,7 @@
                                     <th class="bordeTd"><input id="tblListaAlumnos-colSearch6" type="text" placeholder="Buscar:" style="width: 100%" data-index="6"></th>
                                     <th class="bordeTd"><input id="tblListaAlumnos-colSearch7" type="text" placeholder="Buscar:" style="width: 100%" data-index="7"></th>
                                     <th class="bordeTd"><input id="tblListaAlumnos-colSearch8" type="text" placeholder="Buscar:" style="width: 100%" data-index="8"></th>
+                                    <th class="bordeTd"><input id="tblListaAlumnos-colSearch9" type="text" placeholder="Buscar:" style="width: 100%" data-index="9"></th>
                                     <th class="bordeTd"><i class="fa fa-filter iconoFiltro"></i></th>
                                 </tr>
                                 <tr class="info">
@@ -64,6 +71,7 @@
                                     <th class="bordeTd" style="font-size: 14px">Correo</th>
                                     <th class="bordeTd" style="font-size: 14px">Sexo</th>
                                     <th class="bordeTd" style="font-size: 14px">Carrera</th>
+                                    <th class="bordeTd" style="font-size: 14px">No. Reinscripcion</th>
                                     <th class="bordeTd" style="font-size: 14px"></th>
                                 </tr>
 
@@ -79,6 +87,7 @@
                                         <td class="bordeTd  justify">${row.edad}</td>
                                         <td class="bordeTd  justify">${row.carrera}</td>
                                         <td class="bordeTd  justify">${row.regular ? 'R' : 'I'}</td>
+                                        <td class="bordeTd  justify">${row.noReinscripcion}</td>
                                         <td class="bordeTd"></td>
                                     </tr>
                                 </c:forEach>

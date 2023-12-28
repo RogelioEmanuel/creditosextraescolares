@@ -21,9 +21,8 @@
         <link href="../CDN-ITT/css/spinner.estandarITT.css" rel="stylesheet" type="text/css"/>
         <link href="css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
     </head>
-    <header><%@include file="views/templates/HeaderMaestro_View.jsp" %></header>
+    <header><%@include file="views/templates/HeaderAlumno_View.jsp" %></header>
     <body>
-        
         
         <div class="container">
             <div class="panel panel-default">

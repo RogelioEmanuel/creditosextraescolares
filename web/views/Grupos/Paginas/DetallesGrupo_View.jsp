@@ -19,6 +19,11 @@
     </head>
     <header><%@include file="../../templates/Header_View.jsp" %></header>
     <body>
+        <div id="pageLoader">
+            <div id="pageSpinner">
+                <%@include file="../../templates/spinner.estandarITT.jsp" %>
+            </div>
+        </div>
          <div class="container">
             <div id="PanelForm" class="panel panel-primary" style="margin-top: 2em">
                 <div class="panel-heading">

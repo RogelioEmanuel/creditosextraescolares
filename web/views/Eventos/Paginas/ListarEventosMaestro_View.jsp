@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +19,7 @@
         <link href="../../css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <header><%@include file="../../templates/Header_View.jsp" %></header>
+        <header><%@include file="../../templates/HeaderMaestro_View.jsp" %></header>
         <div id="pageLoader">
             <div id="pageSpinner">
                 <%@include file="../../templates/spinner.estandarITT.jsp" %>
@@ -32,7 +31,7 @@
                 <div class="panel-heading">
                     
                     <h2 class="panel-title">
-                        Lista de Eventos semestre actual
+                        Mis Eventos 
                     </h2>
                 </div>
                 <div class="panel-body">
@@ -92,17 +91,14 @@
                             </tbody>
                         </table>
                         <div class="row" align="right" style="margin: 1rem">
-                            <a title="Agregar Actividad" id="btnAgregar" href="/creditosextraescolares/app/eventos/crearevento.do" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar Evento</a>
-                            
+                            <a title="Agregar Evento" id="btnAgregar" href="/creditosextraescolares/app/eventos/crearevento.do" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar Evento</a>
+                            <a title="Regresar" id="btnRegresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
                             <button title="Borrar Evento " data-table="tblListaEventos" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i></button>
                             <button title="Editar Evento" data-table="tblListaEventos" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i></button>
-                            <button id="generarReporte" data-table="tblListaEventos"  class="btn btn-primary btn-sm" >
-                                    <i class="fa fa-file"></i> Generar reporte
-                            </button>
-                            <a title="Regresar" id="btnRegresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
+                            
                         </div>
                         <div hidden="true" id="grpBtnGuardar" class="row" align="right" style="margin: 1rem">
-                            <button title="Guardar Evento" data-table="tblListaEventos" class="btn btn-primary btn-sm" id="btnGuardar"><i class="fa fa-floppy-o"></i></button>
+                            <button title="Guardar Evento" data-table="tblListaEventos" class="btn btn-primary btn-sm" id="btnGuardar"><i cla ss="fa fa-floppy-o"></i></button>
                             <button title="Cancelar" data-table="tblListaEventos" class="btn btn-danger btn-sm" id="btnCancelar"><i class="fa fa-ban"></i></button>
                         </div>
                     </div>
@@ -127,7 +123,7 @@
         
         
         <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
-        <script src="../../js/jsgenerados/eventosListarEvento.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/eventosListarEventoMaestro.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
         <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
         <script src="../../js/lib/jspdf.min.js" type="text/javascript"></script>

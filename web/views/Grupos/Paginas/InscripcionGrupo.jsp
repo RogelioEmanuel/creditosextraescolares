@@ -1,3 +1,4 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="/CDN-ITT/img/logo.png">
-        <title>Lista de Grupos de ${idActividad}</title>
+        <title>Lista de Grupos </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/CDN-ITT/css/base.estandarITT.css" rel="stylesheet">
         <link href="/CDN-ITT/css/font-awesome.estandarITT.css" rel="stylesheet">
@@ -19,6 +20,11 @@
         <link href="../../css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <div id="pageLoader">
+            <div id="pageSpinner">
+                <%@include file="../../templates/spinner.estandarITT.jsp" %>
+            </div>
+        </div>
         <header><%@include file="../../templates/Header_View.jsp" %></header>
         <div class="container">
             
@@ -35,14 +41,14 @@
                         <table id="tblListaGrupos" class="table table-striped table-bordered tablesorter table-responsive no-footer dtr-inline dataTable table_margen" 
                                style="width: 100%; font-size: 14px">
                             <colgroup>
-                                <col span="1" style="width: 10%;">                                
-                                <col span="1" style="width: 12%;">
-                                <col span="1" style="width: 12%;">
-                                <col span="1" style="width: 12%;"> 
-                                <col span="1" style="width: 12%;">                                
-                                <col span="1" style="width: 12%;">
-                                <col span="1" style="width: 12%;">
+                                <col span="1" style="width: 15%;">                                
+                                <col span="1" style="width: 10%;">
+                                <col span="1" style="width: 10%;">
                                 <col span="1" style="width: 10%;"> 
+                                <col span="1" style="width: 10%;">                                
+                                <col span="1" style="width: 10%;">
+                                <col span="1" style="width: 10%;">                                 
+                                <col span="1" style="width: 15%;">
                                 <col span="1" style="width: 10%;">
                             </colgroup>
                             <thead>
@@ -54,51 +60,48 @@
                                     <th class="bordeTd"><input id="tblListaGrupos-colSearch5" type="text" placeholder="Buscar:" style="width: 100%" data-index="5"></th>                                    
                                     <th class="bordeTd"><input id="tblListaGrupos-colSearch6" type="text" placeholder="Buscar:" style="width: 100%" data-index="6"></th>
                                     <th class="bordeTd"><input id="tblListaGrupos-colSearch7" type="text" placeholder="Buscar:" style="width: 100%" data-index="7"></th>
-                                    <th class="bordeTd"><input id="tblListaGrupos-colSearch8" type="text" placeholder="Buscar:" style="width: 100%" data-index="8"></th>  
+                                    <th class="bordeTd"><input id="tblListaGrupos-colSearch8" type="text" placeholder="Buscar:" style="width: 100%" data-index="8"></th> 
                                     <th class="bordeTd"><i class="fa fa-filter iconoFiltro"></i></th>
                                 </tr>
                                 <tr class="info">
-                                    <th class="bordeTd" style="font-size: 14px">Numero de Grupo</th> 
+                                    <th class="bordeTd" style="font-size: 14px">Actividad</th>
                                     <th class="bordeTd" style="font-size: 14px">Lunes</th>
-                                    <th class="bordeTd" style="font-size: 14px">Martes</th> 
+                                    <th class="bordeTd" style="font-size: 14px">Martes</th>
                                     <th class="bordeTd" style="font-size: 14px">Miercoles</th>
                                     <th class="bordeTd" style="font-size: 14px">Jueves</th>
-                                    <th class="bordeTd" style="font-size: 14px">Viernes</th> 
+                                    <th class="bordeTd" style="font-size: 14px">Viernes</th>
                                     <th class="bordeTd" style="font-size: 14px">Sabado</th>
-                                    <th class="bordeTd" style="font-size: 14px">Maestro</th>
+                                    <th class="bordeTd" style="font-size: 14px">Maestro</th>                                    
                                     <th class="bordeTd" style="font-size: 14px"></th>
                                 </tr>
 
                             </thead>
                            <tbody>
-                                <c:forEach var="row" items="${grupos}">                                    
-                                    <tr id="${row.idGrupo}" data-id="${row.idGrupo}">                                        
-                                        <td class="bordeTd  justify">${row.noGrupo}</td>  
-                                        <td class="bordeTd  justify">${row.cupo}</td>
-                                        <td class="bordeTd  justify">${row.periodo}</td>
-                                        <td class="bordeTd  justify">${row.cupo}</td>
-                                        <td class="bordeTd  justify">${row.periodo}</td>
-                                        <td class="bordeTd  justify">${row.cupo}</td>
-                                        <td class="bordeTd  justify">${row.periodo}</td>
-                                        <td class="bordeTd  justify">${row.nombreMaestro}</td>
+                                <c:forEach var="row" items="${gruposConHorarios}">
+                                    <c:set var="grupoId" value="${row.key}" />
+                                    <c:set var="horarios" value="${row.value}" />
+                                    <tr id="${grupoId}" data-id="${grupoId}">
+                                        <td class="bordeTd  justify">${nombreMaestro}</td>
+                                         <c:forEach var="horario" items="${horarios}">
+                                            <!-- Accede a las propiedades del horario -->
+                                            <td class="bordeTd justify">${horario.dia}</td>
+                                            <td class="bordeTd justify">${horario.horaInicio} / ${horario.horaFinal}</td>
+                                            <!-- Agrega más propiedades según sea necesario -->
+                                        </c:forEach>
+                                        <!--td class="bordeTd  justify"></td-->
                                         <td class="bordeTd">
-                                            <button title="Ver Detalles " data-table="tblListaGrupos" class="btn btn-sm btn-info" id="btnDetallar${row.idGrupo}"><i class="fa fa-eye"></i></button> 
+                                            
                                         </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
                         </table>
                         <div class="row" align="right" style="margin: 1rem">                           
-                            <button title="Agregar Grupo " data-table="tblListaGrupos" class="btn btn-sm btn-success" id="btnAgregar"><i class="fa fa-plus"></i> Agregar Grupo</button>
-                            <a title="Regresar" id="btnRegresar" href="/creditosextraescolares/app/actividadextraescolar/listaractividad.do" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
-                            <button title="Editar Grupo" data-table="tblListaGrupos" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i></button>
-                            <button title="Borrar Grupo " data-table="tblListaGrupos" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i></button>
                             
+                            <a title="Regresar" id="btnRegresar" href="/creditosextraescolares/app/actividadextraescolar/listaractividad.do" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
+                             
                         </div>
-                        <div hidden="true" id="grpBtnGuardar" class="row" align="right" style="margin: 1rem">
-                            <button title="Guardar Actividad Extraescolar" data-table="tblListaGrupos" class="btn btn-primary btn-sm" id="btnGuardar"><i class="fa fa-floppy-o"></i></button>
-                            <button title="Cancelar" data-table="tblListaGrupos" class="btn btn-danger btn-sm" id="btnCancelar"><i class="fa fa-ban"></i></button>
-                        </div>
+                        
                     </div>
 
                 </div>    

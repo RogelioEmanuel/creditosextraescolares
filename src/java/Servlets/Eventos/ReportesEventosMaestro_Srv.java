@@ -1,7 +1,10 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Servlets.Eventos;
 
-import ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB;
 import ManageBean.Eventos.Evento_MB;
 import Utilidades.Constantes;
 import Utilidades.GenericResponse;
@@ -13,8 +16,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,95 +34,60 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.codec.binary.Base64;
 
+/**
+ *
+ * @author Emanuel
+ */
+public class ReportesEventosMaestro_Srv extends HttpServlet {
 
-public class ReportesEventos_Srv extends HttpServlet {
-
-   
     
     
 
-    
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-         List<ActividadExtraescolar_MB> actividades = new ArrayList<>();
-        
-        GenericResponse respuesta = new GenericResponse<>();
-                
-        actividades = Eventos_ReportesEventos_DAO.consultarActividades();
-        request.setAttribute("actividad", actividades);
-        
-        request.getRequestDispatcher("/views/Eventos/Paginas/ReporteEventos_View.jsp").forward(request, response);
-       
     }
 
-    
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String periodoParam = request.getParameter("periodo");
-        String anioString=request.getParameter("anio");
-        String idactString= request.getParameter("actividad");
-        int anio;
-        //Calendar calendar = Calendar.getInstance();
-        String periodo;
-        int idActividad=0;
-         List<Evento_MB> evento;
-         
-         
-        if (anioString == null || anioString.isEmpty()) {
-            anio = Calendar.getInstance().get(Calendar.YEAR);
-        } else {
-            anio = Integer.parseInt(anioString);
-        }
-
-        if (periodoParam == null || periodoParam.isEmpty()) {
-            periodo = Constantes.declararPeriodoActual();
-        } else {
-            periodo = periodoParam;
-        }
-        
-        if (idactString == null || idactString.isEmpty()) {
-            evento = Eventos_ReportesEventos_DAO.consultar2(anio, periodo);
-            
-        } else {
-            idActividad = Integer.parseInt(idactString);
-            evento = Eventos_ReportesEventos_DAO.consultar(anio, periodo, idActividad);
-            
-        }
-        
-        
-        ActividadExtraescolar_MB actnombre = Eventos_ReportesEventos_DAO.consultarActividad(idActividad);
-        String actividad=actnombre.getNombre();
-        
         PrintWriter out = response.getWriter();
-        //evento = Eventos_ReportesEventos_DAO.consultar3();    
+        List<Evento_MB> evento = Eventos_ReportesEventos_DAO.consultarEventos(28 );    
         GenericResponse respuesta = new GenericResponse();
         //Obtencion y creacion de logo ITT
         String imagenUrl = getClass().getClassLoader().getResource("img/header.png").toString().substring(6);            
         File file = new File(imagenUrl);
         InputStream imagenFile = new FileInputStream(file);
-        String jrxmlFile;
         
-        
-        if(evento.isEmpty()){
-            jrxmlFile = getClass().getClassLoader().getResource("Reportes/nada.jrxml").toString().substring(6);  
-            System.out.println("vacio");
-        }else{
-            jrxmlFile = getClass().getClassLoader().getResource("Reportes/evento2.jrxml").toString().substring(6);
-        }
-         
+        String jrxmlFile = getClass().getClassLoader().getResource("Reportes/evento3.jrxml").toString().substring(6);   
         
         try {
             
             JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFile);
             
-            
+            //Evento_MB[] eventos =evento.toArray(new Evento_MB[0]);
             
             
             Map<String, Object> map = new HashMap<>();
-            
+            //JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(eventos);
             
             for (Evento_MB maestro4 : evento) {
                
@@ -131,25 +97,16 @@ public class ReportesEventos_Srv extends HttpServlet {
                 map.put(Constantes.NOMBRELOGO, imagenFile);                 
                   
             }
-            
+            String actividad="";
+            String periodo="";
             JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(evento);
             
             //System.out.println(":0 "+ds.toString());
-            if(evento.isEmpty()){
-                  
-                System.out.println("vacio");
-                
-            }else{
-                
-                map.put("ds", ds); 
-                map.put("actividad",actividad);
-                map.put("periodo",periodo);
-                map.put("ds", ds); 
-                map.put("jefatura",Constantes.NOMBREJEFATURA);
-                map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
-            }
-           
-            
+            map.put("ds", ds); 
+            map.put("jefatura",Constantes.NOMBREJEFATURA);
+            map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
+            map.put("actividad",actividad);
+            map.put("periodo",periodo);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);
             
             
@@ -178,10 +135,13 @@ public class ReportesEventos_Srv extends HttpServlet {
         } catch (JRException ex) {
             Logger.getLogger(ReportesEventos_Srv.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
     }
 
-    
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";

@@ -206,11 +206,7 @@ public class Grupos_ListarGrupos_DAO {
         return grupos;
     }
      
-    /**
-     *
-     * @param idMaestro
-     * @return
-     */
+    
     public static Maestros_MB consultarMaestro(int idMaestro) {
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();

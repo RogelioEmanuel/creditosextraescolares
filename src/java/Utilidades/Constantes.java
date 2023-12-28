@@ -16,6 +16,7 @@ public class Constantes {
      
      
     public static final String NOMBREJEFATURA="IVÁN OMAR ORTEGA ROSALES";
+    public static final String NOMBREJEFATURAPROMOCION="MANUEL R. CORREA ALDAPE";
     public static final String NOMBRELOGO="LogoITTol";
     public static  final String PERIODOFECHAINICIO="15/01/2024";
     public static  final String PERIODOFECHAFINAL="15/06/2024";
@@ -24,9 +25,27 @@ public class Constantes {
     public static Date fecha2=null;
     public static final int DIASINSCRIPCION = 30;
                
-    
+    public static String periodoActual;
      
-     
+    public static String declararPeriodoActual(){
+        
+        Calendar calendar = Calendar.getInstance();
+        declararPeriodo();
+        calendar.setTime(fecha);
+
+        int mes = calendar.get(Calendar.MONTH) + 1;
+        if (mes >= 1 && mes <= 6) {
+            periodoActual=  "Enero-Junio";
+            
+        } else if (mes >= 8 && mes <= 12) {
+            periodoActual=  "Agosto-Diciembre";
+            
+        } else {
+           periodoActual=  "Verano";
+           
+        }
+        return periodoActual;
+    } 
      
      
            
@@ -51,7 +70,17 @@ public class Constantes {
         
         return fechaConDiasAgregados;
     }
+    
+     public static boolean esAntesDeInscripciones() {
+        Date fechaActual = new Date();
+        Date fechaInscripciones = declararInscripciones();
+        System.out.println("Falso");
+        return fechaActual.before(fechaInscripciones);
+    }
                
-     
+     public static boolean prueba(){
+         System.out.println("Falso");
+         return false;
+     }
     
 }

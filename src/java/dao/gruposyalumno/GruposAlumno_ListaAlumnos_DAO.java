@@ -156,7 +156,7 @@ public class GruposAlumno_ListaAlumnos_DAO {
            
         try {
             if (conn != null) {
-                    String query = "SELECT A.Nocontrol ,A.nombre,  A.semestre,  A.edad, A.regular, A.correo, A.sexo,A.carrrera \n"
+                    String query = "SELECT A.Nocontrol ,A.nombre,  A.semestre,  A.edad, A.regular, A.correo, A.sexo,A.carrrera, GA.noReinscripcion \n"
                         + "FROM alumnos A \n"
                         + "JOIN grupos_y_alumno GA ON A.Nocontrol= GA.nocontrolalumno \n"
                         + "where GA.idgrupo =?"  ;
@@ -210,9 +210,9 @@ public class GruposAlumno_ListaAlumnos_DAO {
         String sexo = rs.getString("periodo");
         String carrera = rs.getString("totalhorassemanal"); 
         int regular = rs.getInt("regular");
-                    
+        int noReinscripcion = rs.getInt("noReinscripcion");            
         
-       Alumnos_MB alumno = new Alumnos_MB( noControl, nombre,  semestre,  edad,  correo,  sexo,  carrera,isRegular(regular));          
+       Alumnos_MB alumno = new Alumnos_MB( noControl, nombre,  semestre,  edad,  correo,  sexo,  carrera,isRegular(regular),noReinscripcion);          
         
         
         return alumno;

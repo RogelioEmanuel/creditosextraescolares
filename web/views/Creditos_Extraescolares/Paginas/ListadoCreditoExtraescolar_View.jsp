@@ -21,6 +21,11 @@
     </head>
      <body>
         <header><%@include file="../../templates/Header_View.jsp" %></header>
+        <div id="pageLoader">
+            <div id="pageSpinner">
+                <%@include file="../../templates/spinner.estandarITT.jsp" %>
+            </div>
+        </div>
         <div class="container">
             
             <div class="panel panel-primary">

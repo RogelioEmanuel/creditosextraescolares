@@ -11,8 +11,9 @@ public class Alumnos_MB {
     private String sexo;
     private String carrera;
     private boolean regular;
+    private int noReinscripcion;
 
-    public Alumnos_MB(String noControl, String nombre, int semestre, int edad, String correo, String sexo, String carrera,boolean regular) {
+    public Alumnos_MB(String noControl, String nombre, int semestre, int edad, String correo, String sexo, String carrera,boolean regular, int noReinscripcion) {
         this.noControl = noControl;
         this.nombre = nombre;
         this.semestre = semestre;
@@ -23,7 +24,7 @@ public class Alumnos_MB {
         this.regular = regular;
     }
 
-    public Alumnos_MB(String nombre, int semestre, int edad, String correo, String sexo, String carrera, boolean regular) {
+    public Alumnos_MB(String nombre, int semestre, int edad, String correo, String sexo, String carrera, boolean regular,int noReinscripcion) {
         this.nombre = nombre;
         this.semestre = semestre;
         this.edad = edad;
@@ -99,6 +100,16 @@ public class Alumnos_MB {
     public void setRegular(boolean regular) {
         this.regular = regular;
     }
+
+    public int getNoReinscripcion() {
+        return noReinscripcion;
+    }
+
+    public void setNoReinscripcion(int noReinscripcion) {
+        this.noReinscripcion = noReinscripcion;
+    }
+    
+    
 
    
     

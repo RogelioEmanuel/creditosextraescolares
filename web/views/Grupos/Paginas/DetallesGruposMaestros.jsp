@@ -19,6 +19,7 @@
     </head>
     <header><%@include file="../../templates/HeaderMaestro_View.jsp" %></header>
     <body>
+        
          <div class="container">
             <div id="PanelForm" class="panel panel-primary" style="margin-top: 2em">
                 <div class="panel-heading">
@@ -168,7 +169,7 @@
                                            
                         <div class="row" style="margin-top: 30px">                             
                             <div class="col-md-12" align="right">                                
-                                 <button title="Alumnos Inscritos" data-table="tblListaGrupos" class="btn btn-info btn-sm" id="btnAlumnos"><i class="fa fa-pencil"></i>Alumnos Inscritos</button>
+                                 <button title="Alumnos Inscritos" data-table="tblListaGrupos" class="btn btn-info btn-sm" id="btnAlumnos"><i class="fa fa-eye"></i> Alumnos Inscritos</button>
                                  <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/grupos/listargrupos.do?idActividad=${actividad.idActividad_Extraescolar}" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>
                             </div>
                         </div>

@@ -20,6 +20,11 @@
         <link href="../../css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
     </head>
      <body>
+         <div id="pageLoader">
+            <div id="pageSpinner">
+                <%@include file="../../templates/spinner.estandarITT.jsp" %>
+            </div>
+        </div>
         <header><%@include file="../../templates/Header_View.jsp" %></header>
         <div class="container">
             

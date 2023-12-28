@@ -1,7 +1,15 @@
 
 
 
+<%@page import="Utilidades.Constantes"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    
+    Constantes constantes = new Constantes();
+
+    
+    boolean periodoInscripcionActivo = constantes.esAntesDeInscripciones();
+%>
 <!DOCTYPE html>
 
 <div class="container" align="center">
@@ -26,9 +34,13 @@
                     <li class="dropdown">     
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cog"> </i> Rogelio <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/creditosextraescolares/app/actividadextraescolar/listaractividad.do"><span class="fa fa-user dropdown-item"></span> Grupos</a></li>
-                            <li><a href="/creditosextraescolares/app/creditoextraescolar/listarcredito.do"><span class="fa fa-user dropdown-item"></span>Creditos Extraescolares</a></li>
-                           
+                            <li><a href="/creditosextraescolares/app/actividadextraescolar/listaractividad.do"><span class="fa fa-user dropdown-item"></span>Mis Grupos</a></li>
+                            
+                           <% if (periodoInscripcionActivo) { %>
+                                <li><a href="/creditosextraescolares/app/grupos/inscripciongrupo.do"><span class="fa fa-user dropdown-item"></span>Inscripción a Grupo</a></li>
+                            <% } else { %>
+                                <li><a href="#" disabled title="No disponible por el momento"><span class="fa fa-user dropdown-item"></span>Inscripción a Grupo</a></li>
+                            <% } %>
                         </ul>
                     </li>
                 </ul>

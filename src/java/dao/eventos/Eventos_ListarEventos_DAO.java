@@ -100,10 +100,68 @@ public class Eventos_ListarEventos_DAO {
     }
      
      
+     public static List<Evento_MB> consultarEventos(int id) {
+        ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
+        int statusConexion = cone.conectar();
+        Connection conn = cone.getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Evento_MB> maestros = new ArrayList<>();
+        
+        
+  
+        try {
+            if (conn != null) {
+                String query = "SELECT eventos.idEventos,eventos.NombreEvento, eventos.numParticipantesH, eventos.numParticipantesM, eventos.InstitucionOrganizadora, "
+                        + "eventos.tipoevento, eventos.periodo, eventos.anio,  eventos.idActividad, "
+                        + "eventos.fecha, eventos.resultado\n"
+                        + "FROM eventos "
+                        + "JOIN actividad_extraescolar ON Eventos.idActividad = actividad_extraescolar.idActividad_Extraescolar\n" 
+                        + "JOIN grupos ON actividad_extraescolar.idActividad_Extraescolar = grupos.idActividad_Extraescolar\n" 
+                        + "JOIN maestros ON grupos.idMaestros = maestros.idMaestros\n" 
+                        + "WHERE maestros.idMaestros = ?";
+                
+                
+
+                        
+                ps = conn.prepareStatement(query);
+                ps.setInt(1,id );
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    maestros.add(convertir(rs));
+                    
+                }
+                if (!conn.isClosed()) {
+                    conn.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Evento_MB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Evento_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Evento_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return maestros;
+    }
      
      
-     
-     public static ActividadExtraescolar_MB consultarActividad(int id) {
+    public static ActividadExtraescolar_MB consultarActividad(int id) {
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();
         Connection conn = cone.getConexion();
@@ -154,8 +212,7 @@ public class Eventos_ListarEventos_DAO {
         return actividades;
     }
      
-     
-     public static ActividadExtraescolar_MB convertirActividad(ResultSet rs) throws SQLException {
+    public static ActividadExtraescolar_MB convertirActividad(ResultSet rs) throws SQLException {
        
         String nombre = rs.getString("nombre");        
         ActividadExtraescolar_MB actividad = new ActividadExtraescolar_MB(); 

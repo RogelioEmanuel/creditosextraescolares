@@ -212,86 +212,9 @@ function mostrarAgregarEvento() {
 }
 
 
-$("[id^='btnDetallar']").on("click", function (evento) {
-    // Obtener el ID dinámico desde el ID del botón
-    let id = $(this).attr("id").replace("btnDetallar", "");
-    
-    if(id !== null && id !== undefined){
-        mostrarDetalleEvento(id);
-    }else{
-        TituloMensaje = "ERROR";
-        Mensaje = "Es nulo el ID";
-        mostrarMensaje(iconoError,TituloMensaje, Mensaje);
-    }
-    
-    
-});
-
-function mostrarDetalleEvento(id) {
-    $("#pageLoader").show();
-        
-    if(id!==null){
-        $.ajax({
-            url: '../../app/eventos/detallarevento.do',
-            type: 'GET',
-            dataType: 'html',
-            data: {idGrupo:id},
-            success: function (respuesta) {
-                $("body").html(respuesta);
-            },
-            error: function (jqXHR, exception) {
-                $("#pageLoader").hide();
-                TituloMensaje = "ERROR";
-                Mensaje = "Ocurrió un error en el servidor";
-                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
-            }
-        });
-    }else{
-        TituloMensaje = "ERROR";
-        Mensaje = "Es nulo el ID";
-        mostrarMensaje(iconoError,TituloMensaje, Mensaje);
-    }
-    
-}
 
 
 
-$("#divGrpEventos").on("click", "#generarReporte", function (evento) {
-    evento.preventDefault();
-       
-   generarReporte();
-    
-});
-
-
-
-
-
-function generarReporte() {
-    $("#pageLoader").show();
-    
-    
-        
-    
-        $.ajax({
-            url: '../../app/eventos/reporteevento.do',
-            type: 'GET',
-            dataType: 'html',
-            data: {},
-            success: function (respuesta) {
-                $("body").html(respuesta);
-            },
-            error: function (jqXHR, exception) {
-                $("#pageLoader").hide();
-                TituloMensaje = "ERROR";
-                Mensaje = "Ocurrió un error en el servidor";
-                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
-            }
-        });
-    
-        
-   
-}
 
 
 

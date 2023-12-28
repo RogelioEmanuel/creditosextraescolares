@@ -881,9 +881,9 @@
                         <div class="row" style="margin-top: 30px">                             
                             <div class="col-md-12" align="right">                                
                                 <button id="btnRegistrar" form="FormCrearPlan" type="submit"   class="btn btn-primary btn-sm " style="font-size:14px">
-                                    <i class="fa fa-save"></i> 
+                                    <i class="fa fa-save"></i> Guardar
                                 </button>    
-                                <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/actividadextraescolar/listaractividad.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i></a>
+                                <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/planesdetrabajo/ListarPlan.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i> Regresar</a>
                             </div>
                         </div>
                     </form>

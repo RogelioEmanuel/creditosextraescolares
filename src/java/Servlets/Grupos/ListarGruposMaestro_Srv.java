@@ -24,9 +24,10 @@ public class ListarGruposMaestro_Srv extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-         int idMaestro = Integer.parseInt(request.getParameter("idMaestro")); 
+        int idMaestro = Integer.parseInt(request.getParameter("idMaestro")); 
         
         HttpSession session = request.getSession();
+        
         session.setAttribute("idMaestro", idMaestro);        
         GenericResponse respuesta = new GenericResponse<>(); 
         

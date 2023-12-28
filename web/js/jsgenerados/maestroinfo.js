@@ -1,32 +1,16 @@
-$("#FormCrearGrupo").on("click", "#btnRegresar", function (evento) {
-   evento.preventDefault();
-    window.location.reload();
-});
 
-$("#FormCrearGrupo").on("click", "#btnAlumnos", function (evento) {
-    evento.preventDefault()
-    var id = $("#labelIdGrupo").text();
-    
-    if(id !== null && id !== undefined){
-        mostrarAlumnosGrupo(id);
-    }else{
-        TituloMensaje = "ERROR";
-        Mensaje = "Es nulo el ID";
-        mostrarMensaje(iconoError,TituloMensaje, Mensaje);
-    }
-    
-});
 
-function mostrarAlumnosGrupo(id) {
+
+function mostrarEditarMaestro(id) {
     $("#pageLoader").show();
     
     
     if(id!==null){
         $.ajax({
-            url: '../../app/gruposalumno/listargruposalumno.do',
+            url: '../../app/maestros/editarinfo.do',
             type: 'GET',
             dataType: 'html',
-            data: {idGrupo:id},
+            data: {idMaestro:id},
             success: function (respuesta) {
                 $("body").html(respuesta);
             },
@@ -44,3 +28,18 @@ function mostrarAlumnosGrupo(id) {
     }
     
 }
+
+$("#FormEditarMaestro").on("click", "#btnEditar", function (evento) {
+    evento.preventDefault();
+    var id=$("#idMaestro").val();
+    
+    if(id !== null && id !== undefined){
+        mostrarEditarMaestro(id);
+    }else{
+        TituloMensaje = "ERROR";
+        Mensaje = "Es nulo el ID";
+        mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+    }
+    
+});
+

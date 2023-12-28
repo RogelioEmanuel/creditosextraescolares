@@ -27,8 +27,8 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cog"> </i> Maestro <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/creditosextraescolares/app/grupos/listargruposmaestro.do?idMaestro=28"><span class="fa fa-user dropdown-item"></span> Mis Grupos</a></li>
-                            <li><a href="/creditosextraescolares/app/creditoextraescolar/listarcredito.do"><span class="fa fa-user dropdown-item"></span>Eventos</a></li>
-                            <li><a href="/creditosextraescolares/app/maestros/listarmaestros.do"><span class="fa fa-user dropdown-item"></span>Mi informacion</a></li>
+                            <li><a href="/creditosextraescolares/app/maestros/detallesmaestro.do?idMaestro=28"><span class="fa fa-user dropdown-item"></span>Eventos</a></li>
+                            <li><a href="/creditosextraescolares/app/maestros/infomaestro.do?idMaestro=28"><span class="fa fa-user dropdown-item"></span>Mi informacion</a></li>
                             
                             
                         </ul>

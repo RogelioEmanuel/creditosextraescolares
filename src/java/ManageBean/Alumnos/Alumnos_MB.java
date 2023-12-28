@@ -3,15 +3,16 @@ package ManageBean.Alumnos;
 
 
 public class Alumnos_MB {
-    private int noControl;
+    private String noControl;
     private String nombre;
     private int semestre;
     private int edad;
     private String correo;
-    private int sexo;
+    private String sexo;
     private String carrera;
+    private boolean regular;
 
-    public Alumnos_MB(int noControl, String nombre, int semestre, int edad, String correo, int sexo, String carrera) {
+    public Alumnos_MB(String noControl, String nombre, int semestre, int edad, String correo, String sexo, String carrera,boolean regular) {
         this.noControl = noControl;
         this.nombre = nombre;
         this.semestre = semestre;
@@ -19,25 +20,27 @@ public class Alumnos_MB {
         this.correo = correo;
         this.sexo = sexo;
         this.carrera = carrera;
+        this.regular = regular;
     }
 
-    public Alumnos_MB(String nombre, int semestre, int edad, String correo, int sexo, String carrera) {
+    public Alumnos_MB(String nombre, int semestre, int edad, String correo, String sexo, String carrera, boolean regular) {
         this.nombre = nombre;
         this.semestre = semestre;
         this.edad = edad;
         this.correo = correo;
         this.sexo = sexo;
         this.carrera = carrera;
+        this.regular = regular;
     }
 
     public Alumnos_MB() {
     }
 
-    public int getNoControl() {
+    public String getNoControl() {
         return noControl;
     }
 
-    public void setNoControl(int noControl) {
+    public void setNoControl(String noControl) {
         this.noControl = noControl;
     }
 
@@ -73,11 +76,11 @@ public class Alumnos_MB {
         this.correo = correo;
     }
 
-    public int getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(int sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
@@ -87,6 +90,14 @@ public class Alumnos_MB {
 
     public void setCarrera(String carrera) {
         this.carrera = carrera;
+    }
+
+    public boolean getRegular() {
+        return regular;
+    }
+
+    public void setRegular(boolean regular) {
+        this.regular = regular;
     }
 
    

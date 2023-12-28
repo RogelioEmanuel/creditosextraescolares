@@ -101,7 +101,7 @@ public class DetalleGrupoMaestro_Srv extends HttpServlet {
         
         
         
-        request.getRequestDispatcher("/views/Grupos/Paginas/DetallesGrupo_View.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/Grupos/Paginas/DetallesGruposMaestros.jsp").forward(request, response);
         
     }
 

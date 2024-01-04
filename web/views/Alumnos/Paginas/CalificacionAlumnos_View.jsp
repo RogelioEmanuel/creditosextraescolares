@@ -65,12 +65,10 @@
                                 </tr>
                                 <tr class="info">
                                     <th class="bordeTd" style="font-size: 14px">Numero de control</th>
-                                    <th class="bordeTd" style="font-size: 14px">Nombre</th>
-                                    <th class="bordeTd" style="font-size: 14px">Semestre</th>
-                                    <th class="bordeTd" style="font-size: 14px">Edad</th>
-                                    <th class="bordeTd" style="font-size: 14px">Sexo</th>                                    
+                                    <th class="bordeTd" style="font-size: 14px">Nombre</th>                                                                        
                                     <th class="bordeTd" style="font-size: 14px">Carrera</th>
-                                    <th class="bordeTd" style="font-size: 14px">Regular</th>
+                                    <th class="bordeTd" style="font-size: 14px">Selectivo</th>
+                                    <th class="bordeTd" style="font-size: 14px">No. Reinscripcion</th>
                                     <th class="bordeTd" style="font-size: 14px">No. Reinscripcion</th>
                                     <th class="bordeTd" style="font-size: 14px"></th>
                                 </tr>
@@ -81,10 +79,7 @@
                                     <tr id="${row.noControl}" data-id="${row.noControl}">
                                         <td class="bordeTd  justify">${row.noControl}</td>                                        
                                         <td class="bordeTd  justify">${row.nombre}</td>
-                                        <td class="bordeTd  justify">${row.semestre}</td>
-                                        <td class="bordeTd  justify">${row.edad}</td>
-                                        <td class="bordeTd  justify">${row.sexo}</td>                                        
-                                        <td class="bordeTd  justify">${row.carrera}</td>
+                                                                                
                                         <td class="bordeTd  justify">${row.regular ? 'R' : 'I'}</td>
                                         <td class="bordeTd  justify">${row.noReinscripcion}</td>
                                         <td class="bordeTd"></td>

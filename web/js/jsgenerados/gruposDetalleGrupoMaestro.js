@@ -1,7 +1,9 @@
-$("#FormCrearGrupo").on("click", "#btnRegresar", function (evento) {
+$("#FormCrearGrupo").on("click", "#btnPlanes", function (evento) {
    evento.preventDefault();
-    window.location.reload();
+   var idActividad = $("#idActividad").val();
+   mostrarPlandeTrabajo(idActividad);
 });
+
 
 $("#FormCrearGrupo").on("click", "#btnAlumnos", function (evento) {
     evento.preventDefault()
@@ -42,5 +44,31 @@ function mostrarAlumnosGrupo(id) {
         Mensaje = "Es nulo el ID";
         mostrarMensaje(iconoError,TituloMensaje, Mensaje);
     }
+    
+}
+
+function mostrarPlandeTrabajo(id) {
+    $("#pageLoader").show();
+    
+    
+    
+    $.ajax({
+            url: '../../app/planes/editarplan.do',
+            type: 'GET',
+            dataType: 'html',
+            data: {idGrupo:id},
+            success: function (respuesta) {
+                $("body").html(respuesta);
+            },
+            error: function (jqXHR, exception) {
+                $("#pageLoader").hide();
+                TituloMensaje = "ERROR";
+                Mensaje = "Ocurrió un error en el servidor";
+                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+            }
+        });
+    
+       
+    
     
 }

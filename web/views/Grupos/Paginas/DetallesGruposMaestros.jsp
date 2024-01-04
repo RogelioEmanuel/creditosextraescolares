@@ -115,11 +115,18 @@
                                     <select name="periodo" 
                                             id="periodo" 
                                             placeholder="periodo"
-                                            class="form-control input-sm"                                             
+                                            class="form-control input-sm"
+                                            disabled
                                             required >
-                                        <option value="Enero-Junio">Enero-Junio</option>
-                                        <option value="Verano">Verano</option>
-                                        <option value="Agosto-Diciembre">Agosto-Diciembre</option>
+                                        <option value="Enero-Junio" <c:if test="${periodo eq 'Enero-Junio'}">
+                                                                        selected
+                                                                    </c:if>>Enero-Junio</option>
+                                        <option value="Verano" <c:if test="${periodo eq 'Verano'}">
+                                                                        selected
+                                                                </c:if>>Verano</option>
+                                        <option value="Agosto-Diciembre" <c:if test="${periodo eq 'Agosto-Diciembre'}">
+                                                                            selected
+                                                                         </c:if>>Agosto-Diciembre</option>
                                         
                                     </select>
                                 </div>
@@ -169,8 +176,9 @@
                                            
                         <div class="row" style="margin-top: 30px">                             
                             <div class="col-md-12" align="right">                                
-                                 <button title="Alumnos Inscritos" data-table="tblListaGrupos" class="btn btn-info btn-sm" id="btnAlumnos"><i class="fa fa-eye"></i> Alumnos Inscritos</button>
-                                 <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/grupos/listargrupos.do?idActividad=${actividad.idActividad_Extraescolar}" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>
+                                 <button title="Alumnos Inscritos" form="FormCrearGrupo" class="btn btn-info btn-sm" id="btnAlumnos"><i class="fa fa-eye"></i> Alumnos Inscritos</button>
+                                 <button title="Plan de Trabajo" form="FormCrearGrupo" class="btn btn-primary btn-sm" id="btnPlanes"><i class="fa fa-eye"></i> Plan de Trabajo</button>
+                                 <a title="Regresar" id="btnRegresar" href="/creditosextraescolares/app/grupos/listargruposmaestro.do?idMaestro=28" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>
                             </div>
                         </div>
                     </form>
@@ -194,10 +202,14 @@
         
         
        
-        <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
-        <script src="../../js/jsgenerados/gruposDetalleGrupoMaestro.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>        
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
+        <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
+        <script src="../../js/lib/jspdf.min.js" type="text/javascript"></script>
+        <script src="../../js/lib/jspdf.plugin.autotable.min.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/gruposDetalleGrupoMaestro.js" type="text/javascript"></script>
+        
     </body>
     <footer><%@include file="../../templates/Footer_View.jsp" %></footer>
 </html>

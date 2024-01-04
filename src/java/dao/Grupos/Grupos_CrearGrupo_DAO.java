@@ -325,6 +325,78 @@ public class Grupos_CrearGrupo_DAO {
         }
     }
      
-    
-    
+    //Validacion  Numero de Grupo
+     
+     private static Grupos_MB convertir(ResultSet rs) throws SQLException {
+        int idGrupo = rs.getInt("idGrupo");
+        int noGrupo =rs.getInt("noGrupo");
+        int cupo = rs.getInt("cupo");
+        int idActividad = rs.getInt("idActividad_Extraescolar");
+        int idMaestros = rs.getInt("idMaestros");
+        String periodo = rs.getString("periodo");
+        
+        int totalhorassemanal = rs.getInt("totalhorassemanal"); 
+        
+                    
+        
+       Grupos_MB grupo = new Grupos_MB( idGrupo, noGrupo,  cupo,  periodo,  idActividad,  idMaestros,  totalhorassemanal);          
+        
+        
+        return grupo;
+    }
+     
+    public static boolean revisarExistencia(int noGrupo,GenericResponse respuesta){
+        ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
+        int statusConexion = cone.conectar();
+        Connection conn = cone.getConexion();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Grupos_MB grupo = new Grupos_MB();
+        int cont =0;
+        try {
+            if (conn != null) {
+                String query = "SELECT idGrupo,noGrupo, cupo, idActividad_extraescolar, idMaestros, periodo, totalhorassemanal \n"
+                        + "FROM grupos f \n"
+                        + "WHERE noGrupo = ?";
+                
+                ps = conn.prepareStatement(query);
+                ps.setInt(1,noGrupo );
+                rs = ps.executeQuery();
+                
+                while (rs.next()) {
+                    cont ++;
+                    grupo = convertir(rs);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ActividadExtraescolar_MB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed()) {
+                    conn.close();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Grupos_EditarGrupo_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Grupos_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Grupos_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        
+        return cont > 0;
+    }
 }

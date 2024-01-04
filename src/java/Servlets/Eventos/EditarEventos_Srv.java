@@ -39,14 +39,22 @@ public class EditarEventos_Srv extends HttpServlet {
         
        int idEvento = Integer.parseInt(request.getParameter("idEvento"));
        HttpSession session = request.getSession();
-       session.setAttribute("idEvento", idEvento);          
+                
        Evento_MB evento = Evento_EditarEvento_DAO.consultar(idEvento);
-       request.setAttribute("evento", evento);
+       
+       SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
        
        List<ActividadExtraescolar_MB> actividad = new ArrayList<>();  
        actividad = Evento_EditarEvento_DAO.consultarActividad(); 
-        
+       String fechaq="";
+       if (evento.getFecha() != null) {
+            fechaq = formatoFecha.format(evento.getFecha());
+        }
        
+       
+       request.setAttribute("fecha", fechaq);
+       session.setAttribute("idEvento", idEvento); 
+       request.setAttribute("evento", evento);
        request.setAttribute("actividad", actividad); 
        request.getRequestDispatcher("/views/Eventos/Paginas/EditarEvento_View.jsp").forward(request, response);
         
@@ -70,8 +78,10 @@ public class EditarEventos_Srv extends HttpServlet {
         int partm =Integer.parseInt(request.getParameter("partm"));
         //int anio = Integer.parseInt(request.getParameter("anio"));
         //fechas
+        String fecha = request.getParameter("fecha");
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");        
-        String fecha = request.getParameter("fecha");        
+                
+        System.out.println(fecha);
         Date fechaEvento=null;        
        
         try{
@@ -80,7 +90,7 @@ public class EditarEventos_Srv extends HttpServlet {
             System.out.println("Fecha parseada correctamente: " + f.format(fechaEvento));
         } catch (ParseException ex) {
             System.out.println("salio mal");
-            Logger.getLogger(CrearMaestro_Srv.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditarEventos_Srv.class.getName()).log(Level.SEVERE, null, ex);
             fechaEvento=null;
             
         }
@@ -93,8 +103,8 @@ public class EditarEventos_Srv extends HttpServlet {
         
               
         Evento_MB evento = new Evento_MB(idEvento,nombre,parth,partm, institucionorganizadora, tipo,periodo,fechaEvento,actividad,resultado);
-        
-        System.out.println("vacio"+idEvento);
+       
+        System.out.println("vacio"+fechaEvento);
         Evento_EditarEvento_DAO.actualizarEvento(evento, resp);
         
        

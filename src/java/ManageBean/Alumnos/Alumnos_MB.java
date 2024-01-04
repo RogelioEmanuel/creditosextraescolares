@@ -12,6 +12,7 @@ public class Alumnos_MB {
     private String carrera;
     private boolean regular;
     private int noReinscripcion;
+    private String selectivo;
 
     public Alumnos_MB(String noControl, String nombre, int semestre, int edad, String correo, String sexo, String carrera,boolean regular, int noReinscripcion) {
         this.noControl = noControl;
@@ -22,6 +23,7 @@ public class Alumnos_MB {
         this.sexo = sexo;
         this.carrera = carrera;
         this.regular = regular;
+        
     }
 
     public Alumnos_MB(String nombre, int semestre, int edad, String correo, String sexo, String carrera, boolean regular,int noReinscripcion) {
@@ -33,6 +35,29 @@ public class Alumnos_MB {
         this.carrera = carrera;
         this.regular = regular;
     }
+
+    public Alumnos_MB(String noControl, String nombre, int semestre, int edad, String correo, String sexo, String carrera, boolean regular) {
+        this.noControl = noControl;
+        this.nombre = nombre;
+        this.semestre = semestre;
+        this.edad = edad;
+        this.correo = correo;
+        this.sexo = sexo;
+        this.carrera = carrera;
+        this.regular = regular;
+    }
+
+    public Alumnos_MB(String nombre, int semestre, int edad, String correo, String sexo, String carrera, boolean regular) {
+        this.nombre = nombre;
+        this.semestre = semestre;
+        this.edad = edad;
+        this.correo = correo;
+        this.sexo = sexo;
+        this.carrera = carrera;
+        this.regular = regular;
+    }
+    
+    
 
     public Alumnos_MB() {
     }
@@ -107,6 +132,14 @@ public class Alumnos_MB {
 
     public void setNoReinscripcion(int noReinscripcion) {
         this.noReinscripcion = noReinscripcion;
+    }
+
+    public String getSelectivo() {
+        return selectivo;
+    }
+
+    public void setSelectivo(String selectivo) {
+        this.selectivo = selectivo;
     }
     
     

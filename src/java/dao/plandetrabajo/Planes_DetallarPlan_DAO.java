@@ -175,9 +175,7 @@ public class Planes_DetallarPlan_DAO {
         }
         return maestro;
     }
-    
-    
-    
+      
     public static PlanTrabajo_MB consultarPlan(int id) {
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();
@@ -242,9 +240,7 @@ public class Planes_DetallarPlan_DAO {
         ActividadExtraescolar_MB b = consultarActividad(idActividad_Extraescolar);
         plan.setNomactividad(b.getNombre());
         return plan;
-    }
-    
-    
+    }   
     public static List<PlanSemana_MB> consultarPlanSemanal(int id){
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();
@@ -302,8 +298,7 @@ public class Planes_DetallarPlan_DAO {
         return plansemanales;
         
         
-    }
-    
+    }    
     private static PlanSemana_MB convertirplansemanal(ResultSet rs) throws SQLException {
         
         
@@ -314,9 +309,9 @@ public class Planes_DetallarPlan_DAO {
         String plataforma = rs.getString("plataforma");
         String llevara_acabo = rs.getString("llevara_acabo");
         
-        PlanSemana_MB maestro = new PlanSemana_MB(idRegistro,id_plan,semana,programa,plataforma,llevara_acabo);   
+        PlanSemana_MB plan = new PlanSemana_MB(idRegistro,id_plan,semana,programa,plataforma,llevara_acabo);   
         
-        return maestro;
+        return plan;
     }
     
     

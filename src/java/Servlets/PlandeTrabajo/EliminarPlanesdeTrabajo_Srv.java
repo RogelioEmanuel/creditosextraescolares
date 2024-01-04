@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Servlets.ActividadExtraescolar;
+
+package Servlets.PlandeTrabajo;
 
 import Utilidades.GenericResponse;
 import com.google.gson.Gson;
-import dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO;
+import dao.maestros.Maestros_EliminarMaestros_DAO;
+import dao.plandetrabajo.Planes_EliminarPlan_DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,23 +17,22 @@ import javax.servlet.http.HttpSession;
  *
  * @author Emanuel
  */
-public class EliminarActividadExtraescolar_Srv extends HttpServlet {
-
-  
+public class EliminarPlanesdeTrabajo_Srv extends HttpServlet {
 
     
+
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-       // request.getRequestDispatcher("/views/Actividad_Extraescolar/Paginas/ListadoActividad_View.jsp").forward(request, response);
     }
 
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
         PrintWriter out = response.getWriter();
@@ -48,13 +43,11 @@ public class EliminarActividadExtraescolar_Srv extends HttpServlet {
         
         //Obtener el id de la invitacion
         
-        int idActividad = Integer.parseInt(request.getParameter("idActividad"));        
+        int idPlan = Integer.parseInt(request.getParameter("idPlan"));        
         HttpSession session = request.getSession();
-        session.setAttribute("idActividad", idActividad);  
-        
-        
+        session.setAttribute("idPlan", idPlan);  
 
-        ActividadExtraescolar_EliminarActividad_DAO.eliminar(idActividad, resp);
+        Planes_EliminarPlan_DAO.eliminar(idPlan, resp);
         
         
         
@@ -68,11 +61,7 @@ public class EliminarActividadExtraescolar_Srv extends HttpServlet {
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+   
     @Override
     public String getServletInfo() {
         return "Short description";

@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Servlets.GruposAlumno;
 
-import ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB;
 import ManageBean.Alumnos.Alumnos_MB;
 import Utilidades.GenericResponse;
-import dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO;
 import dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -36,12 +29,8 @@ public class ListarGruposAlumno_Srv extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("idGrupo"));                
         alumnos = GruposAlumno_ListaAlumnos_DAO.consultarAlumnoGrupo(id);
         request.setAttribute("alumnos", alumnos);
-       
-        /*for (Map.Entry<String, Timer> entry : Constantes.tareas.entrySet()) {
-            String nombreTarea = entry.getKey();
-            Timer tarea = entry.getValue();
-
-        }*/
+        request.setAttribute("idGrupo", id);
+        
        
         request.getRequestDispatcher("/views/Alumnos/Paginas/ListadoAlumnos_View.jsp").forward(request, response);
         

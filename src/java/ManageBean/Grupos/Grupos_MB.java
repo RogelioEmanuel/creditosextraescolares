@@ -11,7 +11,7 @@ public class Grupos_MB {
     private int idMaestros;
     private String nombreMaestro;
     private int totalhorassemanales;    
-    
+    private String nombreActividad;
 
     public Grupos_MB(int idGrupo,int noGrupo, int cupo, String periodo, int idActividad, int idMaestros, String nombreMaestro, int totalhorassemanales) {
         this.idGrupo = idGrupo;
@@ -115,6 +115,14 @@ public class Grupos_MB {
 
     public void setTotalhorassemanales(int totalhorassemanales) {
         this.totalhorassemanales = totalhorassemanales;
+    }
+
+    public String getNombreActividad() {
+        return nombreActividad;
+    }
+
+    public void setNombreActividad(String nombreActividad) {
+        this.nombreActividad = nombreActividad;
     }
 
 

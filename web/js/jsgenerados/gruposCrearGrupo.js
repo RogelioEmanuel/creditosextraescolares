@@ -11,6 +11,8 @@ var viernesFin = null;
 var sabadoInicio = null;
 var sabadoFin = null;
 
+
+//Mostrar Seleccion de Horarios
 function handleDayCheckboxChange(checkbox, inicioInput, finInput) {
   checkbox.addEventListener('change', (event) => {
     var dia = checkbox.id;      
@@ -175,12 +177,15 @@ function camposnumericosValidos(valor){
     return expresionRegular.test(valor);
 }
 //Valida que las horas totales correspondan al total de horas ingresado
+
+
 function validarHoras() {
     // Obtén los valores del formulario
     var horasTotales = parseInt(document.getElementById('horastotales').value); 
     // Calcula la suma de horas
     var sumaHoras =sumarDiferencias();
     // Compara la suma de horas con las horas totales
+    
     if (sumaHoras !== horasTotales) {
         TituloMensaje = "ERROR";
         Mensaje = "Las suma de horas por dia no coincide con el numero de horas semanales"+ sumaHoras;
@@ -230,38 +235,48 @@ function calcularDiferenciaHoras(horaInicio, horaFin) {
 //funcion que suma las diferencias de horas
 function sumarDiferencias(){
     var total=0;
+    alert("Entra al menos");
+    console.log(total);
     if(validarHorasCorrectas(lunesInicio,lunesFin)){
         total= total+ calcularDiferenciaHoras(lunesInicio,lunesFin);
+        alert(total);
+        console.log(total);
         
     }
     // Martes
     if (validarHorasCorrectas(martesInicio, martesFin)) {
         total = total + calcularDiferenciaHoras(martesInicio, martesFin);
-        
+        alert(total);
+        console.log(total);
     }
 
     // Miércoles
     if (validarHorasCorrectas(miercolesInicio, miercolesFin)) {
         total = total + calcularDiferenciaHoras(miercolesInicio, miercolesFin);
-        
+        alert(total);
+        console.log(total);
     }
 
     // Jueves
     if (validarHorasCorrectas(juevesInicio, juevesFin)) {
         total = total + calcularDiferenciaHoras(juevesInicio, juevesFin);
-        
+        alert(total);
+        console.log(total);
     }
 
     // Viernes
     if (validarHorasCorrectas(viernesInicio, viernesFin)) {
         total = total + calcularDiferenciaHoras(viernesInicio, viernesFin);
-        
+        alert(total);
+        console.log(total);
     }
 
     // Sábado
     if (validarHorasCorrectas(sabadoInicio, sabadoFin)) {
         total = total + calcularDiferenciaHoras(sabadoInicio, sabadoFin);
+        alert(total);
         console.log(total);
+        
     }
     
     return total;
@@ -316,8 +331,3 @@ function enviarDatosGrupo(noGrupo,cupo, periodo, maestro, horasTotales, idActivi
         }
     });
 }
-
-
-
-
-

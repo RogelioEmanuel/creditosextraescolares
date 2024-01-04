@@ -148,6 +148,34 @@
         <servlet-name>InscripcionGrupos_Srv</servlet-name>
         <servlet-class>Servlets.Grupos.InscripcionGrupos_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InscribirAlumnoGrupo</servlet-name>
+        <servlet-class>Servlets.GruposAlumno.InscribirAlumnoGrupo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>maestroInscribirAlumno_Srv</servlet-name>
+        <servlet-class>Servlets.GruposAlumno.maestroInscribirAlumno_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Index_Srv</servlet-name>
+        <servlet-class>Servlets.Index.Index_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarPlanTrabajo_Srv</servlet-name>
+        <servlet-class>Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarPlanesdeTrabajo_Srv</servlet-name>
+        <servlet-class>Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarAlumno_Srv</servlet-name>
+        <servlet-class>Servlets.GruposAlumno.EditarAlumno_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BajaAlumno</servlet-name>
+        <servlet-class>Servlets.GruposAlumno.BajaAlumno_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -291,6 +319,34 @@
     <servlet-mapping>
         <servlet-name>InscripcionGrupos_Srv</servlet-name>
         <url-pattern>/app/grupos/inscripciongrupo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InscribirAlumnoGrupo</servlet-name>
+        <url-pattern>/app/gruposalumno/inscribiralumnogrupo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>maestroInscribirAlumno_Srv</servlet-name>
+        <url-pattern>/app/gruposalumno/inscribiralumno.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Index_Srv</servlet-name>
+        <url-pattern>/app/Index/Home.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarPlanTrabajo_Srv</servlet-name>
+        <url-pattern>/app/planes/editarplan.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarPlanesdeTrabajo_Srv</servlet-name>
+        <url-pattern>/app/planesdetrabajo/eliminarplan.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarAlumno_Srv</servlet-name>
+        <url-pattern>/app/gruposalumno/editaralumnogrupo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BajaAlumno</servlet-name>
+        <url-pattern>/app/gruposalumno/eliminaralumno.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

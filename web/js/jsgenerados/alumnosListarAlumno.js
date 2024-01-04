@@ -8,7 +8,7 @@ let SeEstaModificando = false;
 var tblListaAlumnos = $('#tblListaAlumnos').DataTable({
     "columnDefs": [
         {
-            targets: [9],
+            targets: [8],
             orderable: false
         }
     ],
@@ -41,6 +41,7 @@ $("#divGrpAlumnos").on('click', '#tblListaAlumnos tbody tr td', function () {
             $("#btnAgregar").hide();
             $("#btnregresar").hide();
             $("#btnCancelar").show();
+            $("#btnAsistencias").hide();
             
             
         } else {
@@ -49,6 +50,7 @@ $("#divGrpAlumnos").on('click', '#tblListaAlumnos tbody tr td', function () {
             $("#btnAgregar").show();
             $("#btnregresar").show();
             $("#btnCancelar").hide();
+            $("#btnAsistencias").show();
         }
         selectLib("tblListaAlumnos", $(this).parent().attr('id'));
     }
@@ -68,7 +70,163 @@ function eliminar_registro() {
     $("#CerrarConfirmEliminacion").trigger("click");
 }
 
-
 function updateRegistro() {
 
+}
+
+//Inscripcion (Agregar)
+
+function mostrarInscribirAlumno(id) {
+    $("#pageLoader").show();
+    
+    
+    if(id!==null){
+        $.ajax({
+            url: '../../app/gruposalumno/inscribiralumnogrupo.do',
+            type: 'GET',
+            dataType: 'html',
+            data: {idGrupo:id                                
+            },
+            success: function (respuesta) {
+                $("body").html(respuesta);
+            },
+            error: function (jqXHR, exception) {
+                $("#pageLoader").hide();
+                TituloMensaje = "ERROR";
+                Mensaje = "Ocurrió un error en el servidor";
+                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+            }
+        });
+    }else{
+        TituloMensaje = "ERROR";
+        Mensaje = "Es nulo el ID";
+        mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+    }
+    
+}
+
+$("#divGrpAlumnos").on("click", "#btnAgregar", function (evento) {
+    var id = $("#labelIdGrupo").text();
+    //var noControl = $("#noControl").val();
+    //var noReinscripcion = $("#noReinscripcion").val();
+    //var id = $("#labelIdGrupo").val();
+    alert("Hola");
+    mostrarInscribirAlumno(id);
+    
+});
+
+
+//Dar de baja (Eliminar)
+
+$("#divGrpAlumnos").on("click", "#btnEliminar", function (evento) {
+    let id = id_fila;
+    var idGrupo= $("#labelIdGrupo").text();
+    mensajeConfirmacion(iconoInfo,id,idGrupo);
+});
+
+function mensajeConfirmacion(icono, id,idGrupo) {
+    bootbox.confirm({
+        title: icono+" <b>¿Estás Seguro?</b>",
+        message: '<div class="row" style="text-align: justify">' +
+                '<div class=col-md-12>' +
+                '<h6 class=panel-title>' + "Se dará  de baja el Alumno" + '</h6>' +
+                '</div>' +
+                '</div>',
+        buttons: {
+            confirm: {
+                label: "Continuar",
+                className: "btn-success"
+            },
+            cancel: {
+                label: "Cancelar",
+                className: "btn-danger"
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                eliminarActividad(id,idGrupo);
+            } else {
+                
+            }
+        }
+    });
+};
+
+function eliminarActividad(id,idGrupo) {
+    $("#pageLoader").show();
+    $.ajax({
+        url: '../../app/gruposalumno/eliminaralumno.do',
+        type: 'POST',
+        dataType: 'json',
+        data: {noControl: id,
+        idGrupo:idGrupo},
+        success: function (respuesta) {
+            $("#pageLoader").hide();
+            if (respuesta.status === 0) {
+                TituloMensaje = "¡Alumno dado de baja!";
+                Mensaje = "El alumno se ha dado de baja correctamente";
+                mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '../../app/gruposalumno/listargruposalumno.do?idGrupo='+ idGrupo);
+                
+            } else {
+                TituloMensaje = "ERROR: ";
+                Mensaje = respuesta.mensaje;
+                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+            }
+
+        },
+        error: function (jqXHR, exception) {
+            $("#pageLoader").hide();
+            TituloMensaje = "ERROR";
+            Mensaje = "Ocurrió un error en el servidor";
+            mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+        }
+
+    });
+}
+
+//Selectivo (Editar)
+
+
+$("#divGrpAlumnos").on("click", "#btnEditar", function (evento) {
+    
+    let id = id_fila;
+    var idGrupo = $("#labelIdGrupo").text();
+    if(id !== null && id !== undefined){
+        mostrarEditarEstado(id,idGrupo);
+    }else{
+        TituloMensaje = "ERROR";
+        Mensaje = "Es nulo el ID";
+        mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+    }
+    
+});
+
+function mostrarEditarEstado(id,idGrupo) {
+    $("#pageLoader").show();
+    
+    
+    if(id!==null){
+        $.ajax({
+            url: '../../app/gruposalumno/editaralumnogrupo.do',
+            type: 'GET',
+            dataType: 'html',
+            data: {noControl:id,
+                idGrupo:idGrupo
+            },
+            success: function (respuesta) {
+                $("body").html(respuesta);
+            },
+            error: function (jqXHR, exception) {
+                $("#pageLoader").hide();
+                TituloMensaje = "ERROR";
+                Mensaje = "Ocurrió un error en el servidor";
+                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+            }
+        });
+    }else{
+        TituloMensaje = "ERROR";
+        Mensaje = "Es nulo el ID";
+        mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+    }
+    
 }

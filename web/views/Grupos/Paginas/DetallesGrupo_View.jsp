@@ -124,11 +124,18 @@
                                     <select name="periodo" 
                                             id="periodo" 
                                             placeholder="periodo"
-                                            class="form-control input-sm"                                             
+                                            class="form-control input-sm"
+                                            disabled
                                             required >
-                                        <option value="Enero-Junio">Enero-Junio</option>
-                                        <option value="Verano">Verano</option>
-                                        <option value="Agosto-Diciembre">Agosto-Diciembre</option>
+                                        <option value="Enero-Junio" <c:if test="${periodo eq 'Enero-Junio'}">
+                                                                        selected
+                                                                    </c:if>>Enero-Junio</option>
+                                        <option value="Verano" <c:if test="${periodo eq 'Verano'}">
+                                                                        selected
+                                                                </c:if>>Verano</option>
+                                        <option value="Agosto-Diciembre" <c:if test="${periodo eq 'Agosto-Diciembre'}">
+                                                                            selected
+                                                                         </c:if>>Agosto-Diciembre</option>
                                         
                                     </select>
                                 </div>
@@ -206,10 +213,14 @@
         
         
        
-        <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
+        
         
         <script src="../../js/jsgenerados/gruposDetalleGrupo.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>        
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
+        <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
+        <script src="../../js/lib/jspdf.min.js" type="text/javascript"></script>
+        <script src="../../js/lib/jspdf.plugin.autotable.min.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>
     </body>
     <footer><%@include file="../../templates/Footer_View.jsp" %></footer>

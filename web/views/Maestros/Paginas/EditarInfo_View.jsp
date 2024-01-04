@@ -1,4 +1,4 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -118,8 +118,12 @@
                                             placeholder="Sexo"
                                             class="form-control input-sm"                                             
                                             required >
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>                                        
+                                        <option value="F" <c:if test="${sexo eq 'F'}">
+                                                                 selected
+                                                           </c:if>>Femenino</option>
+                                        <option value="M" <c:if test="${sexo eq 'M'}">
+                                                                 selected
+                                                           </c:if>>Masculino</option>                                         
                                     </select>
                                 </div>
                             </div>
@@ -316,11 +320,14 @@
         
         
         
-        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
-        <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>        
-        <script src="../../js/jsgenerados/maestrosEditarInfo.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>        
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
-        <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>
+        <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
+        <script src="../../js/lib/jspdf.min.js" type="text/javascript"></script>
+        <script src="../../js/lib/jspdf.plugin.autotable.min.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>        
+        <script src="../../js/jsgenerados/maestrosEditarInfo.js" type="text/javascript"></script>
+        
     </body>
     <footer><%@include file="../../templates/Footer_View.jsp" %></footer>
 </html>

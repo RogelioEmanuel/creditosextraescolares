@@ -21,11 +21,7 @@
     </head>
     <header><%@include file="../../templates/Header_View.jsp" %></header>
     <body>
-       <div id="pageLoader">
-            <div id="pageSpinner">
-                <%@include file="../../templates/spinner.estandarITT.jsp" %>
-            </div>
-        </div>
+       
             
         <div class="container">
             <div id="PanelForm" class="panel panel-primary" style="margin-top: 2em">
@@ -227,11 +223,15 @@
         
         
        
+        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>        
+        <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
         <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
+        <script src="../../js/lib/jspdf.min.js" type="text/javascript"></script>
+        <script src="../../js/lib/jspdf.plugin.autotable.min.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>
         
         <script src="../../js/jsgenerados/gruposCrearGrupo.js" type="text/javascript"></script>
-        <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
-        <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>
+        
     </body>
     <footer><%@include file="../../templates/Footer_View.jsp" %></footer>
 </html>

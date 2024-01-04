@@ -57,10 +57,7 @@ $("#divGrpPlanes").on('click', '#tblListaPlanes tbody tr td', function () {
 
 });
 
-$("#divGrpPlanes").on("click", "#btnEliminar", function (evento) {
-    let id = id_fila;
-    mensajeConfirmacion(iconoInfo,id);
-});
+
 
 
 var btngrupos =  "#btnVerDetalle"+id_fila;
@@ -96,10 +93,10 @@ function mostrarEditarActividad(id) {
     
     if(id!==null){
         $.ajax({
-            url: '../../app/actividadextraescolar/editaractividad.do',
+            url: '../../app/planes/editarplan.do',
             type: 'GET',
             dataType: 'html',
-            data: {idActividad:id},
+            data: {idPlan:id},
             success: function (respuesta) {
                 $("body").html(respuesta);
             },
@@ -117,7 +114,7 @@ function mostrarEditarActividad(id) {
     }
     
 }
-
+//DEtalle
 function mostrarDetalle(id) {
     $("#pageLoader").show();
     
@@ -145,7 +142,7 @@ function mostrarDetalle(id) {
     
 }
 
-
+//Edicion
 $("#divGrpPlanes").on("click", "#btnEditar", function (evento) {
     $("#grpBtnGuardar").hide();
     $("#grpBtnAgregar").show();
@@ -161,13 +158,20 @@ $("#divGrpPlanes").on("click", "#btnEditar", function (evento) {
     
 });
 
+//Eliminacion
+
+$("#divGrpPlanes").on("click", "#btnEliminar", function (evento) {
+    let id = id_fila;
+    mensajeConfirmacion(iconoInfo,id);
+});
+
 
 function mensajeConfirmacion(icono, id) {
     bootbox.confirm({
         title: icono+" <b>¿Estás Seguro?</b>",
         message: '<div class="row" style="text-align: justify">' +
                 '<div class=col-md-12>' +
-                '<h6 class=panel-title>' + "Se eliminará la actividad y <b>no</b> podrá ser recuperada" + '</h6>' +
+                '<h6 class=panel-title>' + "Se eliminará el plan y <b>NO</b> podrá ser recuperado" + '</h6>' +
                 '</div>' +
                 '</div>',
         buttons: {
@@ -182,7 +186,7 @@ function mensajeConfirmacion(icono, id) {
         },
         callback: function (result) {
             if (result) {
-                eliminarActividad(id);
+                eliminarPlan(id);
             } else {
                 
             }
@@ -190,18 +194,18 @@ function mensajeConfirmacion(icono, id) {
     });
 };
 
-function eliminarActividad(id) {
+function eliminarPlan(id) {
     $("#pageLoader").show();
     $.ajax({
-        url: '../../app/actividadextraescolar/eliminaractividad.do',
+        url: '../../app/planesdetrabajo/eliminarplan.do',
         type: 'POST',
         dataType: 'json',
-        data: {idActividad: id},
+        data: {idPlan: id},
         success: function (respuesta) {
             $("#pageLoader").hide();
             if (respuesta.status === 0) {
-                TituloMensaje = "¡Actividad eliminada!";
-                Mensaje = "La actividad se ha eliminado correctamente";
+                TituloMensaje = "¡Plan Eliminado!";
+                Mensaje = "El plan se ha eliminado correctamente";
                 mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '../../app/actividadextraescolar/listaractividad.do');
                 
             } else {

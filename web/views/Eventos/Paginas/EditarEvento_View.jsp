@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -80,13 +82,17 @@
                                             placeholder="Tipo"
                                             class="form-control input-sm"                                             
                                             required >
-                                        <option value="Interno">Interno</option>
-                                        <option value="Externo">Externo</option>
+                                        <option value="Interno" <c:if test="${evento.tipoEvento eq 'Interno'}">
+                                                                    selected
+                                                                </c:if>>Interno</option>
+                                        <option value="Externo"<c:if test="${evento.tipoEvento eq 'Externo'}">
+                                                                    selected
+                                                               </c:if>>Externo</option>
                                         
                                     </select>
                                 </div>
                             </div>
-                             <div class="col-md-6">
+                             <div class="col-md-6"> 
                                 <label>Periodo:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
@@ -95,9 +101,15 @@
                                             placeholder="periodo"
                                             class="form-control input-sm"                                             
                                             required >
-                                        <option value="Enero-Junio">Enero-Junio</option>
-                                        <option value="Verano">Verano</option>
-                                        <option value="Agosto-Diciembre">Agosto-Diciembre</option>
+                                        <option value="Enero-Junio" <c:if test="${periodo eq 'Enero-Junio'}">
+                                                                        selected
+                                                                    </c:if>>Enero-Junio</option>
+                                        <option value="Verano" <c:if test="${periodo eq 'Verano'}">
+                                                                        selected
+                                                                </c:if>>Verano</option>
+                                        <option value="Agosto-Diciembre" <c:if test="${periodo eq 'Agosto-Diciembre'}">
+                                                                            selected
+                                                                         </c:if>>Agosto-Diciembre</option>
                                         
                                     </select>
                                 </div>
@@ -153,7 +165,7 @@
                                            date-date-format="dd/mm/yyyy"
                                            placeholder="dd/mm/yyyy" 
                                            maxlength="10"
-                                           value="${evento.fecha}"
+                                           value="${fecha}"
                                            class="form-control input-sm datepicker" 
                                            required >
                                 </div>
@@ -171,7 +183,9 @@
                                             class="form-control input-sm"                                             
                                             required >
                                         <c:forEach var="actividad" items="${actividad}">
-                                            <option value="${actividad.idActividad_Extraescolar}">${actividad.nombre} </option>
+                                            <option value="${actividad.idActividad_Extraescolar}" <c:if test="${evento.idActividad eq actividad.idActividad_Extraescolar}">
+                                                                                                        selected
+                                                                                                  </c:if>>${actividad.nombre} </option>
                                         </c:forEach>
                                     </select>
                                 </div>

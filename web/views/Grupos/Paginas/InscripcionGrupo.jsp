@@ -20,12 +20,13 @@
         <link href="../../css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <header><%@include file="../../templates/HeaderAlumno_View.jsp" %></header>
         <div id="pageLoader">
             <div id="pageSpinner">
                 <%@include file="../../templates/spinner.estandarITT.jsp" %>
             </div>
         </div>
-        <header><%@include file="../../templates/Header_View.jsp" %></header>
+        
         <div class="container">
             
             <div class="panel panel-primary">
@@ -78,19 +79,18 @@
                             </thead>
                            <tbody>
                                 <c:forEach var="row" items="${gruposConHorarios}">
-                                    <c:set var="grupoId" value="${row.key}" />
+                                    <c:set var="grupo" value="${row.key}" />
                                     <c:set var="horarios" value="${row.value}" />
-                                    <tr id="${grupoId}" data-id="${grupoId}">
-                                        <td class="bordeTd  justify">${nombreMaestro}</td>
+                                    <tr id="${grupo.idGrupo}" data-id="${grupo.idGrupo}">
+                                        <td class="bordeTd  justify">${grupo.nombreActividad}</td>
                                          <c:forEach var="horario" items="${horarios}">
-                                            <!-- Accede a las propiedades del horario -->
-                                            <td class="bordeTd justify">${horario.dia}</td>
+                                            <!-- Accede a las propiedades del horario -->                                            
                                             <td class="bordeTd justify">${horario.horaInicio} / ${horario.horaFinal}</td>
                                             <!-- Agrega más propiedades según sea necesario -->
                                         </c:forEach>
-                                        <!--td class="bordeTd  justify"></td-->
+                                        <td class="bordeTd  justify">${grupo.nombreMaestro}</td>
                                         <td class="bordeTd">
-                                            
+                                            <button title="Inscribirme " data-table="tblListaGrupos" class="btn btn-sm btn-success" id="btnInscripcion${grupo.idGrupo}"><i class="fa fa-pencil"></i> Inscribirme</button> 
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -98,7 +98,7 @@
                         </table>
                         <div class="row" align="right" style="margin: 1rem">                           
                             
-                            <a title="Regresar" id="btnRegresar" href="/creditosextraescolares/app/actividadextraescolar/listaractividad.do" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
+                            <a title="Regresar" id="btnRegresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
                              
                         </div>
                         
@@ -121,9 +121,9 @@
         <script type="text/javascript" src ="\CDN-ITT\js\bootstrap-datepicker.es.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\catalogos-tablas.estandarITT.js"></script>
         
+        <script src="../../js/jsgenerados/gruposInscripciongrupos.js" type="text/javascript"></script>
         
-        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
-        <script src="../../js/jsgenerados/gruposInscripcionGrupos.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>        
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
         <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
         <script src="../../js/lib/jspdf.min.js" type="text/javascript"></script>

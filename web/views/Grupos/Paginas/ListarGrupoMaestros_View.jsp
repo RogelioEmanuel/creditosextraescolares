@@ -106,9 +106,9 @@
         <script type="text/javascript" src ="\CDN-ITT\js\bootstrap-datepicker.es.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\catalogos-tablas.estandarITT.js"></script>
         
-        
-        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/gruposListarGruposMaestro.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
+        
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
         <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
         <script src="../../js/lib/jspdf.min.js" type="text/javascript"></script>

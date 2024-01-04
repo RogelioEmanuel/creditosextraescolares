@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="/CDN-ITT/img/logo.png">
-        <title>Plan de trabajo detalles </title>
+        <title>Plan de trabajo</title>
         <link href="/CDN-ITT/css/base.estandarITT.css" rel="stylesheet">
         <link href="/CDN-ITT/css/font-awesome.estandarITT.css" rel="stylesheet">
         <link href="/CDN-ITT/css/general.estandarITT.css" rel="stylesheet">
@@ -23,12 +23,12 @@
                 <%@include file="../../templates/spinner.estandarITT.jsp" %>
             </div>
         </div>
-            
+        <label id="idPlan" style="display: none;">${plant.idPlan}</label>    
         <div class="container">
             <div id="PanelForm" class="panel panel-primary" style="margin-top: 2em">
                 <div class="panel-heading">
                     <h2 class="panel-title" id="HEADINGDP">
-                        Detalle Plan de Trabajo     
+                        Editar Plan de Trabajo     
                     </h2>
                 </div>
                 <div class="panel panel-body" color: black; margin: 0">
@@ -42,7 +42,7 @@
                                             id="actividades" 
                                             placeholder="actividades"
                                             class="form-control input-sm"
-                                            
+                                            disabled                                            
                                             required >
                                             <option value="${plant.actividadExtraescolar}">${plant.nomactividad}</option>
                                     </select>
@@ -55,8 +55,8 @@
                                    <select name="inputMaestro" 
                                             id="maestro" 
                                             placeholder="Maestro"
-                                            class="form-control input-sm" 
-                                                                                        
+                                            disabled
+                                            class="form-control input-sm"                                                                                         
                                             required >
                                         
                                             <option value="${plant.maestro}">${plant.nomMaestro}</option>
@@ -78,8 +78,7 @@
                                                placeholder="programa semana ${plan.noSemana}" 
                                                required 
                                                minlength="1"
-                                               maxlength="80"
-                                               
+                                               maxlength="80"                                               
                                                value="${plan.programa}"
                                                title="programa semana ${plan.noSemana}">
                                     </div>
@@ -92,8 +91,7 @@
                                                id="plataformasemana${plan.noSemana}" 
                                                class="form-control input-sm" 
                                                autocomplete="off" 
-                                               placeholder="plataforma semana ${plan.noSemana}" 
-                                                
+                                               placeholder="plataforma semana ${plan.noSemana}"                                                 
                                                minlength="1"
                                                maxlength="80" 
                                                value="${plan.plataforma}"
@@ -111,8 +109,7 @@
                                                   id="descripcionsemana${plan.noSemana}" 
                                                   class="form-contro${plan.noSemana} input-sm" 
                                                   autocomplete="off" 
-                                                  placeholder="¿Cómo lo harían?" 
-                                                   
+                                                  placeholder="¿Cómo lo harían?"                                                    
                                                   minlength="1"
                                                   rows="4"
                                                   cols="130"
@@ -128,8 +125,8 @@
 
                         <div class="row" style="margin-top: 30px">                             
                             <div class="col-md-12" align="right">                                
-                                <button id="generarReporte" form="FormCrearPlan"  class="btn btn-primary btn-sm" style="font-size:14px">
-                                    <i class="fa fa-file"></i> Generar reporte
+                                <button id="btnRegistrar" form="FormCrearPlan"  class="btn btn-primary btn-sm" style="font-size:14px">
+                                    <i class="fa fa-file"></i> Guardar
                                 </button>     
                                 <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/planesdetrabajo/ListarPlan.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i>Regresar</a>
                             </div>
@@ -138,6 +135,7 @@
                 </div>
             </div>
         </div>
+        
         
         
         <!-- JS de CDN -->
@@ -156,12 +154,15 @@
        
         <!--JS propios -->
 
-        <script src="../../js/jsgenerados/planCrearPlan.js" type="text/javascript"></script>        
+        <script src="../../js/jsgenerados/planEditarPlan.js" type="text/javascript"></script>        
         <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
         <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
         <script src="../../js/lib/jspdf.min.js" type="text/javascript"></script>
         <script src="../../js/lib/jspdf.plugin.autotable.min.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
+        
+        
         
         
     </body>

@@ -4,21 +4,28 @@ package ManageBean.Asistencia;
 public class Asistencias_MB {
     
     private int idAsistencia;
-    private int noCOntrol;
-    private int idGrupos;
+    private int noControl;
+    private int idClase;
+    private int dia;
+    private String mes;
 
-    public Asistencias_MB(int idAsistencia, int noCOntrol, int idGrupos) {
+    public Asistencias_MB(int idAsistencia, int noControl, int idClase, int dia, String mes) {
         this.idAsistencia = idAsistencia;
-        this.noCOntrol = noCOntrol;
-        this.idGrupos = idGrupos;
+        this.noControl = noControl;
+        this.idClase = idClase;
+        this.dia = dia;
+        this.mes = mes;
     }
 
-    public Asistencias_MB(int noCOntrol, int idGrupos) {
-        this.noCOntrol = noCOntrol;
-        this.idGrupos = idGrupos;
+    public Asistencias_MB(int noControl, int idClase, int dia, String mes) {
+        this.noControl = noControl;
+        this.idClase = idClase;
+        this.dia = dia;
+        this.mes = mes;
     }
-    
-    
+
+    public Asistencias_MB() {
+    }
 
     public int getIdAsistencia() {
         return idAsistencia;
@@ -28,22 +35,41 @@ public class Asistencias_MB {
         this.idAsistencia = idAsistencia;
     }
 
-    public int getNoCOntrol() {
-        return noCOntrol;
+    public int getNoControl() {
+        return noControl;
     }
 
-    public void setNoCOntrol(int noCOntrol) {
-        this.noCOntrol = noCOntrol;
+    public void setNoControl(int noControl) {
+        this.noControl = noControl;
     }
 
-    public int getIdGrupos() {
-        return idGrupos;
+    public int getIdClase() {
+        return idClase;
     }
 
-    public void setIdGrupos(int idGrupos) {
-        this.idGrupos = idGrupos;
+    public void setIdClase(int idClase) {
+        this.idClase = idClase;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String mes) {
+        this.mes = mes;
     }
     
+    
+    
+
     
     
 }

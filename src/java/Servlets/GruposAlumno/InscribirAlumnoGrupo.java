@@ -6,6 +6,7 @@ import ManageBean.Grupos.Grupos_MB;
 import Servlets.ActividadExtraescolar.CrearActividadExtraescolar;
 import Utilidades.GenericResponse;
 import com.google.gson.Gson;
+import dao.creditos.Creditos_CrearCredito_DAO;
 import dao.gruposyalumno.GruposAlumno_Inscripcion_DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -62,7 +63,21 @@ public class InscribirAlumnoGrupo extends HttpServlet {
         
         Alumnos_MB alumno = GruposAlumno_Inscripcion_DAO.consultarAlumno(17280330);
          
-        GruposAlumno_Inscripcion_DAO.inscribir(alumno,grupo,resp,nReinscripcion);
+        
+        
+        if(GruposAlumno_Inscripcion_DAO.estaInscrito(alumno,grupo,resp)||GruposAlumno_Inscripcion_DAO.estaInscrito2(alumno, resp)){
+             resp.setMensaje("El alumno ya se encuentra inscrito a un grupo");
+             resp.setStatus(800);
+         }else{
+            GruposAlumno_Inscripcion_DAO.inscribir(alumno,grupo,resp,nReinscripcion); 
+            if(Creditos_CrearCredito_DAO.consultarCreditoSel(alumno.getNoControl())){
+                
+            }else if(Creditos_CrearCredito_DAO.consultarCredito(alumno.getNoControl())){
+                
+            }else{
+                Creditos_CrearCredito_DAO.insertar(alumno, grupo, resp);
+            }
+         }
                             
         try {
             response.setContentType("application/json");

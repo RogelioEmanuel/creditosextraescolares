@@ -3,8 +3,12 @@ package Utilidades;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +17,46 @@ public class Constantes {
     public static final String EXTRAESCOLARESPRUEBA_BD="baseejmplocreditosextraescolares";
     public static final String EXTRAESCOLARESPRUEBA_USER="root";
     public static final String EXTRAESCOLARESPRUEBA_PASS="";
-     
+    public static final String NOMBRECREDITONORMAL="Creditos Extraescolares";
+    public static final String NOMBRECREDITOSELECTIVO="Creditos Extraescolares Selectivo";
+    public static final List<String> CARRERAS = Arrays.asList(
+                "INGENIERIA ELECTROMECANICA",
+                "INGENIERIA ELECTRONICA",
+                "INGENIERIA EN GESTION EMPRESARIAL",
+                "INGENIERIA INDUSTRIAL",
+                "INGENIERIA LOGISTICA",
+                "INGENIERIA MECATRONICA",
+                "INGENIERIA EN SISTEMAS COMPUTACIONALES",
+                "INGENIERIA EN TECNOLOGIAS DE LA INFORMACION Y COMUNICACION",
+                "INGENIERIA EN QUIMICA"
+        );
+    
+    public static final List<String> CARRERASABRE = Arrays.asList(
+                "IELE",
+                "I",
+                "IGE",
+                "II",
+                "ILOG",
+                "IM",
+                "ISC",
+                "TICS",
+                "IQU"
+        );
+    
+    public static final Map<String, String> mapaCarreras = new HashMap<>();
+    
+    public static Map <String, String> getCarreras(){
+        mapaCarreras.put("INGENIERIA ELECTROMECANICA", "IELE");
+        mapaCarreras.put("INGENIERIA ELECTRONICA", "I");
+        mapaCarreras.put("INGENIERIA EN GESTION EMPRESARIAL", "IGE");
+        mapaCarreras.put("INGENIERIA INDUSTRIAL", "II");
+        mapaCarreras.put("INGENIERIA LOGISTICA", "ILOG");
+        mapaCarreras.put("INGENIERIA MECATRONICA", "IM");
+        mapaCarreras.put("INGENIERIA EN SISTEMAS COMPUTACIONALES", "ISC");
+        mapaCarreras.put("INGENIERIA EN TECNOLOGIAS DE LA INFORMACION Y COMUNICACION", "TICS");
+        mapaCarreras.put("INGENIERIA EN QUIMICA", "IQU");
+        return mapaCarreras;
+    }
      
     public static final String NOMBREJEFATURA="IVÁN OMAR ORTEGA ROSALES";
     public static final String NOMBREJEFATURAPROMOCION="MANUEL R. CORREA ALDAPE";

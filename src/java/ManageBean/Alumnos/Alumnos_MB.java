@@ -13,6 +13,7 @@ public class Alumnos_MB {
     private boolean regular;
     private int noReinscripcion;
     private String selectivo;
+    private String acreditado;
 
     public Alumnos_MB(String noControl, String nombre, int semestre, int edad, String correo, String sexo, String carrera,boolean regular, int noReinscripcion) {
         this.noControl = noControl;
@@ -140,6 +141,14 @@ public class Alumnos_MB {
 
     public void setSelectivo(String selectivo) {
         this.selectivo = selectivo;
+    }
+
+    public String isAprovado() {
+        return acreditado;
+    }
+
+    public void setAprovado(String aprovado) {
+        this.acreditado = aprovado;
     }
     
     

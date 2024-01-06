@@ -176,6 +176,14 @@
         <servlet-name>BajaAlumno</servlet-name>
         <servlet-class>Servlets.GruposAlumno.BajaAlumno_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportesAlumnoIncrito_Srv</servlet-name>
+        <servlet-class>Servlets.Alumnos.ReportesAlumnoIsncrito_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarAsistencias_Srv</servlet-name>
+        <servlet-class>Servlets.Asistencias.ListarAsistencias_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -347,6 +355,14 @@
     <servlet-mapping>
         <servlet-name>BajaAlumno</servlet-name>
         <url-pattern>/app/gruposalumno/eliminaralumno.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportesAlumnoIncrito_Srv</servlet-name>
+        <url-pattern>/app/alumnos/reportesalumnoinscrito.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarAsistencias_Srv</servlet-name>
+        <url-pattern>/app/asistencias/listarasistencias.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -73,10 +73,7 @@ public class EditarPlanTrabajo_Srv extends HttpServlet {
             }
         }
 
-        
-         
-
-                
+                        
         try {
             response.setContentType("application/json");
             Gson json = new Gson();

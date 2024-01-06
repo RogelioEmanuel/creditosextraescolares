@@ -43,7 +43,7 @@ public class ReportesMaestro_Srv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         GenericResponse resp = new GenericResponse();
+        GenericResponse resp = new GenericResponse();
         HttpSession session = request.getSession();
         
         

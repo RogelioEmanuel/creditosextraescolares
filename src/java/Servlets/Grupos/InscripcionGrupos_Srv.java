@@ -10,6 +10,7 @@ import Utilidades.GenericResponse;
 import com.google.gson.Gson;
 import dao.Grupos.Grupos_ListarGrupos_DAO;
 import dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO;
+import dao.creditos.Creditos_CrearCredito_DAO;
 import dao.gruposyalumno.GruposAlumno_Inscripcion_DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -83,9 +84,7 @@ public class InscripcionGrupos_Srv extends HttpServlet {
             gruposConHorarios.put(grupo, horariosCompleta);
         }
         
-        
-        
-        
+               
         request.setAttribute("gruposConHorarios", gruposConHorarios);
         
         request.getRequestDispatcher("/views/Grupos/Paginas/InscripcionGrupo.jsp").forward(request, response);
@@ -115,6 +114,13 @@ public class InscripcionGrupos_Srv extends HttpServlet {
              resp.setStatus(800);
          }else{
             GruposAlumno_Inscripcion_DAO.inscribir(alumno,grupo,resp,nReinscripcion); 
+            if(Creditos_CrearCredito_DAO.consultarCreditoSel(alumno.getNoControl())){
+                
+            }else if(Creditos_CrearCredito_DAO.consultarCredito(alumno.getNoControl())){
+                
+            }else{
+                Creditos_CrearCredito_DAO.insertar(alumno, grupo, resp);
+            }
          }
          
          

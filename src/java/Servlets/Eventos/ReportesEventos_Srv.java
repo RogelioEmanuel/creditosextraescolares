@@ -45,7 +45,7 @@ public class ReportesEventos_Srv extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-         List<ActividadExtraescolar_MB> actividades = new ArrayList<>();
+        List<ActividadExtraescolar_MB> actividades = new ArrayList<>();
         
         GenericResponse respuesta = new GenericResponse<>();
                 
@@ -135,19 +135,14 @@ public class ReportesEventos_Srv extends HttpServlet {
             JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(evento);
             
             //System.out.println(":0 "+ds.toString());
-            if(evento.isEmpty()){
-                  
-                System.out.println("vacio");
-                
-            }else{
-                
+            
                 map.put("ds", ds); 
                 map.put("actividad",actividad);
                 map.put("periodo",periodo);
                 map.put("ds", ds); 
                 map.put("jefatura",Constantes.NOMBREJEFATURA);
                 map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
-            }
+            
            
             
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);

@@ -6,6 +6,7 @@ import ManageBean.Grupos.Grupos_MB;
 import Servlets.ActividadExtraescolar.CrearActividadExtraescolar;
 import Utilidades.GenericResponse;
 import com.google.gson.Gson;
+import dao.creditos.Creditos_CrearCredito_DAO;
 import dao.gruposyalumno.GruposAlumno_Inscripcion_DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -63,6 +64,13 @@ public class maestroInscribirAlumno_Srv extends HttpServlet {
              resp.setStatus(800);
          }else{
              GruposAlumno_Inscripcion_DAO.inscribir(alumno,grupo,nReinscripcion,selectivos,resp);
+            if(Creditos_CrearCredito_DAO.consultarCreditoSel(alumno.getNoControl())){
+                
+            }else if(Creditos_CrearCredito_DAO.consultarCredito(alumno.getNoControl())){
+                
+            }else{
+                Creditos_CrearCredito_DAO.insertar(alumno, grupo, resp);
+            }
          }
         
                             

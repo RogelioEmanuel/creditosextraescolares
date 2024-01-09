@@ -207,6 +207,10 @@
         <servlet-name>App_Login_Srv</servlet-name>
         <servlet-class>App.App_Login_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>App_RegistrarAsistencia_Srv</servlet-name>
+        <servlet-class>App.App_RegistrarAsistencia_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -406,6 +410,10 @@
     <servlet-mapping>
         <servlet-name>App_Login_Srv</servlet-name>
         <url-pattern>/app/login.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>App_RegistrarAsistencia_Srv</servlet-name>
+        <url-pattern>/app/asistencias/RegistrarAsistencia.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -232,6 +232,45 @@ function mostrarEditarEstado(id,idGrupo) {
     
 }
 
+//Calificacion (Editar)
+
+
+$("#divGrpAlumnos").on("click", "#btnCalificacion", function (evento) {
+    
+    
+    var idGrupo = $("#labelIdGrupo").text();
+    
+        mostrarEditarCalificacion(idGrupo);
+    
+    
+});
+
+function mostrarEditarCalificacion(idGrupo) {
+    $("#pageLoader").show();
+    
+    
+    
+        $.ajax({
+            url: '../../app/alumnos/calificaralumno.do',
+            type: 'GET',
+            dataType: 'html',
+            data: {
+                idGrupo:idGrupo
+            },
+            success: function (respuesta) {
+                $("body").html(respuesta);
+            },
+            error: function (jqXHR, exception) {
+                $("#pageLoader").hide();
+                TituloMensaje = "ERROR";
+                Mensaje = "Ocurrió un error en el servidor";
+                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+            }
+        });
+    
+    
+}
+
 
 //Vista Reportes
 

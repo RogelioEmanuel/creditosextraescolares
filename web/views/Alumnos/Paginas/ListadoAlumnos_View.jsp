@@ -86,6 +86,7 @@
                         <div class="row" align="right" style="margin: 1rem">
                             <button title="Inscribir  Alumno" data-table="tblListaAlumnos" class="btn btn-success btn-sm" id="btnAgregar"><i class="fa fa-plus"></i> Inscribir Alumno </button>
                             <button title="Listar Asistencias" data-table="tblListaAlumnos" class="btn btn-info btn-sm" id="btnAsistencias"> Lista de Asistencias </button>
+                            <button title="Asentar Calificaciones" data-table="tblListaAlumnos" class="btn btn-warning btn-sm" id="btnCalificacion"><i class="fa fa-pencil"></i> Asentar Calificacion </button>
                             <button title="Generar Reporte" data-table="tblListaAlumnos" class="btn btn-primary btn-sm" id="btnReporte"><i class="fa fa-file"></i> Reportes </button>
                             <a title="Regresar" id="btnregresar" href="#" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>                            
                             <button title="Editar  Alumno" data-table="tblListaAlumnos" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i> Editar Alumno</button>

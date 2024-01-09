@@ -33,7 +33,6 @@ public class EliminarMaestro_Srv extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
         PrintWriter out = response.getWriter();
         
         GenericResponse resp = new GenericResponse<>();

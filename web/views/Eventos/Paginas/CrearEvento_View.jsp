@@ -1,6 +1,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:set var="rolUsuario" value="${usuario.nombrePuesto}" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,7 +18,23 @@
         <link href="/CDN-ITT/css/spinner.estandarITT.css" rel="stylesheet">
         <link href="/CDN-ITT/css/bootstrap-datepicker.estandarITT.css" rel="stylesheet">
     </head>
-    <header><%@include file="../../templates/Header_View.jsp" %></header>
+    <header><c:choose>
+                <c:when test="${rolUsuario eq 'Estudiante'}">
+                    <%@include file="../../templates/HeaderAlumno_View.jsp" %>
+                </c:when>
+                <c:when test="${rolUsuario eq 'Admin'}">
+                   <%@include file="../../templates/Header_View.jsp" %></header>
+                </c:when>
+                <c:when test="${rolUsuario eq 'Maestro'}">
+                    <%@include file="../../templates/HeaderMaestro_View.jsp" %>
+                </c:when>
+                <c:otherwise>
+                    <%-- Manejo para otros roles o situaciones --%>
+                    <%@include file="../../templates/HeaderInvitado_View.jsp" %>
+                </c:otherwise>
+            </c:choose>
+        
+        
     <body>
        <div id="pageLoader">
             <div id="pageSpinner">

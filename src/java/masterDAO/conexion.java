@@ -27,7 +27,7 @@ public class conexion {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             // la conexion a la base de datos con las especificaciones que es tipo de Base que usara, puertos, version, usuario y contraseña en local
-            Connection con = DriverManager.getConnection(Constantes.MASTER_BD, Constantes.MASTER_USER, Constantes.INVITACIONES_PASS);
+            Connection con = DriverManager.getConnection(" ", " ", " ");
              return con;
         } catch (SQLException e) {
             System.out.println(e);

@@ -22,9 +22,7 @@
     <body>
         <header><%@include file="../../templates/HeaderAlumno_View.jsp" %></header>
         <div id="pageLoader">
-            <div id="pageSpinner">
-                <%@include file="../../templates/spinner.estandarITT.jsp" %>
-            </div>
+            
         </div>
         
         <div class="container">

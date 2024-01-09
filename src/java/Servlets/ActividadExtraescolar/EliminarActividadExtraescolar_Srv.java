@@ -37,15 +37,14 @@ public class EliminarActividadExtraescolar_Srv extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
         PrintWriter out = response.getWriter();
         
         GenericResponse resp = new GenericResponse<>();
         
-        //Obtener los usuarios eliminados consultando
-        
+       
         //Obtener el id de la invitacion
         
         int idActividad = Integer.parseInt(request.getParameter("idActividad"));        

@@ -78,7 +78,7 @@
                                         <td class="bordeTd  justify">${row.nomActividad}</td>
                                         <td class="bordeTd  justify">${row.periodo}</td>
                                         <td class="bordeTd">                                         
-                                         <button title="Ver Grupos " data-table="tblListaActividadesExtraescolares" class="btn btn-sm btn-info" id="btnVerGrupos"><i class="fa fa-eye"></i></button>
+                                        
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -87,8 +87,7 @@
                         <div class="row" align="right" style="margin: 1rem">
                             
                             <a title="Regresar" id="btnregresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
-                            <button title="Borrar Actividad Extraescolar " data-table="tblListaActividadesExtraescolares" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i></button>
-                            <button title="Editar Actividad Extraescolar" data-table="tblListaActividadesExtraescolares" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i></button>
+                            
                             
                         </div>
                         <div hidden="true" id="grpBtnGuardar" class="row" align="right" style="margin: 1rem">

@@ -1,6 +1,5 @@
 package Servlets.Master;
 
-import ManageBean.Departamento.DatosDepartamento_MB;
 import java.io.IOException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -9,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import masterDao.Empleado;
-import masterDao.EmpleadoDao;
+import masterDAO.Empleado;
+import masterDAO.EmpleadoDao;
+
+
 
 /**
  *
@@ -33,7 +34,7 @@ public class Master_Srv extends HttpServlet {
             throws ServletException, IOException {
         String token = request.getParameter("token");
         EmpleadoDao empleadoDao = new EmpleadoDao();
-        Empleado empleado = empleadoDao.obtenerDatos(token);
+        Empleado empleado = EmpleadoDao.obtenerDatos(token);
         if (empleado != null && empleado.getLeer() == 1) {
             myContextParam = request.getSession().getServletContext().getInitParameter("AppName");
             HttpSession session = request.getSession();
@@ -41,18 +42,11 @@ public class Master_Srv extends HttpServlet {
             //session.setAttribute("User", empleado.getIdEmpleado() + "");
             //session.setAttribute("Nombre", empleado.getNombre());
             //session.setMaxInactiveInterval(600000);
-            DatosDepartamento_MB departamento = EmpleadoDao.getDepartamento(empleado);
-            session.setAttribute("departamento", departamento);
-
-            if (empleado.getCrear() == 1 && empleado.getEditar() == 1 && empleado.getEliminar() == 1) {
-                if (departamento.getIdDepartamento() == 56) {
-                    response.sendRedirect("index.jsp");
-                } else {
-                    response.sendRedirect("app/Eventos/ListaEventos.do");
-                }
-            } else {
-                response.sendRedirect("views/templates/error403.jsp");
-            }
+            //DatosDepartamento_MB departamento = EmpleadoDao.getDepartamento(empleado);
+            //session.setAttribute("departamento", departamento);
+            
+            response.sendRedirect("index.jsp");
+            
 
         } else {
             response.sendRedirect("views/templates/error403.jsp");

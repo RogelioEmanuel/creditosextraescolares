@@ -3,7 +3,7 @@ $("#FormCrearPlan").on("click", "#btnRegistrar", function (evento) {
     //var maestro = $("#maestro").val();
     //var actividades = $("#actividades").val();
     var id = $("#idPlan").text();
-    alert(id);
+    
     enviarDatosPlan(id);
     //mensajeConfirmacion(iconoInfo);
 
@@ -162,7 +162,7 @@ function enviarDatosPlan(id) {
             
             TituloMensaje="Plan Modificado con Exito";
             Mensaje="Plan Modificado con Exito";
-            var ruta  = "/creditosextraescolares/app/actividadextraescolar/listaractividad.do";
+            var ruta  = "/creditosextraescolares/app/planesdetrabajo/ListarPlan.do";
             mensajeRedirect(iconoCorrecto,TituloMensaje,Mensaje, ruta );
             //window.location = ruta;
             

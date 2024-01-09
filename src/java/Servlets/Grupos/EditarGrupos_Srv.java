@@ -134,6 +134,7 @@ public class EditarGrupos_Srv extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         PrintWriter out = response.getWriter();
          System.out.println(request.getParameter("idGrupo"));
         int idGrupo = Integer.parseInt(request.getParameter("idGrupo"));

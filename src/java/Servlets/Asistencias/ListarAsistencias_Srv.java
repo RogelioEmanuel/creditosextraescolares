@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Servlets.Asistencias;
 
 import ManageBean.Alumnos.Alumnos_MB;
@@ -19,28 +15,30 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Emanuel
- */
+
 public class ListarAsistencias_Srv extends HttpServlet {
 
    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Creando datos para mandar
+        HttpSession session = request.getSession();
+        //Creando datos para mandar esto manda un alumno con una coleccion que contiene mes, clases
         Map< Alumnos_MB, Map<String, List<String>>> mapaPrincipal = new LinkedHashMap<>();
-        Map<String, List<String>> mapaInterno =  new LinkedHashMap<>();
+        
         Map<String, List<Integer>> mapaInterno2 =  new LinkedHashMap<>();
         
+        //Obtenemos el id del grupo del que revisaremos las asistencias
         int idGrupo  = Integer.parseInt(request.getParameter("idGrupo"));
-        List<Alumnos_MB> al = Asistencias_ListarAsistencias_DAO.consultarAlumnoGrupo(idGrupo);        
-        
+        List<Alumnos_MB> al = Asistencias_ListarAsistencias_DAO.consultarAlumnoGrupo(idGrupo); 
         Grupos_MB uwu = Asistencias_ListarAsistencias_DAO.consultarGrupo(idGrupo);
+        
+        //Creamos una lista de meses que tendra el periodo
         List<String> primerPeriodo=new ArrayList<>();
         
+        //Marcamos los meses del periodo
         if(uwu.getPeriodo().equals("Enero-Junio")){
             primerPeriodo = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio");
         }else if(uwu.getPeriodo().equals("Agosto-Diciembre")){
@@ -48,85 +46,144 @@ public class ListarAsistencias_Srv extends HttpServlet {
         }else if(uwu.getPeriodo().equals("Verano")){
             primerPeriodo=Arrays.asList("Julio");
         }
-        // Lista de meses de enero a junio
+        
+        //Lista de clases 
         List<Clases_MB> clases=new ArrayList<>();
+        
+        // Lista de meses maximos por periodo         
         int mes1=0;
         int mes2=0;
         int mes3=0;
         int mes4=0;
         int mes5=0;
         int mes6=0;
+        
+        //Por cada alumno inscito
         for(Alumnos_MB aux:al){
+            // Lista de meses maximos por periodo         
+            mes1=0;
+            mes2=0;
+            mes3=0;
+            mes4=0;
+            mes5=0;
+            mes6=0;
+            Map<String, List<String>> mapaInterno =  new LinkedHashMap<>();
+            //Por cada mes
             for(String aa :primerPeriodo){
+                //Llenamos las clases del grupo en el mes
                 
                 clases= Asistencias_ListarAsistencias_DAO.consultarClases(idGrupo,aa);
+                //Añadimos el mes y la clases en las que el usuario partizo, (aqui llama todas, pero el metodo pone una paloma o cruz dependiendo si asistio o no)
                 mapaInterno.put(aa, Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa));
-                System.out.println(aa+  " "+ Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa));
-                switch(aa){
-                    case "Enero":
-                        // Código para Enero
-                        
-                        for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
-                            mes1++;
-                        }
-                        break;
-                    case "Febrero":
-                        // Código para Febrero
-                        for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
-                            mes2++;
-                        }
-                        break;
-                    case "Marzo":
-                        // Código para Marzo
-                        for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
-                            mes3++;
-                        }
-                        break;
-                    case "Abril":
-                        // Código para Abril
-                        for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
-                            mes4++;
-                        }
-                        break;
-                    case "Mayo":
-                        for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
-                            mes5++;
-                        }
-                        // Código para Mayo
-                        break;
-                    case "Junio":
-                        for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
-                            mes6++;
-                        }
-                        // Código para Junio
-                        break;
-                }
-                //System.out.println(aa+" "+ Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa));
-            }
-        }
-        List<Integer> diasPrimerSemestre = new ArrayList<>();
-        for(String clasaux :primerPeriodo){
-            //diasPrimerSemestre.add(clasaux.getDia());
-            //System.out.println("Serv"+clasaux);
-        }
+                mapaInterno2.put(aa, Asistencias_ListarAsistencias_DAO.clasesFechas(idGrupo, clases, aa));
+                //Aumentamos la cantidad de clase que tuvo cada mes, Dependiendo del periodo
+                if(uwu.getPeriodo().equals("Agosto-Diciembre")){                    
+                    switch(aa){
+                        case "Agosto":                            
+                            for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                                mes1++;
+                            }
+                            break;
+                        case "Septiembre":
 
-        // Lista de meses de agosto a diciembre
-        //List<String> segundoPeriodo = Arrays.asList("Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
-        
-        //mapaInterno.put(segundoPeriodo, diasSegundoSemestre);
-        
-        for(Alumnos_MB alu  : al ){
-            mapaPrincipal.put(alu, mapaInterno);
+                            for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                                mes2++;
+                            }
+                            break;
+                        case "Octubre":
+
+                            for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                                mes3++;
+                            }
+                            break;
+                        case "Noviembre":
+
+                            for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                                mes4++;
+                            }
+                            break;
+                        case "Diciembre":
+                            for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                                mes5++;
+                            }
+                            break;
+                       
+                    }
+                    
+                }else if(uwu.getPeriodo().equals("Enero-Junio")){
+                    switch(aa){
+                        case "Enero":
+                            
+                            for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                                mes1++;
+                            }
+                            break;
+                        case "Febrero":
+
+                            for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                                mes2++;
+                            }
+                            break;
+                        case "Marzo":
+
+                            for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                                mes3++;
+                            }
+                            break;
+                        case "Abril":
+
+                            for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                                mes4++;
+                            }
+                            break;
+                        case "Mayo":
+                            for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                                mes5++;
+                            }
+
+                            break;
+                        case "Junio":
+                            for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                                mes6++;
+                            }                        
+                            break;
+                    }
+                
+                }else{
+                    for(String b:Asistencias_ListarAsistencias_DAO.revisarsiVino(aux.getNoControl(), clases,aa) ){
+                        mes1++;
+                    }
+                }
+            }
+               
+            mapaPrincipal.put(aux, mapaInterno);
+             
         }
-        request.setAttribute("enero",mes1);
-        request.setAttribute("febrero", mes2);
-        request.setAttribute("marzo",mes3);
-        request.setAttribute("abril", mes4);
-        request.setAttribute("mayo",mes5);
-        request.setAttribute("junio", mes6);
+        
+        
+        //Mandamos los atributos para la vista
+        request.setAttribute("periodo",uwu.getPeriodo());
+        //Cantidad de dias por cada mes que se manda, si 
+        
+        request.setAttribute("mes1",mes1);
+        
+        
+        if(uwu.getPeriodo().equals("Enero-Junio")||uwu.getPeriodo().equals("Agosto-Diciembre")){
+            request.setAttribute("mes2", mes2);
+            request.setAttribute("mes3",mes3);
+            request.setAttribute("mes4", mes4);
+            request.setAttribute("mes5",mes5);
+            
+        }
+        
+        //Si el periodo es Enero Junio, se manda el mes de Junio 
+        if(uwu.getPeriodo().equals("Enero-Junio")){
+          request.setAttribute("mes6", mes6);  
+        }
+        
         
         request.setAttribute("meses",primerPeriodo);
-        request.setAttribute("mesdia", mapaInterno);
+        request.setAttribute("mesdia", mapaInterno2);
         request.setAttribute("asistencias",mapaPrincipal);
         request.getRequestDispatcher("/views/Asistencias/Paginas/ListadoAsistencias_View.jsp").forward(request, response);
         
@@ -144,14 +201,10 @@ public class ListarAsistencias_Srv extends HttpServlet {
     }
     
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

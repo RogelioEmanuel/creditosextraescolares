@@ -510,11 +510,6 @@ public class ReporteAlumnosInscritos_DAO {
         
     }
     
-    
-    
-    
-    
-    
     //Actividad
     
     private static ActividadExtraescolar_MB convertirActividad(ResultSet rs) throws SQLException {

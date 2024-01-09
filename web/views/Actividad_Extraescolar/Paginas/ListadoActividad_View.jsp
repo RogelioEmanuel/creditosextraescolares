@@ -83,7 +83,7 @@
                         <div class="row" align="right" style="margin: 1rem">
                             <a title="Agregar Actividad" id="btnAgregar" href="/creditosextraescolares/app/actividadextraescolar/crearactividad.do" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar Actividad</a>
                             <a title="Regresar" id="btnregresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger"><i class="fa fa-reply"></i> Regresar</a>
-                            <button title="Borrar Actividad Extraescolar " data-table="tblListaActividadesExtraescolares" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i></button>
+                            
                             <button title="Editar Actividad Extraescolar" data-table="tblListaActividadesExtraescolares" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i></button>
                             
                         </div>

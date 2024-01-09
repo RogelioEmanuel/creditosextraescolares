@@ -64,7 +64,7 @@ public class EliminarEventos_Srv extends HttpServlet {
         
         int idEvento = Integer.parseInt(request.getParameter("idEvento"));        
         HttpSession session = request.getSession();
-        session.setAttribute("idEvento", idEvento);  
+        //session.setAttribute("idEvento", idEvento);  
 
         Eventos_EliminarEvento_DAO.eliminar(idEvento, resp);
         

@@ -139,7 +139,7 @@
         <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
         <script src="../../js/lib/jspdf.min.js" type="text/javascript"></script>
         <script src="../../js/lib/jspdf.plugin.autotable.min.js" type="text/javascript"></script>
-        
+        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
         
     </body>
     <footer><%@include file="../../templates/Footer_View.jsp" %></footer>

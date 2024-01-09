@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import masterDAO.Empleado;
 
 /**
  *
@@ -33,6 +34,7 @@ public class CrearMaestro_Srv extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
         request.getRequestDispatcher("/views/Maestros/Paginas/CrearMaestro_View.jsp").forward(request, response);
 
     }
@@ -62,6 +64,10 @@ public class CrearMaestro_Srv extends HttpServlet {
         String claveinterbancaria= request.getParameter("claveinterbancaria")  ;
         String sexo = request.getParameter("sexo");
         
+        String usuario = request.getParameter("usuario");
+        String pass = request.getParameter("pass");
+        
+        
         //fechas
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");        
         String fecha_nacimiento = request.getParameter("fechanacimiento");        
@@ -89,6 +95,16 @@ public class CrearMaestro_Srv extends HttpServlet {
         
         
         System.out.println(actividad.getDireccion());
+        
+        Empleado a = new Empleado();
+        a.setNombre(nombre);
+        a.setApellidoPaterno(appaterno);
+        a.setApellidoMaterno(apmaterno);
+        a.setNombrePuesto("Maestro");
+        a.setFechaNac(fecha_nacimiento);
+        a.setUsuario(usuario);
+        a.setCorreo(correo);
+        Maestros_CrearMaestros_DAO.insertarUsuario(a, pass, resp);
         Maestros_CrearMaestros_DAO.insertar(actividad, resp);
         
 

@@ -2,6 +2,10 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="usuario" value="${sessionScope.usuario}" />
+<c:set var="rolUsuario" value="${usuario.nombrePuesto}" />
+<c:set var="nombreUsuario" value="${usuario.nombre}" />
 <!DOCTYPE html>
 
 <div class="container" align="center">
@@ -24,12 +28,12 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">     
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cog"> </i> Maestro <span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cog"> </i> ${nombreUsuario} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/creditosextraescolares/app/grupos/listargruposmaestro.do?idMaestro=28"><span class="fa fa-user dropdown-item"></span> Mis Grupos</a></li>
+                            <li><a href="/creditosextraescolares/app/grupos/listargruposmaestro.do"><span class="fa fa-user dropdown-item"></span> Mis Grupos</a></li>
                             <li><a href="/creditosextraescolares/app/eventos/listareventomaestro.do"><span class="fa fa-user dropdown-item"></span>Eventos</a></li>
-                            <li><a href="/creditosextraescolares/app/maestros/infomaestro.do?idMaestro=28"><span class="fa fa-user dropdown-item"></span>Mi informacion</a></li>
-                            
+                            <li><a href="/creditosextraescolares/app/maestros/infomaestro.do"><span class="fa fa-user dropdown-item"></span>Mi informacion</a></li>
+                            <li><a href="/creditosextraescolares/app/maestros/infomaestro.do"><span class="fa fa-user dropdown-item"></span>Salir</a></li>
                             
                         </ul>
                     </li>

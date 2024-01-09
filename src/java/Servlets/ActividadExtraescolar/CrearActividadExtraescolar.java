@@ -33,6 +33,7 @@ public class CrearActividadExtraescolar extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF-8");
         request.getRequestDispatcher("/views/Actividad_Extraescolar/Paginas/CrearActividad_View.jsp").forward(request, response);
     }

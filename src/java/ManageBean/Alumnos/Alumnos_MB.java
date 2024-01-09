@@ -5,6 +5,9 @@ package ManageBean.Alumnos;
 public class Alumnos_MB {
     private String noControl;
     private String nombre;
+    private String apPaterno;
+    private String apMaterno;
+    
     private int semestre;
     private int edad;
     private String correo;
@@ -150,8 +153,34 @@ public class Alumnos_MB {
     public void setAprovado(String aprovado) {
         this.acreditado = aprovado;
     }
+
+    public String getApPaterno() {
+        return apPaterno;
+    }
+
+    public void setApPaterno(String apPaterno) {
+        this.apPaterno = apPaterno;
+    }
+
+    public String getApMaterno() {
+        return apMaterno;
+    }
+
+    public void setApMaterno(String apMaterno) {
+        this.apMaterno = apMaterno;
+    }
+
+    public String getAcreditado() {
+        return acreditado;
+    }
+
+    public void setAcreditado(String acreditado) {
+        this.acreditado = acreditado;
+    }
     
-    
+    public String getNomCompleto(){
+        return this.nombre+" "+this.getApPaterno()+" "+this.getApMaterno();
+    }
 
    
     

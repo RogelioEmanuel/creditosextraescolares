@@ -1,17 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package masterDAO;
 
-package masterDao;
-
-import ManageBean.Departamento.DatosDepartamento_MB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import masterDao.conexion;
 
 /**
  *
- * @author kike
+ * @author Emanuel
  */
 public class EmpleadoDao {
-
     public static Empleado obtenerDatos(String token) {
         Empleado empleado = null;
         conexion conne = new conexion();
@@ -55,75 +58,7 @@ public class EmpleadoDao {
         return null;
     }
     
-    public static DatosDepartamento_MB getDepartamento(Empleado empleado){
-        DatosDepartamento_MB departamento = new DatosDepartamento_MB();
-        PreparedStatement ps=null;
-        ResultSet rs = null;
-        conexion conne = new conexion();
-
-        try {
-            Connection con = conne.getConnection();
-            String sql = "SELECT d.id_departamento, d.nombre, d.extension, d.edificio FROM puesto p  JOIN departamento d ON p.id_departamento = d.id_departamento WHERE p.nombre =?";
-            ps = con.prepareStatement(sql);
-            ps.setString(1, empleado.getNombrePuesto());
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                departamento.setIdDepartamento(rs.getInt("d.id_departamento"));
-                departamento.setNombreDepartamento(rs.getString("d.nombre"));
-                departamento.setExtension(rs.getString("d.extension"));
-                departamento.setEdificio(rs.getString("d.edificio"));
-
-            }
-            conne.cerrarConexion(con);
-            if(rs!=null){
-                rs.close();
-            }
-            if(ps!=null){
-                ps.close();
-            }
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        
-        return departamento;
-    }
-    
-    public static DatosDepartamento_MB getDepartamento(int idDepartamento){
-        DatosDepartamento_MB departamento = new DatosDepartamento_MB();
-        PreparedStatement ps=null;
-        ResultSet rs = null;
-        conexion conne = new conexion();
-
-        try {
-            Connection con = conne.getConnection();
-            String sql = "SELECT id_departamento, nombre, extension, edificio FROM departamento WHERE id_departamento =?";
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, idDepartamento);
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                departamento.setIdDepartamento(rs.getInt("id_departamento"));
-                departamento.setNombreDepartamento(rs.getString("nombre"));
-                departamento.setExtension(rs.getString("extension"));
-                departamento.setEdificio(rs.getString("edificio"));
-
-            }
-            conne.cerrarConexion(con);
-            if(rs!=null){
-                rs.close();
-            }
-            if(ps!=null){
-                ps.close();
-            }
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        
-        return departamento;
-    }
+   
     
     public static String getPuesto(Empleado empleado){
         String puesto = "";
@@ -189,4 +124,5 @@ public class EmpleadoDao {
         return correo;
     }
 
+    
 }

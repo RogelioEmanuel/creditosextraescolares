@@ -2,6 +2,7 @@ package Servlets.Eventos;
 
 import ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB;
 import ManageBean.Eventos.Evento_MB;
+import ManageBean.Usuarios.Usuarios_MB;
 import Servlets.ActividadExtraescolar.CrearActividadExtraescolar;
 import Servlets.Maestros.CrearMaestro_Srv;
 import Utilidades.GenericResponse;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import masterDAO.Empleado;
 
 /**
  *
@@ -32,8 +34,11 @@ public class CrearEventos_Srv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Empleado a = (Empleado) session.getAttribute("usuario");
         
         
+                
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
@@ -55,7 +60,8 @@ public class CrearEventos_Srv extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
+        HttpSession session = request.getSession();
+        Empleado a = (Empleado) session.getAttribute("usuario");
         //datos dede el request
         PrintWriter out = response.getWriter();    
         String nombre = request.getParameter("nombre");
@@ -80,10 +86,14 @@ public class CrearEventos_Srv extends HttpServlet {
             fechaEvento=null;
             
         }
+        String ruta="";
+        if(a.getNombrePuesto().equals("Maestro")){
+            ruta="../../app/eventos/listareventomaestro.do";
+        }else{
+            ruta="/creditosextraescolares/app/eventos/listarevento.do";
+        }
         
-        
-        
-        HttpSession session = request.getSession();
+       
         GenericResponse resp = new GenericResponse();
         
         
@@ -92,7 +102,7 @@ public class CrearEventos_Srv extends HttpServlet {
         
         
         Eventos_CrearEvento_DAO.insertar(evento, resp);
-        
+        resp.setMensaje(ruta);
        
         
 

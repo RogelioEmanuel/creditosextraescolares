@@ -16,6 +16,8 @@
         <link href="/CDN-ITT/css/catalogos-tablas.estandarITT.css" rel="stylesheet">
         <link href="/CDN-ITT/css/spinner.estandarITT.css" rel="stylesheet">
         <link href="/CDN-ITT/css/bootstrap-datepicker.estandarITT.css" rel="stylesheet">
+        <link href="../../css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
+       
     </head>
     <header><%@include file="../../templates/HeaderMaestro_View.jsp" %></header>
     <body>
@@ -178,7 +180,7 @@
                             <div class="col-md-12" align="right">                                
                                  <button title="Alumnos Inscritos" form="FormCrearGrupo" class="btn btn-info btn-sm" id="btnAlumnos"><i class="fa fa-eye"></i> Alumnos Inscritos</button>
                                  <button title="Plan de Trabajo" form="FormCrearGrupo" class="btn btn-primary btn-sm" id="btnPlanes"><i class="fa fa-eye"></i> Plan de Trabajo</button>
-                                 <a title="Regresar" id="btnRegresar" href="/creditosextraescolares/app/grupos/listargruposmaestro.do?idMaestro=28" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>
+                                 <a title="Regresar" id="btnRegresar" href="/creditosextraescolares/app/grupos/listargruposmaestro.do" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>
                             </div>
                         </div>
                     </form>
@@ -188,17 +190,17 @@
         
         
         
-
-        <script type="text/javascript" src ="\CDN-ITT\js\jquery.estandarITT.js"></script>
+       <script type="text/javascript" src ="\CDN-ITT\js\jquery.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\jquery-ui.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\base.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\spinner.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\jquery.dataTables.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\tablas.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\catalogos-modal.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\catalogos-tablas.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\bootstrap-datepicker.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\bootstrap-datepicker.es.estandarITT.js"></script>
+        <script type="text/javascript" src ="\CDN-ITT\js\catalogos-tablas.estandarITT.js"></script>                                 
+        
         
         
        

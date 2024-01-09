@@ -63,7 +63,7 @@ function mensajeConfirmacion(icono, id) {
                var nReinscripcion = prompt("Ingresa el número de reinscripcion (1 si es la primera vez que te inscribes)");
                if(nReinscripcion!== null){
                    
-                   if(!isNaN(nReinscripcion)&&nReincripcion>0){
+                   if(!isNaN(nReinscripcion)&&nReinscripcion>0){
                        inscribirGrupo(id, nReinscripcion);
                    }else{
                        alert('No ingresaste un número válido.');
@@ -112,11 +112,17 @@ function inscribirGrupo(id,nReinscripcion) {
                 
                 var a = respuestaObj.mensaje;
                 var b= respuestaObj.status;
+                
                 if(b===0){
-                    $("body").html(respuesta);
+                    TituloMensaje = "Inscripcion Exitosa";
+                    Mensaje = "Te ha inscrito correctamente al grupo";
+                    mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '/creditosextraescolares/app/gruposalumno/listargruposinscrito.do');
+                    
                 }
                 if(b===800){
+                    $("#pageLoader").hide();
                     mostrarMensaje(iconoInfo,"Respuesta",a);
+                    
                 }
             },
             error: function (jqXHR, exception) {

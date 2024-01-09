@@ -25,6 +25,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -72,6 +73,7 @@ public class ReportesEventosMaestro_Srv extends HttpServlet {
         PrintWriter out = response.getWriter();
         List<Evento_MB> evento = Eventos_ReportesEventos_DAO.consultarEventos(28 );    
         GenericResponse respuesta = new GenericResponse();
+        HttpSession session = request.getSession();
         //Obtencion y creacion de logo ITT
         String imagenUrl = getClass().getClassLoader().getResource("img/header.png").toString().substring(6);            
         File file = new File(imagenUrl);

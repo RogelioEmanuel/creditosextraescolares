@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -242,7 +243,11 @@ public class Asistencias_ListarAsistencias_DAO {
     
     public static List<String> revisarsiVino(String noControl, List<Clases_MB> clase,String aa){
         List<String> lista = new ArrayList<>();
-                
+        List<String> lista2 = Arrays.asList("-", "-", "-", "-");
+
+        if(clase.isEmpty()){
+             return lista2;
+        }
         for( Clases_MB ab: clase){
             
             if(consultarAsistencia(noControl,ab.getIdClase(),aa)){
@@ -251,6 +256,7 @@ public class Asistencias_ListarAsistencias_DAO {
                 //System.out.println(ab.getMes()+" ✓"+ab.getDia());
             }else{
                 lista.add("x");
+               // System.out.println("No vino el alumno "+ noControl );
             }
         }
         
@@ -259,10 +265,16 @@ public class Asistencias_ListarAsistencias_DAO {
     }
     
     
-    public static List<Integer> clasesFechas(int idGrupo,List<Clases_MB> clase){
+    public static List<Integer> clasesFechas(int idGrupo,List<Clases_MB> clase,String aa){
         List<Integer> lista = new ArrayList<>();
+        List<Integer> lista2 = Arrays.asList(0, 0, 0, 0);
+        if(clase.isEmpty()){
+            return lista2;
+        }
         
-        
+        for(Clases_MB cl:clase){
+            lista.add(cl.getDia());
+        }
         return lista;
     }
     

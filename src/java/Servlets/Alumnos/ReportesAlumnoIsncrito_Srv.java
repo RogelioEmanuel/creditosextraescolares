@@ -34,6 +34,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -56,6 +57,7 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String idGrupo  = request.getParameter("idGrupo");
+        HttpSession session = request.getSession();
         request.setAttribute("idGrupo", idGrupo);
         //int idGrupo2= Integer.parseInt(idGrupo);
         //Grupos_MB a = ReporteAlumnosInscritos_DAO.consultar(idGrupo2);
@@ -66,7 +68,7 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();            
         GenericResponse respuesta = new GenericResponse();
         //Obtener Reporte a generar

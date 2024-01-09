@@ -8,12 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import masterDao.Empleado;
+import masterDAO.Empleado;
 
-/**
- *
- * @author Emanuel
- */
+
+
 public class Index_Srv extends HttpServlet {
 
     

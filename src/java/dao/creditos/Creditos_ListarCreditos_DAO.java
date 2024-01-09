@@ -20,9 +20,10 @@ public class Creditos_ListarCreditos_DAO {
         String periodo = rs.getString("periodo");
         String estado = rs.getString("estado");        
         String tipo = rs.getString("tipo");
-       String noControl =rs.getString("noControlAlumno");
+        String noControl =rs.getString("noControlAlumno");
         String actividad = rs.getString("NombreActividad");
-        int idGrupo = Integer.parseInt(rs.getString("noGrupo"));
+        int idGrupo = Integer.parseInt(rs.getString("idGrupo"));
+        int noGrupo = Integer.parseInt(rs.getString("noGrupo"));
         String nombreAlumno = rs.getString("nombreAlumno");
         int anio = Integer.parseInt(rs.getString("anio"));
         
@@ -32,11 +33,13 @@ public class Creditos_ListarCreditos_DAO {
         creditos.setEstado(estado);
         creditos.setIdCredito(idCredito);
         creditos.setIdGrupo(idGrupo);
+        creditos.setNoGrupo(noGrupo);
         creditos.setNoControl(noControl);
         creditos.setNombreActividad(actividad);
         creditos.setNombreAlumno(nombreAlumno);
         creditos.setPeriodo(periodo);  
         creditos.setTipo(tipo);
+        
         return creditos;
     }
     
@@ -61,7 +64,7 @@ public class Creditos_ListarCreditos_DAO {
                                 "    f.anio,\n" +
                                 "    f.NombreActividad,\n" +
                                 "    f.idGrupo,\n" +
-                                "    g.noGrupo,  -- Agregar el campo noGrupo desde la tabla de grupos\n" +
+                                "    g.noGrupo,  \n" +
                                 "    f.nombreAlumno\n" +
                                 "FROM \n" +
                                 "    creditosextraescolares f\n" +

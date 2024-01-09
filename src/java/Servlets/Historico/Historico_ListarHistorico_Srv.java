@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,7 +31,7 @@ public class Historico_ListarHistorico_Srv extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<RegistroHistorico_MB> credito = new ArrayList<>();
-        
+        HttpSession session = request.getSession();
         GenericResponse respuesta = new GenericResponse<>();
                 
         credito =Historico_ListarHistorico.consultar();

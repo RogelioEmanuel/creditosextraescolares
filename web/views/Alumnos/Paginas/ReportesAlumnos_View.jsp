@@ -19,7 +19,7 @@
         <link href="../../css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <header><%@include file="../../templates/Header_View.jsp" %></header>
+        <header><%@include file="../../templates/HeaderMaestro_View.jsp" %></header>
         <div id="pageLoader">
             <div id="pageSpinner">
                 <%@include file="../../templates/spinner.estandarITT.jsp" %>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <welcome-file-list>
+        <welcome-file>app/Index/Home.do</welcome-file>
+    </welcome-file-list>
     <servlet>
         <servlet-name>ListarCreditosExtraescolares_Srv</servlet-name>
         <servlet-class>Servlets.Alumnos.ListarCreditosExtraescolares_Srv</servlet-class>
@@ -184,6 +187,26 @@
         <servlet-name>ListarAsistencias_Srv</servlet-name>
         <servlet-class>Servlets.Asistencias.ListarAsistencias_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Login_Srv</servlet-name>
+        <servlet-class>Servlets.Usuarios.Login_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CalificarAlumnos_Srv</servlet-name>
+        <servlet-class>Servlets.GruposAlumno.CalificarAlumnos_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarGruposInscrito_Srv</servlet-name>
+        <servlet-class>Servlets.Alumnos.ListarGruposInscrito_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetalleGrupoAlumno_Srv</servlet-name>
+        <servlet-class>Servlets.Grupos.DetalleGrupoAlumno_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>App_Login_Srv</servlet-name>
+        <servlet-class>App.App_Login_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -363,6 +386,26 @@
     <servlet-mapping>
         <servlet-name>ListarAsistencias_Srv</servlet-name>
         <url-pattern>/app/asistencias/listarasistencias.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login_Srv</servlet-name>
+        <url-pattern>/app/usuarios/loginusuarios.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalificarAlumnos_Srv</servlet-name>
+        <url-pattern>/app/alumnos/calificaralumno.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarGruposInscrito_Srv</servlet-name>
+        <url-pattern>/app/gruposalumno/listargruposinscrito.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetalleGrupoAlumno_Srv</servlet-name>
+        <url-pattern>/app/grupos/detalles/grupoalumno.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>App_Login_Srv</servlet-name>
+        <url-pattern>/app/login.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

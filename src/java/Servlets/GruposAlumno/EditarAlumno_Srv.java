@@ -28,6 +28,7 @@ public class EditarAlumno_Srv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String noControl = request.getParameter("noControl");
         int id =Integer.parseInt(request.getParameter("idGrupo"));
         Alumnos_MB al = GruposAlumno_Selectivo_DAO.consultarAlumno(noControl,id);

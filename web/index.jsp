@@ -1,9 +1,7 @@
-<%-- 
-    Document   : index
-    Created on : 30 oct. 2023, 20:46:04
-    Author     : Emanuel
---%>
 
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="usuario" value="${sessionScope.usuario}" />
+<c:set var="rolUsuario" value="${usuario.nombrePuesto}" />
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,8 +18,26 @@
         <link href="../CDN-ITT/css/botones.estandarITT.css" rel="stylesheet" type="text/css"/>
         <link href="../CDN-ITT/css/spinner.estandarITT.css" rel="stylesheet" type="text/css"/>
         <link href="css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
     </head>
-    <header><%@include file="views/templates/HeaderMaestro_View.jsp" %></header>
+    <header>
+        <c:choose>
+            <c:when test="${rolUsuario eq 'Estudiante'}">
+                <%@include file="views/templates/HeaderAlumno_View.jsp" %>
+            </c:when>
+            <c:when test="${rolUsuario eq 'Admin'}">
+                <%@include file="views/templates/Header_View.jsp" %>
+            </c:when>
+            <c:when test="${rolUsuario eq 'Maestro'}">
+                <%@include file="views/templates/HeaderMaestro_View.jsp" %>
+            </c:when>
+            <c:otherwise>
+                <%-- Manejo para otros roles o situaciones --%>
+                <%@include file="/views/templates/HeaderInvitado_View.jsp" %>
+            </c:otherwise>
+        </c:choose>
+        
+    </header>
     <body>
         
         <div class="container">
@@ -41,12 +57,16 @@
         </div>
 
        
-
+        
         <script type="text/javascript" src ="\CDN-ITT\js\jquery.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\jquery-ui.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\base.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\spinner.estandarITT.js"></script>
+        
+        
         <script src="js/jsgenerados/Inicio.js" type="text/javascript"></script>
+        
+        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
     </body>
     <footer><%@include file="views/templates/Footer_View.jsp" %></footer>
 </html>

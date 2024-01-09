@@ -397,7 +397,7 @@ public class GruposAlumno_Inscripcion_DAO {
         }
     }
     
-    public static Alumnos_MB consultarAlumno(int noControl) {
+    public static Alumnos_MB consultarAlumno(String noControl) {
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();
         Connection conn = cone.getConexion();
@@ -413,7 +413,7 @@ public class GruposAlumno_Inscripcion_DAO {
                         + "WHERE Nocontrol = ?";
                 
                 ps = conn.prepareStatement(query);
-                ps.setInt(1,noControl );
+                ps.setString(1,noControl );
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     alumno = convertirAl(rs);

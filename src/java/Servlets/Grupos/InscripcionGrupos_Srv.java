@@ -26,6 +26,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import masterDAO.Empleado;
+import masterDAO.Usuario;
 
 /**
  *
@@ -103,13 +105,17 @@ public class InscripcionGrupos_Srv extends HttpServlet {
         String nReinscripcions = request.getParameter("nReinscripcion");
         int nReinscripcion = Integer.parseInt(nReinscripcions);
         HttpSession session = request.getSession();
+        Usuario a = (Usuario) session.getAttribute("usuarioAlu");
+        
         GenericResponse resp = new GenericResponse();
         
         
          Grupos_MB grupo = GruposAlumno_Inscripcion_DAO.consultarGrupo(idGrupo);
         
-         Alumnos_MB alumno = GruposAlumno_Inscripcion_DAO.consultarAlumno(17280330);
+         Alumnos_MB alumno = GruposAlumno_Inscripcion_DAO.consultarAlumno(a.getIdUsuario());
+         System.out.println("Hasta aqui todo bien1");
          if(GruposAlumno_Inscripcion_DAO.estaInscrito(alumno,grupo,resp)||GruposAlumno_Inscripcion_DAO.estaInscrito2(alumno, resp)){
+             System.out.println("Hasta aqui todo bien2");
              resp.setMensaje("El alumno ya se encuentra inscrito a un grupo");
              resp.setStatus(800);
          }else{
@@ -133,7 +139,7 @@ public class InscripcionGrupos_Srv extends HttpServlet {
             Logger.getLogger(CrearActividadExtraescolar.class.getName()).log(Level.SEVERE, null, e);
         }
         
-        request.getRequestDispatcher("/views/Grupos/Paginas/InscripcionGrupo.jsp").forward(request, response);
+       // request.getRequestDispatcher("/views/Grupos/Paginas/InscripcionGrupo.jsp").forward(request, response);
        
     }
 

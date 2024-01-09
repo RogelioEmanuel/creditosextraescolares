@@ -36,67 +36,71 @@ public class DetalleGrupoMaestro_Srv extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        int idGrupo = Integer.parseInt(request.getParameter("idGrupo"));        
-        HttpSession session = request.getSession();
-        session.setAttribute("idGrupo", idGrupo);                  
-        Grupos_MB grupo = Grupos_DetalleGrupo_DAO.consultar(idGrupo);
         
-        
-        String periodo = grupo.getPeriodo();
-        int idActividad = grupo.getIdActividad();
-        
-        int cupo = grupo.getCupo();
-        int noGrupo =grupo.getNoGrupo();
-        int horastotales = grupo.getTotalhorassemanales();
-        int idMaestros = grupo.getIdMaestros();
-        System.out.println("horas"+horastotales);
-        
-        request.setAttribute("noGrupo", noGrupo);
-        request.setAttribute("cupo", cupo);
-        request.setAttribute("periodo", periodo);        
-        request.setAttribute("idMaestros", idMaestros);        
-        request.setAttribute("idActividad_Extraescolar", idActividad);        
-        request.setAttribute("totalhorassemanal", horastotales); 
-        List<Maestros_MB> maestros = new ArrayList<>();  
-        maestros = Grupos_CrearGrupo_DAO.consultarMaestro();  
-        request.setAttribute("maestros", maestros);
-       
-       session.setAttribute("idActividad", idActividad); 
-        
-       ActividadExtraescolar_MB actividad = new ActividadExtraescolar_MB();  
-       actividad = Grupos_DetalleGrupo_DAO.consultarActividad(idActividad);
-              
-       //HorariosGrupo_MB horario = new HorariosGrupo_MB();
-        List<HorariosGrupo_MB> horarios = new ArrayList<>();  
-        horarios = Grupos_DetalleGrupo_DAO.consultarhorario(idGrupo);  
-        
-        List<HorariosGrupo_MB> horariosCompleta = new ArrayList<>();  // Crear una nueva lista
+        if(request.getParameter("idGrupo")!=null){
+            int idGrupo = Integer.parseInt(request.getParameter("idGrupo"));        
+            HttpSession session = request.getSession();
+            session.setAttribute("idGrupo", idGrupo);                  
+            Grupos_MB grupo = Grupos_DetalleGrupo_DAO.consultar(idGrupo);
 
-        List<String> diasSemana = Arrays.asList("lunes", "martes", "miercoles", "jueves", "viernes", "sabado");
-        for (String dia : diasSemana) {
-            // Verificar si hay un horario para este día
-            boolean encontrado = false;
-            for (HorariosGrupo_MB horario : horarios) {
-                if (dia.equals(horario.getDia())) {
-                    horariosCompleta.add(horario);  // Agregar a la nueva lista
-                    encontrado = true;
-                    break;
+
+            String periodo = grupo.getPeriodo();
+            int idActividad = grupo.getIdActividad();
+
+            int cupo = grupo.getCupo();
+            int noGrupo =grupo.getNoGrupo();
+            int horastotales = grupo.getTotalhorassemanales();
+            int idMaestros = grupo.getIdMaestros();
+            System.out.println("horas"+horastotales);
+
+            request.setAttribute("noGrupo", noGrupo);
+            request.setAttribute("cupo", cupo);
+            request.setAttribute("periodo", periodo);        
+            request.setAttribute("idMaestros", idMaestros);        
+            request.setAttribute("idActividad_Extraescolar", idActividad);        
+            request.setAttribute("totalhorassemanal", horastotales); 
+            List<Maestros_MB> maestros = new ArrayList<>();  
+            maestros = Grupos_CrearGrupo_DAO.consultarMaestro();  
+            request.setAttribute("maestros", maestros);
+
+           session.setAttribute("idActividad", idActividad); 
+
+           ActividadExtraescolar_MB actividad = new ActividadExtraescolar_MB();  
+           actividad = Grupos_DetalleGrupo_DAO.consultarActividad(idActividad);
+
+           //HorariosGrupo_MB horario = new HorariosGrupo_MB();
+            List<HorariosGrupo_MB> horarios = new ArrayList<>();  
+            horarios = Grupos_DetalleGrupo_DAO.consultarhorario(idGrupo);  
+
+            List<HorariosGrupo_MB> horariosCompleta = new ArrayList<>();  // Crear una nueva lista
+
+            List<String> diasSemana = Arrays.asList("lunes", "martes", "miercoles", "jueves", "viernes", "sabado");
+            for (String dia : diasSemana) {
+                // Verificar si hay un horario para este día
+                boolean encontrado = false;
+                for (HorariosGrupo_MB horario : horarios) {
+                    if (dia.equals(horario.getDia())) {
+                        horariosCompleta.add(horario);  // Agregar a la nueva lista
+                        encontrado = true;
+                        break;
+                    }
+                }
+
+                // Si no se encontró un horario para este día, agregar una entrada predeterminada
+                if (!encontrado) {
+                    HorariosGrupo_MB horarioDefault = new HorariosGrupo_MB();
+                    horarioDefault.setDia(dia);                
+                    horarioDefault.setHoraInicio(null); // Establecer hora de inicio predeterminada
+                    horarioDefault.setHoraFinal(null);   // Establecer hora de fin predeterminada
+                    horariosCompleta.add(horarioDefault);  // Agregar a la nueva lista
                 }
             }
+            request.setAttribute("horarios", horariosCompleta); 
 
-            // Si no se encontró un horario para este día, agregar una entrada predeterminada
-            if (!encontrado) {
-                HorariosGrupo_MB horarioDefault = new HorariosGrupo_MB();
-                horarioDefault.setDia(dia);                
-                horarioDefault.setHoraInicio(null); // Establecer hora de inicio predeterminada
-                horarioDefault.setHoraFinal(null);   // Establecer hora de fin predeterminada
-                horariosCompleta.add(horarioDefault);  // Agregar a la nueva lista
-            }
+
+           request.setAttribute("actividad", actividad);
         }
-        request.setAttribute("horarios", horariosCompleta); 
         
-                
-       request.setAttribute("actividad", actividad);
        
         
         

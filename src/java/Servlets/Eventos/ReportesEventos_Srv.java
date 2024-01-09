@@ -24,6 +24,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -46,7 +47,7 @@ public class ReportesEventos_Srv extends HttpServlet {
             throws ServletException, IOException {
         
         List<ActividadExtraescolar_MB> actividades = new ArrayList<>();
-        
+        HttpSession session = request.getSession();
         GenericResponse respuesta = new GenericResponse<>();
                 
         actividades = Eventos_ReportesEventos_DAO.consultarActividades();
@@ -60,6 +61,7 @@ public class ReportesEventos_Srv extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String periodoParam = request.getParameter("periodo");
         String anioString=request.getParameter("anio");
         String idactString= request.getParameter("actividad");
@@ -116,8 +118,6 @@ public class ReportesEventos_Srv extends HttpServlet {
         try {
             
             JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFile);
-            
-            
             
             
             Map<String, Object> map = new HashMap<>();

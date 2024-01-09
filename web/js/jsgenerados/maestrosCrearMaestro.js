@@ -12,19 +12,24 @@ $("#FormCrearMaestro").on("click", "#btnRegistrar", function (evento) {
     var direccion=$("#direccionMaestro").val();
     var banco=$("#bancoMaestro").val();
     var claveinterbancaria=$("#claveinterbancaria").val();
-           
-          if(formValido(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria)){
-                enviarDatosActividad(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria);
-           }
+    
+    var confPasss = $("#confPasss").val();
+    var pass = $("#pass").val();
+    var usuario=$("#usuario").val();     
+    
+    if(formValido(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria,pass,confPasss)){
+        enviarDatosActividad(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria,usuario,pass,confPasss);
+    }
            
    
     
 
 });
 
-function formValido(nombre, appaterno, apmaterno, fechaNacimientoMaestro, telefonoMaestro, correo, curp, rfc, sexo, direccion, banco, claveinterbancaria) {
+function formValido(nombre, appaterno, apmaterno, fechaNacimientoMaestro, telefonoMaestro, correo, curp, rfc, sexo, direccion, banco, claveinterbancaria,pass,passsconf) {
     var errores = [];
-
+    alert(curp);
+    alert(rfc);
     if (!fechaValida(fechaNacimientoMaestro)) {
         errores.push("La fecha de nacimiento no es válida.");
     }
@@ -59,6 +64,10 @@ function formValido(nombre, appaterno, apmaterno, fechaNacimientoMaestro, telefo
 
     if (!validarCorreo(correo)) {
         errores.push("La dirección de correo electrónico no es válida.");
+    }
+    
+    if(!contrasenas(pass,passsconf)){
+        errores.push("La contraseña no coincide con su confirmación.");
     }
 
     if (errores.length > 0) {
@@ -136,6 +145,14 @@ function camposnumericosValidos(valor){
     return expresionRegular.test(valor);
 }
 
+function contrasenas(pass,passsconf){
+    if(pass===passsconf){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 function campostextovalidos(campo){
      var expresionRegular = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/;
     return expresionRegular.test(campo);
@@ -153,7 +170,7 @@ function validarRFC(rfc) {
 
     return regexRFC.test(rfc);
 }
-function enviarDatosActividad(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria) {
+function enviarDatosActividad(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria,usuario,pass) {
     //Creamos un indicador de carga
     $("#pageLoader").show();
     var datos={
@@ -168,7 +185,10 @@ function enviarDatosActividad(nombre,appaterno,apmaterno,fechaNacimientoMaestro,
         sexo: sexo,
         direccion: direccion,
         banco: banco,
-        claveinterbancaria: claveinterbancaria
+        claveinterbancaria: claveinterbancaria,
+        usuario :usuario,
+        pass:pass
+        
     };
     
     //mandamos el formdata al servidor con un post

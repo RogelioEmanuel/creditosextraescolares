@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets.Maestros;
 
 import ManageBean.Maestros.Maestros_MB;
@@ -15,22 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import masterDAO.Empleado;
 
-/**
- *
- * @author Emanuel
- */
+
 public class InfoMaestro_Srv extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -60,8 +45,16 @@ public class InfoMaestro_Srv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int idMaestro = Integer.parseInt(request.getParameter("idMaestro"));        
+       // int idMaestro = Integer.parseInt(request.getParameter("idMaestro"));   
+       
+       
         HttpSession session = request.getSession();
+        Empleado maestro2= (Empleado) session.getAttribute("usuario");
+        
+        
+        //System.out.println("DEberia"+maestro.getIdEmpleado());
+        int idMaestro= maestro2.getIdEmpleado();
+        
         session.setAttribute("idMaestro", idMaestro);   
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         Maestros_MB maestro = Maestros_EditarMaestros_DAO.consultar(idMaestro);
@@ -104,25 +97,14 @@ public class InfoMaestro_Srv extends HttpServlet {
         request.getRequestDispatcher("/views/Maestros/Paginas/InfoPersonal_View.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+
     @Override
     public String getServletInfo() {
         return "Short description";

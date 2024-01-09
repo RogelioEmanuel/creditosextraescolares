@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import masterDAO.Empleado;
 
 /**
  *
@@ -24,8 +26,11 @@ public class ListarGruposAlumno_Srv extends HttpServlet {
             throws ServletException, IOException {
         
         List<Alumnos_MB> alumnos = new ArrayList<>();
-        
+        HttpSession session = request.getSession();
         GenericResponse respuesta = new GenericResponse<>();
+        //Empleado a=(Empleado) session.getAttribute("usuario");
+        
+        
         int id = Integer.parseInt(request.getParameter("idGrupo"));                
         alumnos = GruposAlumno_ListaAlumnos_DAO.consultarAlumnoGrupo(id);
         request.setAttribute("alumnos", alumnos);

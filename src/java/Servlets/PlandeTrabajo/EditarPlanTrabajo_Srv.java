@@ -30,15 +30,23 @@ public class EditarPlanTrabajo_Srv extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        int idPlanTrabajo=  Integer.parseInt(request.getParameter("idPlan")); 
-        PlanTrabajo_MB plant = Planes_DetallarPlan_DAO.consultarPlan(idPlanTrabajo) ;
-        List<PlanSemana_MB> planessemanal = Planes_DetallarPlan_DAO.consultarPlanSemanal(plant.getIdPlan());
-        HttpSession session = request.getSession();
-        session.setAttribute("planessemanal", planessemanal);  
-        session.setAttribute("plant", plant);
+        
+        if(request.getParameter("idPlan")!=null){
+            int idPlanTrabajo=  Integer.parseInt(request.getParameter("idPlan")); 
+            PlanTrabajo_MB plant = Planes_DetallarPlan_DAO.consultarPlan(idPlanTrabajo) ;
+            List<PlanSemana_MB> planessemanal = Planes_DetallarPlan_DAO.consultarPlanSemanal(plant.getIdPlan());
+            HttpSession session = request.getSession();
+            session.setAttribute("planessemanal", planessemanal);  
+            session.setAttribute("plant", plant);
+            request.getRequestDispatcher("/views/Planes_de_Trabajo/Paginas/EditarPlan_View.jsp").forward(request, response);
+            
+        }else{
+            request.getRequestDispatcher("/views/Planes_de_Trabajo/Paginas/CrearPlan_View.jsp").forward(request, response);
+        }
+            
         
         
-        request.getRequestDispatcher("/views/Planes_de_Trabajo/Paginas/EditarPlan_View.jsp").forward(request, response);
+        
     }
     
      protected boolean confirmacion(String programa, String plataforma,String descripcion){   

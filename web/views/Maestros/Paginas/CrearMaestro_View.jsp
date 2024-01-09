@@ -253,6 +253,61 @@
                             
                                                                 
                         </div>
+                        
+                         <div class="row" style="margin-bottom: 20px">
+                            <div class="col-md-6">
+                                <label>Usuario</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                                    <input name="usuario" 
+                                           id="usuario" 
+                                           class="form-control input-sm" 
+                                           autocomplete="off" 
+                                           placeholder="Usuario" 
+                                           required 
+                                           minlength="1"
+                                           maxlength="80"  
+                                           title="Usuario">
+                                </div>
+                                                                
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label>Contraseña</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                                    <input name="pass" 
+                                           id="pass" 
+                                           class="form-control input-sm" 
+                                           autocomplete="off" 
+                                           placeholder="pass" 
+                                           required 
+                                           minlength="1"
+                                           maxlength="80"  
+                                           title="pass"
+                                           type="password"> 
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Confirma Contraseña</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                                    <input name="confPasss" 
+                                           id="confPasss" 
+                                           class="form-control input-sm" 
+                                           autocomplete="off" 
+                                           placeholder="confPasss" 
+                                           required 
+                                           minlength="1"
+                                           maxlength="80"  
+                                           title="confPasss"
+                                           type="password"> 
+                                </div>
+                            </div>
+                            
+                                                                
+                        </div>
                         <div class="row" style="margin-top: 30px">      
 
                             <div class="col-md-12" align="right">   

@@ -57,7 +57,7 @@ public class maestroInscribirAlumno_Srv extends HttpServlet {
         
         Grupos_MB grupo = GruposAlumno_Inscripcion_DAO.consultarGrupo(idGrupo);
         
-        Alumnos_MB alumno = GruposAlumno_Inscripcion_DAO.consultarAlumno(nControl);
+        Alumnos_MB alumno = GruposAlumno_Inscripcion_DAO.consultarAlumno(nControls);
          if(GruposAlumno_Inscripcion_DAO.estaInscrito(alumno,grupo,resp)){
              
              resp.setMensaje("El alumno ya se encuentra inscrito");
@@ -69,6 +69,7 @@ public class maestroInscribirAlumno_Srv extends HttpServlet {
             }else if(Creditos_CrearCredito_DAO.consultarCredito(alumno.getNoControl())){
                 
             }else{
+                
                 Creditos_CrearCredito_DAO.insertar(alumno, grupo, resp);
             }
          }

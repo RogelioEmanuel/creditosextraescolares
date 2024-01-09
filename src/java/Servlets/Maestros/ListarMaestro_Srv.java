@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,7 +26,7 @@ public class ListarMaestro_Srv extends HttpServlet {
        // processRequest(request, response);
        
         List<Maestros_MB> maestros = new ArrayList<>();
-        
+        HttpSession session = request.getSession();
         GenericResponse respuesta = new GenericResponse<>();
                 
         maestros = Maestros_ListarMaestros_DAO.consultar();

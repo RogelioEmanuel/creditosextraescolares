@@ -19,6 +19,12 @@ public class Constantes {
     public static final String EXTRAESCOLARESPRUEBA_PASS="";
     public static final String NOMBRECREDITONORMAL="Creditos Extraescolares";
     public static final String NOMBRECREDITOSELECTIVO="Creditos Extraescolares Selectivo";
+    public static final String MSJ_CREDENCIALES_ERRONEAS = "Usuario o contraseña incorrectos, acceso denegado.";
+    
+    
+    
+    
+    
     public static final List<String> CARRERAS = Arrays.asList(
                 "INGENIERIA ELECTROMECANICA",
                 "INGENIERIA ELECTRONICA",
@@ -69,7 +75,13 @@ public class Constantes {
     public static final int DIASINSCRIPCION = 30;
                
     public static String periodoActual;
-     
+    public static final String MASTER_USER = "root";
+    public static final String MASTER_PASS = "";
+    public static final String MASTER_BD = "jdbc:mysql://localhost:3306/sam?allowLoadLocalInfile=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    public static final String MASTER_BD2 = "sam?allowLoadLocalInfile=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    
+    
+         
     public static String declararPeriodoActual(){
         
         Calendar calendar = Calendar.getInstance();

@@ -1,7 +1,6 @@
 
 $("#FormEditarMaestro").on("click", "#btnEditarMaestro", function (evento) {
-    evento.preventDefault();
-    alert("Hola");
+    evento.preventDefault();    
     var nombre = $("#nombreMaestro").val();
     var appaterno = $("#apellidopaternoMaestro").val();
     var apmaterno = $("#apellidoMaternoMaestro").val();    
@@ -193,7 +192,7 @@ function editarDatosMaestro(nombre,appaterno,apmaterno,fechaNacimientoMaestro,te
             
                 TituloMensaje = "Maestro modificado";
                 Mensaje = "La informacion fue modificada";
-                mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '../../index.jsp');
+                mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '/creditosextraescolares/app/maestros/infomaestro.do"');
             
             
         },

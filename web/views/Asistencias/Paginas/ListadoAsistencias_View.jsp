@@ -54,12 +54,16 @@
                                 <tr class="info">
                                     <th class="bordeTd"><input id="tblListaAsistencias-colSearch1" type="text" placeholder="Buscar:" style="width: 100%" data-index="1"></th>                                    
                                     <th class="bordeTd"><input id="tblListaAsistencias-colSearch2" type="text" placeholder="Buscar:" style="width: 100%" data-index="2"></th>
-                                    <th class="bordeTd" colspan="${enero}"></th>
-                                    <th class="bordeTd" colspan="${febrero}"></th>
-                                    <th class="bordeTd" colspan="${marzo}"></th>
-                                    <th class="bordeTd" colspan="${abril}"></th>
-                                    <th class="bordeTd" colspan="${mayo}"></th>
-                                    <th class="bordeTd" colspan="${junio}"></th>                                 
+                                    <th class="bordeTd" colspan="${mes1}"></th>
+                                    <c:if test="${periodo != 'Verano'}">
+                                        <th class="bordeTd" colspan="${mes2}"></th>
+                                        <th class="bordeTd" colspan="${mes3}"></th>
+                                        <th class="bordeTd" colspan="${mes4}"></th>
+                                        <th class="bordeTd" colspan="${mes5}"></th>
+                                    </c:if>
+                                    <c:if test="${periodo == 'Enero-Junio'}">
+                                        <th class="bordeTd" colspan="${mes6}"></th>
+                                    </c:if>
                                     <th class="bordeTd" ><i class="fa fa-filter iconoFiltro"></i></th>
                                 </tr>
                                 <tr class="info">
@@ -70,24 +74,42 @@
                                             <c:set var="dias" value="${valores.value}" />  
                                             <c:choose>
                                                 <c:when test="${meses eq 'Enero'}">
-                                                    <th class="bordeTd" style="font-size: 14px" colspan="${enero}">${meses}</th>
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes1}">${meses}</th>
                                                 </c:when>
                                                 <c:when test="${meses eq 'Febrero'}">
-                                                    <th class="bordeTd" style="font-size: 14px" colspan="${febrero}">${meses}</th>
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes2}">${meses}</th>
                                                 </c:when>
                                                 <c:when test="${meses eq 'Marzo'}">
-                                                    <th class="bordeTd" style="font-size: 14px" colspan="${marzo}">${meses}</th>
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes3}">${meses}</th>
                                                 </c:when>
                                                 <c:when test="${meses eq 'Abril'}">
-                                                    <th class="bordeTd" style="font-size: 14px" colspan="${abril}">${meses}</th>
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes4}">${meses}</th>
                                                 </c:when> 
                                                 <c:when test="${meses eq 'Mayo'}">
-                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mayo}">${meses}</th>
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes5}">${meses}</th>
                                                 </c:when>
                                                 <c:when test="${meses eq 'Junio'}">
-                                                    <th class="bordeTd" style="font-size: 14px" colspan="${junio}">${meses}</th>
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes6}">${meses}</th>
                                                 </c:when>
-                                                
+                                                <c:when test="${meses eq 'Agosto'}">
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes1}">${meses}</th>
+                                                </c:when>
+                                                <c:when test="${meses eq 'Septiembre'}">
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes2}">${meses}</th>
+                                                </c:when>
+                                                <c:when test="${meses eq 'Octubre'}">
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes3}">${meses}</th>
+                                                </c:when>
+                                                <c:when test="${meses eq 'Noviembre'}">
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes4}">${meses}</th>
+                                                </c:when> 
+                                                <c:when test="${meses eq 'Diciembre'}">
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes5}">${meses}</th>
+                                                </c:when>
+                                                <c:when test="${meses eq 'Julio'}">
+                                                    <th class="bordeTd" style="font-size: 14px" colspan="${mes1}">${meses}</th>
+                                                </c:when>    
+                                                    
                                                 <c:otherwise>
                                                     <th class="bordeTd" style="font-size: 14px" colspan="6">${meses}</th>
                                                 </c:otherwise>
@@ -95,8 +117,7 @@
                                
                                     </c:forEach>
                                     <th class="bordeTd" style="font-size: 14px"></th>
-                                </tr>
-                                
+                                </tr>                                
                                 <tr class="info">
                                     <c:forEach var="valores" items="${mesdia}">
                                             <c:set var="meses" value="${valores.key}" />
@@ -110,7 +131,6 @@
                                     </c:forEach>
                                     <th class="bordeTd" style="font-size: 14px"></th>
                                 </tr>
-
                             </thead>
                             <tbody>
                                 <c:forEach var="row" items="${asistencias}">
@@ -123,10 +143,8 @@
                                             <c:set var="meses" value="${valores.key}" />
                                             <c:set var="dias" value="${valores.value}" />                                            
                                             <c:forEach var="mes" items="${meses}">  
-                                                <c:forEach var="dia" items="${dias}">                                                
-                                                                                            
-                                                    <td class="bordeTd" style="font-size: 10px">${dia}</td>                                        
-                                                    
+                                                <c:forEach var="dia" items="${dias}">       
+                                                    <td class="bordeTd" style="font-size: 10px">${dia}</td>     
                                                 </c:forEach> 
                                                 
                                             </c:forEach>                                            
@@ -140,7 +158,7 @@
                             
                             
                             <button title="Generar Reporte" data-table="tblListaAlumnos" class="btn btn-primary btn-sm" id="btnReporte"><i class="fa fa-file"></i> Generar Reporte de asistencia </button>
-                            <a title="Regresar" id="btnregresar" href="#" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>                            
+                            <a title="Regresar" id="btnregresar" href="../../app/grupos/detallargrupomaestro.do?idGrupo=${idGrupo}" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>                            
                             <button title="Editar  Alumno" data-table="tblListaAlumnos" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i> Editar Asistencia</button>
                             
                             

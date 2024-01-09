@@ -1,25 +1,36 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:set var="usuario" value="${sessionScope.usuario}" />
+<c:set var="rolUsuario" value="${usuario.nombrePuesto}" />
 <!DOCTYPE html>
 
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon" href="/CDN-ITT/img/logo.png">
+        
         <title>Crear Evento</title>
-        <link href="/CDN-ITT/css/base.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/font-awesome.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/general.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/tablas.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/botones.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/catalogos-modal.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/catalogos-tablas.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/spinner.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/bootstrap-datepicker.estandarITT.css" rel="stylesheet">
+        
     </head>
-    <header><%@include file="../../templates/Header_View.jsp" %></header>
+    <header>
+        <c:choose>
+            <c:when test="${rolUsuario eq 'Estudiante'}">
+                <%@include file="../../templates/HeaderAlumno_View.jsp" %>
+            </c:when>
+            <c:when test="${rolUsuario eq 'Admin'}">
+                <%@include file="../../templates/Header_View.jsp" %>
+            </c:when>
+            <c:when test="${rolUsuario eq 'Maestro'}">
+                <%@include file="../../templates/HeaderMaestro_View.jsp" %>
+            </c:when>
+            <c:otherwise>
+                <%-- Manejo para otros roles o situaciones --%>
+                <%@include file="../../templates/HeaderInvitado_View.jsp" %>
+            </c:otherwise>
+        </c:choose>
+    
+    </header>
     <body>
        <div id="pageLoader">
             <div id="pageSpinner">
@@ -232,16 +243,7 @@
         
         
 
-        <script type="text/javascript" src ="\CDN-ITT\js\jquery.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\jquery-ui.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\base.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\spinner.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\jquery.dataTables.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\tablas.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\catalogos-modal.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\catalogos-tablas.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\bootstrap-datepicker.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\bootstrap-datepicker.es.estandarITT.js"></script>
+        
         
         
         <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>

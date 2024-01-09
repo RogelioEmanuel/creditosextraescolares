@@ -89,15 +89,22 @@ public class Creditos_CrearCredito_DAO {
   
         try {
             if (conn != null) {
-                String query = "SELECT idCreditoExtraescolar, periodo, estado, tipo, noControlAlumno, Anio, "
-                        + "NombreActividad, idGrupo, fecha_creacion, nombreAlumno FROM creditosextraescolares"
-                        + "WHERE noControlAlumno =?";
+                String query = "SELECT idCreditoExtraescolar, periodo, estado, tipo, noControlAlumno, Anio, NombreActividad, idGrupo, fecha_creacion, nombreAlumno \n" +
+                                "FROM creditosextraescolares\n" +
+                                "WHERE noControlAlumno = ?";
                 ps = conn.prepareStatement(query);
                 ps.setString(1,id );
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     //creditos=convertirCredito(rs);
-                    si=true;
+                    String estado=rs.getString("estado");
+                    if(estado.equals("No liberado")){
+                        
+                    }else{
+                        si=true;
+                    }
+                    
+                    System.out.println("Si existe");
                 }
                 if (!conn.isClosed()) {
                     conn.close();
@@ -140,14 +147,17 @@ public class Creditos_CrearCredito_DAO {
   
         try {
             if (conn != null) {
-                String query = "SELECT nocontrolAlumno, nombreactividad FROM registrohistorico"
-                        + "WHERE nocontrolAlumno=?";
+                String query = "SELECT nocontrolAlumno, nombreactividad \n" +
+                                "FROM registrohistorico\n" +
+                                "WHERE nocontrolAlumno = ? AND estado = ?";
                 ps = conn.prepareStatement(query);
                 ps.setString(1,id );
+                ps.setString(2,"Liberado" );
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     //creditos=convertirCredito(rs);
                     si=true;
+                    System.out.println("Si existe");
                 }
                 if (!conn.isClosed()) {
                     conn.close();
@@ -253,16 +263,18 @@ public class Creditos_CrearCredito_DAO {
   
         try {
             if (conn != null) {
-                String query = "SELECT idCreditoExtraescolar, periodo, estado, tipo, noControlAlumno, Anio, "
-                        + "NombreActividad, idGrupo, fecha_creacion, nombreAlumno FROM creditosextraescolares"
-                        + "WHERE noControlAlumno =? AND tipo= ?";
+                String query = "SELECT idCreditoExtraescolar, periodo, estado, tipo, noControlAlumno, Anio, NombreActividad, idGrupo, fecha_creacion, nombreAlumno \n" +
+                                "FROM creditosextraescolares\n" +
+                                "WHERE noControlAlumno = ? AND tipo = ? AND estado= ?";
                 ps = conn.prepareStatement(query);
                 ps.setString(1,id );
                 ps.setString(2,Constantes.NOMBRECREDITOSELECTIVO);
+                ps.setString(3,"Liberado");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     //creditos=convertirCredito(rs);
                     si=true;
+                    System.out.println("Si existe");
                 }
                 if (!conn.isClosed()) {
                     conn.close();
@@ -305,11 +317,13 @@ public class Creditos_CrearCredito_DAO {
   
         try {
             if (conn != null) {
-                String query = "SELECT nocontrolAlumno, nombreactividad FROM registrohistorico"
-                        + "WHERE nocontrolAlumno=? AND tipo=?";
+                String query = "SELECT nocontrolAlumno, nombreactividad \n" +
+                                "FROM registrohistorico\n" +
+                                "WHERE nocontrolAlumno = ? AND tipo = ? AND estado = ?";
                 ps = conn.prepareStatement(query);
                 ps.setString(1,id );
                 ps.setString(2,Constantes.NOMBRECREDITOSELECTIVO);
+                ps.setString(3,"Liberado");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     //creditos=convertirCredito(rs);

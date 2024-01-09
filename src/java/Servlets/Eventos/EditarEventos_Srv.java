@@ -3,6 +3,7 @@ package Servlets.Eventos;
 
 import ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB;
 import ManageBean.Eventos.Evento_MB;
+import ManageBean.Usuarios.Usuarios_MB;
 import Servlets.ActividadExtraescolar.CrearActividadExtraescolar;
 import Servlets.Maestros.CrearMaestro_Srv;
 import Utilidades.GenericResponse;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import masterDAO.Empleado;
 
 /**
  *
@@ -36,9 +38,9 @@ public class EditarEventos_Srv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-       int idEvento = Integer.parseInt(request.getParameter("idEvento"));
        HttpSession session = request.getSession();
+       int idEvento = Integer.parseInt(request.getParameter("idEvento"));
+       
                 
        Evento_MB evento = Evento_EditarEvento_DAO.consultar(idEvento);
        
@@ -53,7 +55,7 @@ public class EditarEventos_Srv extends HttpServlet {
        
        
        request.setAttribute("fecha", fechaq);
-       session.setAttribute("idEvento", idEvento); 
+       request.setAttribute("idEvento", idEvento); 
        request.setAttribute("evento", evento);
        request.setAttribute("actividad", actividad); 
        request.getRequestDispatcher("/views/Eventos/Paginas/EditarEvento_View.jsp").forward(request, response);
@@ -64,6 +66,8 @@ public class EditarEventos_Srv extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Empleado a = (Empleado) session.getAttribute("usuario");
         
         //datos dede el request
         PrintWriter out = response.getWriter();    
@@ -97,10 +101,17 @@ public class EditarEventos_Srv extends HttpServlet {
         
         
         
-        HttpSession session = request.getSession();
+        
         GenericResponse resp = new GenericResponse();
         
-        
+        String ruta="";
+        /*
+        if(a.getRol().equals("Admin")){
+            ruta="'../../app/eventos/listarevento.do'";
+        }else if(a.getRol().equals("Maestro")){
+            ruta="../../app/eventos/listareventomaestro.do";
+        }*/
+        resp.setResponseObject("");
               
         Evento_MB evento = new Evento_MB(idEvento,nombre,parth,partm, institucionorganizadora, tipo,periodo,fechaEvento,actividad,resultado);
        

@@ -120,7 +120,7 @@ function eliminarEvento(id) {
             if (respuesta.status === 0) {
                 TituloMensaje = "¡Evento eliminado!";
                 Mensaje = "El Evento se ha eliminado correctamente";
-                mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '../../app/eventos/listarevento.do');
+                mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '../../app/eventos/listareventomaestro.do');
                 
             } else {
                 TituloMensaje = "ERROR: ";

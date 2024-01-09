@@ -12,8 +12,9 @@ public class CreditoExtraescolar_MB {
     private String noControl;
     private int anio;
     private String nombreActividad;
-    private int noGrupo;
+    private int idGrupo;
     private String nombreAlumno;
+    private int noGrupo;
 
     public CreditoExtraescolar_MB(int idCredito, String periodo, String estado, String tipo, String noControl, int anio, String nombreActividad, int idGrupo, String nombreAlumno) {
         this.idCredito = idCredito;
@@ -23,7 +24,7 @@ public class CreditoExtraescolar_MB {
         this.noControl = noControl;
         this.anio = anio;
         this.nombreActividad = nombreActividad;
-        this.noGrupo = idGrupo;
+        this.idGrupo = idGrupo;
         this.nombreAlumno = nombreAlumno;
     }
 
@@ -34,7 +35,7 @@ public class CreditoExtraescolar_MB {
         this.noControl = noControl;
         this.anio = anio;
         this.nombreActividad = nombreActividad;
-        this.noGrupo = idGrupo;
+        this.idGrupo = idGrupo;
         this.nombreAlumno = nombreAlumno;
     }
 
@@ -98,11 +99,11 @@ public class CreditoExtraescolar_MB {
     }
 
     public int getIdGrupo() {
-        return noGrupo;
+        return idGrupo;
     }
 
     public void setIdGrupo(int idGrupo) {
-        this.noGrupo = idGrupo;
+        this.idGrupo = idGrupo;
     }
 
     public String getNombreAlumno() {
@@ -112,6 +113,15 @@ public class CreditoExtraescolar_MB {
     public void setNombreAlumno(String nombreAlumno) {
         this.nombreAlumno = nombreAlumno;
     }
+
+    public int getNoGrupo() {
+        return noGrupo;
+    }
+
+    public void setNoGrupo(int noGrupo) {
+        this.noGrupo = noGrupo;
+    }
+    
     
     
 }

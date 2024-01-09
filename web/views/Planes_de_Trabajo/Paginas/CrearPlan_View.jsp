@@ -911,7 +911,7 @@
         
        
         <!--JS propios -->
-
+        <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/planCrearPlan.js" type="text/javascript"></script>        
         <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>

@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,7 +34,7 @@ public class ListarCreditoExtraescolar_Srv extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         List<CreditoExtraescolar_MB> credito = new ArrayList<>();
-        
+        HttpSession session = request.getSession();
         GenericResponse respuesta = new GenericResponse<>();
                 
         credito =Creditos_ListarCreditos_DAO.consultar();
@@ -46,7 +47,7 @@ public class ListarCreditoExtraescolar_Srv extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        // processRequest(request, response);
-        request.getRequestDispatcher("/views/Creditos_Extraescolares/Paginas/ListadoCreditoExtraescolar_View.jsp").forward(request, response);
+        //request.getRequestDispatcher("/views/Creditos_Extraescolares/Paginas/ListadoCreditoExtraescolar_View.jsp").forward(request, response);
     }
 
     

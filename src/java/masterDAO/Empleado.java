@@ -1,4 +1,14 @@
-package masterDao;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package masterDAO;
+
+/**
+ *
+ * @author Emanuel
+ */
 public class Empleado {
     private int crear;
     private int leer;
@@ -19,7 +29,13 @@ public class Empleado {
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
     }
-    
+    public Empleado(int idEmpleado, String nombre, String apellidoPaterno, String apellidoMaterno, String nombrePuesto) {
+        this.idEmpleado = idEmpleado;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.nombrePuesto = nombrePuesto;
+    }
     public Empleado(int crear, int leer, int editar, int eliminar, int idEmpleado, String nombre, String apellidoPaterno, String apellidoMaterno, String nombrePuesto) {
         this.crear = crear;
         this.leer = leer;
@@ -146,4 +162,5 @@ public class Empleado {
 
     return datosEmpleado;
 }
+    
 }

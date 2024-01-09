@@ -61,7 +61,7 @@ public class InscribirAlumnoGrupo extends HttpServlet {
         
         Grupos_MB grupo = GruposAlumno_Inscripcion_DAO.consultarGrupo(idGrupo);
         
-        Alumnos_MB alumno = GruposAlumno_Inscripcion_DAO.consultarAlumno(17280330);
+        Alumnos_MB alumno = GruposAlumno_Inscripcion_DAO.consultarAlumno("17280330");
          
         
         

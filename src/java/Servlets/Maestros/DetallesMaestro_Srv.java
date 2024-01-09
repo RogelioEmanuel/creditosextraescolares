@@ -40,7 +40,7 @@ public class DetallesMaestro_Srv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       int idMaestro = Integer.parseInt(request.getParameter("idMaestro"));        
+        int idMaestro = Integer.parseInt(request.getParameter("idMaestro"));        
         HttpSession session = request.getSession();
         session.setAttribute("idMaestro", idMaestro);   
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");

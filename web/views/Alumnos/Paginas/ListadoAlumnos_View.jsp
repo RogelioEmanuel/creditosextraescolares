@@ -7,16 +7,7 @@
         <link rel="icon" href="/CDN-ITT/img/logo.png">
         <title>Lista de Alumnos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/CDN-ITT/css/base.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/font-awesome.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/general.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/tablas.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/botones.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/catalogos-modal.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/catalogos-tablas.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/spinner.estandarITT.css" rel="stylesheet">
-        <link href="/CDN-ITT/css/bootstrap-datepicker.estandarITT.css" rel="stylesheet">
-        <link href="../../css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
+        
     </head>
     <body>
         <header><%@include file="../../templates/HeaderMaestro_View.jsp" %></header>
@@ -113,16 +104,7 @@
         </div>
         <footer><%@include file="../..//templates/Footer_View.jsp" %></footer>
 
-        <script type="text/javascript" src ="\CDN-ITT\js\jquery.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\jquery-ui.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\base.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\spinner.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\jquery.dataTables.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\tablas.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\catalogos-modal.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\bootstrap-datepicker.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\bootstrap-datepicker.es.estandarITT.js"></script>
-        <script type="text/javascript" src ="\CDN-ITT\js\catalogos-tablas.estandarITT.js"></script>
+        
         
         
         

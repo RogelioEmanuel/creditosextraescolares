@@ -1,0 +1,18 @@
+@startuml
+
+class ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+class ManageBean.Alumnos.Alumnos_MB
+class ManageBean.Asistencia.Asistencias_MB
+class ManageBean.Asistencia.Clases_MB
+class ManageBean.CreditoExtraescolar.CreditoExtraescolar_MB
+class ManageBean.Eventos.Evento_MB
+class ManageBean.Grupos.Grupos_MB
+class ManageBean.HorariosGrupo.HorariosGrupo_MB
+class ManageBean.Maestros.Maestros_MB
+class ManageBean.Periodo.Periodo
+class ManageBean.PlanSemana.PlanSemana_MB
+class ManageBean.PlandeTrabajo.PlanTrabajo_MB
+class ManageBean.RegistroHistorico.RegistroHistorico_MB
+class ManageBean.Usuarios.Usuarios_MB
+
+@enduml

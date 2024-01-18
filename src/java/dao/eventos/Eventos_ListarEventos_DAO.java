@@ -22,6 +22,8 @@ public class Eventos_ListarEventos_DAO {
         String nombreEvento = rs.getString("NombreEvento");
         int participantesH = rs.getInt("numParticipantesH");
         int participantesM = rs.getInt("numParticipantesM");
+        int participantesHtec = rs.getInt("numParticipantesHTec");
+        int participantesMtec = rs.getInt("numParticipantesMTec");
         String institucion=rs.getString("InstitucionOrganizadora");
         String tipoevento=rs.getString("tipoevento");
         String periodo=rs.getString("periodo");       
@@ -44,7 +46,8 @@ public class Eventos_ListarEventos_DAO {
         evento.setNombreActividad(nombre.getNombre());
         evento.setFecha(fecha);
         evento.setResultado(resultado);
-        
+        evento.setNoParticipanteshtec(participantesHtec);
+        evento.setNoParticipantesmtec(participantesMtec);
         return evento;
     }
     
@@ -61,7 +64,7 @@ public class Eventos_ListarEventos_DAO {
         try {
             if (conn != null) {
                 String query = "SELECT idEventos,NombreEvento, numParticipantesH, numParticipantesM, InstitucionOrganizadora, tipoevento, periodo, anio,  idActividad "
-                        + ",fecha, resultado\n"
+                        + ",fecha, resultado,numParticipantesHTec,numParticipantesMTec\n"
                         + "FROM eventos f \n"                        
                         + "limit 100";
                 ps = conn.prepareStatement(query);
@@ -114,7 +117,7 @@ public class Eventos_ListarEventos_DAO {
             if (conn != null) {
                 String query = "SELECT eventos.idEventos,eventos.NombreEvento, eventos.numParticipantesH, eventos.numParticipantesM, eventos.InstitucionOrganizadora, "
                         + "eventos.tipoevento, eventos.periodo, eventos.anio,  eventos.idActividad, "
-                        + "eventos.fecha, eventos.resultado\n"
+                        + "eventos.fecha, eventos.resultado,eventos.numParticipantesMTec,eventos.numParticipantesHTec\n"
                         + "FROM eventos "
                         + "JOIN actividad_extraescolar ON Eventos.idActividad = actividad_extraescolar.idActividad_Extraescolar\n" 
                         + "JOIN grupos ON actividad_extraescolar.idActividad_Extraescolar = grupos.idActividad_Extraescolar\n" 

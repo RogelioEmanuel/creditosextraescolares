@@ -231,8 +231,11 @@
                             <div class="col-md-12" align="right">                                
                                 <button id="btnEditarActividad" form="FormCrearEvento" type="submit"  class="btn btn-primary btn-sm " style="font-size:14px">
                                     <i class="fa fa-save"></i> 
-                                </button>    
-                                <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/eventos/listarevento.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i></a>
+                                </button> 
+                                <button id="btnregresar" form="FormCrearEvento" type="submit"  class="btn btn-sm btn-danger" style="font-size:14px">
+                                    <i class="fa fa-reply"></i> 
+                                </button> 
+                                
 
                             </div>
                         </div>

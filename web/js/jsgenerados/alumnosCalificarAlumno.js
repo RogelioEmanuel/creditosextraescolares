@@ -29,7 +29,7 @@ let SeEstaModificando = false;
 var tblListaAlumnos = $('#tblListaAlumnos').DataTable({
     "columnDefs": [
         {
-            targets: [4],
+            targets: [5],
             orderable: false
         }
     ],
@@ -99,9 +99,9 @@ function enviarDatosActividad(calificaciones) {
             //ocultamos el indicador de carga
             $("#pageLoader").hide();
             
-            TituloMensaje="Evento Argegado con Exito";
-            Mensaje="Evento Agregado con Exito";
-            var ruta  = "/creditosextraescolares/app/eventos/listarevento.do";
+            TituloMensaje="Calificacion asentada con Exito";
+            Mensaje="Calificacion asentada con Exito";
+            var ruta  = "/creditosextraescolares/app/alumnos/calificaralumno.do?idGrupo="+a;
             mensajeRedirect(iconoCorrecto,TituloMensaje,Mensaje, ruta );
             //window.location = ruta;
             

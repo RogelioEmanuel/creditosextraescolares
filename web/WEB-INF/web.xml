@@ -211,6 +211,22 @@
         <servlet-name>App_RegistrarAsistencia_Srv</servlet-name>
         <servlet-class>App.App_RegistrarAsistencia_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Salir</servlet-name>
+        <servlet-class>Servlets.Usuarios.Salir</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Periodo_Srv</servlet-name>
+        <servlet-class>Servlets.Usuarios.Periodo_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>App_ListarEventos_Srv</servlet-name>
+        <servlet-class>App.App_ListarEventos_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>App_RegistrarAsistenciaEvento_Srv</servlet-name>
+        <servlet-class>App.App_RegistrarAsistenciaEvento_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -414,6 +430,22 @@
     <servlet-mapping>
         <servlet-name>App_RegistrarAsistencia_Srv</servlet-name>
         <url-pattern>/app/asistencias/RegistrarAsistencia.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Salir</servlet-name>
+        <url-pattern>/app/salir.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Periodo_Srv</servlet-name>
+        <url-pattern>/app/periodo/editarPeriodo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>App_ListarEventos_Srv</servlet-name>
+        <url-pattern>/app/listareventos.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>App_RegistrarAsistenciaEvento_Srv</servlet-name>
+        <url-pattern>/app/eventos/asistenciaevento.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

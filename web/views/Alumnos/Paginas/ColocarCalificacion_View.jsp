@@ -53,13 +53,15 @@
                                     <th class="bordeTd"><input id="tblListaAlumnos-colSearch1" type="text" placeholder="Buscar:" style="width: 100%" data-index="1"></th>                                    
                                     <th class="bordeTd"><input id="tblListaAlumnos-colSearch2" type="text" placeholder="Buscar:" style="width: 100%" data-index="2"></th>
                                     <th class="bordeTd"><input id="tblListaAlumnos-colSearch3" type="text" placeholder="Buscar:" style="width: 100%" data-index="3"></th>
-                                    <th class="bordeTd"><input id="tblListaAlumnos-colSearch4" type="text" placeholder="Buscar:" style="width: 100%" data-index="5"></th>                                                   
+                                    <th class="bordeTd"><input id="tblListaAlumnos-colSearch4" type="text" placeholder="Buscar:" style="width: 100%" data-index="4"></th> 
+                                    <th class="bordeTd"><input id="tblListaAlumnos-colSearch5" type="text" placeholder="Buscar:" style="width: 100%" data-index="5"></th> 
                                     <th class="bordeTd"><i class="fa fa-filter iconoFiltro"></i></th>
                                 </tr>
                                 <tr class="info">
                                     <th class="bordeTd" style="font-size: 14px">Numero de control</th>
                                     <th class="bordeTd" style="font-size: 14px">Nombre</th> 
-                                    <th class="bordeTd" style="font-size: 14px">No. Reinscripcion</th>                                    
+                                    <th class="bordeTd" style="font-size: 14px">Porcentaje Asistencias a clase</th>
+                                    <th class="bordeTd" style="font-size: 14px">Porcentaje Asistencias a eventos</th>                                    
                                     <th class="bordeTd" style="font-size: 14px">Calificacion </th>
                                     <th class="bordeTd" style="font-size: 14px"></th>
                                 </tr>
@@ -70,7 +72,8 @@
                                     <tr id="${row.noControl}" data-id="${row.noControl}">
                                         <td class="bordeTd  justify">${row.noControl}</td>                                        
                                         <td class="bordeTd  justify">${row.nombre}</td>
-                                        <td class="bordeTd  justify">${row.noReinscripcion}</td>                                        
+                                        <td class="bordeTd  justify">${row.porcentajeclase}</td> 
+                                        <td class="bordeTd  justify">${row.porcentajeevento}</td>                                          
                                         <td class="bordeTd  justify"> <select>
                                                                         <option value="Aprobado" selected>Aprobado</option>
                                                                         <option value="No aprobado">No aprobado</option>
@@ -85,7 +88,7 @@
                             
                             
                             
-                            <a title="Regresar" id="btnregresar" href="#" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>                            
+                            <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/grupos/listargruposmaestro.do" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>                            
                             <button title="Guardar Alumno" data-table="tblListaAlumnos" class="btn btn-primary btn-sm" id="btnGuardar"><i class="fa fa-floppy-o"></i></button>
                             
                         </div>

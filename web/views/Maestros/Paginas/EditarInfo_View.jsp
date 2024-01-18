@@ -29,7 +29,7 @@
             <div id="PanelForm" class="panel panel-primary" style="margin-top: 2em">
                 <div class="panel-heading">
                     <h2 class="panel-title" id="HEADINGDP">
-                        Editar Evento       
+                        Editar mi informacion       
                     </h2>
                 </div>
                 <div class="panel panel-body" color: black; margin: 0">

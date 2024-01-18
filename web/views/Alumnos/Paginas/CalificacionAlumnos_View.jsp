@@ -90,7 +90,7 @@
                         <div class="row" align="right" style="margin: 1rem">
                             <button title="Inscribir  Alumno" data-table="tblListaAlumnos" class="btn btn-primary btn-sm" id="btnAgregar"><i class="fa fa-pencil"></i> Inscribir Alumno </button>
                             <button title="Listar Asistencias" data-table="tblListaAlumnos" class="btn btn-info btn-sm" id="btnAsistencias"><i class="fa fa-pencil"></i> Lista de Asistencias </button>
-                            <a title="Regresar" id="btnregresar" href="#" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>                            
+                            <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/grupos/listargruposmaestro.do" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>                            
                             <button title="Editar  Alumno" data-table="tblListaAlumnos" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i> Editar Alumno</button>
                             <button title="Dar de baja  Alumno " data-table="tblListaAlumnos" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i> Dar de baja Alumno del grupo</button>
                             

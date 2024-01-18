@@ -10,7 +10,7 @@ let id_fila = "";
 var tblListaEventos = $('#tblListaEventos').DataTable({
     "columnDefs": [
         {
-            targets: [8],
+            targets: [9],
             orderable: false
         }
     ],

@@ -17,7 +17,9 @@ import java.util.logging.Logger;
 
 public class AlumnosInsertarAlumno_DAO {
     
-    public static Alumnos_MB consultarAlumno(String nocontrol) {
+    
+   
+    public static Alumnos_MB consultarAlumno2(String nocontrol) {
         
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();
@@ -26,7 +28,7 @@ public class AlumnosInsertarAlumno_DAO {
         ResultSet rs = null;
         Alumnos_MB alumnos = null;
         
-           
+           System.out.println("busca ");
         try {
             if (conn != null) {
                     String query = "SELECT A.Nocontrol ,A.nombre,  A.semestre,  A.edad, A.regular, A.correo, A.sexo,A.carrera \n"
@@ -41,7 +43,8 @@ public class AlumnosInsertarAlumno_DAO {
                 
                 
                 while (rs.next()) {
-                    alumnos =convertirAlumno(rs);
+                    System.out.println("encuentra ");
+                    alumnos =convertirAlumno2(rs);
                     
                 }
                 if (!conn.isClosed()) {
@@ -74,7 +77,11 @@ public class AlumnosInsertarAlumno_DAO {
         
     }
     
-    private static Alumnos_MB convertirAlumno(ResultSet rs) throws SQLException {
+    
+    
+   
+    
+     private static Alumnos_MB convertirAlumno2(ResultSet rs) throws SQLException {
         String noControl = rs.getString("Nocontrol");
         String nombre =rs.getString("nombre");
         int semestre = rs.getInt("semestre");
@@ -83,11 +90,10 @@ public class AlumnosInsertarAlumno_DAO {
         String sexo = rs.getString("sexo");
         String carrera = rs.getString("carrera"); 
         int regular = rs.getInt("regular");
-        int noReinscripcion = rs.getInt("noReinscripcion");            
-        String selectivo = rs.getString("selectivo");
-        Alumnos_MB alumno = new Alumnos_MB( noControl, nombre,  semestre,  edad,  correo,  sexo,  carrera,isRegular(regular),noReinscripcion);          
-        alumno.setNoReinscripcion(noReinscripcion);
-        alumno.setSelectivo(selectivo);
+                  
+        
+        Alumnos_MB alumno = new Alumnos_MB( noControl, nombre,  semestre,  edad,  correo,  sexo,  carrera,isRegular(regular));          
+        
         return alumno;
     } 
     
@@ -162,22 +168,22 @@ public class AlumnosInsertarAlumno_DAO {
         PreparedStatement ps = null;
         try {
             if (conn != null) {
-                String update =" UPDATE grupos SET nombre=?, nombre=?, apMaterno=?, edad=?, regular=?, correo=?, sexo=?, carrera=?, fecha_creacion=?"
-                        + "WHERE nocontrolalumno=?";
+                String update =" UPDATE alumnos SET nombre=?, apPaterno=?, apMaterno=?, edad=?, regular=?, correo=?, sexo=?, carrera=?"
+                        + "WHERE Nocontrol =?";
                 ps = conn.prepareStatement(update);
-                ps.setString(1,alumno.getNoControl());
-                ps.setString(2,alumno.getNombre());
-                ps.setString(3,alumno.getApPaterno());
-                ps.setString(4,alumno.getApMaterno());
-                ps.setInt(5,alumno.getEdad());
+                //ps.setString(1,alumno.getNoControl());
+                ps.setString(1,alumno.getNombre());
+                ps.setString(2,alumno.getApPaterno());
+                ps.setString(3,alumno.getApMaterno());
+                ps.setInt(4,alumno.getEdad());
                 if(!alumno.getRegular()){
                     var=1;
                 }
-                ps.setInt(6, var);
-                ps.setString(7,alumno.getCorreo());
-                ps.setString(8,alumno.getSexo());
-                ps.setString(9,alumno.getCarrera());
-                ps.setString(10,alumno.getNoControl());
+                ps.setInt(5, var);
+                ps.setString(6,alumno.getCorreo());
+                ps.setString(7,alumno.getSexo());
+                ps.setString(8,alumno.getCarrera());
+                ps.setString(9,alumno.getNoControl());
                 ps.executeUpdate();
                 respuesta.setMensaje("Ok");
                 respuesta.setStatus(Validaciones.VALIDATION_EXP);

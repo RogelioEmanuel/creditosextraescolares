@@ -105,7 +105,7 @@ public class InscripcionGrupos_Srv extends HttpServlet {
         String nReinscripcions = request.getParameter("nReinscripcion");
         int nReinscripcion = Integer.parseInt(nReinscripcions);
         HttpSession session = request.getSession();
-        Usuario a = (Usuario) session.getAttribute("usuarioAlu");
+        Usuario a = (Usuario) session.getAttribute("usuario");
         
         GenericResponse resp = new GenericResponse();
         

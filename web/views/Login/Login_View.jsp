@@ -1,6 +1,17 @@
+<%@page import="Utilidades.CaptchaGenerador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="usuario" value="${sessionScope.usuario}" />
+
+<script>
+    var captchaCode = '<%= CaptchaGenerador.generateCaptcha() %>';
+
+    function Captcha() {
+        document.getElementById('mainCaptcha').innerText = captchaCode;
+    }
+    
+    
+</script>
 
 
 <c:set var="rolUsuario" value="${usuario.nombrePuesto}" />
@@ -19,7 +30,8 @@
         <link href="/CDN-ITT/css/botones.estandarITT.css" rel="stylesheet" type="text/css"/>
         <link href="/CDN-ITT/css/font-awesome.estandarITT.css" rel="stylesheet" type="text/css"/>
         <link href="/CDN-ITT/css/spinner.estandarITT.css" rel="stylesheet" type="text/css"/>
-        <link href="css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
+        
+        <link href="${pageContext.request.contextPath}/css/cssgenerados/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <c:choose>
@@ -59,7 +71,6 @@
                                         autofocus
                                         maxlength="30"
                                         autocomplete="off"
-                                        
                                         />
                                 </div>
                                 <div class="form-group">
@@ -77,15 +88,28 @@
                                         />
                                 </div>
                                 <div id="divCaptcha" class="form-group">
+                                    <label for="itt_captcha">Código captcha</label><br/>
+                                    <label>
+                                        <body onload="">
+                                            <div class="col-md-10" style="position:relative;">
+                                                <h1 type="text" id="mainCaptcha" style="float:left;"> ${captchaValue}</h1>
+                                            </div>
+                                            <div class="col-md-2">
+                                                
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input type="text" placeholder="Ingrese el Código" autocomplete="off" id="txtInput" style="clear:both; width:100%;">
+                                            </div>
+                                    </label>
                                     
-                                    <div class="form-group">
+                                </div>
+                                
+                                <div class="form-group">
                                         <button
                                             id="btnLogin" type="submit" class="btn btn-primary pull-right" value="Ingresar" >
                                             <i id="spin_carga" class="fa fa-spinner fa-spin" style="display: none;"></i>
                                             Ingresar
                                         </button>
-                                    </div>
-                            
                                 </div>
                             </form>
                         </div>
@@ -108,12 +132,15 @@
         
         
         
-        <script src="js/jsgenerados/Inicio.js" type="text/javascript"></script>
-        <script src="js/jsgenerados/funciones.js" type="text/javascript"></script>
-        <script src="js/lib/bootbox.min.js" type="text/javascript"></script>
-        <script src="js/jsgenerados/constantes.js" type="text/javascript"></script>
-        <script src="js/jsgenerados/login.js" type="text/javascript"></script>
-        <script src="js/jsgenerados/animaciones.js" type="text/javascript"></script>
+       
+        
+        
+        <script src="${pageContext.request.contextPath}/js/jsgenerados/Inicio.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jsgenerados/funciones.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/lib/bootbox.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jsgenerados/constantes.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jsgenerados/login.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jsgenerados/animaciones.js" type="text/javascript"></script>
         
     </body>
 </html>

@@ -75,6 +75,10 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
         String num= request.getParameter("numero");
         int numero = Integer.parseInt(num);
         
+        
+        
+        
+        
         if(numero==1){
             
             //Obtener Parametros
@@ -102,7 +106,8 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
             File file = new File(imagenUrl);
             InputStream imagenFile = new FileInputStream(file);
             String jrxmlFile;
-
+            
+             
 
             //Ruta Reporte
             jrxmlFile = getClass().getClassLoader().getResource("Reportes/Alumnos.jrxml").toString().substring(6);        
@@ -130,61 +135,78 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
             }
             horariocompleto=concatenacion.toString();
             
-            try {
-
-                JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFile);            
-                Map<String, Object> map = new HashMap<>();
-
-
-                if(imagenFile.available()>0){
-                    //Hace el put
-                    
-                    map.put(Constantes.NOMBRELOGO, imagenFile);                
-
-                }
-
-                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(alumnos);
-
-                //System.out.println(":0 "+ds.toString());
-                
-
-
-                    map.put("Actividad",actividad);
-                    map.put("Promocion",tipo);
-                    map.put("periodo",periodo);                    
-                    map.put("anio",idGrupo2);
-                    System.out.println(horariocompleto);
-                    map.put("Horario",horariocompleto);
-                    map.put("ds", ds); 
-                    //map.put("jefatura",Constantes.NOMBREJEFATURA);
-                    //map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
-                
-
-
-                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);
-
-
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();   
-                JasperExportManager.exportReportToPdfStream(jasperPrint, byteArrayOutputStream);            
-                byte[] pdfBytes = byteArrayOutputStream.toByteArray();
-                String base64EncodedPDF = new String(Base64.encodeBase64(pdfBytes));
-
-                respuesta.setMensaje(base64EncodedPDF);
-                respuesta.setStatus(0);
-                respuesta.setResponseObject(null);
-
+            if(alumnos.isEmpty()){
+                System.out.println("Vacio, sin datos");
+            
+                respuesta.setMensaje("No hay ningun dato para el reporte");
+                respuesta.setStatus(24);
                 try {
-                response.setContentType("application/json");
-                Gson json = new Gson();
-                out.print(json.toJson(respuesta));
+                    response.setContentType("application/json");
+                    Gson json = new Gson();
+                    out.print(json.toJson(respuesta));
                 } catch (Exception e) {
                     System.out.println(e);
                 }
+                
+            }else{
+                try {
+
+                    JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFile);            
+                    Map<String, Object> map = new HashMap<>();
 
 
-            } catch (JRException ex) {
-                Logger.getLogger(ReportesEventos_Srv.class.getName()).log(Level.SEVERE, null, ex);
+                    if(imagenFile.available()>0){
+                        //Hace el put
+
+                        map.put(Constantes.NOMBRELOGO, imagenFile);                
+
+                    }
+
+                    JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(alumnos);
+
+                    //System.out.println(":0 "+ds.toString());
+
+
+
+                        map.put("Actividad",actividad);
+                        map.put("Promocion",tipo);
+                        map.put("periodo",periodo);                    
+                        map.put("anio",idGrupo2);
+                        System.out.println(horariocompleto);
+                        map.put("Horario",horariocompleto);
+                        map.put("ds", ds); 
+                        //map.put("jefatura",Constantes.NOMBREJEFATURA);
+                        //map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
+
+
+
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);
+
+
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();   
+                    JasperExportManager.exportReportToPdfStream(jasperPrint, byteArrayOutputStream);            
+                    byte[] pdfBytes = byteArrayOutputStream.toByteArray();
+                    String base64EncodedPDF = new String(Base64.encodeBase64(pdfBytes));
+
+                    respuesta.setMensaje(base64EncodedPDF);
+                    respuesta.setStatus(0);
+                    respuesta.setResponseObject(null);
+
+                    try {
+                    response.setContentType("application/json");
+                    Gson json = new Gson();
+                    out.print(json.toJson(respuesta));
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
+
+                } catch (JRException ex) {
+                    Logger.getLogger(ReportesEventos_Srv.class.getName()).log(Level.SEVERE, null, ex);
             }
+            }   
+            
+            
             
             
         }else if(numero==2){
@@ -389,61 +411,77 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
             }
             horariocompleto=concatenacion.toString();
             
-            try {
-
-                JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFile);            
-                Map<String, Object> map = new HashMap<>();
-
-
-                if(imagenFile.available()>0){
-                    //Hace el put
-                    
-                    map.put(Constantes.NOMBRELOGO, imagenFile);                
-
-                }
-
-                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(alumnos);
-
-                //System.out.println(":0 "+ds.toString());
-                
-
-
-                    map.put("Actividad",actividad);
-                    map.put("Promocion",tipo);
-                    map.put("periodo",periodo);                    
-                    map.put("anio",idGrupo2);
-                    System.out.println(horariocompleto);
-                    map.put("Horario",horariocompleto);
-                    map.put("ds", ds); 
-                    //map.put("jefatura",Constantes.NOMBREJEFATURA);
-                    //map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
-                
-
-
-                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);
-
-
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();   
-                JasperExportManager.exportReportToPdfStream(jasperPrint, byteArrayOutputStream);            
-                byte[] pdfBytes = byteArrayOutputStream.toByteArray();
-                String base64EncodedPDF = new String(Base64.encodeBase64(pdfBytes));
-
-                respuesta.setMensaje(base64EncodedPDF);
-                respuesta.setStatus(0);
-                respuesta.setResponseObject(null);
-
+            if(alumnos.isEmpty()){
+                System.out.println("Vacio, sin datos");
+            
+                respuesta.setMensaje("No hay ningun dato para el reporte");
+                respuesta.setStatus(24);
                 try {
-                response.setContentType("application/json");
-                Gson json = new Gson();
-                out.print(json.toJson(respuesta));
+                    response.setContentType("application/json");
+                    Gson json = new Gson();
+                    out.print(json.toJson(respuesta));
                 } catch (Exception e) {
                     System.out.println(e);
                 }
+            }else{
+                try {
+
+                    JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFile);            
+                    Map<String, Object> map = new HashMap<>();
 
 
-            } catch (JRException ex) {
-                Logger.getLogger(ReportesEventos_Srv.class.getName()).log(Level.SEVERE, null, ex);
+                    if(imagenFile.available()>0){
+                        //Hace el put
+
+                        map.put(Constantes.NOMBRELOGO, imagenFile);                
+
+                    }
+
+                    JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(alumnos);
+
+                    //System.out.println(":0 "+ds.toString());
+
+
+
+                        map.put("Actividad",actividad);
+                        map.put("Promocion",tipo);
+                        map.put("periodo",periodo);                    
+                        map.put("anio",idGrupo2);
+                        System.out.println(horariocompleto);
+                        map.put("horarios",horariocompleto);
+                        map.put("ds", ds); 
+                        //map.put("jefatura",Constantes.NOMBREJEFATURA);
+                        //map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
+
+
+
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);
+
+
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();   
+                    JasperExportManager.exportReportToPdfStream(jasperPrint, byteArrayOutputStream);            
+                    byte[] pdfBytes = byteArrayOutputStream.toByteArray();
+                    String base64EncodedPDF = new String(Base64.encodeBase64(pdfBytes));
+
+                    respuesta.setMensaje(base64EncodedPDF);
+                    respuesta.setStatus(0);
+                    respuesta.setResponseObject(null);
+
+                    try {
+                    response.setContentType("application/json");
+                    Gson json = new Gson();
+                    out.print(json.toJson(respuesta));
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
+
+                } catch (JRException ex) {
+                    Logger.getLogger(ReportesEventos_Srv.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+            
+            
             
         }
         

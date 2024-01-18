@@ -6,6 +6,7 @@ import ManageBean.Grupos.Grupos_MB;
 import ManageBean.HorariosGrupo.HorariosGrupo_MB;
 import ManageBean.Maestros.Maestros_MB;
 import Utilidades.Constantes;
+import static Utilidades.Constantes.declararPeriodoActual;
 import Utilidades.Cuenta;
 import config.conexion.ConexionMySQL;
 import dao.Grupos.Grupos_EditarGrupo_DAO;
@@ -15,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -416,23 +418,33 @@ public class ReporteAlumnosInscritos_DAO {
            
         try {
             if (conn != null) {
-                    String query =  "SELECT alumnos.NoControl, alumnos.Nombre, alumnos.Semestre, alumnos.Edad, alumnos.Regular, alumnos.Correo, alumnos.Sexo, alumnos.Carrera, " +
-                                "creditosextraescolares.idCreditoExtraescolar, creditosextraescolares.periodo, creditosextraescolares.estado, creditosextraescolares.tipo, creditosextraescolares.noControlAlumno,"
-                            +   "creditosextraescolares.Anio, creditosextraescolares.NombreActividad, creditosextraescolares.idGrupo, creditosextraescolares.fecha_creacion, creditosextraescolares.nombreAlumno " +
-                                "FROM alumnos " +
-                                "JOIN grupos_y_alumno ON alumnos.NoControl = grupos_y_alumno.NoControl " +
-                                "JOIN creditosextraescolares ON grupos_y_alumno.dGrupo = creditosextraescolares.idGrupo " +
-                                "WHERE grupos_y_alumno.idGrupo = ?";
+                    String query =  "SELECT alumnos.NoControl, alumnos.Nombre, alumnos.Semestre, alumnos.Edad, "
+                    + "alumnos.Regular, alumnos.Correo, alumnos.Sexo, alumnos.Carrera, "
+                    + "MAX(creditosextraescolares.idCreditoExtraescolar), creditosextraescolares.periodo, "
+                    + "creditosextraescolares.estado, creditosextraescolares.tipo, creditosextraescolares.noControlAlumno, "
+                    + "creditosextraescolares.Anio, creditosextraescolares.NombreActividad, creditosextraescolares.idGrupo, "
+                    + "creditosextraescolares.fecha_creacion, creditosextraescolares.nombreAlumno "
+                    + "FROM alumnos "
+                    + "JOIN grupos_y_alumno ON alumnos.NoControl = grupos_y_alumno.nocontrolalumno "
+                    + "JOIN creditosextraescolares ON grupos_y_alumno.idgrupo = creditosextraescolares.idGrupo "
+                    + "WHERE grupos_y_alumno.idGrupo = ? "
+                    + "AND creditosextraescolares.estado = 'Liberado' "
+                    + "AND creditosextraescolares.periodo = ? "
+                    + "AND creditosextraescolares.Anio = ? "
+                    + "GROUP BY alumnos.NoControl;";
+
                         
                         
                 ps = conn.prepareStatement(query);
                 ps.setInt(1,id );
+                ps.setString(2,declararPeriodoActual());
+                ps.setInt(3,getAnio());
                 rs = ps.executeQuery();
                 
                 
                 
                 while (rs.next()) {
-                    alumnos.add(convertirAlumno2(rs));
+                    alumnos.add(convertirAlumno3(rs));
                     
                 }
                 if (!conn.isClosed()) {
@@ -501,6 +513,32 @@ public class ReporteAlumnosInscritos_DAO {
         }else{
             alumno.setAprovado(" ");
         }
+        
+        
+        return alumno;
+    } 
+    
+     private static Alumnos_MB convertirAlumno3(ResultSet rs) throws SQLException {
+        String noControl = rs.getString("Nocontrol");
+        String nombre =rs.getString("nombre");
+        int semestre = rs.getInt("semestre");
+        int edad = rs.getInt("edad");
+        String correo = rs.getString("correo");
+        String sexo = rs.getString("sexo");
+        String carrera = rs.getString("carrera"); 
+        int regular = rs.getInt("regular");
+        //int noReinscripcion = rs.getInt("noReinscripcion");            
+        //String apr= rs.getString("estadoCredito");
+        Alumnos_MB alumno = new Alumnos_MB( noControl, nombre,  semestre,  edad,  correo,  sexo,  carrera,isRegular(regular));          
+        //alumno.setNoReinscripcion(noReinscripcion);
+        
+        //if(apr.equals("Liberado")){
+            alumno.setAprovado("A");
+        //}else if(apr.equals("No liberado")){
+           // alumno.setAprovado("NA");
+        //}else{
+           // alumno.setAprovado(" ");
+       // }
         
         
         return alumno;
@@ -578,5 +616,14 @@ public class ReporteAlumnosInscritos_DAO {
             }
         }
         return actividad;
+    }
+
+    private static int getAnio() {
+        LocalDate fechaActual = LocalDate.now();
+
+        // Obtener el año de la fecha actual
+        int anioActual = fechaActual.getYear();
+
+        return anioActual;
     }
 }

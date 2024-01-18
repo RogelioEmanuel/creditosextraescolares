@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import masterDAO.Empleado;
+import masterDAO.Usuario;
 
 /**
  *
@@ -30,11 +31,11 @@ public class ListarGruposInscrito_Srv extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Empleado maestro= (Empleado) session.getAttribute("usuario");
+        Usuario maestro= (Usuario) session.getAttribute("usuario");
         
         
         //System.out.println("Deberia"+maestro.getIdEmpleado());
-        int idAlumno= maestro.getIdEmpleado();
+        String idAlumno= maestro.getIdUsuario();
         
               
         GenericResponse respuesta = new GenericResponse<>(); 

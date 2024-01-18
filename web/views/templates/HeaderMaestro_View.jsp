@@ -33,7 +33,7 @@
                             <li><a href="/creditosextraescolares/app/grupos/listargruposmaestro.do"><span class="fa fa-user dropdown-item"></span> Mis Grupos</a></li>
                             <li><a href="/creditosextraescolares/app/eventos/listareventomaestro.do"><span class="fa fa-user dropdown-item"></span>Eventos</a></li>
                             <li><a href="/creditosextraescolares/app/maestros/infomaestro.do"><span class="fa fa-user dropdown-item"></span>Mi informacion</a></li>
-                            <li><a href="/creditosextraescolares/app/maestros/infomaestro.do"><span class="fa fa-user dropdown-item"></span>Salir</a></li>
+                            <li><a href="/creditosextraescolares//app/salir.do"><span class="fa fa-user dropdown-item"></span>Salir</a></li>
                             
                         </ul>
                     </li>

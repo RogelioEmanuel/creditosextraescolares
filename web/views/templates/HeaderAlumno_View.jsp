@@ -48,7 +48,7 @@
                                 <li><a href="#" disabled title="No disponible por el momento" style="color: lightgray;"><span class="fa fa-user dropdown-item"></span>Inscripción a Grupo</a></li>
                             <% } %>
                                 
-                            <li><a href="/creditosextraescolares/app/maestros/infomaestro.do?idMaestro=28"><span class="fa fa-user dropdown-item"></span>Salir</a></li>
+                            <li><a href="/creditosextraescolares/app/salir.do"><span class="fa fa-user dropdown-item"></span>Salir</a></li>
                         </ul>
                     </li>
                 </ul>

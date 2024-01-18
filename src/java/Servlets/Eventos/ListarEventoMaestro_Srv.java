@@ -7,6 +7,8 @@ package Servlets.Eventos;
 
 import ManageBean.Eventos.Evento_MB;
 import Utilidades.GenericResponse;
+import Utilidades.Validaciones;
+import com.google.gson.Gson;
 import dao.eventos.Eventos_ListarEventos_DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,13 +35,26 @@ public class ListarEventoMaestro_Srv extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        
+        PrintWriter out = response.getWriter();
         
         List<Evento_MB> eventos = new ArrayList<>();        
         GenericResponse respuesta = new GenericResponse<>();          
         Empleado maestro2= (Empleado) session.getAttribute("usuario");
         int idMaestro= maestro2.getIdEmpleado();
         eventos = Eventos_ListarEventos_DAO.consultarEventos(idMaestro);
+        
+        
+        
+        respuesta.setStatus(Validaciones.VALIDATION_EXP);
+        respuesta.setMensaje("Ok");
+        respuesta.setResponseObject(eventos);
+        
+            Gson json = new Gson();
+            out.print(json.toJson(respuesta));
+            String jsonResponse = json.toJson(respuesta);
+            
+            
+            
         request.setAttribute("eventos", eventos);
        
         request.getRequestDispatcher("/views/Eventos/Paginas/ListarEventosMaestro_View.jsp").forward(request, response);

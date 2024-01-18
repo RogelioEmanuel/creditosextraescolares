@@ -5,6 +5,7 @@ import ManageBean.Alumnos.Alumnos_MB;
 import ManageBean.Grupos.Grupos_MB;
 import Utilidades.Constantes;
 import config.conexion.ConexionMySQL;
+import dao.Asistencias.Asistencias_ListarAsistencias_DAO;
 import dao.Grupos.Grupos_EditarGrupo_DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -200,6 +201,64 @@ public class GruposAlumno_ListaAlumnos_DAO {
 
         return alumnos;
     }
+    
+    public static List<Alumnos_MB> consultarAlumnoGrupo2(int id) {
+        ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
+        int statusConexion = cone.conectar();
+        Connection conn = cone.getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Alumnos_MB> alumnos = new ArrayList<>();
+        
+           
+        try {
+            if (conn != null) {
+                    String query = "SELECT A.Nocontrol, A.nombre, A.semestre, A.edad, A.regular, A.correo, A.sexo, A.carrera, GA.noReinscripcion \n"
+                                    + "FROM alumnos A \n"
+                                    + "JOIN grupos_y_alumno GA ON A.Nocontrol = GA.nocontrolalumno \n"
+                                    + "JOIN creditosextraescolares CE ON A.Nocontrol = CE.noControlAlumno AND GA.idGrupo = CE.idGrupo \n"
+                                    + "WHERE GA.idgrupo = ? AND CE.estado = 'En Proceso'";
+ 
+                        
+                        
+                ps = conn.prepareStatement(query);
+                ps.setInt(1,id );
+                rs = ps.executeQuery();
+                
+                
+                
+                while (rs.next()) {
+                    alumnos.add(convertirAlumno2(rs,id));
+                    
+                }
+                if (!conn.isClosed()) {
+                    conn.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Grupos_MB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Grupos_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Grupos_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return alumnos;
+    }
      
     private static Alumnos_MB convertirAlumno(ResultSet rs) throws SQLException {
         String noControl = rs.getString("Nocontrol");
@@ -212,9 +271,28 @@ public class GruposAlumno_ListaAlumnos_DAO {
         int regular = rs.getInt("regular");
         int noReinscripcion = rs.getInt("noReinscripcion");            
         
-       Alumnos_MB alumno = new Alumnos_MB( noControl, nombre,  semestre,  edad,  correo,  sexo,  carrera,isRegular(regular),noReinscripcion);          
+        Alumnos_MB alumno = new Alumnos_MB( noControl, nombre,  semestre,  edad,  correo,  sexo,  carrera,isRegular(regular),noReinscripcion);          
         alumno.setNoReinscripcion(noReinscripcion);
         
+        return alumno;
+    } 
+    
+    private static Alumnos_MB convertirAlumno2(ResultSet rs,int idGrupo) throws SQLException {
+        String noControl = rs.getString("Nocontrol");
+        String nombre =rs.getString("nombre");
+        int semestre = rs.getInt("semestre");
+        int edad = rs.getInt("edad");
+        String correo = rs.getString("correo");
+        String sexo = rs.getString("sexo");
+        String carrera = rs.getString("carrera"); 
+        int regular = rs.getInt("regular");
+        int noReinscripcion = rs.getInt("noReinscripcion");            
+        double porcclase= Asistencias_ListarAsistencias_DAO.porcentaje(idGrupo,noControl);
+        double porcevento = Asistencias_ListarAsistencias_DAO.porcentajeEventos(idGrupo, noControl);
+        Alumnos_MB alumno = new Alumnos_MB( noControl, nombre,  semestre,  edad,  correo,  sexo,  carrera,isRegular(regular),noReinscripcion);          
+        alumno.setNoReinscripcion(noReinscripcion);
+        alumno.setPorcentajeclase(porcclase);
+        alumno.setPorcentajeevento(porcevento);
         return alumno;
     } 
      
@@ -223,5 +301,5 @@ public class GruposAlumno_ListaAlumnos_DAO {
         
     }
      
-     
+    
 }

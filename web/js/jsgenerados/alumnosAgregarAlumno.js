@@ -1,7 +1,4 @@
 
-
-
-
 //Funciones Eliminacion
 
 $("#FormInscribirAlumno").on("click", "#btnRegistrar", function (evento) {
@@ -12,9 +9,6 @@ $("#FormInscribirAlumno").on("click", "#btnRegistrar", function (evento) {
     var selectivo = $("#selectivo").val();
    inscribirGrupo(id,nControl,nReinscripcion,selectivo);
 });
-
-
-
 
 
 
@@ -37,7 +31,9 @@ function inscribirGrupo(id,nControl,nReinscripcion,selectivo) {
                 var a = respuestaObj.mensaje;
                 var b= respuestaObj.status;
                 if(b===0){
-                    $("body").html(respuesta);
+                    TituloMensaje = "Inscripcion Exitosa";
+                    Mensaje = "Se ha inscrito correctamente al grupo";
+                    mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '/creditosextraescolares/app/gruposalumno/listargruposalumno.do?idGrupo='+ id);
                 }
                 if(b===800){
                     mostrarMensaje(iconoInfo,"Respuesta",a);

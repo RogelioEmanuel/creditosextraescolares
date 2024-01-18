@@ -44,7 +44,7 @@ public class CalificarAlumnos_Srv extends HttpServlet {
         HttpSession session = request.getSession();
         GenericResponse respuesta = new GenericResponse<>();
         int id = Integer.parseInt(request.getParameter("idGrupo"));                
-        alumnos = GruposAlumno_ListaAlumnos_DAO.consultarAlumnoGrupo(id);
+        alumnos = GruposAlumno_ListaAlumnos_DAO.consultarAlumnoGrupo2(id);
         request.setAttribute("alumnos", alumnos);
         request.setAttribute("idGrupo", id);
         

@@ -122,7 +122,7 @@
                         
                         <div class="row" style="margin-bottom: 20px">
                             <div class="col-md-6">
-                                <label>Numero de participantes Masculinos</label>
+                                <label>Numero de participantes totales Masculinos</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
                                     <input name="inputnumeroparticipantesm" 
@@ -138,7 +138,7 @@
                             </div>
                             
                             <div class="col-md-6">
-                                <label>Numero de participantes Femeninos</label>
+                                <label>Numero de participantes totales Femeninos</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
                                     <input name="inputnumeroparticipantesf" 
@@ -150,6 +150,45 @@
                                            minlength="1"
                                            maxlength="80"  
                                            title="numeroparticipantesf">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="row" style="margin-bottom: 20px">
+                            <div class="col-md-6">
+                                <label>Numero de participantes Masculinos internos</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                                    <input name="inputnumeroparticipantesmi" 
+                                           id="numeroparticipantesmi" 
+                                           class="form-control input-sm" 
+                                           autocomplete="off" 
+                                           placeholder="numeroparticipantesmi" 
+                                           required 
+                                           disabled
+                                           minlength="1"
+                                           maxlength="80"  
+                                           title="numeroparticipantesmi"
+                                           value="0">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label>Numero de participantes Femeninos internos</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                                    <input name="inputnumeroparticipantesfi" 
+                                           id="numeroparticipantesfi" 
+                                           class="form-control input-sm" 
+                                           autocomplete="off" 
+                                           placeholder="numeroparticipantesfi" 
+                                           required 
+                                           disabled
+                                           minlength="1"
+                                           maxlength="80"  
+                                           title="numeroparticipantesfi"
+                                           value="0">
                                 </div>
                             </div>
                             
@@ -218,7 +257,7 @@
                                 <button id="btnRegistrar" form="FormCrearEvento" type="submit"  class="btn btn-primary btn-sm " style="font-size:14px">
                                     <i class="fa fa-save"></i> 
                                 </button>    
-                                <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/eventos/listarevento.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i></a>
+                                <a title="Regresar" id="regresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i></a>
 
                             </div>
                         </div>

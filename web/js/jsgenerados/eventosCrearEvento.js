@@ -16,6 +16,23 @@ $("#FormCrearEvento").on("click", "#btnRegistrar", function (evento) {
 
 });
 
+var reloadLink = document.getElementById('reloadLink');
+
+    // Añade un evento 'click' al enlace
+    reloadLink.addEventListener('click', function(event) {
+      // Previene el comportamiento predeterminado del enlace (navegar a una nueva página)
+      event.preventDefault();
+      
+      // Recarga la página
+      location.reload();
+    });
+
+
+$("#FormCrearEvento").on("click", "#btnRegresar", function (evento) {
+   evento.preventDefault();
+    window.location.reload();
+});
+
 function enviarDatosActividad(nombre, institucionOrganizadora, tipoEvento,periodo,fecha,actividad,parth,partm,res) {
     //Creamos un indicador de carga
     $("#pageLoader").show();

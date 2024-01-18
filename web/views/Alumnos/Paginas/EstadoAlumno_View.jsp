@@ -115,7 +115,7 @@
                                 <button id="btnRegistrar" form="FormInscribirAlumno" type="submit"   class="btn btn-primary btn-sm " style="font-size:14px">
                                     <i class="fa fa-save"></i> Guardar
                                 </button>    
-                                 <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/actividadextraescolar/listaractividad.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i>
+                                 <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/grupos/listargruposmaestro.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i>
                                   Regresar</a>
                             </div>
                         </div>

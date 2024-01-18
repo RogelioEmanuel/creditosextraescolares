@@ -14,11 +14,14 @@ $("#FormEditarMaestro").on("click", "#btnEditarMaestro", function (evento) {
     var direccion=$("#direccionMaestro").val();
     var banco=$("#bancoMaestro").val();
     var claveinterbancaria=$("#claveinterbancaria").val();
+    var pass=$("#pass").val();
+    var confPasss=$("#confPasss").val();
+    var usuario=$("#usuario").val();
     
     
-    
-    if(formValido(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria)){
-        editarDatosMaestro(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria);
+    if(formValido(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria,pass,confPasss)){
+        
+        editarDatosMaestro(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria,pass,confPasss,usuario);
     }
     
             
@@ -30,7 +33,7 @@ $("#FormEditarMaestro").on("click", "#btnRegresar", function (evento) {
 });
 
 
-function formValido(nombre, appaterno, apmaterno, fechaNacimientoMaestro, telefonoMaestro, correo, curp, rfc, sexo, direccion, banco, claveinterbancaria) {
+function formValido(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria,pass,confPasss) {
     var errores = [];
 
     if (!fechaValida(fechaNacimientoMaestro)) {
@@ -68,6 +71,10 @@ function formValido(nombre, appaterno, apmaterno, fechaNacimientoMaestro, telefo
     if (!validarCorreo(correo)) {
         errores.push("La dirección de correo electrónico no es válida.");
     }
+    
+    if(!contrasenas(pass,confPasss)){
+        errores.push("La contraseña no coincide con su confirmación.");
+    }
 
     if (errores.length > 0) {
         // Mostrar mensajes de error específicos para cada campo
@@ -86,6 +93,14 @@ function validarCorreo(correo) {
     var regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     return regexCorreo.test(correo);
+}
+
+function contrasenas(pass,passsconf){
+    if(pass===passsconf){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 function fechaValida(fecha){
@@ -165,7 +180,9 @@ function validarRFC(rfc) {
 
 
 
-function editarDatosMaestro(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria) {
+function editarDatosMaestro(nombre,appaterno,apmaterno,fechaNacimientoMaestro,telefonoMaestro,correo,curp,rfc,sexo,direccion,banco,claveinterbancaria,pass,confPasss,usuario) {
+    
+    
     $("#pageLoader").show();
     var datos={
         nombre: nombre,
@@ -179,7 +196,9 @@ function editarDatosMaestro(nombre,appaterno,apmaterno,fechaNacimientoMaestro,te
         sexo: sexo,
         direccion: direccion,
         banco: banco,
-        claveinterbancaria: claveinterbancaria
+        claveinterbancaria: claveinterbancaria,
+        usuario :usuario,
+        pass:pass
         
     };
     

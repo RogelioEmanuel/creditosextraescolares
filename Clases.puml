@@ -1,0 +1,1846 @@
+@startuml
+annotation java.lang.Override
+annotation javax.jws.WebMethod
+annotation javax.jws.WebParam
+annotation javax.jws.WebResult
+annotation javax.jws.WebService
+annotation javax.servlet.annotation.WebServlet
+annotation javax.xml.bind.annotation.XmlAccessorType
+annotation javax.xml.bind.annotation.XmlElement
+annotation javax.xml.bind.annotation.XmlElementDecl
+annotation javax.xml.bind.annotation.XmlRegistry
+annotation javax.xml.bind.annotation.XmlSeeAlso
+annotation javax.xml.bind.annotation.XmlType
+annotation javax.xml.ws.Action
+annotation javax.xml.ws.RequestWrapper
+annotation javax.xml.ws.ResponseWrapper
+annotation javax.xml.ws.WebEndpoint
+annotation javax.xml.ws.WebServiceClient
+class App.App_ListarEventos_Srv
+class App.App_ListarGrupos_Srv
+class App.App_Login_Srv
+class App.App_RegistrarAsistenciaEvento_Srv
+class App.App_RegistrarAsistencia_Srv
+class ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+class ManageBean.Alumnos.Alumnos_MB
+class ManageBean.Asistencia.Asistencias_MB
+class ManageBean.Asistencia.Clases_MB
+class ManageBean.CreditoExtraescolar.CreditoExtraescolar_MB
+class ManageBean.Eventos.Evento_MB
+class ManageBean.Grupos.Grupos_MB
+class ManageBean.HorariosGrupo.HorariosGrupo_MB
+class ManageBean.Maestros.Maestros_MB
+class ManageBean.Periodo.Periodo
+class ManageBean.PlanSemana.PlanSemana_MB
+class ManageBean.PlandeTrabajo.PlanTrabajo_MB
+class ManageBean.RegistroHistorico.RegistroHistorico_MB
+class ManageBean.Usuarios.Usuarios_MB
+class Servlets.ActividadExtraescolar.CrearActividadExtraescolar
+class Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv
+class Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv
+class Servlets.ActividadExtraescolar.ListarActividadExtraescolar
+class Servlets.Alumnos.ListarAlumnos_Srv
+class Servlets.Alumnos.ListarGruposInscrito_Srv
+class Servlets.Alumnos.ReportesAlumnoIsncrito_Srv
+class Servlets.Asistencias.ListarAsistencias_Srv
+class Servlets.CreditosExtraescolares.EditarCreditoExtraescolar_Srv
+class Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv
+class Servlets.Eventos.CrearEventos_Srv
+class Servlets.Eventos.EditarEventos_Srv
+class Servlets.Eventos.EliminarEventos_Srv
+class Servlets.Eventos.ListarEventoMaestro_Srv
+class Servlets.Eventos.ListarEventos_Srv
+class Servlets.Eventos.ReportesEventosMaestro_Srv
+class Servlets.Eventos.ReportesEventos_Srv
+class Servlets.Grupos.CrearGrupos_Srv
+class Servlets.Grupos.DetallarGrupos_Srv
+class Servlets.Grupos.DetalleGrupoAlumno_Srv
+class Servlets.Grupos.DetalleGrupoMaestro_Srv
+class Servlets.Grupos.EditarGrupos_Srv
+class Servlets.Grupos.EliminarGrupos_Srv
+class Servlets.Grupos.InscripcionGrupos_Srv
+class Servlets.Grupos.ListarGruposMaestro_Srv
+class Servlets.Grupos.ListarGrupos_Srv
+class Servlets.GruposAlumno.BajaAlumno_Srv
+class Servlets.GruposAlumno.CalificarAlumnos_Srv
+class Servlets.GruposAlumno.EditarAlumno_Srv
+class Servlets.GruposAlumno.InscribirAlumnoGrupo
+class Servlets.GruposAlumno.ListarGruposAlumno_Srv
+class Servlets.GruposAlumno.maestroInscribirAlumno_Srv
+class Servlets.Historico.Historico_ListarHistorico_Srv
+class Servlets.Index.Index_Srv
+class Servlets.Maestros.CrearMaestro_Srv
+class Servlets.Maestros.DetallesMaestro_Srv
+class Servlets.Maestros.EditarInfo_Srv
+class Servlets.Maestros.EditarMaestro_Srv
+class Servlets.Maestros.EliminarMaestro_Srv
+class Servlets.Maestros.InfoMaestro_Srv
+class Servlets.Maestros.ListarMaestro_Srv
+class Servlets.Maestros.ReportesMaestro_Srv
+class Servlets.Master.Master_Srv
+class Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv
+class Servlets.PlandeTrabajo.DetallarPlanTrabajo
+class Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv
+class Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv
+class Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv
+class Servlets.PlandeTrabajo.ReportesPlanTrabajo_Srv
+class Servlets.Usuarios.Login_Srv
+class Servlets.Usuarios.Periodo_Srv
+class Servlets.Usuarios.Salir
+class Utilidades.CaptchaGenerador
+class Utilidades.Constantes
+class Utilidades.Cuenta
+class Utilidades.GenericResponse
+class Utilidades.Validaciones
+class com.fasterxml.jackson.core.type.TypeReference
+class com.fasterxml.jackson.databind.ObjectMapper
+class com.google.gson.Gson
+class com.google.gson.JsonObject
+class com.google.gson.JsonParser
+class com.google.gson.JsonSyntaxException
+class com.google.gson.reflect.TypeToken
+class config.conexion.ConexionMySQL
+class dao.Alumnos.AlumnosCarrera_DAO
+class dao.Alumnos.AlumnosInsertarAlumno_DAO
+class dao.Alumnos.AlumnosListarGruposInscrito_DAO
+class dao.Alumnos.Alumnos_ListarAlumno
+class dao.Alumnos.ReporteAlumnosInscritos_DAO
+class dao.Asistencias.AsistenciasEventos_DAO
+class dao.Asistencias.AsistenciasRegistrar_DAO
+class dao.Asistencias.Asistencias_ListarAsistencias_DAO
+class dao.Grupos.Grupos_CrearGrupo_DAO
+class dao.Grupos.Grupos_DetalleGrupo_DAO
+class dao.Grupos.Grupos_EditarGrupo_DAO
+class dao.Grupos.Grupos_EliminarGrupos_DAO
+class dao.Grupos.Grupos_ListarGrupos_DAO
+class dao.Historico.Historico_ListarHistorico
+class dao.Login.Login_DAO
+class dao.Periodo.Periodo_DAO
+class dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO
+class dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO
+class dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO
+class dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO
+class dao.creditos.Creditos_CrearCredito_DAO
+class dao.creditos.Creditos_EditarCredito_DAO
+class dao.creditos.Creditos_ListarCreditos_DAO
+class dao.eventos.Evento_EditarEvento_DAO
+class dao.eventos.Eventos_CrearEvento_DAO
+class dao.eventos.Eventos_EliminarEvento_DAO
+class dao.eventos.Eventos_ListarEventos_DAO
+class dao.eventos.Eventos_ReportesEventos_DAO
+class dao.gruposyalumno.GruposAlumno_Baja_DAO
+class dao.gruposyalumno.GruposAlumno_Inscripcion_DAO
+class dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO
+class dao.gruposyalumno.GruposAlumno_Selectivo_DAO
+class dao.maestros.Maestros_CrearMaestros_DAO
+class dao.maestros.Maestros_DetallesMaestros_DAO
+class dao.maestros.Maestros_EditarMaestros_DAO
+class dao.maestros.Maestros_EliminarMaestros_DAO
+class dao.maestros.Maestros_ListarMaestros_DAO
+class dao.maestros.Maestros_ReportesMaestros_DAO
+class dao.plandetrabajo.Planes_CrearPlan_DAO
+class dao.plandetrabajo.Planes_DetallarPlan_DAO
+class dao.plandetrabajo.Planes_EditarPlan_DAO
+class dao.plandetrabajo.Planes_EliminarPlan_DAO
+class dao.plandetrabajo.Planes_ListarPlanes_DAO
+class java.io.ByteArrayOutputStream
+class java.io.File
+class java.io.FileInputStream
+class java.io.IOException
+class java.io.InputStream
+class java.io.PrintWriter
+class java.io.UnsupportedEncodingException
+class java.net.MalformedURLException
+class java.net.URL
+class java.net.URLDecoder
+class java.sql.Connection
+class java.sql.Date
+class java.sql.DriverManager
+class java.sql.PreparedStatement
+class java.sql.ResultSet
+class java.sql.SQLException
+class java.text.ParseException
+class java.text.SimpleDateFormat
+class java.time.DayOfWeek
+class java.time.LocalDate
+class java.time.LocalTime
+class java.time.format.TextStyle
+class java.util.ArrayList
+class java.util.Arrays
+class java.util.Calendar
+class java.util.Collections
+class java.util.Date
+class java.util.HashMap
+class java.util.LinkedHashMap
+class java.util.List
+class java.util.Locale
+class java.util.Map
+class java.util.Random
+class java.util.Set
+class java.util.logging.Level
+class java.util.logging.Logger
+class java.util.stream.Collectors
+class javax.json.Json
+class javax.json.JsonObject
+class javax.json.JsonReader
+class javax.servlet.ServletConfig
+class javax.servlet.ServletException
+class javax.servlet.http.Cookie
+class javax.servlet.http.HttpServlet
+class javax.servlet.http.HttpServletRequest
+class javax.servlet.http.HttpServletResponse
+class javax.servlet.http.HttpSession
+class javax.servlet.http.Part
+class javax.ws.rs.client.Entity
+class javax.xml.bind.JAXBElement
+class javax.xml.bind.annotation.XmlAccessType
+class javax.xml.namespace.QName
+class javax.xml.ws.Service
+class javax.xml.ws.WebServiceException
+class javax.xml.ws.WebServiceFeature
+class masterDAO.AlumnosITTol_MDAO
+class masterDAO.AlumnosmDAO
+class masterDAO.Empleado
+class masterDAO.EmpleadoDao
+class masterDAO.Usuario
+class masterDao.conexion
+class net.sf.jasperreports.engine.JRException
+class net.sf.jasperreports.engine.JasperCompileManager
+class net.sf.jasperreports.engine.JasperExportManager
+class net.sf.jasperreports.engine.JasperFillManager
+class net.sf.jasperreports.engine.JasperPrint
+class net.sf.jasperreports.engine.JasperReport
+class net.sf.jasperreports.engine.data.JRBeanArrayDataSource
+class net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
+class net.sf.jasperreports.engine.util.JRLoader
+class org.apache.commons.codec.binary.Base64
+class utils.Constantes
+class ws.DatosAlumnoMB
+class ws.GetInfo
+class ws.GetInfoMov_Service
+class ws.GetInfoResponse
+class ws.ObjectFactory
+interface ws.GetInfoMov
+App.App_ListarEventos_Srv ..> java.lang.Override
+App.App_ListarEventos_Srv ..> ManageBean.Eventos.Evento_MB
+App.App_ListarEventos_Srv ..> ManageBean.Grupos.Grupos_MB
+App.App_ListarEventos_Srv ..> Utilidades.GenericResponse
+App.App_ListarEventos_Srv ..> Utilidades.Validaciones
+App.App_ListarEventos_Srv ..> com.google.gson.Gson
+App.App_ListarEventos_Srv ..> dao.Grupos.Grupos_ListarGrupos_DAO
+App.App_ListarEventos_Srv ..> dao.eventos.Eventos_ListarEventos_DAO
+App.App_ListarEventos_Srv ..> java.io.IOException
+App.App_ListarEventos_Srv ..> java.io.PrintWriter
+App.App_ListarEventos_Srv ..> java.util.ArrayList
+App.App_ListarEventos_Srv ..> java.util.List
+App.App_ListarEventos_Srv ..> javax.servlet.ServletException
+App.App_ListarEventos_Srv ..> javax.servlet.http.Cookie
+App.App_ListarEventos_Srv --|> javax.servlet.http.HttpServlet
+App.App_ListarEventos_Srv ..> javax.servlet.http.HttpServletRequest
+App.App_ListarEventos_Srv ..> javax.servlet.http.HttpServletResponse
+App.App_ListarGrupos_Srv ..> java.lang.Override
+App.App_ListarGrupos_Srv ..> javax.servlet.annotation.WebServlet
+App.App_ListarGrupos_Srv ..> ManageBean.Grupos.Grupos_MB
+App.App_ListarGrupos_Srv ..> Utilidades.GenericResponse
+App.App_ListarGrupos_Srv ..> Utilidades.Validaciones
+App.App_ListarGrupos_Srv ..> com.google.gson.Gson
+App.App_ListarGrupos_Srv ..> dao.Grupos.Grupos_ListarGrupos_DAO
+App.App_ListarGrupos_Srv ..> java.io.IOException
+App.App_ListarGrupos_Srv ..> java.io.PrintWriter
+App.App_ListarGrupos_Srv ..> java.util.ArrayList
+App.App_ListarGrupos_Srv ..> java.util.List
+App.App_ListarGrupos_Srv ..> javax.servlet.ServletException
+App.App_ListarGrupos_Srv ..> javax.servlet.http.Cookie
+App.App_ListarGrupos_Srv --|> javax.servlet.http.HttpServlet
+App.App_ListarGrupos_Srv ..> javax.servlet.http.HttpServletRequest
+App.App_ListarGrupos_Srv ..> javax.servlet.http.HttpServletResponse
+App.App_Login_Srv ..> java.lang.Override
+App.App_Login_Srv ..> ManageBean.Alumnos.Alumnos_MB
+App.App_Login_Srv ..> Servlets.Usuarios.Login_Srv
+App.App_Login_Srv ..> Utilidades.GenericResponse
+App.App_Login_Srv ..> Utilidades.Validaciones
+App.App_Login_Srv ..> com.google.gson.Gson
+App.App_Login_Srv ..> dao.Login.Login_DAO
+App.App_Login_Srv ..> java.io.IOException
+App.App_Login_Srv ..> java.io.PrintWriter
+App.App_Login_Srv ..> java.text.SimpleDateFormat
+App.App_Login_Srv ..> java.util.Calendar
+App.App_Login_Srv ..> java.util.logging.Level
+App.App_Login_Srv ..> java.util.logging.Logger
+App.App_Login_Srv ..> javax.servlet.ServletException
+App.App_Login_Srv ..> javax.servlet.http.Cookie
+App.App_Login_Srv --|> javax.servlet.http.HttpServlet
+App.App_Login_Srv ..> javax.servlet.http.HttpServletRequest
+App.App_Login_Srv ..> javax.servlet.http.HttpServletResponse
+App.App_Login_Srv ..> javax.servlet.http.HttpSession
+App.App_Login_Srv ..> masterDAO.AlumnosmDAO
+App.App_Login_Srv ..> masterDAO.Empleado
+App.App_Login_Srv ..> masterDAO.Usuario
+App.App_RegistrarAsistenciaEvento_Srv ..> java.lang.Override
+App.App_RegistrarAsistenciaEvento_Srv ..> Utilidades.GenericResponse
+App.App_RegistrarAsistenciaEvento_Srv ..> com.google.gson.Gson
+App.App_RegistrarAsistenciaEvento_Srv ..> dao.Asistencias.AsistenciasEventos_DAO
+App.App_RegistrarAsistenciaEvento_Srv ..> dao.Asistencias.AsistenciasRegistrar_DAO
+App.App_RegistrarAsistenciaEvento_Srv ..> java.io.IOException
+App.App_RegistrarAsistenciaEvento_Srv ..> java.io.PrintWriter
+App.App_RegistrarAsistenciaEvento_Srv ..> javax.json.Json
+App.App_RegistrarAsistenciaEvento_Srv ..> javax.json.JsonObject
+App.App_RegistrarAsistenciaEvento_Srv ..> javax.json.JsonReader
+App.App_RegistrarAsistenciaEvento_Srv ..> javax.servlet.ServletException
+App.App_RegistrarAsistenciaEvento_Srv --|> javax.servlet.http.HttpServlet
+App.App_RegistrarAsistenciaEvento_Srv ..> javax.servlet.http.HttpServletRequest
+App.App_RegistrarAsistenciaEvento_Srv ..> javax.servlet.http.HttpServletResponse
+App.App_RegistrarAsistencia_Srv ..> java.lang.Override
+App.App_RegistrarAsistencia_Srv ..> Utilidades.GenericResponse
+App.App_RegistrarAsistencia_Srv ..> com.google.gson.Gson
+App.App_RegistrarAsistencia_Srv ..> dao.Asistencias.AsistenciasRegistrar_DAO
+App.App_RegistrarAsistencia_Srv ..> java.io.IOException
+App.App_RegistrarAsistencia_Srv ..> java.io.PrintWriter
+App.App_RegistrarAsistencia_Srv ..> javax.json.Json
+App.App_RegistrarAsistencia_Srv ..> javax.json.JsonObject
+App.App_RegistrarAsistencia_Srv ..> javax.json.JsonReader
+App.App_RegistrarAsistencia_Srv ..> javax.servlet.ServletException
+App.App_RegistrarAsistencia_Srv --|> javax.servlet.http.HttpServlet
+App.App_RegistrarAsistencia_Srv ..> javax.servlet.http.HttpServletRequest
+App.App_RegistrarAsistencia_Srv ..> javax.servlet.http.HttpServletResponse
+App.App_RegistrarAsistencia_Srv ..> masterDAO.Empleado
+App.App_RegistrarAsistencia_Srv ..> masterDAO.EmpleadoDao
+ManageBean.Eventos.Evento_MB ..> java.util.Date
+ManageBean.Maestros.Maestros_MB ..> java.util.Date
+ManageBean.Periodo.Periodo ..> java.util.Date
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> java.lang.Override
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> Utilidades.GenericResponse
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> com.google.gson.Gson
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> java.io.IOException
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> java.io.PrintWriter
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> java.util.logging.Level
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> java.util.logging.Logger
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> javax.servlet.ServletException
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar --|> javax.servlet.http.HttpServlet
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> javax.servlet.http.HttpServletRequest
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> javax.servlet.http.HttpServletResponse
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> javax.servlet.http.HttpSession
+Servlets.ActividadExtraescolar.CrearActividadExtraescolar ..> javax.servlet.http.Part
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> java.lang.Override
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> Utilidades.GenericResponse
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> com.google.gson.Gson
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> java.io.IOException
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> java.io.PrintWriter
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> java.util.logging.Level
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> java.util.logging.Logger
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> javax.servlet.ServletException
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv --|> javax.servlet.http.HttpServlet
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv ..> javax.servlet.http.HttpSession
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv ..> java.lang.Override
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv ..> Utilidades.GenericResponse
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv ..> com.google.gson.Gson
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv ..> dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv ..> java.io.IOException
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv ..> java.io.PrintWriter
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv ..> java.util.List
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv ..> javax.servlet.ServletException
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv --|> javax.servlet.http.HttpServlet
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.ActividadExtraescolar.EliminarActividadExtraescolar_Srv ..> javax.servlet.http.HttpSession
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> java.lang.Override
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> Utilidades.GenericResponse
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> dao.gruposyalumno.GruposAlumno_Inscripcion_DAO
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> java.io.IOException
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> java.util.ArrayList
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> java.util.List
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> javax.servlet.ServletException
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar --|> javax.servlet.http.HttpServlet
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> javax.servlet.http.HttpServletRequest
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> javax.servlet.http.HttpServletResponse
+Servlets.ActividadExtraescolar.ListarActividadExtraescolar ..> javax.servlet.http.HttpSession
+Servlets.Alumnos.ListarAlumnos_Srv ..> java.lang.Override
+Servlets.Alumnos.ListarAlumnos_Srv ..> java.io.IOException
+Servlets.Alumnos.ListarAlumnos_Srv ..> java.io.PrintWriter
+Servlets.Alumnos.ListarAlumnos_Srv ..> javax.servlet.ServletException
+Servlets.Alumnos.ListarAlumnos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Alumnos.ListarAlumnos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Alumnos.ListarAlumnos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> java.lang.Override
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> Utilidades.GenericResponse
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> dao.Alumnos.AlumnosListarGruposInscrito_DAO
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> dao.Grupos.Grupos_ListarGrupos_DAO
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> java.io.IOException
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> java.io.PrintWriter
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> java.util.ArrayList
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> java.util.List
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> javax.servlet.ServletException
+Servlets.Alumnos.ListarGruposInscrito_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> javax.servlet.http.HttpSession
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> masterDAO.Empleado
+Servlets.Alumnos.ListarGruposInscrito_Srv ..> masterDAO.Usuario
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.lang.Override
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> ManageBean.Alumnos.Alumnos_MB
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> ManageBean.Eventos.Evento_MB
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> Servlets.Eventos.ReportesEventos_Srv
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> Utilidades.Constantes
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> Utilidades.Cuenta
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> Utilidades.GenericResponse
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> com.google.gson.Gson
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> dao.Alumnos.ReporteAlumnosInscritos_DAO
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> dao.eventos.Eventos_ReportesEventos_DAO
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.io.ByteArrayOutputStream
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.io.File
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.io.FileInputStream
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.io.IOException
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.io.InputStream
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.io.PrintWriter
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.util.ArrayList
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.util.Calendar
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.util.HashMap
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.util.List
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.util.Map
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.util.logging.Level
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> java.util.logging.Logger
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> javax.servlet.ServletException
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> javax.servlet.http.HttpSession
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> net.sf.jasperreports.engine.JRException
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> net.sf.jasperreports.engine.JasperCompileManager
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> net.sf.jasperreports.engine.JasperExportManager
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> net.sf.jasperreports.engine.JasperFillManager
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> net.sf.jasperreports.engine.JasperPrint
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> net.sf.jasperreports.engine.JasperReport
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
+Servlets.Alumnos.ReportesAlumnoIsncrito_Srv ..> org.apache.commons.codec.binary.Base64
+Servlets.Asistencias.ListarAsistencias_Srv ..> java.lang.Override
+Servlets.Asistencias.ListarAsistencias_Srv ..> ManageBean.Alumnos.Alumnos_MB
+Servlets.Asistencias.ListarAsistencias_Srv ..> ManageBean.Asistencia.Clases_MB
+Servlets.Asistencias.ListarAsistencias_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.Asistencias.ListarAsistencias_Srv ..> dao.Asistencias.Asistencias_ListarAsistencias_DAO
+Servlets.Asistencias.ListarAsistencias_Srv ..> java.io.IOException
+Servlets.Asistencias.ListarAsistencias_Srv ..> java.util.ArrayList
+Servlets.Asistencias.ListarAsistencias_Srv ..> java.util.Arrays
+Servlets.Asistencias.ListarAsistencias_Srv ..> java.util.LinkedHashMap
+Servlets.Asistencias.ListarAsistencias_Srv ..> java.util.List
+Servlets.Asistencias.ListarAsistencias_Srv ..> java.util.Map
+Servlets.Asistencias.ListarAsistencias_Srv ..> javax.servlet.ServletException
+Servlets.Asistencias.ListarAsistencias_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Asistencias.ListarAsistencias_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Asistencias.ListarAsistencias_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Asistencias.ListarAsistencias_Srv ..> javax.servlet.http.HttpSession
+Servlets.CreditosExtraescolares.EditarCreditoExtraescolar_Srv ..> java.lang.Override
+Servlets.CreditosExtraescolares.EditarCreditoExtraescolar_Srv ..> java.io.IOException
+Servlets.CreditosExtraescolares.EditarCreditoExtraescolar_Srv ..> java.io.PrintWriter
+Servlets.CreditosExtraescolares.EditarCreditoExtraescolar_Srv ..> javax.servlet.ServletException
+Servlets.CreditosExtraescolares.EditarCreditoExtraescolar_Srv --|> javax.servlet.http.HttpServlet
+Servlets.CreditosExtraescolares.EditarCreditoExtraescolar_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.CreditosExtraescolares.EditarCreditoExtraescolar_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> java.lang.Override
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> ManageBean.CreditoExtraescolar.CreditoExtraescolar_MB
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> Utilidades.GenericResponse
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> dao.creditos.Creditos_ListarCreditos_DAO
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> dao.maestros.Maestros_ListarMaestros_DAO
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> java.io.IOException
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> java.io.PrintWriter
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> java.util.ArrayList
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> java.util.List
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> javax.servlet.ServletException
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv --|> javax.servlet.http.HttpServlet
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.CreditosExtraescolares.ListarCreditoExtraescolar_Srv ..> javax.servlet.http.HttpSession
+Servlets.Eventos.CrearEventos_Srv ..> java.lang.Override
+Servlets.Eventos.CrearEventos_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.Eventos.CrearEventos_Srv ..> ManageBean.Eventos.Evento_MB
+Servlets.Eventos.CrearEventos_Srv ..> ManageBean.Usuarios.Usuarios_MB
+Servlets.Eventos.CrearEventos_Srv ..> Servlets.ActividadExtraescolar.CrearActividadExtraescolar
+Servlets.Eventos.CrearEventos_Srv ..> Servlets.Maestros.CrearMaestro_Srv
+Servlets.Eventos.CrearEventos_Srv ..> Utilidades.GenericResponse
+Servlets.Eventos.CrearEventos_Srv ..> com.google.gson.Gson
+Servlets.Eventos.CrearEventos_Srv ..> dao.eventos.Eventos_CrearEvento_DAO
+Servlets.Eventos.CrearEventos_Srv ..> java.io.IOException
+Servlets.Eventos.CrearEventos_Srv ..> java.io.PrintWriter
+Servlets.Eventos.CrearEventos_Srv ..> java.text.ParseException
+Servlets.Eventos.CrearEventos_Srv ..> java.text.SimpleDateFormat
+Servlets.Eventos.CrearEventos_Srv ..> java.util.ArrayList
+Servlets.Eventos.CrearEventos_Srv ..> java.util.Date
+Servlets.Eventos.CrearEventos_Srv ..> java.util.List
+Servlets.Eventos.CrearEventos_Srv ..> java.util.logging.Level
+Servlets.Eventos.CrearEventos_Srv ..> java.util.logging.Logger
+Servlets.Eventos.CrearEventos_Srv ..> javax.servlet.ServletException
+Servlets.Eventos.CrearEventos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Eventos.CrearEventos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Eventos.CrearEventos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Eventos.CrearEventos_Srv ..> javax.servlet.http.HttpSession
+Servlets.Eventos.CrearEventos_Srv ..> masterDAO.Empleado
+Servlets.Eventos.EditarEventos_Srv ..> java.lang.Override
+Servlets.Eventos.EditarEventos_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.Eventos.EditarEventos_Srv ..> ManageBean.Eventos.Evento_MB
+Servlets.Eventos.EditarEventos_Srv ..> ManageBean.Usuarios.Usuarios_MB
+Servlets.Eventos.EditarEventos_Srv ..> Servlets.ActividadExtraescolar.CrearActividadExtraescolar
+Servlets.Eventos.EditarEventos_Srv ..> Servlets.Maestros.CrearMaestro_Srv
+Servlets.Eventos.EditarEventos_Srv ..> Utilidades.GenericResponse
+Servlets.Eventos.EditarEventos_Srv ..> com.google.gson.Gson
+Servlets.Eventos.EditarEventos_Srv ..> dao.eventos.Evento_EditarEvento_DAO
+Servlets.Eventos.EditarEventos_Srv ..> java.io.IOException
+Servlets.Eventos.EditarEventos_Srv ..> java.io.PrintWriter
+Servlets.Eventos.EditarEventos_Srv ..> java.text.ParseException
+Servlets.Eventos.EditarEventos_Srv ..> java.text.SimpleDateFormat
+Servlets.Eventos.EditarEventos_Srv ..> java.util.ArrayList
+Servlets.Eventos.EditarEventos_Srv ..> java.util.Date
+Servlets.Eventos.EditarEventos_Srv ..> java.util.List
+Servlets.Eventos.EditarEventos_Srv ..> java.util.logging.Level
+Servlets.Eventos.EditarEventos_Srv ..> java.util.logging.Logger
+Servlets.Eventos.EditarEventos_Srv ..> javax.servlet.ServletException
+Servlets.Eventos.EditarEventos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Eventos.EditarEventos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Eventos.EditarEventos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Eventos.EditarEventos_Srv ..> javax.servlet.http.HttpSession
+Servlets.Eventos.EditarEventos_Srv ..> masterDAO.Empleado
+Servlets.Eventos.EliminarEventos_Srv ..> java.lang.Override
+Servlets.Eventos.EliminarEventos_Srv ..> Utilidades.GenericResponse
+Servlets.Eventos.EliminarEventos_Srv ..> com.google.gson.Gson
+Servlets.Eventos.EliminarEventos_Srv ..> dao.eventos.Eventos_EliminarEvento_DAO
+Servlets.Eventos.EliminarEventos_Srv ..> dao.maestros.Maestros_EliminarMaestros_DAO
+Servlets.Eventos.EliminarEventos_Srv ..> java.io.IOException
+Servlets.Eventos.EliminarEventos_Srv ..> java.io.PrintWriter
+Servlets.Eventos.EliminarEventos_Srv ..> javax.servlet.ServletException
+Servlets.Eventos.EliminarEventos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Eventos.EliminarEventos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Eventos.EliminarEventos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Eventos.EliminarEventos_Srv ..> javax.servlet.http.HttpSession
+Servlets.Eventos.ListarEventoMaestro_Srv ..> java.lang.Override
+Servlets.Eventos.ListarEventoMaestro_Srv ..> ManageBean.Eventos.Evento_MB
+Servlets.Eventos.ListarEventoMaestro_Srv ..> Utilidades.GenericResponse
+Servlets.Eventos.ListarEventoMaestro_Srv ..> Utilidades.Validaciones
+Servlets.Eventos.ListarEventoMaestro_Srv ..> com.google.gson.Gson
+Servlets.Eventos.ListarEventoMaestro_Srv ..> dao.eventos.Eventos_ListarEventos_DAO
+Servlets.Eventos.ListarEventoMaestro_Srv ..> java.io.IOException
+Servlets.Eventos.ListarEventoMaestro_Srv ..> java.io.PrintWriter
+Servlets.Eventos.ListarEventoMaestro_Srv ..> java.util.ArrayList
+Servlets.Eventos.ListarEventoMaestro_Srv ..> java.util.List
+Servlets.Eventos.ListarEventoMaestro_Srv ..> javax.servlet.ServletException
+Servlets.Eventos.ListarEventoMaestro_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Eventos.ListarEventoMaestro_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Eventos.ListarEventoMaestro_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Eventos.ListarEventoMaestro_Srv ..> javax.servlet.http.HttpSession
+Servlets.Eventos.ListarEventoMaestro_Srv ..> masterDAO.Empleado
+Servlets.Eventos.ListarEventos_Srv ..> java.lang.Override
+Servlets.Eventos.ListarEventos_Srv ..> ManageBean.Eventos.Evento_MB
+Servlets.Eventos.ListarEventos_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Eventos.ListarEventos_Srv ..> Utilidades.GenericResponse
+Servlets.Eventos.ListarEventos_Srv ..> dao.eventos.Eventos_ListarEventos_DAO
+Servlets.Eventos.ListarEventos_Srv ..> java.io.IOException
+Servlets.Eventos.ListarEventos_Srv ..> java.io.PrintWriter
+Servlets.Eventos.ListarEventos_Srv ..> java.util.ArrayList
+Servlets.Eventos.ListarEventos_Srv ..> java.util.List
+Servlets.Eventos.ListarEventos_Srv ..> javax.servlet.ServletException
+Servlets.Eventos.ListarEventos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Eventos.ListarEventos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Eventos.ListarEventos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Eventos.ListarEventos_Srv ..> javax.servlet.http.HttpSession
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.lang.Override
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> ManageBean.Eventos.Evento_MB
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> Utilidades.Constantes
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> Utilidades.GenericResponse
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> com.google.gson.Gson
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> dao.eventos.Eventos_ReportesEventos_DAO
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.io.ByteArrayOutputStream
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.io.File
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.io.FileInputStream
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.io.IOException
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.io.InputStream
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.io.PrintWriter
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.util.HashMap
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.util.List
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.util.Map
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.util.logging.Level
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> java.util.logging.Logger
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> javax.servlet.ServletException
+Servlets.Eventos.ReportesEventosMaestro_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> javax.servlet.http.HttpSession
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> masterDAO.Empleado
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> net.sf.jasperreports.engine.JRException
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> net.sf.jasperreports.engine.JasperCompileManager
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> net.sf.jasperreports.engine.JasperExportManager
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> net.sf.jasperreports.engine.JasperFillManager
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> net.sf.jasperreports.engine.JasperPrint
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> net.sf.jasperreports.engine.JasperReport
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
+Servlets.Eventos.ReportesEventosMaestro_Srv ..> org.apache.commons.codec.binary.Base64
+Servlets.Eventos.ReportesEventos_Srv ..> java.lang.Override
+Servlets.Eventos.ReportesEventos_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.Eventos.ReportesEventos_Srv ..> ManageBean.Eventos.Evento_MB
+Servlets.Eventos.ReportesEventos_Srv ..> Utilidades.Constantes
+Servlets.Eventos.ReportesEventos_Srv ..> Utilidades.GenericResponse
+Servlets.Eventos.ReportesEventos_Srv ..> com.google.gson.Gson
+Servlets.Eventos.ReportesEventos_Srv ..> dao.eventos.Eventos_ReportesEventos_DAO
+Servlets.Eventos.ReportesEventos_Srv ..> java.io.ByteArrayOutputStream
+Servlets.Eventos.ReportesEventos_Srv ..> java.io.File
+Servlets.Eventos.ReportesEventos_Srv ..> java.io.FileInputStream
+Servlets.Eventos.ReportesEventos_Srv ..> java.io.IOException
+Servlets.Eventos.ReportesEventos_Srv ..> java.io.InputStream
+Servlets.Eventos.ReportesEventos_Srv ..> java.io.PrintWriter
+Servlets.Eventos.ReportesEventos_Srv ..> java.util.ArrayList
+Servlets.Eventos.ReportesEventos_Srv ..> java.util.Calendar
+Servlets.Eventos.ReportesEventos_Srv ..> java.util.HashMap
+Servlets.Eventos.ReportesEventos_Srv ..> java.util.List
+Servlets.Eventos.ReportesEventos_Srv ..> java.util.Map
+Servlets.Eventos.ReportesEventos_Srv ..> java.util.logging.Level
+Servlets.Eventos.ReportesEventos_Srv ..> java.util.logging.Logger
+Servlets.Eventos.ReportesEventos_Srv ..> javax.servlet.ServletException
+Servlets.Eventos.ReportesEventos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Eventos.ReportesEventos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Eventos.ReportesEventos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Eventos.ReportesEventos_Srv ..> javax.servlet.http.HttpSession
+Servlets.Eventos.ReportesEventos_Srv ..> net.sf.jasperreports.engine.JRException
+Servlets.Eventos.ReportesEventos_Srv ..> net.sf.jasperreports.engine.JasperCompileManager
+Servlets.Eventos.ReportesEventos_Srv ..> net.sf.jasperreports.engine.JasperExportManager
+Servlets.Eventos.ReportesEventos_Srv ..> net.sf.jasperreports.engine.JasperFillManager
+Servlets.Eventos.ReportesEventos_Srv ..> net.sf.jasperreports.engine.JasperPrint
+Servlets.Eventos.ReportesEventos_Srv ..> net.sf.jasperreports.engine.JasperReport
+Servlets.Eventos.ReportesEventos_Srv ..> net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
+Servlets.Eventos.ReportesEventos_Srv ..> org.apache.commons.codec.binary.Base64
+Servlets.Grupos.CrearGrupos_Srv ..> java.lang.Override
+Servlets.Grupos.CrearGrupos_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.Grupos.CrearGrupos_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.Grupos.CrearGrupos_Srv ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+Servlets.Grupos.CrearGrupos_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Grupos.CrearGrupos_Srv ..> Servlets.ActividadExtraescolar.CrearActividadExtraescolar
+Servlets.Grupos.CrearGrupos_Srv ..> Utilidades.GenericResponse
+Servlets.Grupos.CrearGrupos_Srv ..> com.google.gson.Gson
+Servlets.Grupos.CrearGrupos_Srv ..> dao.Grupos.Grupos_CrearGrupo_DAO
+Servlets.Grupos.CrearGrupos_Srv ..> java.io.IOException
+Servlets.Grupos.CrearGrupos_Srv ..> java.io.PrintWriter
+Servlets.Grupos.CrearGrupos_Srv ..> java.util.ArrayList
+Servlets.Grupos.CrearGrupos_Srv ..> java.util.Arrays
+Servlets.Grupos.CrearGrupos_Srv ..> java.util.List
+Servlets.Grupos.CrearGrupos_Srv ..> java.util.logging.Level
+Servlets.Grupos.CrearGrupos_Srv ..> java.util.logging.Logger
+Servlets.Grupos.CrearGrupos_Srv ..> javax.servlet.ServletException
+Servlets.Grupos.CrearGrupos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Grupos.CrearGrupos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Grupos.CrearGrupos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Grupos.CrearGrupos_Srv ..> javax.servlet.http.HttpSession
+Servlets.Grupos.DetallarGrupos_Srv ..> java.lang.Override
+Servlets.Grupos.DetallarGrupos_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.Grupos.DetallarGrupos_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.Grupos.DetallarGrupos_Srv ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+Servlets.Grupos.DetallarGrupos_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Grupos.DetallarGrupos_Srv ..> dao.Grupos.Grupos_CrearGrupo_DAO
+Servlets.Grupos.DetallarGrupos_Srv ..> dao.Grupos.Grupos_DetalleGrupo_DAO
+Servlets.Grupos.DetallarGrupos_Srv ..> java.io.IOException
+Servlets.Grupos.DetallarGrupos_Srv ..> java.io.PrintWriter
+Servlets.Grupos.DetallarGrupos_Srv ..> java.util.ArrayList
+Servlets.Grupos.DetallarGrupos_Srv ..> java.util.Arrays
+Servlets.Grupos.DetallarGrupos_Srv ..> java.util.List
+Servlets.Grupos.DetallarGrupos_Srv ..> javax.servlet.ServletException
+Servlets.Grupos.DetallarGrupos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Grupos.DetallarGrupos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Grupos.DetallarGrupos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Grupos.DetallarGrupos_Srv ..> javax.servlet.http.HttpSession
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> java.lang.Override
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> dao.Grupos.Grupos_CrearGrupo_DAO
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> dao.Grupos.Grupos_DetalleGrupo_DAO
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> java.io.IOException
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> java.io.PrintWriter
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> java.util.ArrayList
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> java.util.Arrays
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> java.util.List
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> javax.servlet.ServletException
+Servlets.Grupos.DetalleGrupoAlumno_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Grupos.DetalleGrupoAlumno_Srv ..> javax.servlet.http.HttpSession
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> java.lang.Override
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> dao.Grupos.Grupos_CrearGrupo_DAO
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> dao.Grupos.Grupos_DetalleGrupo_DAO
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> java.io.IOException
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> java.io.PrintWriter
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> java.util.ArrayList
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> java.util.Arrays
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> java.util.List
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> javax.servlet.ServletException
+Servlets.Grupos.DetalleGrupoMaestro_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Grupos.DetalleGrupoMaestro_Srv ..> javax.servlet.http.HttpSession
+Servlets.Grupos.EditarGrupos_Srv ..> java.lang.Override
+Servlets.Grupos.EditarGrupos_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.Grupos.EditarGrupos_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.Grupos.EditarGrupos_Srv ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+Servlets.Grupos.EditarGrupos_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Grupos.EditarGrupos_Srv ..> Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv
+Servlets.Grupos.EditarGrupos_Srv ..> Utilidades.GenericResponse
+Servlets.Grupos.EditarGrupos_Srv ..> com.google.gson.Gson
+Servlets.Grupos.EditarGrupos_Srv ..> dao.Grupos.Grupos_CrearGrupo_DAO
+Servlets.Grupos.EditarGrupos_Srv ..> dao.Grupos.Grupos_EditarGrupo_DAO
+Servlets.Grupos.EditarGrupos_Srv ..> dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO
+Servlets.Grupos.EditarGrupos_Srv ..> java.io.IOException
+Servlets.Grupos.EditarGrupos_Srv ..> java.io.PrintWriter
+Servlets.Grupos.EditarGrupos_Srv ..> java.util.ArrayList
+Servlets.Grupos.EditarGrupos_Srv ..> java.util.Arrays
+Servlets.Grupos.EditarGrupos_Srv ..> java.util.List
+Servlets.Grupos.EditarGrupos_Srv ..> java.util.logging.Level
+Servlets.Grupos.EditarGrupos_Srv ..> java.util.logging.Logger
+Servlets.Grupos.EditarGrupos_Srv ..> javax.servlet.ServletException
+Servlets.Grupos.EditarGrupos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Grupos.EditarGrupos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Grupos.EditarGrupos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Grupos.EditarGrupos_Srv ..> javax.servlet.http.HttpSession
+Servlets.Grupos.EliminarGrupos_Srv ..> java.lang.Override
+Servlets.Grupos.EliminarGrupos_Srv ..> Utilidades.GenericResponse
+Servlets.Grupos.EliminarGrupos_Srv ..> com.google.gson.Gson
+Servlets.Grupos.EliminarGrupos_Srv ..> dao.Grupos.Grupos_EliminarGrupos_DAO
+Servlets.Grupos.EliminarGrupos_Srv ..> dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO
+Servlets.Grupos.EliminarGrupos_Srv ..> java.io.IOException
+Servlets.Grupos.EliminarGrupos_Srv ..> java.io.PrintWriter
+Servlets.Grupos.EliminarGrupos_Srv ..> javax.servlet.ServletException
+Servlets.Grupos.EliminarGrupos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Grupos.EliminarGrupos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Grupos.EliminarGrupos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Grupos.EliminarGrupos_Srv ..> javax.servlet.http.HttpSession
+Servlets.Grupos.InscripcionGrupos_Srv ..> java.lang.Override
+Servlets.Grupos.InscripcionGrupos_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.Grupos.InscripcionGrupos_Srv ..> ManageBean.Alumnos.Alumnos_MB
+Servlets.Grupos.InscripcionGrupos_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.Grupos.InscripcionGrupos_Srv ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+Servlets.Grupos.InscripcionGrupos_Srv ..> Servlets.ActividadExtraescolar.CrearActividadExtraescolar
+Servlets.Grupos.InscripcionGrupos_Srv ..> Utilidades.GenericResponse
+Servlets.Grupos.InscripcionGrupos_Srv ..> com.google.gson.Gson
+Servlets.Grupos.InscripcionGrupos_Srv ..> dao.Grupos.Grupos_ListarGrupos_DAO
+Servlets.Grupos.InscripcionGrupos_Srv ..> dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO
+Servlets.Grupos.InscripcionGrupos_Srv ..> dao.creditos.Creditos_CrearCredito_DAO
+Servlets.Grupos.InscripcionGrupos_Srv ..> dao.gruposyalumno.GruposAlumno_Inscripcion_DAO
+Servlets.Grupos.InscripcionGrupos_Srv ..> java.io.IOException
+Servlets.Grupos.InscripcionGrupos_Srv ..> java.io.PrintWriter
+Servlets.Grupos.InscripcionGrupos_Srv ..> java.util.ArrayList
+Servlets.Grupos.InscripcionGrupos_Srv ..> java.util.Arrays
+Servlets.Grupos.InscripcionGrupos_Srv ..> java.util.HashMap
+Servlets.Grupos.InscripcionGrupos_Srv ..> java.util.List
+Servlets.Grupos.InscripcionGrupos_Srv ..> java.util.Map
+Servlets.Grupos.InscripcionGrupos_Srv ..> java.util.logging.Level
+Servlets.Grupos.InscripcionGrupos_Srv ..> java.util.logging.Logger
+Servlets.Grupos.InscripcionGrupos_Srv ..> javax.servlet.ServletException
+Servlets.Grupos.InscripcionGrupos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Grupos.InscripcionGrupos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Grupos.InscripcionGrupos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Grupos.InscripcionGrupos_Srv ..> javax.servlet.http.HttpSession
+Servlets.Grupos.InscripcionGrupos_Srv ..> masterDAO.Empleado
+Servlets.Grupos.InscripcionGrupos_Srv ..> masterDAO.Usuario
+Servlets.Grupos.ListarGruposMaestro_Srv ..> java.lang.Override
+Servlets.Grupos.ListarGruposMaestro_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.Grupos.ListarGruposMaestro_Srv ..> Utilidades.GenericResponse
+Servlets.Grupos.ListarGruposMaestro_Srv ..> com.google.gson.Gson
+Servlets.Grupos.ListarGruposMaestro_Srv ..> dao.Grupos.Grupos_ListarGrupos_DAO
+Servlets.Grupos.ListarGruposMaestro_Srv ..> java.io.IOException
+Servlets.Grupos.ListarGruposMaestro_Srv ..> java.io.PrintWriter
+Servlets.Grupos.ListarGruposMaestro_Srv ..> java.util.ArrayList
+Servlets.Grupos.ListarGruposMaestro_Srv ..> java.util.List
+Servlets.Grupos.ListarGruposMaestro_Srv ..> java.util.logging.Logger
+Servlets.Grupos.ListarGruposMaestro_Srv ..> javax.servlet.ServletException
+Servlets.Grupos.ListarGruposMaestro_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Grupos.ListarGruposMaestro_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Grupos.ListarGruposMaestro_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Grupos.ListarGruposMaestro_Srv ..> javax.servlet.http.HttpSession
+Servlets.Grupos.ListarGruposMaestro_Srv ..> masterDAO.Empleado
+Servlets.Grupos.ListarGrupos_Srv ..> java.lang.Override
+Servlets.Grupos.ListarGrupos_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.Grupos.ListarGrupos_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Grupos.ListarGrupos_Srv ..> Utilidades.Constantes
+Servlets.Grupos.ListarGrupos_Srv ..> Utilidades.GenericResponse
+Servlets.Grupos.ListarGrupos_Srv ..> dao.Grupos.Grupos_ListarGrupos_DAO
+Servlets.Grupos.ListarGrupos_Srv ..> java.io.IOException
+Servlets.Grupos.ListarGrupos_Srv ..> java.util.ArrayList
+Servlets.Grupos.ListarGrupos_Srv ..> java.util.List
+Servlets.Grupos.ListarGrupos_Srv ..> javax.servlet.ServletException
+Servlets.Grupos.ListarGrupos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Grupos.ListarGrupos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Grupos.ListarGrupos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Grupos.ListarGrupos_Srv ..> javax.servlet.http.HttpSession
+Servlets.GruposAlumno.BajaAlumno_Srv ..> java.lang.Override
+Servlets.GruposAlumno.BajaAlumno_Srv ..> Utilidades.GenericResponse
+Servlets.GruposAlumno.BajaAlumno_Srv ..> com.google.gson.Gson
+Servlets.GruposAlumno.BajaAlumno_Srv ..> dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO
+Servlets.GruposAlumno.BajaAlumno_Srv ..> dao.gruposyalumno.GruposAlumno_Baja_DAO
+Servlets.GruposAlumno.BajaAlumno_Srv ..> java.io.IOException
+Servlets.GruposAlumno.BajaAlumno_Srv ..> java.io.PrintWriter
+Servlets.GruposAlumno.BajaAlumno_Srv ..> javax.servlet.ServletException
+Servlets.GruposAlumno.BajaAlumno_Srv --|> javax.servlet.http.HttpServlet
+Servlets.GruposAlumno.BajaAlumno_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.GruposAlumno.BajaAlumno_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.GruposAlumno.BajaAlumno_Srv ..> javax.servlet.http.HttpSession
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> java.lang.Override
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> ManageBean.Alumnos.Alumnos_MB
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> Utilidades.GenericResponse
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> com.fasterxml.jackson.core.type.TypeReference
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> com.fasterxml.jackson.databind.ObjectMapper
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> com.google.gson.Gson
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> com.google.gson.JsonObject
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> com.google.gson.JsonParser
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> com.google.gson.JsonSyntaxException
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> com.google.gson.reflect.TypeToken
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> dao.creditos.Creditos_EditarCredito_DAO
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> java.io.IOException
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> java.io.PrintWriter
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> java.io.UnsupportedEncodingException
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> java.net.URLDecoder
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> java.util.ArrayList
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> java.util.Collections
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> java.util.List
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> java.util.Map
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> java.util.stream.Collectors
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> javax.servlet.ServletException
+Servlets.GruposAlumno.CalificarAlumnos_Srv --|> javax.servlet.http.HttpServlet
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> javax.servlet.http.HttpSession
+Servlets.GruposAlumno.CalificarAlumnos_Srv ..> javax.ws.rs.client.Entity
+Servlets.GruposAlumno.EditarAlumno_Srv ..> java.lang.Override
+Servlets.GruposAlumno.EditarAlumno_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.GruposAlumno.EditarAlumno_Srv ..> ManageBean.Alumnos.Alumnos_MB
+Servlets.GruposAlumno.EditarAlumno_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.GruposAlumno.EditarAlumno_Srv ..> Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv
+Servlets.GruposAlumno.EditarAlumno_Srv ..> Utilidades.GenericResponse
+Servlets.GruposAlumno.EditarAlumno_Srv ..> com.google.gson.Gson
+Servlets.GruposAlumno.EditarAlumno_Srv ..> dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO
+Servlets.GruposAlumno.EditarAlumno_Srv ..> dao.gruposyalumno.GruposAlumno_Selectivo_DAO
+Servlets.GruposAlumno.EditarAlumno_Srv ..> java.io.IOException
+Servlets.GruposAlumno.EditarAlumno_Srv ..> java.io.PrintWriter
+Servlets.GruposAlumno.EditarAlumno_Srv ..> java.util.logging.Level
+Servlets.GruposAlumno.EditarAlumno_Srv ..> java.util.logging.Logger
+Servlets.GruposAlumno.EditarAlumno_Srv ..> javax.servlet.ServletException
+Servlets.GruposAlumno.EditarAlumno_Srv --|> javax.servlet.http.HttpServlet
+Servlets.GruposAlumno.EditarAlumno_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.GruposAlumno.EditarAlumno_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.GruposAlumno.EditarAlumno_Srv ..> javax.servlet.http.HttpSession
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> java.lang.Override
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> ManageBean.Alumnos.Alumnos_MB
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> ManageBean.Grupos.Grupos_MB
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> Servlets.ActividadExtraescolar.CrearActividadExtraescolar
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> Utilidades.GenericResponse
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> com.google.gson.Gson
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> dao.creditos.Creditos_CrearCredito_DAO
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> dao.gruposyalumno.GruposAlumno_Inscripcion_DAO
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> java.io.IOException
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> java.io.PrintWriter
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> java.util.logging.Level
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> java.util.logging.Logger
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> javax.servlet.ServletException
+Servlets.GruposAlumno.InscribirAlumnoGrupo --|> javax.servlet.http.HttpServlet
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> javax.servlet.http.HttpServletRequest
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> javax.servlet.http.HttpServletResponse
+Servlets.GruposAlumno.InscribirAlumnoGrupo ..> javax.servlet.http.HttpSession
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> java.lang.Override
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> ManageBean.Alumnos.Alumnos_MB
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> Utilidades.GenericResponse
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> java.io.IOException
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> java.util.ArrayList
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> java.util.List
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> javax.servlet.ServletException
+Servlets.GruposAlumno.ListarGruposAlumno_Srv --|> javax.servlet.http.HttpServlet
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> javax.servlet.http.HttpSession
+Servlets.GruposAlumno.ListarGruposAlumno_Srv ..> masterDAO.Empleado
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> java.lang.Override
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> ManageBean.Alumnos.Alumnos_MB
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> Servlets.ActividadExtraescolar.CrearActividadExtraescolar
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> Utilidades.GenericResponse
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> com.google.gson.Gson
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> dao.creditos.Creditos_CrearCredito_DAO
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> dao.gruposyalumno.GruposAlumno_Inscripcion_DAO
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> java.io.IOException
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> java.io.PrintWriter
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> java.util.Set
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> java.util.logging.Level
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> java.util.logging.Logger
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> javax.servlet.ServletException
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv --|> javax.servlet.http.HttpServlet
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.GruposAlumno.maestroInscribirAlumno_Srv ..> javax.servlet.http.HttpSession
+Servlets.Historico.Historico_ListarHistorico_Srv ..> java.lang.Override
+Servlets.Historico.Historico_ListarHistorico_Srv ..> ManageBean.RegistroHistorico.RegistroHistorico_MB
+Servlets.Historico.Historico_ListarHistorico_Srv ..> Utilidades.GenericResponse
+Servlets.Historico.Historico_ListarHistorico_Srv ..> dao.Historico.Historico_ListarHistorico
+Servlets.Historico.Historico_ListarHistorico_Srv ..> java.io.IOException
+Servlets.Historico.Historico_ListarHistorico_Srv ..> java.io.PrintWriter
+Servlets.Historico.Historico_ListarHistorico_Srv ..> java.util.ArrayList
+Servlets.Historico.Historico_ListarHistorico_Srv ..> java.util.List
+Servlets.Historico.Historico_ListarHistorico_Srv ..> javax.servlet.ServletException
+Servlets.Historico.Historico_ListarHistorico_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Historico.Historico_ListarHistorico_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Historico.Historico_ListarHistorico_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Historico.Historico_ListarHistorico_Srv ..> javax.servlet.http.HttpSession
+Servlets.Index.Index_Srv ..> java.lang.Override
+Servlets.Index.Index_Srv ..> ManageBean.Periodo.Periodo
+Servlets.Index.Index_Srv ..> Utilidades.CaptchaGenerador
+Servlets.Index.Index_Srv ..> Utilidades.Constantes
+Servlets.Index.Index_Srv ..> dao.Periodo.Periodo_DAO
+Servlets.Index.Index_Srv ..> java.io.IOException
+Servlets.Index.Index_Srv ..> java.io.PrintWriter
+Servlets.Index.Index_Srv ..> javax.servlet.ServletException
+Servlets.Index.Index_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Index.Index_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Index.Index_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Index.Index_Srv ..> javax.servlet.http.HttpSession
+Servlets.Index.Index_Srv ..> masterDAO.Empleado
+Servlets.Index.Index_Srv ..> masterDAO.Usuario
+Servlets.Maestros.CrearMaestro_Srv ..> java.lang.Override
+Servlets.Maestros.CrearMaestro_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Maestros.CrearMaestro_Srv ..> Servlets.ActividadExtraescolar.CrearActividadExtraescolar
+Servlets.Maestros.CrearMaestro_Srv ..> Utilidades.GenericResponse
+Servlets.Maestros.CrearMaestro_Srv ..> com.google.gson.Gson
+Servlets.Maestros.CrearMaestro_Srv ..> dao.maestros.Maestros_CrearMaestros_DAO
+Servlets.Maestros.CrearMaestro_Srv ..> java.io.IOException
+Servlets.Maestros.CrearMaestro_Srv ..> java.io.PrintWriter
+Servlets.Maestros.CrearMaestro_Srv ..> java.text.ParseException
+Servlets.Maestros.CrearMaestro_Srv ..> java.text.SimpleDateFormat
+Servlets.Maestros.CrearMaestro_Srv ..> java.util.Date
+Servlets.Maestros.CrearMaestro_Srv ..> java.util.logging.Level
+Servlets.Maestros.CrearMaestro_Srv ..> java.util.logging.Logger
+Servlets.Maestros.CrearMaestro_Srv ..> javax.servlet.ServletException
+Servlets.Maestros.CrearMaestro_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Maestros.CrearMaestro_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Maestros.CrearMaestro_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Maestros.CrearMaestro_Srv ..> javax.servlet.http.HttpSession
+Servlets.Maestros.CrearMaestro_Srv ..> masterDAO.Empleado
+Servlets.Maestros.DetallesMaestro_Srv ..> java.lang.Override
+Servlets.Maestros.DetallesMaestro_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Maestros.DetallesMaestro_Srv ..> Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv
+Servlets.Maestros.DetallesMaestro_Srv ..> Utilidades.GenericResponse
+Servlets.Maestros.DetallesMaestro_Srv ..> com.google.gson.Gson
+Servlets.Maestros.DetallesMaestro_Srv ..> dao.maestros.Maestros_DetallesMaestros_DAO
+Servlets.Maestros.DetallesMaestro_Srv ..> dao.maestros.Maestros_EditarMaestros_DAO
+Servlets.Maestros.DetallesMaestro_Srv ..> java.io.IOException
+Servlets.Maestros.DetallesMaestro_Srv ..> java.io.PrintWriter
+Servlets.Maestros.DetallesMaestro_Srv ..> java.text.ParseException
+Servlets.Maestros.DetallesMaestro_Srv ..> java.text.SimpleDateFormat
+Servlets.Maestros.DetallesMaestro_Srv ..> java.util.Date
+Servlets.Maestros.DetallesMaestro_Srv ..> java.util.logging.Level
+Servlets.Maestros.DetallesMaestro_Srv ..> java.util.logging.Logger
+Servlets.Maestros.DetallesMaestro_Srv ..> javax.servlet.ServletException
+Servlets.Maestros.DetallesMaestro_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Maestros.DetallesMaestro_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Maestros.DetallesMaestro_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Maestros.DetallesMaestro_Srv ..> javax.servlet.http.HttpSession
+Servlets.Maestros.EditarInfo_Srv ..> java.lang.Override
+Servlets.Maestros.EditarInfo_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Maestros.EditarInfo_Srv ..> Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv
+Servlets.Maestros.EditarInfo_Srv ..> Utilidades.GenericResponse
+Servlets.Maestros.EditarInfo_Srv ..> com.google.gson.Gson
+Servlets.Maestros.EditarInfo_Srv ..> dao.maestros.Maestros_EditarMaestros_DAO
+Servlets.Maestros.EditarInfo_Srv ..> java.io.IOException
+Servlets.Maestros.EditarInfo_Srv ..> java.io.PrintWriter
+Servlets.Maestros.EditarInfo_Srv ..> java.text.ParseException
+Servlets.Maestros.EditarInfo_Srv ..> java.text.SimpleDateFormat
+Servlets.Maestros.EditarInfo_Srv ..> java.util.Date
+Servlets.Maestros.EditarInfo_Srv ..> java.util.logging.Level
+Servlets.Maestros.EditarInfo_Srv ..> java.util.logging.Logger
+Servlets.Maestros.EditarInfo_Srv ..> javax.servlet.ServletException
+Servlets.Maestros.EditarInfo_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Maestros.EditarInfo_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Maestros.EditarInfo_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Maestros.EditarInfo_Srv ..> javax.servlet.http.HttpSession
+Servlets.Maestros.EditarMaestro_Srv ..> java.lang.Override
+Servlets.Maestros.EditarMaestro_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Maestros.EditarMaestro_Srv ..> Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv
+Servlets.Maestros.EditarMaestro_Srv ..> Utilidades.GenericResponse
+Servlets.Maestros.EditarMaestro_Srv ..> com.google.gson.Gson
+Servlets.Maestros.EditarMaestro_Srv ..> dao.maestros.Maestros_EditarMaestros_DAO
+Servlets.Maestros.EditarMaestro_Srv ..> java.io.IOException
+Servlets.Maestros.EditarMaestro_Srv ..> java.io.PrintWriter
+Servlets.Maestros.EditarMaestro_Srv ..> java.text.ParseException
+Servlets.Maestros.EditarMaestro_Srv ..> java.text.SimpleDateFormat
+Servlets.Maestros.EditarMaestro_Srv ..> java.util.Date
+Servlets.Maestros.EditarMaestro_Srv ..> java.util.logging.Level
+Servlets.Maestros.EditarMaestro_Srv ..> java.util.logging.Logger
+Servlets.Maestros.EditarMaestro_Srv ..> javax.servlet.ServletException
+Servlets.Maestros.EditarMaestro_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Maestros.EditarMaestro_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Maestros.EditarMaestro_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Maestros.EditarMaestro_Srv ..> javax.servlet.http.HttpSession
+Servlets.Maestros.EliminarMaestro_Srv ..> java.lang.Override
+Servlets.Maestros.EliminarMaestro_Srv ..> Utilidades.GenericResponse
+Servlets.Maestros.EliminarMaestro_Srv ..> com.google.gson.Gson
+Servlets.Maestros.EliminarMaestro_Srv ..> dao.maestros.Maestros_EliminarMaestros_DAO
+Servlets.Maestros.EliminarMaestro_Srv ..> java.io.IOException
+Servlets.Maestros.EliminarMaestro_Srv ..> java.io.PrintWriter
+Servlets.Maestros.EliminarMaestro_Srv ..> javax.servlet.ServletException
+Servlets.Maestros.EliminarMaestro_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Maestros.EliminarMaestro_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Maestros.EliminarMaestro_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Maestros.EliminarMaestro_Srv ..> javax.servlet.http.HttpSession
+Servlets.Maestros.InfoMaestro_Srv ..> java.lang.Override
+Servlets.Maestros.InfoMaestro_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Maestros.InfoMaestro_Srv ..> dao.maestros.Maestros_EditarMaestros_DAO
+Servlets.Maestros.InfoMaestro_Srv ..> java.io.IOException
+Servlets.Maestros.InfoMaestro_Srv ..> java.io.PrintWriter
+Servlets.Maestros.InfoMaestro_Srv ..> java.text.SimpleDateFormat
+Servlets.Maestros.InfoMaestro_Srv ..> javax.servlet.ServletException
+Servlets.Maestros.InfoMaestro_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Maestros.InfoMaestro_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Maestros.InfoMaestro_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Maestros.InfoMaestro_Srv ..> javax.servlet.http.HttpSession
+Servlets.Maestros.InfoMaestro_Srv ..> masterDAO.Empleado
+Servlets.Maestros.ListarMaestro_Srv ..> java.lang.Override
+Servlets.Maestros.ListarMaestro_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Maestros.ListarMaestro_Srv ..> Utilidades.GenericResponse
+Servlets.Maestros.ListarMaestro_Srv ..> dao.maestros.Maestros_ListarMaestros_DAO
+Servlets.Maestros.ListarMaestro_Srv ..> java.io.IOException
+Servlets.Maestros.ListarMaestro_Srv ..> java.io.PrintWriter
+Servlets.Maestros.ListarMaestro_Srv ..> java.util.ArrayList
+Servlets.Maestros.ListarMaestro_Srv ..> java.util.List
+Servlets.Maestros.ListarMaestro_Srv ..> javax.servlet.ServletException
+Servlets.Maestros.ListarMaestro_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Maestros.ListarMaestro_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Maestros.ListarMaestro_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Maestros.ListarMaestro_Srv ..> javax.servlet.http.HttpSession
+Servlets.Maestros.ReportesMaestro_Srv ..> java.lang.Override
+Servlets.Maestros.ReportesMaestro_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.Maestros.ReportesMaestro_Srv ..> Utilidades.Constantes
+Servlets.Maestros.ReportesMaestro_Srv ..> Utilidades.GenericResponse
+Servlets.Maestros.ReportesMaestro_Srv ..> com.google.gson.Gson
+Servlets.Maestros.ReportesMaestro_Srv ..> dao.maestros.Maestros_EditarMaestros_DAO
+Servlets.Maestros.ReportesMaestro_Srv ..> dao.maestros.Maestros_ReportesMaestros_DAO
+Servlets.Maestros.ReportesMaestro_Srv ..> java.io.ByteArrayOutputStream
+Servlets.Maestros.ReportesMaestro_Srv ..> java.io.File
+Servlets.Maestros.ReportesMaestro_Srv ..> java.io.FileInputStream
+Servlets.Maestros.ReportesMaestro_Srv ..> java.io.IOException
+Servlets.Maestros.ReportesMaestro_Srv ..> java.io.InputStream
+Servlets.Maestros.ReportesMaestro_Srv ..> java.io.PrintWriter
+Servlets.Maestros.ReportesMaestro_Srv ..> java.util.ArrayList
+Servlets.Maestros.ReportesMaestro_Srv ..> java.util.Date
+Servlets.Maestros.ReportesMaestro_Srv ..> java.util.HashMap
+Servlets.Maestros.ReportesMaestro_Srv ..> java.util.List
+Servlets.Maestros.ReportesMaestro_Srv ..> java.util.Map
+Servlets.Maestros.ReportesMaestro_Srv ..> javax.servlet.ServletException
+Servlets.Maestros.ReportesMaestro_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Maestros.ReportesMaestro_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Maestros.ReportesMaestro_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Maestros.ReportesMaestro_Srv ..> javax.servlet.http.HttpSession
+Servlets.Maestros.ReportesMaestro_Srv ..> net.sf.jasperreports.engine.JRException
+Servlets.Maestros.ReportesMaestro_Srv ..> net.sf.jasperreports.engine.JasperCompileManager
+Servlets.Maestros.ReportesMaestro_Srv ..> net.sf.jasperreports.engine.JasperExportManager
+Servlets.Maestros.ReportesMaestro_Srv ..> net.sf.jasperreports.engine.JasperFillManager
+Servlets.Maestros.ReportesMaestro_Srv ..> net.sf.jasperreports.engine.JasperPrint
+Servlets.Maestros.ReportesMaestro_Srv ..> net.sf.jasperreports.engine.JasperReport
+Servlets.Maestros.ReportesMaestro_Srv ..> net.sf.jasperreports.engine.data.JRBeanArrayDataSource
+Servlets.Maestros.ReportesMaestro_Srv ..> net.sf.jasperreports.engine.util.JRLoader
+Servlets.Maestros.ReportesMaestro_Srv ..> org.apache.commons.codec.binary.Base64
+Servlets.Master.Master_Srv ..> java.lang.Override
+Servlets.Master.Master_Srv ..> javax.servlet.annotation.WebServlet
+Servlets.Master.Master_Srv ..> java.io.IOException
+Servlets.Master.Master_Srv ..> javax.servlet.ServletConfig
+Servlets.Master.Master_Srv ..> javax.servlet.ServletException
+Servlets.Master.Master_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Master.Master_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Master.Master_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Master.Master_Srv ..> javax.servlet.http.HttpSession
+Servlets.Master.Master_Srv ..> masterDAO.Empleado
+Servlets.Master.Master_Srv ..> masterDAO.EmpleadoDao
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> java.lang.Override
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> ManageBean.Maestros.Maestros_MB
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> ManageBean.PlanSemana.PlanSemana_MB
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> ManageBean.PlandeTrabajo.PlanTrabajo_MB
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> Servlets.ActividadExtraescolar.CrearActividadExtraescolar
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> Utilidades.GenericResponse
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> com.google.gson.Gson
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> dao.Grupos.Grupos_CrearGrupo_DAO
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> dao.plandetrabajo.Planes_CrearPlan_DAO
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> java.io.IOException
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> java.io.PrintWriter
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> java.util.ArrayList
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> java.util.List
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> java.util.logging.Level
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> java.util.logging.Logger
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> javax.servlet.ServletException
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv --|> javax.servlet.http.HttpServlet
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.PlandeTrabajo.CrearPlanTrabajo_Srv ..> javax.servlet.http.HttpSession
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> java.lang.Override
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> ManageBean.Maestros.Maestros_MB
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> ManageBean.PlanSemana.PlanSemana_MB
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> ManageBean.PlandeTrabajo.PlanTrabajo_MB
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> dao.maestros.Maestros_EditarMaestros_DAO
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> dao.plandetrabajo.Planes_DetallarPlan_DAO
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> java.io.IOException
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> java.io.PrintWriter
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> java.util.List
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> javax.servlet.ServletException
+Servlets.PlandeTrabajo.DetallarPlanTrabajo --|> javax.servlet.http.HttpServlet
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> javax.servlet.http.HttpServletRequest
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> javax.servlet.http.HttpServletResponse
+Servlets.PlandeTrabajo.DetallarPlanTrabajo ..> javax.servlet.http.HttpSession
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> java.lang.Override
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> ManageBean.PlanSemana.PlanSemana_MB
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> ManageBean.PlandeTrabajo.PlanTrabajo_MB
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> Servlets.ActividadExtraescolar.CrearActividadExtraescolar
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> Utilidades.GenericResponse
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> com.google.gson.Gson
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> dao.plandetrabajo.Planes_CrearPlan_DAO
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> dao.plandetrabajo.Planes_DetallarPlan_DAO
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> dao.plandetrabajo.Planes_EditarPlan_DAO
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> java.io.IOException
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> java.io.PrintWriter
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> java.util.List
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> java.util.logging.Level
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> java.util.logging.Logger
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> javax.servlet.ServletException
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv --|> javax.servlet.http.HttpServlet
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.PlandeTrabajo.EditarPlanTrabajo_Srv ..> javax.servlet.http.HttpSession
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv ..> java.lang.Override
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv ..> Utilidades.GenericResponse
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv ..> com.google.gson.Gson
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv ..> dao.maestros.Maestros_EliminarMaestros_DAO
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv ..> dao.plandetrabajo.Planes_EliminarPlan_DAO
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv ..> java.io.IOException
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv ..> java.io.PrintWriter
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv ..> javax.servlet.ServletException
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv --|> javax.servlet.http.HttpServlet
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.PlandeTrabajo.EliminarPlanesdeTrabajo_Srv ..> javax.servlet.http.HttpSession
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> java.lang.Override
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> ManageBean.Grupos.Grupos_MB
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> ManageBean.PlandeTrabajo.PlanTrabajo_MB
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> Utilidades.GenericResponse
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> dao.Grupos.Grupos_ListarGrupos_DAO
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> dao.plandetrabajo.Planes_ListarPlanes_DAO
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> java.io.IOException
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> java.io.PrintWriter
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> java.util.ArrayList
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> java.util.List
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> javax.servlet.ServletException
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv --|> javax.servlet.http.HttpServlet
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.PlandeTrabajo.ListarPlanesdeTrabajo_Srv ..> javax.servlet.http.HttpSession
+Servlets.PlandeTrabajo.ReportesPlanTrabajo_Srv ..> java.lang.Override
+Servlets.PlandeTrabajo.ReportesPlanTrabajo_Srv ..> java.io.IOException
+Servlets.PlandeTrabajo.ReportesPlanTrabajo_Srv ..> java.io.PrintWriter
+Servlets.PlandeTrabajo.ReportesPlanTrabajo_Srv ..> javax.servlet.ServletException
+Servlets.PlandeTrabajo.ReportesPlanTrabajo_Srv --|> javax.servlet.http.HttpServlet
+Servlets.PlandeTrabajo.ReportesPlanTrabajo_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.PlandeTrabajo.ReportesPlanTrabajo_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Usuarios.Login_Srv ..> java.lang.Override
+Servlets.Usuarios.Login_Srv ..> ManageBean.Alumnos.Alumnos_MB
+Servlets.Usuarios.Login_Srv ..> ManageBean.Periodo.Periodo
+Servlets.Usuarios.Login_Srv ..> Utilidades.CaptchaGenerador
+Servlets.Usuarios.Login_Srv ..> Utilidades.GenericResponse
+Servlets.Usuarios.Login_Srv ..> Utilidades.Validaciones
+Servlets.Usuarios.Login_Srv ..> com.google.gson.Gson
+Servlets.Usuarios.Login_Srv ..> dao.Login.Login_DAO
+Servlets.Usuarios.Login_Srv ..> dao.Periodo.Periodo_DAO
+Servlets.Usuarios.Login_Srv ..> java.io.IOException
+Servlets.Usuarios.Login_Srv ..> java.io.PrintWriter
+Servlets.Usuarios.Login_Srv ..> java.text.SimpleDateFormat
+Servlets.Usuarios.Login_Srv ..> java.util.Calendar
+Servlets.Usuarios.Login_Srv ..> java.util.logging.Level
+Servlets.Usuarios.Login_Srv ..> java.util.logging.Logger
+Servlets.Usuarios.Login_Srv ..> javax.servlet.ServletException
+Servlets.Usuarios.Login_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Usuarios.Login_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Usuarios.Login_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Usuarios.Login_Srv ..> javax.servlet.http.HttpSession
+Servlets.Usuarios.Login_Srv ..> masterDAO.AlumnosmDAO
+Servlets.Usuarios.Login_Srv ..> masterDAO.Empleado
+Servlets.Usuarios.Login_Srv ..> masterDAO.Usuario
+Servlets.Usuarios.Periodo_Srv ..> java.lang.Override
+Servlets.Usuarios.Periodo_Srv ..> ManageBean.Periodo.Periodo
+Servlets.Usuarios.Periodo_Srv ..> Servlets.ActividadExtraescolar.EditarActividadExtraescolar_Srv
+Servlets.Usuarios.Periodo_Srv ..> Utilidades.GenericResponse
+Servlets.Usuarios.Periodo_Srv ..> com.google.gson.Gson
+Servlets.Usuarios.Periodo_Srv ..> dao.Periodo.Periodo_DAO
+Servlets.Usuarios.Periodo_Srv ..> java.io.IOException
+Servlets.Usuarios.Periodo_Srv ..> java.io.PrintWriter
+Servlets.Usuarios.Periodo_Srv ..> java.text.ParseException
+Servlets.Usuarios.Periodo_Srv ..> java.text.SimpleDateFormat
+Servlets.Usuarios.Periodo_Srv ..> java.util.Date
+Servlets.Usuarios.Periodo_Srv ..> java.util.logging.Level
+Servlets.Usuarios.Periodo_Srv ..> java.util.logging.Logger
+Servlets.Usuarios.Periodo_Srv ..> javax.servlet.ServletException
+Servlets.Usuarios.Periodo_Srv --|> javax.servlet.http.HttpServlet
+Servlets.Usuarios.Periodo_Srv ..> javax.servlet.http.HttpServletRequest
+Servlets.Usuarios.Periodo_Srv ..> javax.servlet.http.HttpServletResponse
+Servlets.Usuarios.Periodo_Srv ..> javax.servlet.http.HttpSession
+Servlets.Usuarios.Salir ..> java.lang.Override
+Servlets.Usuarios.Salir ..> Utilidades.CaptchaGenerador
+Servlets.Usuarios.Salir ..> java.io.IOException
+Servlets.Usuarios.Salir ..> java.io.PrintWriter
+Servlets.Usuarios.Salir ..> javax.servlet.ServletException
+Servlets.Usuarios.Salir --|> javax.servlet.http.HttpServlet
+Servlets.Usuarios.Salir ..> javax.servlet.http.HttpServletRequest
+Servlets.Usuarios.Salir ..> javax.servlet.http.HttpServletResponse
+Servlets.Usuarios.Salir ..> javax.servlet.http.HttpSession
+Utilidades.CaptchaGenerador ..> java.util.Random
+Utilidades.Constantes ..> dao.Periodo.Periodo_DAO
+Utilidades.Constantes ..> java.text.ParseException
+Utilidades.Constantes ..> java.text.SimpleDateFormat
+Utilidades.Constantes ..> java.util.Arrays
+Utilidades.Constantes ..> java.util.Calendar
+Utilidades.Constantes ..> java.util.Date
+Utilidades.Constantes ..> java.util.HashMap
+Utilidades.Constantes ..> java.util.List
+Utilidades.Constantes ..> java.util.Map
+Utilidades.Constantes ..> java.util.logging.Level
+Utilidades.Constantes ..> java.util.logging.Logger
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> ManageBean.Alumnos.Alumnos_MB
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> Utilidades.Constantes
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> Utilidades.GenericResponse
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> Utilidades.Validaciones
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> config.conexion.ConexionMySQL
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> dao.gruposyalumno.GruposAlumno_Inscripcion_DAO
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> java.sql.Connection
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> java.sql.PreparedStatement
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> java.sql.ResultSet
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> java.sql.SQLException
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> java.util.logging.Level
+dao.Alumnos.AlumnosInsertarAlumno_DAO ..> java.util.logging.Logger
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> Utilidades.Constantes
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> config.conexion.ConexionMySQL
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> dao.Grupos.Grupos_ListarGrupos_DAO
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> java.sql.Connection
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> java.sql.PreparedStatement
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> java.sql.ResultSet
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> java.sql.SQLException
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> java.util.ArrayList
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> java.util.List
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> java.util.logging.Level
+dao.Alumnos.AlumnosListarGruposInscrito_DAO ..> java.util.logging.Logger
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> ManageBean.Alumnos.Alumnos_MB
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> Utilidades.Constantes
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> Utilidades.Cuenta
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> config.conexion.ConexionMySQL
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> dao.Grupos.Grupos_EditarGrupo_DAO
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> dao.Grupos.Grupos_ListarGrupos_DAO
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> java.sql.Connection
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> java.sql.PreparedStatement
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> java.sql.ResultSet
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> java.sql.SQLException
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> java.util.ArrayList
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> java.util.List
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> java.util.logging.Level
+dao.Alumnos.ReporteAlumnosInscritos_DAO ..> java.util.logging.Logger
+dao.Asistencias.AsistenciasEventos_DAO ..> ManageBean.Alumnos.Alumnos_MB
+dao.Asistencias.AsistenciasEventos_DAO ..> ManageBean.Eventos.Evento_MB
+dao.Asistencias.AsistenciasEventos_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.Asistencias.AsistenciasEventos_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.Asistencias.AsistenciasEventos_DAO ..> Utilidades.Constantes
+dao.Asistencias.AsistenciasEventos_DAO ..> Utilidades.GenericResponse
+dao.Asistencias.AsistenciasEventos_DAO ..> Utilidades.Validaciones
+dao.Asistencias.AsistenciasEventos_DAO ..> config.conexion.ConexionMySQL
+dao.Asistencias.AsistenciasEventos_DAO ..> dao.Asistencias.AsistenciasRegistrar_DAO
+dao.Asistencias.AsistenciasEventos_DAO ..> dao.maestros.Maestros_EditarMaestros_DAO
+dao.Asistencias.AsistenciasEventos_DAO ..> java.sql.Connection
+dao.Asistencias.AsistenciasEventos_DAO ..> java.sql.PreparedStatement
+dao.Asistencias.AsistenciasEventos_DAO ..> java.sql.ResultSet
+dao.Asistencias.AsistenciasEventos_DAO ..> java.sql.SQLException
+dao.Asistencias.AsistenciasEventos_DAO ..> java.time.LocalDate
+dao.Asistencias.AsistenciasEventos_DAO ..> java.util.logging.Level
+dao.Asistencias.AsistenciasEventos_DAO ..> java.util.logging.Logger
+dao.Asistencias.AsistenciasRegistrar_DAO ..> ManageBean.Alumnos.Alumnos_MB
+dao.Asistencias.AsistenciasRegistrar_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.Asistencias.AsistenciasRegistrar_DAO ..> Utilidades.Constantes
+dao.Asistencias.AsistenciasRegistrar_DAO ..> Utilidades.GenericResponse
+dao.Asistencias.AsistenciasRegistrar_DAO ..> Utilidades.Validaciones
+dao.Asistencias.AsistenciasRegistrar_DAO ..> config.conexion.ConexionMySQL
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.sql.Connection
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.sql.PreparedStatement
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.sql.ResultSet
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.sql.SQLException
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.time.DayOfWeek
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.time.LocalDate
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.time.LocalTime
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.time.format.TextStyle
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.util.ArrayList
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.util.List
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.util.Locale
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.util.logging.Level
+dao.Asistencias.AsistenciasRegistrar_DAO ..> java.util.logging.Logger
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> ManageBean.Alumnos.Alumnos_MB
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> ManageBean.Asistencia.Asistencias_MB
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> ManageBean.Asistencia.Clases_MB
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> ManageBean.Eventos.Evento_MB
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> Utilidades.Constantes
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> config.conexion.ConexionMySQL
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> dao.Grupos.Grupos_EditarGrupo_DAO
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> dao.eventos.Eventos_ListarEventos_DAO
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> java.sql.Connection
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> java.sql.PreparedStatement
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> java.sql.ResultSet
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> java.sql.SQLException
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> java.util.ArrayList
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> java.util.Arrays
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> java.util.Date
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> java.util.List
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> java.util.logging.Level
+dao.Asistencias.Asistencias_ListarAsistencias_DAO ..> java.util.logging.Logger
+dao.Grupos.Grupos_CrearGrupo_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.Grupos.Grupos_CrearGrupo_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.Grupos.Grupos_CrearGrupo_DAO ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+dao.Grupos.Grupos_CrearGrupo_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.Grupos.Grupos_CrearGrupo_DAO ..> Utilidades.Constantes
+dao.Grupos.Grupos_CrearGrupo_DAO ..> Utilidades.GenericResponse
+dao.Grupos.Grupos_CrearGrupo_DAO ..> Utilidades.Validaciones
+dao.Grupos.Grupos_CrearGrupo_DAO ..> config.conexion.ConexionMySQL
+dao.Grupos.Grupos_CrearGrupo_DAO ..> java.sql.Connection
+dao.Grupos.Grupos_CrearGrupo_DAO ..> java.sql.PreparedStatement
+dao.Grupos.Grupos_CrearGrupo_DAO ..> java.sql.ResultSet
+dao.Grupos.Grupos_CrearGrupo_DAO ..> java.sql.SQLException
+dao.Grupos.Grupos_CrearGrupo_DAO ..> java.util.ArrayList
+dao.Grupos.Grupos_CrearGrupo_DAO ..> java.util.List
+dao.Grupos.Grupos_CrearGrupo_DAO ..> java.util.logging.Level
+dao.Grupos.Grupos_CrearGrupo_DAO ..> java.util.logging.Logger
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> Utilidades.Constantes
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> config.conexion.ConexionMySQL
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> dao.Grupos.Grupos_CrearGrupo_DAO
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> java.sql.Connection
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> java.sql.PreparedStatement
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> java.sql.ResultSet
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> java.sql.SQLException
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> java.util.ArrayList
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> java.util.List
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> java.util.logging.Level
+dao.Grupos.Grupos_DetalleGrupo_DAO ..> java.util.logging.Logger
+dao.Grupos.Grupos_EditarGrupo_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.Grupos.Grupos_EditarGrupo_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.Grupos.Grupos_EditarGrupo_DAO ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+dao.Grupos.Grupos_EditarGrupo_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.Grupos.Grupos_EditarGrupo_DAO ..> Utilidades.Constantes
+dao.Grupos.Grupos_EditarGrupo_DAO ..> Utilidades.GenericResponse
+dao.Grupos.Grupos_EditarGrupo_DAO ..> Utilidades.Validaciones
+dao.Grupos.Grupos_EditarGrupo_DAO ..> config.conexion.ConexionMySQL
+dao.Grupos.Grupos_EditarGrupo_DAO ..> dao.Grupos.Grupos_CrearGrupo_DAO
+dao.Grupos.Grupos_EditarGrupo_DAO ..> dao.maestros.Maestros_EliminarMaestros_DAO
+dao.Grupos.Grupos_EditarGrupo_DAO ..> java.sql.Connection
+dao.Grupos.Grupos_EditarGrupo_DAO ..> java.sql.PreparedStatement
+dao.Grupos.Grupos_EditarGrupo_DAO ..> java.sql.ResultSet
+dao.Grupos.Grupos_EditarGrupo_DAO ..> java.sql.SQLException
+dao.Grupos.Grupos_EditarGrupo_DAO ..> java.util.ArrayList
+dao.Grupos.Grupos_EditarGrupo_DAO ..> java.util.List
+dao.Grupos.Grupos_EditarGrupo_DAO ..> java.util.logging.Level
+dao.Grupos.Grupos_EditarGrupo_DAO ..> java.util.logging.Logger
+dao.Grupos.Grupos_EliminarGrupos_DAO ..> Utilidades.Constantes
+dao.Grupos.Grupos_EliminarGrupos_DAO ..> Utilidades.GenericResponse
+dao.Grupos.Grupos_EliminarGrupos_DAO ..> Utilidades.Validaciones
+dao.Grupos.Grupos_EliminarGrupos_DAO ..> config.conexion.ConexionMySQL
+dao.Grupos.Grupos_EliminarGrupos_DAO ..> dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO
+dao.Grupos.Grupos_EliminarGrupos_DAO ..> java.sql.Connection
+dao.Grupos.Grupos_EliminarGrupos_DAO ..> java.sql.PreparedStatement
+dao.Grupos.Grupos_EliminarGrupos_DAO ..> java.sql.SQLException
+dao.Grupos.Grupos_EliminarGrupos_DAO ..> java.util.logging.Level
+dao.Grupos.Grupos_EliminarGrupos_DAO ..> java.util.logging.Logger
+dao.Grupos.Grupos_ListarGrupos_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.Grupos.Grupos_ListarGrupos_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.Grupos.Grupos_ListarGrupos_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.Grupos.Grupos_ListarGrupos_DAO ..> Utilidades.Constantes
+dao.Grupos.Grupos_ListarGrupos_DAO ..> config.conexion.ConexionMySQL
+dao.Grupos.Grupos_ListarGrupos_DAO ..> dao.Grupos.Grupos_CrearGrupo_DAO
+dao.Grupos.Grupos_ListarGrupos_DAO ..> dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO
+dao.Grupos.Grupos_ListarGrupos_DAO ..> dao.maestros.Maestros_EditarMaestros_DAO
+dao.Grupos.Grupos_ListarGrupos_DAO ..> java.sql.Connection
+dao.Grupos.Grupos_ListarGrupos_DAO ..> java.sql.PreparedStatement
+dao.Grupos.Grupos_ListarGrupos_DAO ..> java.sql.ResultSet
+dao.Grupos.Grupos_ListarGrupos_DAO ..> java.sql.SQLException
+dao.Grupos.Grupos_ListarGrupos_DAO ..> java.util.ArrayList
+dao.Grupos.Grupos_ListarGrupos_DAO ..> java.util.Date
+dao.Grupos.Grupos_ListarGrupos_DAO ..> java.util.List
+dao.Grupos.Grupos_ListarGrupos_DAO ..> java.util.logging.Level
+dao.Grupos.Grupos_ListarGrupos_DAO ..> java.util.logging.Logger
+dao.Historico.Historico_ListarHistorico ..> ManageBean.CreditoExtraescolar.CreditoExtraescolar_MB
+dao.Historico.Historico_ListarHistorico ..> ManageBean.RegistroHistorico.RegistroHistorico_MB
+dao.Historico.Historico_ListarHistorico ..> Utilidades.Constantes
+dao.Historico.Historico_ListarHistorico ..> config.conexion.ConexionMySQL
+dao.Historico.Historico_ListarHistorico ..> java.sql.Connection
+dao.Historico.Historico_ListarHistorico ..> java.sql.PreparedStatement
+dao.Historico.Historico_ListarHistorico ..> java.sql.ResultSet
+dao.Historico.Historico_ListarHistorico ..> java.sql.SQLException
+dao.Historico.Historico_ListarHistorico ..> java.util.ArrayList
+dao.Historico.Historico_ListarHistorico ..> java.util.List
+dao.Historico.Historico_ListarHistorico ..> java.util.logging.Level
+dao.Historico.Historico_ListarHistorico ..> java.util.logging.Logger
+dao.Login.Login_DAO ..> ManageBean.Usuarios.Usuarios_MB
+dao.Login.Login_DAO ..> Utilidades.Constantes
+dao.Login.Login_DAO ..> Utilidades.GenericResponse
+dao.Login.Login_DAO ..> Utilidades.Validaciones
+dao.Login.Login_DAO ..> config.conexion.ConexionMySQL
+dao.Login.Login_DAO ..> java.sql.Connection
+dao.Login.Login_DAO ..> java.sql.PreparedStatement
+dao.Login.Login_DAO ..> java.sql.ResultSet
+dao.Login.Login_DAO ..> java.sql.SQLException
+dao.Login.Login_DAO ..> java.util.logging.Level
+dao.Login.Login_DAO ..> java.util.logging.Logger
+dao.Login.Login_DAO ..> masterDAO.Empleado
+dao.Login.Login_DAO ..> masterDAO.Usuario
+dao.Periodo.Periodo_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.Periodo.Periodo_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.Periodo.Periodo_DAO ..> ManageBean.Periodo.Periodo
+dao.Periodo.Periodo_DAO ..> Utilidades.Constantes
+dao.Periodo.Periodo_DAO ..> Utilidades.GenericResponse
+dao.Periodo.Periodo_DAO ..> Utilidades.Validaciones
+dao.Periodo.Periodo_DAO ..> config.conexion.ConexionMySQL
+dao.Periodo.Periodo_DAO ..> dao.maestros.Maestros_EditarMaestros_DAO
+dao.Periodo.Periodo_DAO ..> java.sql.Connection
+dao.Periodo.Periodo_DAO ..> java.sql.PreparedStatement
+dao.Periodo.Periodo_DAO ..> java.sql.ResultSet
+dao.Periodo.Periodo_DAO ..> java.sql.SQLException
+dao.Periodo.Periodo_DAO ..> java.util.Date
+dao.Periodo.Periodo_DAO ..> java.util.logging.Level
+dao.Periodo.Periodo_DAO ..> java.util.logging.Logger
+dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO ..> Utilidades.Constantes
+dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO ..> Utilidades.GenericResponse
+dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO ..> Utilidades.Validaciones
+dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO ..> config.conexion.ConexionMySQL
+dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO ..> java.sql.Connection
+dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO ..> java.sql.PreparedStatement
+dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO ..> java.sql.SQLException
+dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO ..> java.util.logging.Level
+dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO ..> java.util.logging.Logger
+dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO ..> Utilidades.Constantes
+dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO ..> Utilidades.GenericResponse
+dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO ..> Utilidades.Validaciones
+dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO ..> config.conexion.ConexionMySQL
+dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO ..> java.sql.Connection
+dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO ..> java.sql.PreparedStatement
+dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO ..> java.sql.ResultSet
+dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO ..> java.sql.SQLException
+dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO ..> java.util.logging.Level
+dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO ..> java.util.logging.Logger
+dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO ..> Utilidades.Constantes
+dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO ..> Utilidades.GenericResponse
+dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO ..> Utilidades.Validaciones
+dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO ..> config.conexion.ConexionMySQL
+dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO ..> java.sql.Connection
+dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO ..> java.sql.PreparedStatement
+dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO ..> java.sql.SQLException
+dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO ..> java.util.logging.Level
+dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO ..> java.util.logging.Logger
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> Utilidades.Constantes
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> config.conexion.ConexionMySQL
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> java.sql.Connection
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> java.sql.PreparedStatement
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> java.sql.ResultSet
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> java.sql.SQLException
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> java.util.ArrayList
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> java.util.Date
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> java.util.List
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> java.util.logging.Level
+dao.actividadextraesscolar.ActividadExtraescolar_ListarActividad_DAO ..> java.util.logging.Logger
+dao.creditos.Creditos_CrearCredito_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.creditos.Creditos_CrearCredito_DAO ..> ManageBean.Alumnos.Alumnos_MB
+dao.creditos.Creditos_CrearCredito_DAO ..> ManageBean.CreditoExtraescolar.CreditoExtraescolar_MB
+dao.creditos.Creditos_CrearCredito_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.creditos.Creditos_CrearCredito_DAO ..> Utilidades.Constantes
+dao.creditos.Creditos_CrearCredito_DAO ..> Utilidades.GenericResponse
+dao.creditos.Creditos_CrearCredito_DAO ..> Utilidades.Validaciones
+dao.creditos.Creditos_CrearCredito_DAO ..> config.conexion.ConexionMySQL
+dao.creditos.Creditos_CrearCredito_DAO ..> dao.Grupos.Grupos_CrearGrupo_DAO
+dao.creditos.Creditos_CrearCredito_DAO ..> java.sql.Connection
+dao.creditos.Creditos_CrearCredito_DAO ..> java.sql.PreparedStatement
+dao.creditos.Creditos_CrearCredito_DAO ..> java.sql.ResultSet
+dao.creditos.Creditos_CrearCredito_DAO ..> java.sql.SQLException
+dao.creditos.Creditos_CrearCredito_DAO ..> java.time.LocalDate
+dao.creditos.Creditos_CrearCredito_DAO ..> java.util.logging.Level
+dao.creditos.Creditos_CrearCredito_DAO ..> java.util.logging.Logger
+dao.creditos.Creditos_EditarCredito_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.creditos.Creditos_EditarCredito_DAO ..> Utilidades.Constantes
+dao.creditos.Creditos_EditarCredito_DAO ..> Utilidades.GenericResponse
+dao.creditos.Creditos_EditarCredito_DAO ..> Utilidades.Validaciones
+dao.creditos.Creditos_EditarCredito_DAO ..> config.conexion.ConexionMySQL
+dao.creditos.Creditos_EditarCredito_DAO ..> dao.Grupos.Grupos_EditarGrupo_DAO
+dao.creditos.Creditos_EditarCredito_DAO ..> java.sql.Connection
+dao.creditos.Creditos_EditarCredito_DAO ..> java.sql.PreparedStatement
+dao.creditos.Creditos_EditarCredito_DAO ..> java.sql.SQLException
+dao.creditos.Creditos_EditarCredito_DAO ..> java.util.logging.Level
+dao.creditos.Creditos_EditarCredito_DAO ..> java.util.logging.Logger
+dao.creditos.Creditos_ListarCreditos_DAO ..> ManageBean.CreditoExtraescolar.CreditoExtraescolar_MB
+dao.creditos.Creditos_ListarCreditos_DAO ..> Utilidades.Constantes
+dao.creditos.Creditos_ListarCreditos_DAO ..> config.conexion.ConexionMySQL
+dao.creditos.Creditos_ListarCreditos_DAO ..> java.sql.Connection
+dao.creditos.Creditos_ListarCreditos_DAO ..> java.sql.PreparedStatement
+dao.creditos.Creditos_ListarCreditos_DAO ..> java.sql.ResultSet
+dao.creditos.Creditos_ListarCreditos_DAO ..> java.sql.SQLException
+dao.creditos.Creditos_ListarCreditos_DAO ..> java.util.ArrayList
+dao.creditos.Creditos_ListarCreditos_DAO ..> java.util.List
+dao.creditos.Creditos_ListarCreditos_DAO ..> java.util.logging.Level
+dao.creditos.Creditos_ListarCreditos_DAO ..> java.util.logging.Logger
+dao.eventos.Evento_EditarEvento_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.eventos.Evento_EditarEvento_DAO ..> ManageBean.Eventos.Evento_MB
+dao.eventos.Evento_EditarEvento_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.eventos.Evento_EditarEvento_DAO ..> Utilidades.Constantes
+dao.eventos.Evento_EditarEvento_DAO ..> Utilidades.GenericResponse
+dao.eventos.Evento_EditarEvento_DAO ..> Utilidades.Validaciones
+dao.eventos.Evento_EditarEvento_DAO ..> config.conexion.ConexionMySQL
+dao.eventos.Evento_EditarEvento_DAO ..> dao.maestros.Maestros_EditarMaestros_DAO
+dao.eventos.Evento_EditarEvento_DAO ..> java.sql.Connection
+dao.eventos.Evento_EditarEvento_DAO ..> java.sql.PreparedStatement
+dao.eventos.Evento_EditarEvento_DAO ..> java.sql.ResultSet
+dao.eventos.Evento_EditarEvento_DAO ..> java.sql.SQLException
+dao.eventos.Evento_EditarEvento_DAO ..> java.util.ArrayList
+dao.eventos.Evento_EditarEvento_DAO ..> java.util.Date
+dao.eventos.Evento_EditarEvento_DAO ..> java.util.List
+dao.eventos.Evento_EditarEvento_DAO ..> java.util.logging.Level
+dao.eventos.Evento_EditarEvento_DAO ..> java.util.logging.Logger
+dao.eventos.Eventos_CrearEvento_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.eventos.Eventos_CrearEvento_DAO ..> ManageBean.Eventos.Evento_MB
+dao.eventos.Eventos_CrearEvento_DAO ..> Utilidades.Constantes
+dao.eventos.Eventos_CrearEvento_DAO ..> Utilidades.GenericResponse
+dao.eventos.Eventos_CrearEvento_DAO ..> Utilidades.Validaciones
+dao.eventos.Eventos_CrearEvento_DAO ..> config.conexion.ConexionMySQL
+dao.eventos.Eventos_CrearEvento_DAO ..> dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO
+dao.eventos.Eventos_CrearEvento_DAO ..> java.sql.Connection
+dao.eventos.Eventos_CrearEvento_DAO ..> java.sql.Date
+dao.eventos.Eventos_CrearEvento_DAO ..> java.sql.PreparedStatement
+dao.eventos.Eventos_CrearEvento_DAO ..> java.sql.ResultSet
+dao.eventos.Eventos_CrearEvento_DAO ..> java.sql.SQLException
+dao.eventos.Eventos_CrearEvento_DAO ..> java.time.LocalDate
+dao.eventos.Eventos_CrearEvento_DAO ..> java.util.ArrayList
+dao.eventos.Eventos_CrearEvento_DAO ..> java.util.List
+dao.eventos.Eventos_CrearEvento_DAO ..> java.util.logging.Level
+dao.eventos.Eventos_CrearEvento_DAO ..> java.util.logging.Logger
+dao.eventos.Eventos_EliminarEvento_DAO ..> Utilidades.Constantes
+dao.eventos.Eventos_EliminarEvento_DAO ..> Utilidades.GenericResponse
+dao.eventos.Eventos_EliminarEvento_DAO ..> Utilidades.Validaciones
+dao.eventos.Eventos_EliminarEvento_DAO ..> config.conexion.ConexionMySQL
+dao.eventos.Eventos_EliminarEvento_DAO ..> dao.maestros.Maestros_EliminarMaestros_DAO
+dao.eventos.Eventos_EliminarEvento_DAO ..> java.sql.Connection
+dao.eventos.Eventos_EliminarEvento_DAO ..> java.sql.PreparedStatement
+dao.eventos.Eventos_EliminarEvento_DAO ..> java.sql.SQLException
+dao.eventos.Eventos_EliminarEvento_DAO ..> java.util.logging.Level
+dao.eventos.Eventos_EliminarEvento_DAO ..> java.util.logging.Logger
+dao.eventos.Eventos_ListarEventos_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.eventos.Eventos_ListarEventos_DAO ..> ManageBean.Eventos.Evento_MB
+dao.eventos.Eventos_ListarEventos_DAO ..> Utilidades.Constantes
+dao.eventos.Eventos_ListarEventos_DAO ..> config.conexion.ConexionMySQL
+dao.eventos.Eventos_ListarEventos_DAO ..> java.sql.Connection
+dao.eventos.Eventos_ListarEventos_DAO ..> java.sql.PreparedStatement
+dao.eventos.Eventos_ListarEventos_DAO ..> java.sql.ResultSet
+dao.eventos.Eventos_ListarEventos_DAO ..> java.sql.SQLException
+dao.eventos.Eventos_ListarEventos_DAO ..> java.util.ArrayList
+dao.eventos.Eventos_ListarEventos_DAO ..> java.util.Date
+dao.eventos.Eventos_ListarEventos_DAO ..> java.util.List
+dao.eventos.Eventos_ListarEventos_DAO ..> java.util.logging.Level
+dao.eventos.Eventos_ListarEventos_DAO ..> java.util.logging.Logger
+dao.eventos.Eventos_ReportesEventos_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.eventos.Eventos_ReportesEventos_DAO ..> ManageBean.Eventos.Evento_MB
+dao.eventos.Eventos_ReportesEventos_DAO ..> Utilidades.Constantes
+dao.eventos.Eventos_ReportesEventos_DAO ..> config.conexion.ConexionMySQL
+dao.eventos.Eventos_ReportesEventos_DAO ..> java.sql.Connection
+dao.eventos.Eventos_ReportesEventos_DAO ..> java.sql.PreparedStatement
+dao.eventos.Eventos_ReportesEventos_DAO ..> java.sql.ResultSet
+dao.eventos.Eventos_ReportesEventos_DAO ..> java.sql.SQLException
+dao.eventos.Eventos_ReportesEventos_DAO ..> java.util.ArrayList
+dao.eventos.Eventos_ReportesEventos_DAO ..> java.util.Date
+dao.eventos.Eventos_ReportesEventos_DAO ..> java.util.List
+dao.eventos.Eventos_ReportesEventos_DAO ..> java.util.logging.Level
+dao.eventos.Eventos_ReportesEventos_DAO ..> java.util.logging.Logger
+dao.gruposyalumno.GruposAlumno_Baja_DAO ..> Utilidades.Constantes
+dao.gruposyalumno.GruposAlumno_Baja_DAO ..> Utilidades.GenericResponse
+dao.gruposyalumno.GruposAlumno_Baja_DAO ..> Utilidades.Validaciones
+dao.gruposyalumno.GruposAlumno_Baja_DAO ..> config.conexion.ConexionMySQL
+dao.gruposyalumno.GruposAlumno_Baja_DAO ..> dao.maestros.Maestros_EliminarMaestros_DAO
+dao.gruposyalumno.GruposAlumno_Baja_DAO ..> java.sql.Connection
+dao.gruposyalumno.GruposAlumno_Baja_DAO ..> java.sql.PreparedStatement
+dao.gruposyalumno.GruposAlumno_Baja_DAO ..> java.sql.SQLException
+dao.gruposyalumno.GruposAlumno_Baja_DAO ..> java.util.logging.Level
+dao.gruposyalumno.GruposAlumno_Baja_DAO ..> java.util.logging.Logger
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> ManageBean.Alumnos.Alumnos_MB
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> ManageBean.HorariosGrupo.HorariosGrupo_MB
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> Utilidades.Constantes
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> Utilidades.GenericResponse
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> Utilidades.Validaciones
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> config.conexion.ConexionMySQL
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> dao.Grupos.Grupos_EditarGrupo_DAO
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> dao.Grupos.Grupos_ListarGrupos_DAO
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> java.sql.Connection
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> java.sql.PreparedStatement
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> java.sql.ResultSet
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> java.sql.SQLException
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> java.util.ArrayList
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> java.util.List
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> java.util.logging.Level
+dao.gruposyalumno.GruposAlumno_Inscripcion_DAO ..> java.util.logging.Logger
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> ManageBean.Alumnos.Alumnos_MB
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> Utilidades.Constantes
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> config.conexion.ConexionMySQL
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> dao.Asistencias.Asistencias_ListarAsistencias_DAO
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> dao.Grupos.Grupos_EditarGrupo_DAO
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> java.sql.Connection
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> java.sql.PreparedStatement
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> java.sql.ResultSet
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> java.sql.SQLException
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> java.util.ArrayList
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> java.util.List
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> java.util.logging.Level
+dao.gruposyalumno.GruposAlumno_ListaAlumnos_DAO ..> java.util.logging.Logger
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> ManageBean.Alumnos.Alumnos_MB
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> Utilidades.Constantes
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> Utilidades.GenericResponse
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> Utilidades.Validaciones
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> config.conexion.ConexionMySQL
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> java.sql.Connection
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> java.sql.PreparedStatement
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> java.sql.ResultSet
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> java.sql.SQLException
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> java.util.ArrayList
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> java.util.List
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> java.util.logging.Level
+dao.gruposyalumno.GruposAlumno_Selectivo_DAO ..> java.util.logging.Logger
+dao.maestros.Maestros_CrearMaestros_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.maestros.Maestros_CrearMaestros_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.maestros.Maestros_CrearMaestros_DAO ..> Utilidades.Constantes
+dao.maestros.Maestros_CrearMaestros_DAO ..> Utilidades.GenericResponse
+dao.maestros.Maestros_CrearMaestros_DAO ..> Utilidades.Validaciones
+dao.maestros.Maestros_CrearMaestros_DAO ..> config.conexion.ConexionMySQL
+dao.maestros.Maestros_CrearMaestros_DAO ..> dao.actividadextraesscolar.ActividadExtraescolar_CrearActividad_DAO
+dao.maestros.Maestros_CrearMaestros_DAO ..> java.sql.Connection
+dao.maestros.Maestros_CrearMaestros_DAO ..> java.sql.Date
+dao.maestros.Maestros_CrearMaestros_DAO ..> java.sql.PreparedStatement
+dao.maestros.Maestros_CrearMaestros_DAO ..> java.sql.ResultSet
+dao.maestros.Maestros_CrearMaestros_DAO ..> java.sql.SQLException
+dao.maestros.Maestros_CrearMaestros_DAO ..> java.util.logging.Level
+dao.maestros.Maestros_CrearMaestros_DAO ..> java.util.logging.Logger
+dao.maestros.Maestros_CrearMaestros_DAO ..> masterDAO.Empleado
+dao.maestros.Maestros_DetallesMaestros_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.maestros.Maestros_DetallesMaestros_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.maestros.Maestros_DetallesMaestros_DAO ..> Utilidades.Constantes
+dao.maestros.Maestros_DetallesMaestros_DAO ..> config.conexion.ConexionMySQL
+dao.maestros.Maestros_DetallesMaestros_DAO ..> java.sql.Connection
+dao.maestros.Maestros_DetallesMaestros_DAO ..> java.sql.PreparedStatement
+dao.maestros.Maestros_DetallesMaestros_DAO ..> java.sql.ResultSet
+dao.maestros.Maestros_DetallesMaestros_DAO ..> java.sql.SQLException
+dao.maestros.Maestros_DetallesMaestros_DAO ..> java.util.Date
+dao.maestros.Maestros_DetallesMaestros_DAO ..> java.util.logging.Level
+dao.maestros.Maestros_DetallesMaestros_DAO ..> java.util.logging.Logger
+dao.maestros.Maestros_EditarMaestros_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.maestros.Maestros_EditarMaestros_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.maestros.Maestros_EditarMaestros_DAO ..> Utilidades.Constantes
+dao.maestros.Maestros_EditarMaestros_DAO ..> Utilidades.GenericResponse
+dao.maestros.Maestros_EditarMaestros_DAO ..> Utilidades.Validaciones
+dao.maestros.Maestros_EditarMaestros_DAO ..> config.conexion.ConexionMySQL
+dao.maestros.Maestros_EditarMaestros_DAO ..> java.sql.Connection
+dao.maestros.Maestros_EditarMaestros_DAO ..> java.sql.PreparedStatement
+dao.maestros.Maestros_EditarMaestros_DAO ..> java.sql.ResultSet
+dao.maestros.Maestros_EditarMaestros_DAO ..> java.sql.SQLException
+dao.maestros.Maestros_EditarMaestros_DAO ..> java.util.Date
+dao.maestros.Maestros_EditarMaestros_DAO ..> java.util.logging.Level
+dao.maestros.Maestros_EditarMaestros_DAO ..> java.util.logging.Logger
+dao.maestros.Maestros_EditarMaestros_DAO ..> masterDAO.Empleado
+dao.maestros.Maestros_EliminarMaestros_DAO ..> Utilidades.Constantes
+dao.maestros.Maestros_EliminarMaestros_DAO ..> Utilidades.GenericResponse
+dao.maestros.Maestros_EliminarMaestros_DAO ..> Utilidades.Validaciones
+dao.maestros.Maestros_EliminarMaestros_DAO ..> config.conexion.ConexionMySQL
+dao.maestros.Maestros_EliminarMaestros_DAO ..> java.sql.Connection
+dao.maestros.Maestros_EliminarMaestros_DAO ..> java.sql.PreparedStatement
+dao.maestros.Maestros_EliminarMaestros_DAO ..> java.sql.SQLException
+dao.maestros.Maestros_EliminarMaestros_DAO ..> java.util.logging.Level
+dao.maestros.Maestros_EliminarMaestros_DAO ..> java.util.logging.Logger
+dao.maestros.Maestros_ListarMaestros_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.maestros.Maestros_ListarMaestros_DAO ..> Utilidades.Constantes
+dao.maestros.Maestros_ListarMaestros_DAO ..> config.conexion.ConexionMySQL
+dao.maestros.Maestros_ListarMaestros_DAO ..> java.sql.Connection
+dao.maestros.Maestros_ListarMaestros_DAO ..> java.sql.PreparedStatement
+dao.maestros.Maestros_ListarMaestros_DAO ..> java.sql.ResultSet
+dao.maestros.Maestros_ListarMaestros_DAO ..> java.sql.SQLException
+dao.maestros.Maestros_ListarMaestros_DAO ..> java.util.ArrayList
+dao.maestros.Maestros_ListarMaestros_DAO ..> java.util.Date
+dao.maestros.Maestros_ListarMaestros_DAO ..> java.util.List
+dao.maestros.Maestros_ListarMaestros_DAO ..> java.util.logging.Level
+dao.maestros.Maestros_ListarMaestros_DAO ..> java.util.logging.Logger
+dao.maestros.Maestros_ReportesMaestros_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.maestros.Maestros_ReportesMaestros_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.maestros.Maestros_ReportesMaestros_DAO ..> Utilidades.GenericResponse
+dao.maestros.Maestros_ReportesMaestros_DAO ..> config.conexion.ConexionMySQL
+dao.maestros.Maestros_ReportesMaestros_DAO ..> java.sql.Connection
+dao.maestros.Maestros_ReportesMaestros_DAO ..> java.sql.PreparedStatement
+dao.maestros.Maestros_ReportesMaestros_DAO ..> java.sql.ResultSet
+dao.maestros.Maestros_ReportesMaestros_DAO ..> java.sql.SQLException
+dao.maestros.Maestros_ReportesMaestros_DAO ..> java.util.ArrayList
+dao.maestros.Maestros_ReportesMaestros_DAO ..> java.util.Date
+dao.maestros.Maestros_ReportesMaestros_DAO ..> java.util.List
+dao.maestros.Maestros_ReportesMaestros_DAO ..> java.util.logging.Level
+dao.maestros.Maestros_ReportesMaestros_DAO ..> java.util.logging.Logger
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> ManageBean.PlanSemana.PlanSemana_MB
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> ManageBean.PlandeTrabajo.PlanTrabajo_MB
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> Utilidades.Constantes
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> Utilidades.GenericResponse
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> Utilidades.Validaciones
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> config.conexion.ConexionMySQL
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> dao.Grupos.Grupos_ListarGrupos_DAO
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> java.sql.Connection
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> java.sql.PreparedStatement
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> java.sql.ResultSet
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> java.sql.SQLException
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> java.util.ArrayList
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> java.util.List
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> java.util.logging.Level
+dao.plandetrabajo.Planes_CrearPlan_DAO ..> java.util.logging.Logger
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> ManageBean.Grupos.Grupos_MB
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> ManageBean.PlanSemana.PlanSemana_MB
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> ManageBean.PlandeTrabajo.PlanTrabajo_MB
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> Utilidades.Constantes
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> config.conexion.ConexionMySQL
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> dao.maestros.Maestros_EditarMaestros_DAO
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> java.sql.Connection
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> java.sql.PreparedStatement
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> java.sql.ResultSet
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> java.sql.SQLException
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> java.util.ArrayList
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> java.util.Date
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> java.util.List
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> java.util.logging.Level
+dao.plandetrabajo.Planes_DetallarPlan_DAO ..> java.util.logging.Logger
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> ManageBean.PlanSemana.PlanSemana_MB
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> ManageBean.PlandeTrabajo.PlanTrabajo_MB
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> Utilidades.Constantes
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> Utilidades.GenericResponse
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> Utilidades.Validaciones
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> config.conexion.ConexionMySQL
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> dao.Grupos.Grupos_EditarGrupo_DAO
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> java.sql.Connection
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> java.sql.PreparedStatement
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> java.sql.SQLException
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> java.util.logging.Level
+dao.plandetrabajo.Planes_EditarPlan_DAO ..> java.util.logging.Logger
+dao.plandetrabajo.Planes_EliminarPlan_DAO ..> Utilidades.Constantes
+dao.plandetrabajo.Planes_EliminarPlan_DAO ..> Utilidades.GenericResponse
+dao.plandetrabajo.Planes_EliminarPlan_DAO ..> Utilidades.Validaciones
+dao.plandetrabajo.Planes_EliminarPlan_DAO ..> config.conexion.ConexionMySQL
+dao.plandetrabajo.Planes_EliminarPlan_DAO ..> dao.actividadextraesscolar.ActividadExtraescolar_EliminarActividad_DAO
+dao.plandetrabajo.Planes_EliminarPlan_DAO ..> java.sql.Connection
+dao.plandetrabajo.Planes_EliminarPlan_DAO ..> java.sql.PreparedStatement
+dao.plandetrabajo.Planes_EliminarPlan_DAO ..> java.sql.SQLException
+dao.plandetrabajo.Planes_EliminarPlan_DAO ..> java.util.logging.Level
+dao.plandetrabajo.Planes_EliminarPlan_DAO ..> java.util.logging.Logger
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> ManageBean.ActividadExtraescolar.ActividadExtraescolar_MB
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> ManageBean.Maestros.Maestros_MB
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> ManageBean.PlandeTrabajo.PlanTrabajo_MB
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> Utilidades.Constantes
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> config.conexion.ConexionMySQL
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> dao.maestros.Maestros_EditarMaestros_DAO
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> java.sql.Connection
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> java.sql.PreparedStatement
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> java.sql.ResultSet
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> java.sql.SQLException
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> java.util.ArrayList
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> java.util.Date
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> java.util.List
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> java.util.logging.Level
+dao.plandetrabajo.Planes_ListarPlanes_DAO ..> java.util.logging.Logger
+masterDAO.AlumnosITTol_MDAO ..> ws.DatosAlumnoMB
+masterDAO.AlumnosmDAO ..> ManageBean.Alumnos.Alumnos_MB
+masterDAO.AlumnosmDAO ..> Utilidades.GenericResponse
+masterDAO.AlumnosmDAO ..> Utilidades.Validaciones
+masterDAO.AlumnosmDAO ..> dao.Alumnos.AlumnosInsertarAlumno_DAO
+masterDAO.AlumnosmDAO ..> java.text.ParseException
+masterDAO.AlumnosmDAO ..> java.text.SimpleDateFormat
+masterDAO.AlumnosmDAO ..> java.util.Calendar
+masterDAO.AlumnosmDAO ..> java.util.Date
+masterDAO.AlumnosmDAO ..> ws.DatosAlumnoMB
+masterDAO.EmpleadoDao ..> java.sql.Connection
+masterDAO.EmpleadoDao ..> java.sql.PreparedStatement
+masterDAO.EmpleadoDao ..> java.sql.ResultSet
+masterDAO.EmpleadoDao ..> masterDao.conexion
+masterDao.conexion ..> java.sql.Connection
+masterDao.conexion ..> java.sql.DriverManager
+masterDao.conexion ..> java.sql.PreparedStatement
+masterDao.conexion ..> java.sql.ResultSet
+masterDao.conexion ..> java.sql.SQLException
+masterDao.conexion ..> utils.Constantes
+ws.DatosAlumnoMB ..> javax.xml.bind.annotation.XmlAccessorType
+ws.DatosAlumnoMB ..> javax.xml.bind.annotation.XmlType
+ws.DatosAlumnoMB ..> javax.xml.bind.annotation.XmlAccessType
+ws.GetInfo ..> javax.xml.bind.annotation.XmlAccessorType
+ws.GetInfo ..> javax.xml.bind.annotation.XmlType
+ws.GetInfo ..> javax.xml.bind.annotation.XmlAccessType
+ws.GetInfoMov_Service ..> javax.xml.ws.WebEndpoint
+ws.GetInfoMov_Service ..> javax.xml.ws.WebServiceClient
+ws.GetInfoMov_Service ..> java.net.MalformedURLException
+ws.GetInfoMov_Service ..> java.net.URL
+ws.GetInfoMov_Service ..> javax.xml.namespace.QName
+ws.GetInfoMov_Service --|> javax.xml.ws.Service
+ws.GetInfoMov_Service ..> javax.xml.ws.WebServiceException
+ws.GetInfoMov_Service ..> javax.xml.ws.WebServiceFeature
+ws.GetInfoResponse ..> javax.xml.bind.annotation.XmlAccessorType
+ws.GetInfoResponse ..> javax.xml.bind.annotation.XmlElement
+ws.GetInfoResponse ..> javax.xml.bind.annotation.XmlType
+ws.GetInfoResponse ..> javax.xml.bind.annotation.XmlAccessType
+ws.ObjectFactory ..> javax.xml.bind.annotation.XmlElementDecl
+ws.ObjectFactory ..> javax.xml.bind.annotation.XmlRegistry
+ws.ObjectFactory ..> javax.xml.bind.JAXBElement
+ws.ObjectFactory ..> javax.xml.namespace.QName
+ws.GetInfoMov ..> javax.jws.WebMethod
+ws.GetInfoMov ..> javax.jws.WebParam
+ws.GetInfoMov ..> javax.jws.WebResult
+ws.GetInfoMov ..> javax.jws.WebService
+ws.GetInfoMov ..> javax.xml.bind.annotation.XmlSeeAlso
+ws.GetInfoMov ..> javax.xml.ws.Action
+ws.GetInfoMov ..> javax.xml.ws.RequestWrapper
+ws.GetInfoMov ..> javax.xml.ws.ResponseWrapper
+@enduml

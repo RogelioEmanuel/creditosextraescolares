@@ -6,6 +6,7 @@ import ManageBean.Grupos.Grupos_MB;
 import ManageBean.Maestros.Maestros_MB;
 import Utilidades.Constantes;
 import config.conexion.ConexionMySQL;
+import static dao.Grupos.Grupos_CrearGrupo_DAO.convertirActividad;
 import dao.actividadextraesscolar.ActividadExtraescolar_EditarActividad_DAO;
 import dao.maestros.Maestros_EditarMaestros_DAO;
 import java.sql.Connection;
@@ -20,6 +21,57 @@ import java.util.logging.Logger;
 
 
 public class Grupos_ListarGrupos_DAO {
+    
+    public static ActividadExtraescolar_MB consultarActividad(int id) {
+        ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
+        int statusConexion = cone.conectar();
+        Connection conn = cone.getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ActividadExtraescolar_MB actividades = new ActividadExtraescolar_MB();
+        
+        
+  
+        try {
+            if (conn != null) {
+                String query = "SELECT idActividad_Extraescolar, nombre, tipo, status, descripcion \n"
+                        + "FROM actividad_extraescolar f \n"                        
+                        + "WHERE idActividad_Extraescolar = ?";
+                ps = conn.prepareStatement(query);
+                ps.setInt(1,id );
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    actividades=convertirActividad(rs);
+                    
+                }
+                if (!conn.isClosed()) {
+                    conn.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ActividadExtraescolar_MB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ActividadExtraescolar_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ActividadExtraescolar_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return actividades;
+    }
     
     private static Maestros_MB convertirMaestro(ResultSet rs) throws SQLException {
         
@@ -76,7 +128,7 @@ public class Grupos_ListarGrupos_DAO {
         grupo.setPeriodo(periodo);
         grupo.setNoGrupo(noGrupo);
         grupo.setTotalhorassemanales(totalhorassemanal);
-        
+        grupo.setNombreActividad(consultarActividad(idActividad).getNombre());
         Maestros_MB mas= new Maestros_MB();
         
         mas = consultarMaestro(idMaestros);

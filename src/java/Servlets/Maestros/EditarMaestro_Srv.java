@@ -109,6 +109,8 @@ public class EditarMaestro_Srv extends HttpServlet {
         String direccion = request.getParameter("direccion");
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaNacimiento = null;
+        String usuario = request.getParameter("usuario");
+        String pass = request.getParameter("pass");
         
         try {
             

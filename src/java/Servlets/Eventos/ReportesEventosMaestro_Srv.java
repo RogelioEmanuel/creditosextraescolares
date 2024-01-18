@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import masterDAO.Empleado;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -71,72 +72,94 @@ public class ReportesEventosMaestro_Srv extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        List<Evento_MB> evento = Eventos_ReportesEventos_DAO.consultarEventos(28 );    
-        GenericResponse respuesta = new GenericResponse();
         HttpSession session = request.getSession();
+        
+        Empleado maestro2= (Empleado) session.getAttribute("usuario");
+        int idMaestro= maestro2.getIdEmpleado();
+        List<Evento_MB> evento = Eventos_ReportesEventos_DAO.consultarEventos(idMaestro);    
+        GenericResponse respuesta = new GenericResponse();
+        
         //Obtencion y creacion de logo ITT
         String imagenUrl = getClass().getClassLoader().getResource("img/header.png").toString().substring(6);            
         File file = new File(imagenUrl);
         InputStream imagenFile = new FileInputStream(file);
         
-        String jrxmlFile = getClass().getClassLoader().getResource("Reportes/evento3.jrxml").toString().substring(6);   
         
-        try {
+        if(evento.isEmpty()){
+            System.out.println("Vacio, sin datos");
             
-            JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFile);
-            
-            //Evento_MB[] eventos =evento.toArray(new Evento_MB[0]);
-            
-            
-            Map<String, Object> map = new HashMap<>();
-            //JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(eventos);
-            
-            for (Evento_MB maestro4 : evento) {
-               
-               //System.out.println(maestro4.getNombreEvento());
-            }
-            if(imagenFile.available()>0){
-                map.put(Constantes.NOMBRELOGO, imagenFile);                 
-                  
-            }
-            String actividad="";
-            String periodo="";
-            JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(evento);
-            
-            //System.out.println(":0 "+ds.toString());
-            map.put("ds", ds); 
-            map.put("jefatura",Constantes.NOMBREJEFATURA);
-            map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
-            map.put("actividad",actividad);
-            map.put("periodo",periodo);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);
-            
-            
-            
-            
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();   
-            JasperExportManager.exportReportToPdfStream(jasperPrint, byteArrayOutputStream);            
-            byte[] pdfBytes = byteArrayOutputStream.toByteArray();
-            String base64EncodedPDF = new String(Base64.encodeBase64(pdfBytes));
-                        
-            respuesta.setMensaje(base64EncodedPDF);
-            respuesta.setStatus(0);
-            respuesta.setResponseObject(null);
-            
+            respuesta.setMensaje("No hay ningun dato para el reporte");
+            respuesta.setStatus(24);
             try {
-            response.setContentType("application/json");
-            Gson json = new Gson();
-            out.print(json.toJson(respuesta));
+                response.setContentType("application/json");
+                Gson json = new Gson();
+                out.print(json.toJson(respuesta));
             } catch (Exception e) {
                 System.out.println(e);
             }
             
-            
-            
-            
-        } catch (JRException ex) {
-            Logger.getLogger(ReportesEventos_Srv.class.getName()).log(Level.SEVERE, null, ex);
+        }else{
+            String jrxmlFile = getClass().getClassLoader().getResource("Reportes/evento3.jrxml").toString().substring(6);   
+        
+            try {
+
+                JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFile);
+
+                //Evento_MB[] eventos =evento.toArray(new Evento_MB[0]);
+
+
+                Map<String, Object> map = new HashMap<>();
+                //JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(eventos);
+
+                for (Evento_MB maestro4 : evento) {
+
+                   //System.out.println(maestro4.getNombreEvento());
+                }
+                if(imagenFile.available()>0){
+                    map.put(Constantes.NOMBRELOGO, imagenFile);                 
+
+                }
+                String actividad="";
+                String periodo="";
+                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(evento);
+
+                //System.out.println(":0 "+ds.toString());
+                map.put("ds", ds); 
+                map.put("jefatura",Constantes.NOMBREJEFATURA);
+                map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
+                map.put("actividad",actividad);
+                map.put("periodo",periodo);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);
+
+
+
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();   
+                JasperExportManager.exportReportToPdfStream(jasperPrint, byteArrayOutputStream);            
+                byte[] pdfBytes = byteArrayOutputStream.toByteArray();
+                String base64EncodedPDF = new String(Base64.encodeBase64(pdfBytes));
+
+                respuesta.setMensaje(base64EncodedPDF);
+                respuesta.setStatus(0);
+                respuesta.setResponseObject(null);
+
+                try {
+                response.setContentType("application/json");
+                Gson json = new Gson();
+                out.print(json.toJson(respuesta));
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
+
+
+
+            } catch (JRException ex) {
+                Logger.getLogger(ReportesEventos_Srv.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+        
+        
     }
 
     /**

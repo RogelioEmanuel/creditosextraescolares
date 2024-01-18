@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import masterDAO.Empleado;
 
 
 public class Maestros_EditarMaestros_DAO {
@@ -139,6 +140,73 @@ public class Maestros_EditarMaestros_DAO {
                 ps.setString(11, maestro.getSexo());
                 ps.setString(12, maestro.getDireccion());
                 ps.setInt(13, maestro.getIdMaestros());
+                ps.executeUpdate();
+
+                respuesta.setMensaje("Ok");
+                respuesta.setStatus(Validaciones.VALIDATION_EXP);
+                respuesta.setResponseObject(null);
+            }
+        } catch (SQLException ex) {
+            respuesta.setStatus(Validaciones.VALIDATION_ERROR);
+            respuesta.setMensaje(ex.toString());
+            respuesta.setResponseObject(null);
+            Logger.getLogger(Maestros_EditarMaestros_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed()) {
+                    conn.close();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Maestros_EditarMaestros_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Maestros_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    
+    public static void actualizarUsuario(Empleado empleado,String pass, GenericResponse respuesta) {
+        ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
+        int statusConexion = cone.conectar();
+        Connection conn = cone.getConexion();
+        java.sql.Date fechaNacimiento = null;
+        
+        
+       
+
+       
+
+        PreparedStatement ps = null;
+        try {
+            if (conn != null) {
+                String update =" UPDATE usuarios\n" +
+                                    "SET \n" +
+                                    "    Usuario = ?,\n" +
+                                    "    nombre_usuario = ?,\n" +
+                                    "    apellidoPaterno = ?,\n" +
+                                    "    apellidoMaterno = ?,\n" +
+                                    "    nombrePuesto = ?,\n" +
+                                    "    fechaNacimiento = ?,\n" +
+                                    "    correo = ?,\n" +
+                                    "    contrasenia = ?\n" +
+                                    "WHERE \n" +
+                                    "    idUsuario = ?;";
+                 ps = conn.prepareStatement(update);
+                ps.setString(1, empleado.getNombre());  
+                ps.setString(2, empleado.getUsuario());
+                ps.setString(3,empleado.getApellidoPaterno());
+                ps.setString(4, empleado.getApellidoMaterno());                 
+                ps.setString(5,empleado.getNombrePuesto());
+                ps.setString(6,empleado.getFechaNac());
+                ps.setString(7, empleado.getCorreo());
+                ps.setString(8, pass);    
+                ps.setInt(9,empleado.getIdEmpleado());
                 ps.executeUpdate();
 
                 respuesta.setMensaje("Ok");

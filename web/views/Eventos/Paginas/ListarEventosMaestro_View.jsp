@@ -55,7 +55,8 @@
                                     <th class="bordeTd"><input id="tblListaEventos-colSearch5" type="text" placeholder="Buscar:" style="width: 100%" data-index="5"></th>
                                     <th class="bordeTd"><input id="tblListaEventos-colSearch6" type="text" placeholder="Buscar:" style="width: 100%" data-index="6"></th>
                                     <th class="bordeTd"><input id="tblListaEventos-colSearch7" type="text" placeholder="Buscar:" style="width: 100%" data-index="7"></th>
-                                    <th class="bordeTd"><input id="tblListaEventos-colSearch8" type="text" placeholder="Buscar:" style="width: 100%" data-index="8"></th>                                    
+                                    <th class="bordeTd"><input id="tblListaEventos-colSearch8" type="text" placeholder="Buscar:" style="width: 100%" data-index="8"></th>
+                                    <th class="bordeTd"><input id="tblListaEventos-colSearch9" type="text" placeholder="Buscar:" style="width: 100%" data-index="9"></th>                                     
                                     <th class="bordeTd"><i class="fa fa-filter iconoFiltro"></i></th>
                                 </tr>
                                 <tr class="info">
@@ -65,7 +66,8 @@
                                     <th class="bordeTd" style="font-size: 11px">Fecha</th>
                                     <th class="bordeTd" style="font-size: 11px">Periodo</th>
                                     <th class="bordeTd" style="font-size: 11px">Actividad</th>
-                                    <th class="bordeTd" style="font-size: 11px">Participantes</th>                                    
+                                    <th class="bordeTd" style="font-size: 11px">Participantes Tecnologico</th> 
+                                    <th class="bordeTd" style="font-size: 11px">Participantes totales</th>                                    
                                     <th class="bordeTd" style="font-size: 11px">Resultados</th>
                                     <th class="bordeTd" style="font-size: 11px"></th>                                   
                                 </tr>
@@ -80,6 +82,7 @@
                                         <td class="bordeTd  justify">${row.fecha}</td>
                                         <td class="bordeTd  justify">${row.periodo}</td> 
                                         <td class="bordeTd  justify">${row.nombreActividad}</td>
+                                        <td class="bordeTd  justify"> H=${row.noParticipanteshtec} | M= ${row.noParticipantesmtec}</td>
                                         <td class="bordeTd  justify"> H=${row.noParticipantesh} | M= ${row.noParticipantesm}<br> Total=${row.totalParticipantes}</td>
                                         <td class="bordeTd  justify">${row.resultado}</td>
                                          

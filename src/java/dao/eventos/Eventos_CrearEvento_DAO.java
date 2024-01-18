@@ -32,7 +32,7 @@ public class Eventos_CrearEvento_DAO {
         try {
             if (conn != null) {
                 String query= "INSERT INTO eventos( nombreEvento, InstitucionOrganizadora, tipoEvento, periodo, fecha,anio, idActividad, numParticipantesH,"
-                        + "numParticipantesM,resultado) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                        + "numParticipantesM,resultado,numParticipantesHTec,numParticipantesMTec) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
                 
                 ps = conn.prepareStatement(query);
                 ps.setString(1, evento.getNombreEvento()); 
@@ -45,7 +45,8 @@ public class Eventos_CrearEvento_DAO {
                 ps.setInt(8,evento.getNoParticipantesh());
                 ps.setInt(9,evento.getNoParticipantesm());
                 ps.setString(10, evento.getResultado());
-                               
+                ps.setInt(11,0);
+                ps.setInt(12,0);               
                 ps.executeUpdate();
                 if (!conn.isClosed()) {
                     conn.close();

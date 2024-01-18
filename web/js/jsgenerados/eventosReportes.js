@@ -30,6 +30,7 @@ function generarReporte(actividad,periodo,anio) {
             $("#pageLoader").hide();
             
             if (respuesta.status === 0) {
+                
                 var byteCharacters = atob(respuesta.mensaje);
                 var byteNumbers = new Array(byteCharacters.length);
                 for (var i = 0; i < byteCharacters.length; i++) {
@@ -41,6 +42,12 @@ function generarReporte(actividad,periodo,anio) {
                 var url = URL.createObjectURL(blob);
                 $("#ApartadoPDF").attr("src", url);
                 $("#divReporte").show();
+            }else {
+                
+                console.log("Hola");
+                TituloMensaje = "ERROR";
+                Mensaje = "Verifica los datos que ingresaste, ya que no hay ningun dato para ese reporte";
+                mostrarMensaje(iconoError, TituloMensaje, Mensaje);
             }
         },
         error: function (jqXHR, exception) {

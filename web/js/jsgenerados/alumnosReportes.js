@@ -44,6 +44,11 @@ function generarReporte(a,idGrupo) {
                 var url = URL.createObjectURL(blob);
                 $("#ApartadoPDF").attr("src", url);
                 $("#divReporte").show();
+            }else{
+                
+                TituloMensaje = "ERROR";
+                Mensaje = "No hay datos para este reporte";
+                mostrarMensaje(iconoError, TituloMensaje, Mensaje);
             }
         },
         error: function (jqXHR, exception) {

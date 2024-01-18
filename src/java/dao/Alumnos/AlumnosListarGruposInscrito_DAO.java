@@ -58,7 +58,7 @@ public class AlumnosListarGruposInscrito_DAO {
         
     }    
     
-    public static List<Grupos_MB> consultarGr(int id) {
+    public static List<Grupos_MB> consultarGr(String id) {
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();
         Connection conn = cone.getConexion();
@@ -73,7 +73,7 @@ public class AlumnosListarGruposInscrito_DAO {
                                 + "FROM Grupos JOIN grupos_y_alumno ON Grupos.idGrupo = grupos_y_alumno.idgrupo WHERE grupos_y_alumno.nocontrolalumno  =  ? ";
 
                 ps = conn.prepareStatement(query);
-                ps.setInt(1,id );
+                ps.setString(1,id );
                 rs = ps.executeQuery();
                 
                 while (rs.next()) {

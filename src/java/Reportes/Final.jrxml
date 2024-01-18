@@ -21,7 +21,7 @@
 	<field name="noControl" class="java.lang.String"/>
 	<field name="carrera" class="java.lang.String"/>
 	<field name="semestre" class="java.lang.Integer"/>
-	<field name="aprobado" class="java.lang.String"/>
+	<field name="acreditado" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -220,7 +220,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="60" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="200" height="30" uuid="7ab36f5c-c619-48c9-98b1-0f787c342415"/>
 				<box>
@@ -287,7 +287,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{aprobado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{acreditado}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

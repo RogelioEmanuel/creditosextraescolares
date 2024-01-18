@@ -17,6 +17,9 @@ public class Alumnos_MB {
     private int noReinscripcion;
     private String selectivo;
     private String acreditado;
+    
+    private double porcentajeclase;
+    private double porcentajeevento;
 
     public Alumnos_MB(String noControl, String nombre, int semestre, int edad, String correo, String sexo, String carrera,boolean regular, int noReinscripcion) {
         this.noControl = noControl;
@@ -97,6 +100,8 @@ public class Alumnos_MB {
     public void setEdad(int edad) {
         this.edad = edad;
     }
+
+    
 
     public String getCorreo() {
         return correo;
@@ -180,6 +185,22 @@ public class Alumnos_MB {
     
     public String getNomCompleto(){
         return this.nombre+" "+this.getApPaterno()+" "+this.getApMaterno();
+    }
+
+    public double getPorcentajeclase() {
+        return porcentajeclase;
+    }
+
+    public void setPorcentajeclase(double porcentajeclase) {
+        this.porcentajeclase = porcentajeclase;
+    }
+
+    public double getPorcentajeevento() {
+        return porcentajeevento;
+    }
+
+    public void setPorcentajeevento(double porcentajeevento) {
+        this.porcentajeevento = porcentajeevento;
     }
 
    

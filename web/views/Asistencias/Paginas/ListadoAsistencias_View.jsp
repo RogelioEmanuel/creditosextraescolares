@@ -157,9 +157,9 @@
                         <div class="row" align="right" style="margin: 1rem">
                             
                             
-                            <button title="Generar Reporte" data-table="tblListaAlumnos" class="btn btn-primary btn-sm" id="btnReporte"><i class="fa fa-file"></i> Generar Reporte de asistencia </button>
+                            
                             <a title="Regresar" id="btnregresar" href="../../app/grupos/detallargrupomaestro.do?idGrupo=${idGrupo}" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>                            
-                            <button title="Editar  Alumno" data-table="tblListaAlumnos" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i> Editar Asistencia</button>
+                            
                             
                             
                         </div>
@@ -189,7 +189,7 @@
         
         
         <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
-        <script src="../../js/jsgenerados/asistenciaListarAsistencia.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/asistenciaListarAsistenci.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
         <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
         <script src="../../js/lib/jspdf.min.js" type="text/javascript"></script>

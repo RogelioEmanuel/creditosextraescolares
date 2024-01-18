@@ -47,11 +47,11 @@ function editarDatosEvento(idEvento,nombre, institucionOrganizadora, tipoEvento,
             },
         success: function (respuesta) {
             $("#pageLoader").hide();
-            var respuestaObj = JSON.parse(respuesta);
-                var ruta =respuestaObj.ResponseObject;
+           // var respuestaObj = JSON.parse(respuesta);
+               // var ruta =respuestaObj.mensaje;
                 TituloMensaje = "Evento modificado";
                 Mensaje = "El Evento fue modificado";
-                mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, ruta);
+                mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, respuesta.mensaje);
             
             
         },

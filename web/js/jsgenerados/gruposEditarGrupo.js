@@ -189,6 +189,12 @@ function validarHoras() {
         TituloMensaje = "ERROR";
         Mensaje = "Las suma de horas por dia no coincide con el numero de horas semanales "+ sumaHoras;
         mostrarMensaje(iconoError, TituloMensaje, Mensaje);
+        resetDia("lunes");  // Debes ajustar esto para que sea el día correcto
+        resetDia("martes");
+        resetDia("miercoles");
+        resetDia("jueves");
+        resetDia("viernes");
+        resetDia("sabado");
         return false;
     } else {
         return true;

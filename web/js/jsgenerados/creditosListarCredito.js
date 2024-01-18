@@ -71,33 +71,7 @@ function eliminar_registro() {
     $("#CerrarConfirmEliminacion").trigger("click");
 }
 
-function mostrarEditarCredito(id) {
-    $("#pageLoader").show();
-    
-    
-    if(id!==null){
-        $.ajax({
-            url: '../../app/actividadextraescolar/editaractividad.do',
-            type: 'GET',
-            dataType: 'html',
-            data: {idActividad:id},
-            success: function (respuesta) {
-                $("body").html(respuesta);
-            },
-            error: function (jqXHR, exception) {
-                $("#pageLoader").hide();
-                TituloMensaje = "ERROR";
-                Mensaje = "Ocurrió un error en el servidor";
-                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
-            }
-        });
-    }else{
-        TituloMensaje = "ERROR";
-        Mensaje = "Es nulo el ID";
-        mostrarMensaje(iconoError,TituloMensaje, Mensaje);
-    }
-    
-}
+
 
 function mostrarCredito(id) {
     $("#pageLoader").show();
@@ -171,36 +145,7 @@ function mensajeConfirmacion(icono, id) {
     });
 };
 
-function eliminarCredito(id) {
-    $("#pageLoader").show();
-    $.ajax({
-        url: '../../app/actividadextraescolar/eliminaractividad.do',
-        type: 'POST',
-        dataType: 'json',
-        data: {idActividad: id},
-        success: function (respuesta) {
-            $("#pageLoader").hide();
-            if (respuesta.status === 0) {
-                TituloMensaje = "¡Actividad eliminada!";
-                Mensaje = "La actividad se ha eliminado correctamente";
-                mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '../../app/actividadextraescolar/listaractividad.do');
-                
-            } else {
-                TituloMensaje = "ERROR: ";
-                Mensaje = respuesta.mensaje;
-                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
-            }
 
-        },
-        error: function (jqXHR, exception) {
-            $("#pageLoader").hide();
-            TituloMensaje = "ERROR";
-            Mensaje = "Ocurrió un error en el servidor";
-            mostrarMensaje(iconoError,TituloMensaje, Mensaje);
-        }
-
-    });
-}
 
 function updateRegistro() {
 

@@ -305,9 +305,7 @@
                         <div class="row" style="margin-top: 30px">
                             <div class="col-md-12" align="right">
                                 <button style="font-size:14px" title="Editar Maestro" form="FormEditarMaestro" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil" ></i>Editar mi información personal</button>                                
-                                <button style="font-size:14px" id="btnRegresar" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-reply"></i> Regresar
-                                </button>
+                                 <a title="Regresar" id="regresar" href="/creditosextraescolares/index.jsp" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i>Regresar</a>
                                    
                                
 

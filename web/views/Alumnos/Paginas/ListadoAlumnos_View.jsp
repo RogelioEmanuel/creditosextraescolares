@@ -1,5 +1,13 @@
+<%@page import="Utilidades.Constantes"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<% 
+    
+    Constantes tuClase = new Constantes();
+    boolean miFuncion = tuClase.asentarCalificaciones();
+    request.setAttribute("miFuncion", miFuncion);
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +15,15 @@
         <link rel="icon" href="/CDN-ITT/img/logo.png">
         <title>Lista de Alumnos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link href="/CDN-ITT/css/base.estandarITT.css" rel="stylesheet">
+        <link href="/CDN-ITT/css/font-awesome.estandarITT.css" rel="stylesheet">
+        <link href="/CDN-ITT/css/general.estandarITT.css" rel="stylesheet">
+        <link href="/CDN-ITT/css/tablas.estandarITT.css" rel="stylesheet">
+        <link href="/CDN-ITT/css/botones.estandarITT.css" rel="stylesheet">
+        <link href="/CDN-ITT/css/catalogos-modal.estandarITT.css" rel="stylesheet">
+        <link href="/CDN-ITT/css/catalogos-tablas.estandarITT.css" rel="stylesheet">
+        <link href="/CDN-ITT/css/spinner.estandarITT.css" rel="stylesheet">
+        <link href="/CDN-ITT/css/bootstrap-datepicker.estandarITT.css" rel="stylesheet">
         
     </head>
     <body>
@@ -86,9 +103,19 @@
                         <div class="row" align="right" style="margin: 1rem">
                             <button title="Inscribir  Alumno" data-table="tblListaAlumnos" class="btn btn-success btn-sm" id="btnAgregar"><i class="fa fa-plus"></i> Inscribir Alumno </button>
                             <button title="Listar Asistencias" data-table="tblListaAlumnos" class="btn btn-info btn-sm" id="btnAsistencias"> Lista de Asistencias </button>
-                            <button title="Asentar Calificaciones" data-table="tblListaAlumnos" class="btn btn-warning btn-sm" id="btnCalificacion"><i class="fa fa-pencil"></i> Asentar Calificacion </button>
+                            <c:choose>
+                                <c:when test="${miFuncion}">
+                                    <button title="Asentar Calificaciones" data-table="tblListaAlumnos" class="btn btn-warning btn-sm" id="btnCalificacion">
+                                        <i class="fa fa-pencil"></i> Asentar Calificacion
+                                    </button>
+                                </c:when>
+                                <c:otherwise>
+                                    <!-- Aquí puedes poner lo que quieras mostrar cuando la función es false -->
+                                </c:otherwise>
+                            </c:choose>
+                            
                             <button title="Generar Reporte" data-table="tblListaAlumnos" class="btn btn-primary btn-sm" id="btnReporte"><i class="fa fa-file"></i> Reportes </button>
-                            <a title="Regresar" id="btnregresar" href="#" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>                            
+                            <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/grupos/listargruposmaestro.do" class="btn btn-sm btn-danger" ><i class="fa fa-reply"></i> Regresar</a>                            
                             <button title="Editar  Alumno" data-table="tblListaAlumnos" class="btn btn-warning btn-sm" id="btnEditar"><i class="fa fa-pencil"></i> Editar Alumno</button>
                             <button title="Dar de baja  Alumno " data-table="tblListaAlumnos" class="btn btn-borrar btn-sm" id="btnEliminar"><i class="fa fa-trash"></i> Dar de baja Alumno del grupo</button>
                             
@@ -107,7 +134,16 @@
 
         
         
-        
+        <script type="text/javascript" src ="\CDN-ITT\js\jquery.estandarITT.js"></script>
+        <script type="text/javascript" src ="\CDN-ITT\js\jquery-ui.estandarITT.js"></script>
+        <script type="text/javascript" src ="\CDN-ITT\js\base.estandarITT.js"></script>
+        <script type="text/javascript" src ="\CDN-ITT\js\spinner.estandarITT.js"></script>
+        <script type="text/javascript" src ="\CDN-ITT\js\jquery.dataTables.estandarITT.js"></script>
+        <script type="text/javascript" src ="\CDN-ITT\js\tablas.estandarITT.js"></script>
+        <script type="text/javascript" src ="\CDN-ITT\js\catalogos-modal.estandarITT.js"></script>
+        <script type="text/javascript" src ="\CDN-ITT\js\catalogos-tablas.estandarITT.js"></script>
+        <script type="text/javascript" src ="\CDN-ITT\js\bootstrap-datepicker.estandarITT.js"></script>
+        <script type="text/javascript" src ="\CDN-ITT\js\bootstrap-datepicker.es.estandarITT.js"></script>
         
         <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/alumnosListarAlumno.js" type="text/javascript"></script>

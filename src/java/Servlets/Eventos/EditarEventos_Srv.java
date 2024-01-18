@@ -40,7 +40,7 @@ public class EditarEventos_Srv extends HttpServlet {
             throws ServletException, IOException {
        HttpSession session = request.getSession();
        int idEvento = Integer.parseInt(request.getParameter("idEvento"));
-       
+       Empleado a = (Empleado) session.getAttribute("usuario");
                 
        Evento_MB evento = Evento_EditarEvento_DAO.consultar(idEvento);
        
@@ -105,23 +105,20 @@ public class EditarEventos_Srv extends HttpServlet {
         GenericResponse resp = new GenericResponse();
         
         String ruta="";
-        /*
-        if(a.getRol().equals("Admin")){
+        
+        if(a.getNombrePuesto().equals("Admin")){
             ruta="'../../app/eventos/listarevento.do'";
-        }else if(a.getRol().equals("Maestro")){
+        }else if(a.getNombrePuesto().equals("Maestro")){
             ruta="../../app/eventos/listareventomaestro.do";
-        }*/
-        resp.setResponseObject("");
-              
+        }
+        
+        
         Evento_MB evento = new Evento_MB(idEvento,nombre,parth,partm, institucionorganizadora, tipo,periodo,fechaEvento,actividad,resultado);
        
-        System.out.println("vacio"+fechaEvento);
-        Evento_EditarEvento_DAO.actualizarEvento(evento, resp);
-        
        
-        
-
-                
+        Evento_EditarEvento_DAO.actualizarEvento(evento, resp);
+        resp.setMensaje(ruta);
+                       
         try {
             response.setContentType("application/json");
             Gson json = new Gson();

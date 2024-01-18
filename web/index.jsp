@@ -3,6 +3,13 @@
 <c:set var="usuario" value="${sessionScope.usuario}" />
 <c:set var="rolUsuario" value="${usuario.nombrePuesto}" />
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    Constantes constantes2 = new Constantes();
+    boolean periodoCalifActivo = constantes2.asentarCalificaciones();
+%>
+        
+
 <!DOCTYPE html>
 <html>
      <head>
@@ -38,12 +45,22 @@
         </c:choose>
         
     </header>
+   <%
+        String rolUsuario = (String) pageContext.getAttribute("rolUsuario");
+        if(periodoCalifActivo && !rolUsuario.equals("Estudiante")) {
+    %>
+        <label id="periodoActivoLabel" style="display: none;">Activo</label>
+    <%
+        }
+    %>
+
+
     <body>
         
         <div class="container">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    
+                    <label id="bLabel" style="display: none;">${periodo.fecha_fin}</label>
                 </div>
                 <div class="panel-body">
                     <div class="jumbotron centerfy">
@@ -62,10 +79,15 @@
         <script type="text/javascript" src ="\CDN-ITT\js\jquery-ui.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\base.estandarITT.js"></script>
         <script type="text/javascript" src ="\CDN-ITT\js\spinner.estandarITT.js"></script>
-        
+              
+        <script src="../../js/jsgenerados/funciones.js" type="text/javascript"></script>
+        <script src="../../js/lib/bootbox.min.js" type="text/javascript"></script>
+        <script src="../../js/lib/jspdf.min.js" type="text/javascript"></script>
+        <script src="../../js/lib/jspdf.plugin.autotable.min.js" type="text/javascript"></script>
+        <script src="../../js/jsgenerados/constantes.js" type="text/javascript"></script>
         
         <script src="js/jsgenerados/Inicio.js" type="text/javascript"></script>
-        
+        <script src="../../js/jsgenerados/AlertaPeriodo.js" type="text/javascript"></script>
         <script src="../../js/jsgenerados/Inicio.js" type="text/javascript"></script>
     </body>
     <footer><%@include file="views/templates/Footer_View.jsp" %></footer>

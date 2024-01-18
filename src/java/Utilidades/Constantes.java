@@ -1,6 +1,7 @@
 
 package Utilidades;
 
+import dao.Periodo.Periodo_DAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -67,18 +68,23 @@ public class Constantes {
     public static final String NOMBREJEFATURA="IVÁN OMAR ORTEGA ROSALES";
     public static final String NOMBREJEFATURAPROMOCION="MANUEL R. CORREA ALDAPE";
     public static final String NOMBRELOGO="LogoITTol";
-    public static  final String PERIODOFECHAINICIO="15/01/2024";
-    public static  final String PERIODOFECHAFINAL="15/06/2024";
+    
     public static final SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");  
     public static Date fecha=null;       
     public static Date fecha2=null;
-    public static final int DIASINSCRIPCION = 30;
+    
+    //Fechas Periodo, Dias Inscribir
+    public static String PERIODOFECHAINICIO=f.format(Periodo_DAO.consultar().getFecha_inicio());
+    public static String PERIODOFECHAFINAL=f.format(Periodo_DAO.consultar().getFecha_fin());
+    
+    public static int DIASINSCRIPCION = Periodo_DAO.consultar().getInsscripcion();
+    public static int diasCalificacion=Periodo_DAO.consultar().getCierre();
                
     public static String periodoActual;
     public static final String MASTER_USER = "root";
     public static final String MASTER_PASS = "";
-    public static final String MASTER_BD = "jdbc:mysql://localhost:3306/sam?allowLoadLocalInfile=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    public static final String MASTER_BD2 = "sam?allowLoadLocalInfile=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    //public static final String MASTER_BD = "jdbc:mysql://localhost:3306/sam?allowLoadLocalInfile=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    public static final String MASTER_BD2 = "http://sismaster.toluca.tecnm.mx:8090/SAM/";
     
     
          
@@ -103,8 +109,9 @@ public class Constantes {
     } 
      
      
-           
+          
     public static void declararPeriodo() {
+        //System.out.println(Periodo_DAO.consultar().getFecha_inicio());
         try {
             fecha = f.parse(PERIODOFECHAINICIO);
             fecha2=f.parse(PERIODOFECHAFINAL);
@@ -126,15 +133,40 @@ public class Constantes {
         return fechaConDiasAgregados;
     }
     
+    public static Date declararCalif(){
+        Calendar cal = Calendar.getInstance();
+        declararPeriodo();
+        cal.setTime(fecha2);
+        cal.add(Calendar.DAY_OF_MONTH , -diasCalificacion);
+        Date fechaConDiasRestados = cal.getTime();
+        
+        return fechaConDiasRestados;
+    }
+    
      public static boolean esAntesDeInscripciones() {
         Date fechaActual = new Date();
         Date fechaInscripciones = declararInscripciones();
-        System.out.println("Falso");
-        return fechaActual.before(fechaInscripciones);
+                
+        return fechaActual.before(fechaInscripciones)&&fechaActual.after(fecha);
     }
+     
+     public static boolean asentarCalificaciones(){
+         Date fechaActual = new Date();
+         Date fechaInscripciones = declararCalif();
+         
+         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+         System.out.println("Fecha con días agregados: " + dateFormat.format(fechaInscripciones));
+         System.out.println("Fecha actual: " + dateFormat.format(fechaActual));
+         System.out.println("Fecha 2: " + dateFormat.format(fecha2));
+         //fecha actual es  antes de fecha 2 y fecha actual es despues de inscripciones
+         System.out.println(fechaActual.before(fecha2)&&fechaActual.after(fechaInscripciones));
+         return fechaActual.before(fecha2)&&fechaActual.after(fechaInscripciones);
+         
+         //return true;
+     }
                
      public static boolean prueba(){
-         System.out.println("Falso");
+         System.out.println("Falso"+" Prueba");
          return false;
      }
     

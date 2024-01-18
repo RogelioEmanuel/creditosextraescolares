@@ -47,6 +47,21 @@ public class App_Login_Srv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String strUsuario = "";
         String strPassword = "";
@@ -75,7 +90,7 @@ public class App_Login_Srv extends HttpServlet {
         
         if(respuesta.getStatus()== Validaciones.VALIDATION_EXP){
             HttpSession session = request.getSession(true);       
-            
+           
             session.setAttribute("usuario", respuesta.getResponseObject());
             Empleado usua = respuesta.getResponseObject();
             if(usua.getNombrePuesto().equals("Estudiante")){
@@ -137,13 +152,6 @@ public class App_Login_Srv extends HttpServlet {
                 
         }
         
-        try {
-            response.setContentType("application/json");
-            Gson json = new Gson();
-            out.print(json.toJson(respuesta));
-        } catch (Exception e) {
-                    Logger.getLogger(Login_Srv.class.getName()).log(Level.SEVERE, null, e);
-        }
         
         
         
@@ -157,21 +165,6 @@ public class App_Login_Srv extends HttpServlet {
         } catch (Exception e) {
             Logger.getLogger(App_Login_Srv.class.getName()).log(Level.SEVERE, null, e);
         }
-        
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
     }
 
     /**

@@ -104,9 +104,7 @@ public class CrearEventos_Srv extends HttpServlet {
         Eventos_CrearEvento_DAO.insertar(evento, resp);
         resp.setMensaje(ruta);
        
-        
-
-                
+                        
         try {
             response.setContentType("application/json");
             Gson json = new Gson();

@@ -187,9 +187,17 @@ function validarHoras() {
     // Compara la suma de horas con las horas totales
     
     if (sumaHoras !== horasTotales) {
+        
         TituloMensaje = "ERROR";
         Mensaje = "Las suma de horas por dia no coincide con el numero de horas semanales"+ sumaHoras;
         mostrarMensaje(iconoError, TituloMensaje, Mensaje);
+        
+        resetDia("lunes");  // Debes ajustar esto para que sea el día correcto
+        resetDia("martes");
+        resetDia("miercoles");
+        resetDia("jueves");
+        resetDia("viernes");
+        resetDia("sabado");
         return false;
     } else {
         return true;
@@ -228,53 +236,53 @@ function calcularDiferenciaHoras(horaInicio, horaFin) {
 
     // Convertir la diferencia a horas
     const diferenciaHoras = diferenciaMilisegundos / (1000 * 60 * 60);
-    console.log(diferenciaHoras);
+    
     return diferenciaHoras;
 }
 
 //funcion que suma las diferencias de horas
 function sumarDiferencias(){
     var total=0;
-    alert("Entra al menos");
+    
     console.log(total);
     if(validarHorasCorrectas(lunesInicio,lunesFin)){
         total= total+ calcularDiferenciaHoras(lunesInicio,lunesFin);
-        alert(total);
+        
         console.log(total);
         
     }
     // Martes
     if (validarHorasCorrectas(martesInicio, martesFin)) {
         total = total + calcularDiferenciaHoras(martesInicio, martesFin);
-        alert(total);
+        
         console.log(total);
     }
 
     // Miércoles
     if (validarHorasCorrectas(miercolesInicio, miercolesFin)) {
         total = total + calcularDiferenciaHoras(miercolesInicio, miercolesFin);
-        alert(total);
+        
         console.log(total);
     }
 
     // Jueves
     if (validarHorasCorrectas(juevesInicio, juevesFin)) {
         total = total + calcularDiferenciaHoras(juevesInicio, juevesFin);
-        alert(total);
+        
         console.log(total);
     }
 
     // Viernes
     if (validarHorasCorrectas(viernesInicio, viernesFin)) {
         total = total + calcularDiferenciaHoras(viernesInicio, viernesFin);
-        alert(total);
+        
         console.log(total);
     }
 
     // Sábado
     if (validarHorasCorrectas(sabadoInicio, sabadoFin)) {
         total = total + calcularDiferenciaHoras(sabadoInicio, sabadoFin);
-        alert(total);
+        
         console.log(total);
         
     }

@@ -175,10 +175,10 @@ public class EditarGrupos_Srv extends HttpServlet {
         //Falta agregar un actualizar horario
         gestionarHorario("lunes", lunesInicio, lunesFin, resp);
         gestionarHorario("martes", martesInicio, martesFin, resp);
-        gestionarHorario("miércoles", miercolesInicio, miercolesFin, resp);
+        gestionarHorario("miercoles", miercolesInicio, miercolesFin, resp);
         gestionarHorario("jueves", juevesInicio, juevesFin, resp);
         gestionarHorario("viernes", viernesInicio, viernesFin, resp);
-        gestionarHorario("sábado", sabadoInicio, sabadoFin, resp);
+        gestionarHorario("sabado", sabadoInicio, sabadoFin, resp);
         
          
                 

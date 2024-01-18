@@ -114,7 +114,7 @@ public class CrearGrupos_Srv extends HttpServlet {
             // Verificar para el miércoles
             if (confirmacion(miercolesInicio, miercolesFin)) {
                 // diasSeleccionados.add("miércoles");
-                HorariosGrupo_MB horario = new HorariosGrupo_MB("miércoles", miercolesInicio, miercolesFin);
+                HorariosGrupo_MB horario = new HorariosGrupo_MB("miercoles", miercolesInicio, miercolesFin);
                 Grupos_CrearGrupo_DAO.insertarHorario(horario, resp);
             }
             // Verificar para el jueves
@@ -132,7 +132,7 @@ public class CrearGrupos_Srv extends HttpServlet {
             // Verificar para el sábado
             if (confirmacion(sabadoInicio, sabadoFin)) {
                 // diasSeleccionados.add("sábado");
-                HorariosGrupo_MB horario = new HorariosGrupo_MB("sábado", sabadoInicio, sabadoFin);
+                HorariosGrupo_MB horario = new HorariosGrupo_MB("sabado", sabadoInicio, sabadoFin);
                 Grupos_CrearGrupo_DAO.insertarHorario(horario, resp);
             }
         }

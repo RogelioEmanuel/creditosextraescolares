@@ -128,9 +128,7 @@
 
                         <div class="row" style="margin-top: 30px">                             
                             <div class="col-md-12" align="right">                                
-                                <button id="generarReporte" form="FormCrearPlan"  class="btn btn-primary btn-sm" style="font-size:14px">
-                                    <i class="fa fa-file"></i> Generar reporte
-                                </button>     
+                                
                                 <a title="Regresar" id="btnregresar" href="/creditosextraescolares/app/planesdetrabajo/ListarPlan.do" class="btn btn-sm btn-danger" style="font-size:14px"><i class="fa fa-reply"></i>Regresar</a>
                             </div>
                         </div>

@@ -88,32 +88,45 @@ function resetDia(dia) {
         case "lunes":
             lunesInicio =  null;
             lunesFin =  null;
+            document.getElementById('lunesInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('lunesFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;
         case "martes":
             martesInicio = null;
             martesFin = null;
+            document.getElementById('martesInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('martesFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;
         case "miercoles":
             miercolesInicio = null;
             miercolesFin = null;
+            document.getElementById('miercolesInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('miercolesFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;
         case "jueves":
             juevesInicio = null;
             juevesFin = null;
+            document.getElementById('juevesInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('juevesFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;
         case "viernes":
             viernesInicio = null;
             viernesFin = null;
+            document.getElementById('viernesInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('viernesFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;
         case "sabado":
             sabadoInicio = null;
             sabadoFin = null;
+            document.getElementById('sabadoInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('sabadoFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;        
         default:
             console.log("Día no válido");
             return;
     }   
 }
+
 
 $("#FormCrearGrupo").on("click", "#btnRegistrar", function (evento) {
     evento.preventDefault();
@@ -191,13 +204,13 @@ function validarHoras() {
         TituloMensaje = "ERROR";
         Mensaje = "Las suma de horas por dia no coincide con el numero de horas semanales"+ sumaHoras;
         mostrarMensaje(iconoError, TituloMensaje, Mensaje);
-        
         resetDia("lunes");  // Debes ajustar esto para que sea el día correcto
         resetDia("martes");
         resetDia("miercoles");
         resetDia("jueves");
         resetDia("viernes");
         resetDia("sabado");
+        
         return false;
     } else {
         return true;
@@ -210,10 +223,11 @@ function validarHorasCorrectas(horaInicio, horaFin) {
     // Convertir las cadenas de texto a objetos Date para comparar
     var fechaInicio = new Date("2000-01-01T" + horaInicio + ":00");
     var fechaFin = new Date("2000-01-01T" + horaFin + ":00");
-
+        console.log(fechaInicio);
+        console.log(fechaFin);
      // Comparar las fechas
     if (fechaInicio < fechaFin || (fechaInicio ===null && fechaFin===null)) {
-        
+        console.log("Detecta");
         return true;
     } else if (fechaInicio > fechaFin) {
         
@@ -247,42 +261,42 @@ function sumarDiferencias(){
     console.log(total);
     if(validarHorasCorrectas(lunesInicio,lunesFin)){
         total= total+ calcularDiferenciaHoras(lunesInicio,lunesFin);
-        
+        console.log("Lunes"+calcularDiferenciaHoras(lunesInicio,lunesFin));
         console.log(total);
         
     }
     // Martes
     if (validarHorasCorrectas(martesInicio, martesFin)) {
         total = total + calcularDiferenciaHoras(martesInicio, martesFin);
-        
+        console.log("Martes"+calcularDiferenciaHoras(martesInicio, martesFin));
         console.log(total);
     }
 
     // Miércoles
     if (validarHorasCorrectas(miercolesInicio, miercolesFin)) {
         total = total + calcularDiferenciaHoras(miercolesInicio, miercolesFin);
-        
+        console.log("Miercoles"+calcularDiferenciaHoras(miercolesInicio, miercolesFin));
         console.log(total);
     }
 
     // Jueves
     if (validarHorasCorrectas(juevesInicio, juevesFin)) {
         total = total + calcularDiferenciaHoras(juevesInicio, juevesFin);
-        
+        console.log("Jueves"+calcularDiferenciaHoras(juevesInicio, juevesFin));
         console.log(total);
     }
 
     // Viernes
     if (validarHorasCorrectas(viernesInicio, viernesFin)) {
         total = total + calcularDiferenciaHoras(viernesInicio, viernesFin);
-        
+        console.log("Viernes"+calcularDiferenciaHoras(viernesInicio, viernesFin));
         console.log(total);
     }
 
     // Sábado
     if (validarHorasCorrectas(sabadoInicio, sabadoFin)) {
         total = total + calcularDiferenciaHoras(sabadoInicio, sabadoFin);
-        
+        console.log("Sabado"+calcularDiferenciaHoras(sabadoInicio, sabadoFin));
         console.log(total);
         
     }
@@ -324,11 +338,18 @@ function enviarDatosGrupo(noGrupo,cupo, periodo, maestro, horasTotales, idActivi
         success: function (respuesta) {
             // Ocultamos el indicador de carga
             $("#pageLoader").hide();
+            if(respuesta.status===215){
+                TituloMensaje = "ERROR";
+                Mensaje = "El numero del grupo ya existe";
+                mostrarMensaje(iconoError, TituloMensaje, Mensaje);
+            }else{
+                TituloMensaje = "Grupo Agregado con Éxito";
+                Mensaje = "Grupo Agregado con Éxito";
+                var ruta = "/creditosextraescolares/app/grupos/listargrupos.do?idActividad="+idActividad;
+                mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, ruta);
+            }
 
-            TituloMensaje = "Grupo Agregado con Éxito";
-            Mensaje = "Grupo Agregado con Éxito";
-            var ruta = "/creditosextraescolares/app/grupos/listargrupos.do?idActividad="+idActividad;
-            mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, ruta);
+            
             // window.location = ruta;
         },
         error: function (jqXHR, exception) {

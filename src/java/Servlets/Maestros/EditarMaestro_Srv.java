@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import masterDAO.Empleado;
 
 /**
  *
@@ -45,7 +46,7 @@ public class EditarMaestro_Srv extends HttpServlet {
         session.setAttribute("idMaestro", idMaestro);   
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         Maestros_MB maestro = Maestros_EditarMaestros_DAO.consultar(idMaestro);
-        
+        Empleado as= Maestros_EditarMaestros_DAO.consultarEmp(idMaestro);
         String nombreMaestro = maestro.getNombre();
         String apPaterno = maestro.getApPaterno();
         String apMaterno = maestro.getApMaterno();
@@ -80,6 +81,9 @@ public class EditarMaestro_Srv extends HttpServlet {
         request.setAttribute("sexo", sexo);
         request.setAttribute("fecha_nacimiento", fecha_nacimiento);
         request.setAttribute("direccion",direccion);       
+        request.setAttribute("usu",as.getUsuario());
+        request.setAttribute("pas", as.getPas());
+        
         
         request.getRequestDispatcher("/views/Maestros/Paginas/EditarMaestro_View.jsp").forward(request, response);
 
@@ -130,9 +134,19 @@ public class EditarMaestro_Srv extends HttpServlet {
         
         Maestros_MB maestro = new Maestros_MB(nombre, apPaterno, apMaterno,correo,telefono,fechaNacimiento,banco,curp,rfc,sexo,clave,direccion);      
         maestro.setIdMaestros(idMaestro);
-            
+        Empleado empleado = new Empleado();
+        
+        empleado.setIdEmpleado(idMaestro);
+        empleado.setUsuario(usuario);
+        empleado.setNombre(nombre);
+        empleado.setApellidoPaterno(apPaterno);
+        empleado.setApellidoMaterno(apMaterno);  
+        empleado.setCorreo(correo);
+        empleado.setFechaNac(fecha_nacimiento);
+        empleado.setNombrePuesto("Maestro");
+        
         Maestros_EditarMaestros_DAO.actualizarMaestro(maestro, resp);
-                
+        Maestros_EditarMaestros_DAO.actualizarUsuario(empleado, pass, resp);
        
         try {
             response.setContentType("application/json");

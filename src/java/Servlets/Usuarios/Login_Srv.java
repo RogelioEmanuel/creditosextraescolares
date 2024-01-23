@@ -36,8 +36,8 @@ public class Login_Srv extends HttpServlet {
         
         HttpSession session = request.getSession();
         String captcha = CaptchaGenerador.generateCaptcha();
-        System.out.println("Captcha "+captcha);
-        request.setAttribute("captchaValue", captcha);
+        //System.out.println("Captcha "+captcha);
+        //request.setAttribute("captchaValue", captcha);
         
     }
 
@@ -51,13 +51,13 @@ public class Login_Srv extends HttpServlet {
         PrintWriter out = response.getWriter();
         String us  =  request.getParameter("itt_username");
         String pas = request.getParameter("itt_password");        
-        String itt_captcha = request.getParameter("itt_captcha");
-        String txtInput = request.getParameter("txtInput");
+        //String itt_captcha = request.getParameter("itt_captcha");
+        //String txtInput = request.getParameter("txtInput");
         GenericResponse resp2= new GenericResponse();
         
         
         
-        if(CaptchaGenerador.removeSpaces(itt_captcha).equals(CaptchaGenerador.removeSpaces(txtInput))&&!itt_captcha.isEmpty()){
+//        if(CaptchaGenerador.removeSpaces(itt_captcha).equals(CaptchaGenerador.removeSpaces(txtInput))&&!itt_captcha.isEmpty()){
             
             GenericResponse<Empleado> respuesta = new GenericResponse();
             Login_DAO.revisaUsuarioInt(us, pas,respuesta);
@@ -154,19 +154,19 @@ public class Login_Srv extends HttpServlet {
             } catch (Exception e) {
                 Logger.getLogger(Login_Srv.class.getName()).log(Level.SEVERE, null, e);
             }
-        }else{
-            
-            
-            try {
-                response.setContentType("application/json");
-                resp2.setStatus(15);
-                resp2.setMensaje("Captcha Invalido");
-                Gson json = new Gson();
-                out.print(json.toJson(resp2));
-            } catch (Exception e) {
-                        Logger.getLogger(Login_Srv.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
+//        }else{
+//            
+//            
+//            try {
+//                response.setContentType("application/json");
+//                resp2.setStatus(15);
+//                resp2.setMensaje("Captcha Invalido");
+//                Gson json = new Gson();
+//                out.print(json.toJson(resp2));
+//            } catch (Exception e) {
+//                        Logger.getLogger(Login_Srv.class.getName()).log(Level.SEVERE, null, e);
+//            }
+//        }
         
        
         

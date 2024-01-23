@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package masterDAO;
 
 
@@ -17,11 +13,11 @@ class AlumnosITTol_MDAO {
     public DatosAlumnoMB buscar(String usuario, String contra) {
         DatosAlumnoMB alu=null;
         
-        //try{
-           // alu= getInfo(usuario,contra);
-        //}catch (javax.xml.ws.WebServiceException e){
-            alu = getInfoSinInternet(usuario, contra);
-       // }
+        try{
+            alu= getInfo(usuario,contra);
+        }catch (javax.xml.ws.WebServiceException e){
+            //alu = getInfoSinInternet(usuario, contra);
+        }
         
         return alu;
     }

@@ -21,6 +21,9 @@ public class CaptchaGenerador {
         for (int i = 0; i < 5; i++) {
             int randomIndex = random.nextInt(alpha.length);
             code.append(alpha[randomIndex]);
+            if (i < 4) { 
+                code.append(" "); // Agregamos un espacio
+            }
         }
 
         return code.toString();

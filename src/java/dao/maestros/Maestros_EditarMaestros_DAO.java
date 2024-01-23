@@ -107,6 +107,68 @@ public class Maestros_EditarMaestros_DAO {
     }
     
     
+    private static Empleado convertirEmp(ResultSet rs) throws SQLException{
+        Empleado a  = new Empleado();
+        
+        
+        
+        a.setUsuario(rs.getString("Usuario"));
+        a.setPas(rs.getString("contrasenia"));
+        return a;
+    }
+    
+    public static Empleado consultarEmp(int idActividad) {
+        ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
+        int statusConexion = cone.conectar();
+        Connection conn = cone.getConexion();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Empleado maestro = new Empleado();
+
+        try {
+            if (conn != null) {
+                String query = "SELECT Usuario, contrasenia \n"
+                        + "FROM usuarios f \n"
+                        + "WHERE idUsuario  = ?";
+                
+                ps = conn.prepareStatement(query);
+                ps.setInt(1,idActividad );
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    maestro = convertirEmp(rs);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ActividadExtraescolar_MB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed()) {
+                    conn.close();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Maestros_EditarMaestros_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Maestros_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Maestros_MB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return maestro;
+    }
+    
+    
     public static void actualizarMaestro(Maestros_MB maestro, GenericResponse respuesta) {
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();
@@ -185,6 +247,8 @@ public class Maestros_EditarMaestros_DAO {
         PreparedStatement ps = null;
         try {
             if (conn != null) {
+                System.out.println("Entra");
+                System.out.println(empleado.getIdEmpleado());
                 String update =" UPDATE usuarios\n" +
                                     "SET \n" +
                                     "    Usuario = ?,\n" +
@@ -197,9 +261,9 @@ public class Maestros_EditarMaestros_DAO {
                                     "    contrasenia = ?\n" +
                                     "WHERE \n" +
                                     "    idUsuario = ?;";
-                 ps = conn.prepareStatement(update);
-                ps.setString(1, empleado.getNombre());  
-                ps.setString(2, empleado.getUsuario());
+                ps = conn.prepareStatement(update);
+                ps.setString(1, empleado.getUsuario());  
+                ps.setString(2, empleado.getNombre());
                 ps.setString(3,empleado.getApellidoPaterno());
                 ps.setString(4, empleado.getApellidoMaterno());                 
                 ps.setString(5,empleado.getNombrePuesto());
@@ -236,4 +300,6 @@ public class Maestros_EditarMaestros_DAO {
             }
         }
     }
+
+    
 }

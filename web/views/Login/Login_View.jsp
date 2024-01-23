@@ -5,12 +5,26 @@
 
 <script>
     var captchaCode = '<%= CaptchaGenerador.generateCaptcha() %>';
-
+    /*
     function Captcha() {
-        document.getElementById('mainCaptcha').innerText = captchaCode;
+        var code = captchaCode.split(' ');
+
+    // Agrega un efecto de desplazamiento aleatorio a cada letra
+    var newCode = '';
+    for (var i = 0; i < code.length; i++) {
+        var randomTop = Math.floor(Math.random() *10);
+        var randomLeft = Math.floor(Math.random() * 12);
+       
     }
+
+    document.getElementById("mainCaptcha").innerHTML = newCode;
+    document.getElementById("mainCaptcha").value = captchaCode; 
+        //document.getElementById('mainCaptcha').innerText = captchaCode;
+    }*/
     
     
+   
+ 
 </script>
 
 
@@ -88,20 +102,26 @@
                                         />
                                 </div>
                                 <div id="divCaptcha" class="form-group">
-                                    <label for="itt_captcha">Código captcha</label><br/>
-                                    <label>
-                                        <body onload="">
-                                            <div class="col-md-10" style="position:relative;">
-                                                <h1 type="text" id="mainCaptcha" style="float:left;"> ${captchaValue}</h1>
-                                            </div>
-                                            <div class="col-md-2">
-                                                
-                                            </div>
-                                            <div class="col-md-12">
-                                                <input type="text" placeholder="Ingrese el Código" autocomplete="off" id="txtInput" style="clear:both; width:100%;">
-                                            </div>
+                                    <label for="inpCaptcha" style="margin-top: 20px">Código</label>
+
+                                    <label class="" >
+                                        <img id="img_captcha" class="captcha" src="${pageContext.request.contextPath}/app/login/captcha.png" class="rounded-2">
+                                        <button
+                                            id="btnCaptcha"
+                                            type="button"
+                                            required
+                                            autofocus
+                                            class="btn btn-default">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                                        </button>
                                     </label>
-                                    
+                                    <input id="inpCaptcha"
+                                           name="inpCaptcha"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="Ingrese el Código"
+                                           required
+                                           autocomplete="off">
                                 </div>
                                 
                                 <div class="form-group">

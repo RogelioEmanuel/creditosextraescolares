@@ -227,6 +227,14 @@
         <servlet-name>App_RegistrarAsistenciaEvento_Srv</servlet-name>
         <servlet-class>App.App_RegistrarAsistenciaEvento_Srv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GenerarCaptcha_Srv</servlet-name>
+        <servlet-class>Servlets.Usuarios.GenerarCaptcha_Srv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ValidarCaptcha_Srv</servlet-name>
+        <servlet-class>Servlets.Usuarios.ValidarCaptcha_Srv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Alumnos</servlet-name>
         <url-pattern>/app/alumnos/listaralumnos.do</url-pattern>
@@ -446,6 +454,14 @@
     <servlet-mapping>
         <servlet-name>App_RegistrarAsistenciaEvento_Srv</servlet-name>
         <url-pattern>/app/eventos/asistenciaevento.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GenerarCaptcha_Srv</servlet-name>
+        <url-pattern>/app/login/captcha.png</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidarCaptcha_Srv</servlet-name>
+        <url-pattern>/app/login/validarCaptcha.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

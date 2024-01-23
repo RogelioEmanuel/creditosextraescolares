@@ -89,26 +89,38 @@ function resetDia(dia) {
         case "lunes":
             lunesInicio =  null;
             lunesFin =  null;
+            document.getElementById('lunesInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('lunesFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;
         case "martes":
             martesInicio = null;
             martesFin = null;
+            document.getElementById('martesInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('martesFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;
         case "miercoles":
             miercolesInicio = null;
             miercolesFin = null;
+            document.getElementById('miercolesInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('miercolesFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;
         case "jueves":
             juevesInicio = null;
             juevesFin = null;
+            document.getElementById('juevesInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('juevesFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;
         case "viernes":
             viernesInicio = null;
             viernesFin = null;
+            document.getElementById('viernesInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('viernesFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;
         case "sabado":
             sabadoInicio = null;
             sabadoFin = null;
+            document.getElementById('sabadoInicio').value = ''; // Asigna un valor vacío al campo en tu vista
+            document.getElementById('sabadoFin').value = ''; // Asigna un valor vacío al campo en tu vista
             break;        
         default:
             console.log("Día no válido");
@@ -304,7 +316,7 @@ function enviarDatosGrupo(noGrupo,cupo, periodo, maestro, horasTotales, idActivi
         sabadoInicio: sabadoInicio,
         sabadoFin: sabadoFin
     };
-    alert(idGrupo);
+    
     // Mandamos el formdata al servidor con un post
     $.ajax({
         url: '../../app/grupos/editargrupo.do',

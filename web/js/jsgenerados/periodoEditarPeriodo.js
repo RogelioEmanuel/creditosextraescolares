@@ -40,10 +40,24 @@ function editarDatosMaestro(periodo,fechaInicio,insscripcion,fechaFin,cierre) {
         data: datos,
         success: function (respuesta) {
             $("#pageLoader").hide();
-            
+            if(respuesta.status===132){
+                TituloMensaje = "ERROR";
+                Mensaje = "Verifica Fecha de inicio de periodo";
+                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+            }else if(respuesta.status===131){
+                TituloMensaje = "ERROR";
+                Mensaje = "Verifica Fecha de fin de periodo";
+                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+            }else if(respuesta.status===130){
+                TituloMensaje = "ERROR";
+                Mensaje = "Verifica años en las fechas";
+                mostrarMensaje(iconoError,TituloMensaje, Mensaje);
+            }else{
                 TituloMensaje = "Perido modificado";
                 Mensaje = "La informacion fue modificada";
                 mensajeRedirect(iconoCorrecto, TituloMensaje, Mensaje, '/creditosextraescolares/app/periodo/editarPeriodo.do');
+            }
+                
             
             
         },

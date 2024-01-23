@@ -303,7 +303,8 @@
                                            placeholder="Usuario" 
                                            required 
                                            minlength="1"
-                                           maxlength="80"  
+                                           maxlength="80" 
+                                           value="${usu}"
                                            title="Usuario">
                                 </div>
                                                                 
@@ -322,6 +323,7 @@
                                            minlength="1"
                                            maxlength="80"  
                                            title="pass"
+                                           value="${pas}"
                                            type="password"> 
                                 </div>
                             </div>
@@ -339,6 +341,7 @@
                                            minlength="1"
                                            maxlength="80"  
                                            title="confPasss"
+                                           value="${pas}"
                                            type="password"> 
                                 </div>
                             </div>

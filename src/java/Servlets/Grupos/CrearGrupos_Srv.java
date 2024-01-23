@@ -93,7 +93,7 @@ public class CrearGrupos_Srv extends HttpServlet {
         if(Grupos_CrearGrupo_DAO.revisarExistencia(noGrupo, resp)){
             
             resp.setMensaje("El numero de grupo ya existe");
-            
+            resp.setStatus(215);
         }else{//Si no, creamos el grupo
             Grupos_MB grupo = new Grupos_MB(noGrupo,cupo,periodo,idActividad_Extraescolar,idMaestros,totalhorassemanal);        
                 

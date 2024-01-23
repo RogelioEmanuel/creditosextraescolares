@@ -15,6 +15,7 @@ public class Usuario {
     private String usuario;
     private String correo;
     private String fechaNac;
+    private String contra;
 
     public Usuario(String idEmpleado, String nombre, String apellidoPaterno, String apellidoMaterno) {
         this.idUsuario = idEmpleado;
@@ -144,6 +145,17 @@ public class Usuario {
     public void setNombrePuesto(String nombrePuesto) {
         this.nombrePuesto = nombrePuesto;
     }
+
+    public String getContra() {
+        return contra;
+    }
+
+    public void setContra(String contra) {
+        this.contra = contra;
+    }
+    
+    
+    
     public String desplegar() {
     String datosEmpleado = "ID Empleado: " + idUsuario + "\n";
     datosEmpleado += "Nombre: " + nombre + "\n";

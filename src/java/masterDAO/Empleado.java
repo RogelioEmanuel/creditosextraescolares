@@ -22,6 +22,7 @@ public class Empleado {
     private String usuario;
     private String correo;
     private String fechaNac;
+    private String pas;
 
     public Empleado(int idEmpleado, String nombre, String apellidoPaterno, String apellidoMaterno) {
         this.idEmpleado = idEmpleado;
@@ -149,6 +150,17 @@ public class Empleado {
     public void setNombrePuesto(String nombrePuesto) {
         this.nombrePuesto = nombrePuesto;
     }
+
+    public String getPas() {
+        return pas;
+    }
+
+    public void setPas(String pas) {
+        this.pas = pas;
+    }
+    
+    
+    
     public String desplegar() {
     String datosEmpleado = "ID Empleado: " + idEmpleado + "\n";
     datosEmpleado += "Nombre: " + nombre + "\n";

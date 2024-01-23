@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,14 +79,74 @@ public class Periodo_Srv extends HttpServlet {
                         
         } catch (ParseException ex) {
             fechaTerminar = null;            
-        }                
-        Periodo per = new Periodo();
-        per.setCierre(diasf);
-        per.setFecha_fin(fechaTerminar);
-        per.setFecha_inicio(fechaComienzo);
-        per.setInsscripcion(diasi);
-        per.setPeriodo(periodo);        
-        Periodo_DAO.actualizarPeriodo(per, resp);        
+        }          
+        
+        Calendar calInicio = Calendar.getInstance();
+        calInicio.setTime(fechaComienzo);
+
+        Calendar calFin = Calendar.getInstance();
+        calFin.setTime(fechaTerminar);
+        
+        if(calInicio.get(Calendar.YEAR) == calFin.get(Calendar.YEAR)){
+            //if(periodo.equals("Enero-Junio")){
+                //if(calInicio.get(Calendar.MONTH)!=Calendar.JANUARY){
+                    //resp.setStatus(132);
+                //}else{
+                   // if(calFin.get(Calendar.MONTH) != Calendar.JUNE){
+                    //resp.setStatus(131);
+                   // }else{
+//                        Periodo per = new Periodo();
+//                        per.setCierre(diasf);
+//                        per.setFecha_fin(fechaTerminar);
+//                        per.setFecha_inicio(fechaComienzo);
+//                        per.setInsscripcion(diasi);
+//                        per.setPeriodo(periodo);        
+//                        Periodo_DAO.actualizarPeriodo(per, resp);    
+                        
+                   // }
+//                }
+//            }else if(periodo.equals("Agosto-Diciembre")){
+//                if(calInicio.get(Calendar.MONTH)!=Calendar.AUGUST){
+//                    resp.setStatus(132);
+//                }else{
+//                    if(calFin.get(Calendar.MONTH) != Calendar.DECEMBER){
+//                    resp.setStatus(131);
+//                    }else{
+//                        Periodo per = new Periodo();
+//                        per.setCierre(diasf);
+//                        per.setFecha_fin(fechaTerminar);
+//                        per.setFecha_inicio(fechaComienzo);
+//                        per.setInsscripcion(diasi);
+//                        per.setPeriodo(periodo);        
+//                        Periodo_DAO.actualizarPeriodo(per, resp);    
+//                        
+//                    }
+//                }
+                
+                                
+           // }else{
+                
+                        Periodo per = new Periodo();
+                        per.setCierre(diasf);
+                        per.setFecha_fin(fechaTerminar);
+                        per.setFecha_inicio(fechaComienzo);
+                        per.setInsscripcion(diasi);
+                        per.setPeriodo(periodo);        
+                        Periodo_DAO.actualizarPeriodo(per, resp);    
+                        
+                    
+                
+           // }
+            
+            
+            
+       // }else{
+           // resp.setStatus(130);
+        }
+        
+        
+        
+            
         try {
             response.setContentType("application/json");
             Gson json = new Gson();

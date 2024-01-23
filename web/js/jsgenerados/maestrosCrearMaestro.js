@@ -28,8 +28,7 @@ $("#FormCrearMaestro").on("click", "#btnRegistrar", function (evento) {
 
 function formValido(nombre, appaterno, apmaterno, fechaNacimientoMaestro, telefonoMaestro, correo, curp, rfc, sexo, direccion, banco, claveinterbancaria,pass,passsconf) {
     var errores = [];
-    alert(curp);
-    alert(rfc);
+    
     if (!fechaValida(fechaNacimientoMaestro)) {
         errores.push("La fecha de nacimiento no es válida.");
     }

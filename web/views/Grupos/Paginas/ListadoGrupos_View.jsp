@@ -25,7 +25,22 @@
                 <%@include file="../../templates/spinner.estandarITT.jsp" %>
             </div>
         </div>
-        <header><%@include file="../../templates/Header_View.jsp" %></header>
+        <header> <c:choose>
+            <c:when test="${rolUsuario eq 'Estudiante'}">
+                <%@include file="../../views/templates/HeaderAlumno_View.jsp" %>
+            </c:when>
+            <c:when test="${rolUsuario eq 'Admin'}">
+                <%@include file="../../views/templates/Header_View.jsp" %>
+            </c:when>
+            <c:when test="${rolUsuario eq 'Maestro'}">
+                <%@include file="../../views/templates/HeaderMaestro_View.jsp" %>
+            </c:when>
+            <c:otherwise>
+                <%-- Manejo para otros roles o situaciones --%>
+                <%@include file="../../views/templates/HeaderInvitado_View.jsp" %>
+            </c:otherwise>
+        </c:choose>
+        </header>
         <div class="container">
             
             <div class="panel panel-primary">

@@ -15,9 +15,9 @@ import java.util.logging.Logger;
 
 
 public class Constantes {
-    public static final String EXTRAESCOLARESPRUEBA_BD="baseejmplocreditosextraescolares";
+    public static final String EXTRAESCOLARESPRUEBA_BD="extraescolares";
     public static final String EXTRAESCOLARESPRUEBA_USER="root";
-    public static final String EXTRAESCOLARESPRUEBA_PASS="";
+    public static final String EXTRAESCOLARESPRUEBA_PASS="mauro";
     public static final String NOMBRECREDITONORMAL="Creditos Extraescolares";
     public static final String NOMBRECREDITOSELECTIVO="Creditos Extraescolares Selectivo";
     public static final String MSJ_CREDENCIALES_ERRONEAS = "Usuario o contraseña incorrectos, acceso denegado.";
@@ -65,8 +65,10 @@ public class Constantes {
         return mapaCarreras;
     }
      
-    public static final String NOMBREJEFATURA="IVÁN OMAR ORTEGA ROSALES";
-    public static final String NOMBREJEFATURAPROMOCION="MANUEL R. CORREA ALDAPE";
+    public static final String NOMBREJEFATURA=Periodo_DAO.consultar().getJefaturaDepartamento();
+    public static final String NOMBREJEFATURAPROMOCION=Periodo_DAO.consultar().getJefaturaPromocion();
+    public static final String header = "/home/mauro/NetBeansProjects/creditosextraescolaresV1.0/creditosextraescolares/web/img/header.png";
+   
     public static final String NOMBRELOGO="LogoITTol";
     
     public static final SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");  
@@ -82,9 +84,11 @@ public class Constantes {
                
     public static String periodoActual;
     public static final String MASTER_USER = "root";
-    public static final String MASTER_PASS = "";
-    //public static final String MASTER_BD = "jdbc:mysql://localhost:3306/sam?allowLoadLocalInfile=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    public static final String MASTER_BD2 = "http://sismaster.toluca.tecnm.mx:8090/SAM/";
+    public static final String MASTER_PASS = "mauro";
+    //public static final String MASTER_BD2 = "jdbc:mysql://localhost:3306/sam?allowLoadLocalInfile=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    //public static final String MASTER_BD2 = "https://192.168.39.182:8090/SAM/";
+    public static final String MASTER_BD2 = "sam?useSSL=false&allowLoadLocalInfile=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+
     
     
          
@@ -155,18 +159,18 @@ public class Constantes {
          Date fechaInscripciones = declararCalif();
          
          SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-         System.out.println("Fecha con días agregados: " + dateFormat.format(fechaInscripciones));
-         System.out.println("Fecha actual: " + dateFormat.format(fechaActual));
-         System.out.println("Fecha 2: " + dateFormat.format(fecha2));
+//         System.out.println("Fecha con días agregados: " + dateFormat.format(fechaInscripciones));
+//         System.out.println("Fecha actual: " + dateFormat.format(fechaActual));
+//         System.out.println("Fecha 2: " + dateFormat.format(fecha2));
          //fecha actual es  antes de fecha 2 y fecha actual es despues de inscripciones
-         System.out.println(fechaActual.before(fecha2)&&fechaActual.after(fechaInscripciones));
+//         System.out.println(fechaActual.before(fecha2)&&fechaActual.after(fechaInscripciones));
          return fechaActual.before(fecha2)&&fechaActual.after(fechaInscripciones);
          
          //return true;
      }
                
      public static boolean prueba(){
-         System.out.println("Falso"+" Prueba");
+//         System.out.println("Falso"+" Prueba");
          return false;
      }
     

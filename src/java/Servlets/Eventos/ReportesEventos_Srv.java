@@ -109,7 +109,7 @@ public class ReportesEventos_Srv extends HttpServlet {
         
         if(evento.isEmpty()){
             //jrxmlFile = getClass().getClassLoader().getResource("Reportes/nada.jrxml").toString().substring(6);  
-            System.out.println("Vacio, sin datos");
+//            System.out.println("Vacio, sin datos");
             
             respuesta.setMensaje("No hay ningun dato para el reporte");
             respuesta.setStatus(24);

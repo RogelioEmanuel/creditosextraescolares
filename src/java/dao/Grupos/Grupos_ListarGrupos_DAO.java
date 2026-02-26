@@ -158,7 +158,7 @@ public class Grupos_ListarGrupos_DAO {
         try {
             if (conn != null) {
                 String query = "SELECT idGrupo,noGrupo,  cupo,  idActividad_extraescolar, idMaestros, periodo, totalhorassemanal \n"
-                        + "FROM Grupos  \n"
+                        + "FROM grupos  \n"
                         + "where idActividad_extraescolar =?"  ;
                         
                         
@@ -215,7 +215,7 @@ public class Grupos_ListarGrupos_DAO {
         try {
             if (conn != null) {
                 String query = "SELECT idGrupo,noGrupo,  cupo,  idActividad_extraescolar, idMaestros, periodo, totalhorassemanal \n"
-                        + "FROM Grupos  \n"
+                        + "FROM grupos  \n"
                         + "where idMaestros =?"  ;
                         
                         

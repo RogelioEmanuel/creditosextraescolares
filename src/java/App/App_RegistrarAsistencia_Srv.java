@@ -47,7 +47,7 @@ public class App_RegistrarAsistencia_Srv extends HttpServlet {
         String idEmpleado = jsonContent.get("idEmpleado").toString();
         
         int idGrupo = Integer.parseInt(jsonContent.get("idGrupo").toString());
-        System.out.println(idGrupo);
+//        System.out.println(idGrupo);
         
         
         if(hayClase(idGrupo)){
@@ -76,7 +76,7 @@ public class App_RegistrarAsistencia_Srv extends HttpServlet {
             String jsonResponse = json.toJson(resp);
 
             // Imprimir en la consola
-            System.out.println("JSON Response: " + jsonResponse);
+//            System.out.println("JSON Response: " + jsonResponse);
 
             // Imprimir en la respuesta HTTP
             out.print(jsonResponse);

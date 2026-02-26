@@ -2,32 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package masterDao;
+package masterDAO;
 
 
+import Utilidades.Constantes;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import utils.Constantes;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/**
- *
- * @author kike
- */
+
 public class conexion {
 
     public static Connection getConnection() throws ClassNotFoundException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             // la conexion a la base de datos con las especificaciones que es tipo de Base que usara, puertos, version, usuario y contraseña en local
-            Connection con = DriverManager.getConnection(" ", " ", " ");
+            Connection con = DriverManager.getConnection(Constantes.MASTER_BD2, Constantes.MASTER_USER, Constantes.MASTER_PASS);
+//            System.out.println("Entra el try del catch"+ con.toString());
              return con;
         } catch (SQLException e) {
             System.out.println(e);

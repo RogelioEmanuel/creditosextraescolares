@@ -19,129 +19,137 @@ public class AlumnosmDAO {
         
         DatosAlumnoMB obj = null;
         AlumnosITTol_MDAO man = new  AlumnosITTol_MDAO();
+        SSLUtil.disableSSLCertificateChecking();
         obj = man.buscar(usuario,contra);
-        
-        if(obj!=null){            
-            GenericResponse<Alumnos_MB> resp2 = new GenericResponse<>();
-            Alumnos_MB ayu = new Alumnos_MB();
-            
-            //Consultamos si esta en la BD
-            ayu =AlumnosInsertarAlumno_DAO.consultarAlumno2(usuario);     
-            System.out.println("Verifica ");
-            if(ayu!=null){
-                
-                //Si esta actualizamos
-                String noControl= obj.getNumeroControl();
-                String nombre = obj.getNombre();
-                String apPaterno =obj.getApellidoPaterno();
-                String apMaterno = obj.getApellidoMaterno();
-                int semestre = obj.getSemestre();
-                String regular = obj.getRegular();
-                String correo = obj.getCorreo();
-                String sexo = obj.getSexo();
-                String carrera = obj.getCarrera();
-                
-                String fechaDeLanzamiento = obj.getFechaNacimiento();
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                Date dataFormateada = null;
-                try {
-                    dataFormateada = (Date) formato.parse(fechaDeLanzamiento);
-                } catch (ParseException ex) {
+        System.out.println("nombreeeeeeeee "+obj.getNombre());
+        try{
+             if(obj.getApellidoMaterno()==null){
+                response.setMensaje("Usuario no encontrado");
+                response.setStatus(404);
+                response.setResponseObject(null);
+                System.out.print("No encontrado");
+            }else
+                if(obj!=null){            
+                    GenericResponse<Alumnos_MB> resp2 = new GenericResponse<>();
+                    Alumnos_MB ayu = new Alumnos_MB();
 
-                }
-                
-                
-               System.out.println(edad(fechaDeLanzamiento));
-                if(fechaDeLanzamiento !=null){
-                    ayu.setEdad(edad(fechaDeLanzamiento));
-                }
-                ayu.setApMaterno(apMaterno);
-                ayu.setApPaterno(apPaterno);
-                ayu.setNombre(nombre);
-                ayu.setNoControl(noControl);
-                ayu.setSemestre(semestre);
-                if(regular.equals("IREGULAR")){
-                    ayu.setRegular(false);
-                }else{
-                    ayu.setRegular(true);
-                }
-                ayu.setCorreo(correo);
-                ayu.setCarrera(carrera);
-                ayu.setSexo(sexo);
-                
-                AlumnosInsertarAlumno_DAO.actualizar(ayu,resp2);
-                
-                if(resp2.getStatus()==0){
-                    resp2.setResponseObject(ayu);
-                    response.setMensaje("Ok");
-                    response.setResponseObject(resp2.getResponseObject());
-                    response.setStatus(VALIDATION_EXP);
+                    ayu =AlumnosInsertarAlumno_DAO.consultarAlumno2(usuario);     
+
+                    if(ayu!=null){
+
+                        String noControl= obj.getNumeroControl();
+                        String nombre = obj.getNombre();
+                        String apPaterno =obj.getApellidoPaterno();
+                        String apMaterno = obj.getApellidoMaterno();
+                        int semestre = obj.getSemestre();
+                        String regular = obj.getRegular();
+                        String correo = obj.getCorreo();
+                        String sexo = obj.getSexo();
+                        String carrera = obj.getCarrera();
+
+                        String fechaDeLanzamiento = obj.getFechaNacimiento();
+        //                System.out.println(fechaDeLanzamiento);
+                        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                        Date dataFormateada = null;
+                        try {
+                            dataFormateada = (Date) formato.parse(fechaDeLanzamiento);
+                        } catch (ParseException ex) {
+
+                        }
+
+                        if(fechaDeLanzamiento !=null){
+                            ayu.setEdad(edad(fechaDeLanzamiento));
+                        }
+                        ayu.setApMaterno(apMaterno);
+                        ayu.setApPaterno(apPaterno);
+                        ayu.setNombre(nombre);
+                        ayu.setNoControl(noControl);
+                        ayu.setSemestre(semestre);
+                        if(regular.equals("IREGULAR")){
+                            ayu.setRegular(false);
+                        }else{
+                            ayu.setRegular(true);
+                        }
+                        ayu.setCorreo(correo);
+                        ayu.setCarrera(carrera);
+                        ayu.setSexo(sexo);
+
+                        AlumnosInsertarAlumno_DAO.actualizar(ayu,resp2);
+
+                        if(resp2.getStatus()==0){
+                            resp2.setResponseObject(ayu);
+                            response.setMensaje("Ok");
+                            response.setResponseObject(resp2.getResponseObject());
+                            response.setStatus(VALIDATION_EXP);
+                        }else{
+                            response.setMensaje("Algo salio mal");
+                            response.setResponseObject(null);
+                            response.setStatus(VALIDATION_EXP_ERROR);
+                        }
+                    }else{
+                         Alumnos_MB ayu2 = new Alumnos_MB();
+                        GenericResponse<Alumnos_MB> resp3 = new GenericResponse<>();
+                        String noControl= obj.getNumeroControl();
+                        String nombre = obj.getNombre();
+                        String apPaterno =obj.getApellidoPaterno();
+                        String apMaterno = obj.getApellidoMaterno();
+                        int semestre = obj.getSemestre();
+                        String regular = obj.getRegular();
+                        String correo = obj.getCorreo();
+                        String sexo = obj.getSexo();
+                        String carrera = obj.getCarrera();
+                        String fechaDeLanzamiento = obj.getFechaNacimiento();
+                        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                        Date dataFormateada = null;
+                        try {
+                            dataFormateada = (Date) formato.parse(fechaDeLanzamiento);
+                        } catch (ParseException ex) {
+
+                        }
+
+                        int edad = (edad(fechaDeLanzamiento));
+
+                        ayu2.setEdad(edad);
+
+
+                        ayu2.setApMaterno(apMaterno);
+                        ayu2.setApPaterno(apPaterno);
+                        ayu2.setNombre(nombre);
+                        ayu2.setNoControl(noControl);
+                        ayu2.setSemestre(semestre);
+                        if(regular.equals("IREGULAR")){
+                            ayu2.setRegular(false);
+                        }else{
+                            ayu2.setRegular(true);
+                        }                
+                        ayu2.setCorreo(correo);
+                        ayu2.setCarrera(carrera);
+                        ayu2.setSexo(sexo);
+                        AlumnosInsertarAlumno_DAO.inscribir(ayu2, resp3);
+
+
+                         if(resp3.getStatus()==0){
+                            resp3.setResponseObject(ayu);
+                            response.setMensaje("Ok");
+                            response.setResponseObject(resp3.getResponseObject());
+                            response.setStatus(VALIDATION_EXP);
+                        }else{
+                            response.setMensaje("Algo salio mal");
+                            response.setResponseObject(null);
+                            response.setStatus(VALIDATION_EXP_ERROR);
+                        }
+                    }
                 }else{
                     response.setMensaje("Algo salio mal");
                     response.setResponseObject(null);
                     response.setStatus(VALIDATION_EXP_ERROR);
                 }
-            }else{
-                 Alumnos_MB ayu2 = new Alumnos_MB();
-                //Si no, Insertamos
-                GenericResponse<Alumnos_MB> resp3 = new GenericResponse<>();
-                String noControl= obj.getNumeroControl();
-                String nombre = obj.getNombre();
-                String apPaterno =obj.getApellidoPaterno();
-                String apMaterno = obj.getApellidoMaterno();
-                int semestre = obj.getSemestre();
-                String regular = obj.getRegular();
-                String correo = obj.getCorreo();
-                String sexo = obj.getSexo();
-                String carrera = obj.getCarrera();
-                String fechaDeLanzamiento = obj.getFechaNacimiento();
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                Date dataFormateada = null;
-                try {
-                    dataFormateada = (Date) formato.parse(fechaDeLanzamiento);
-                } catch (ParseException ex) {
-
-                }
-                
-                System.out.println(edad(fechaDeLanzamiento));
-                int edad = (edad(fechaDeLanzamiento));
-                
-                ayu2.setEdad(edad);
-                
-                
-                ayu2.setApMaterno(apMaterno);
-                ayu2.setApPaterno(apPaterno);
-                ayu2.setNombre(nombre);
-                ayu2.setNoControl(noControl);
-                ayu2.setSemestre(semestre);
-                if(regular.equals("IREGULAR")){
-                    ayu2.setRegular(false);
-                }else{
-                    ayu2.setRegular(true);
-                }                
-                ayu2.setCorreo(correo);
-                ayu2.setCarrera(carrera);
-                ayu2.setSexo(sexo);
-                System.out.println(ayu2.getEdad());
-                AlumnosInsertarAlumno_DAO.inscribir(ayu2, resp3);
-                
-                
-                 if(resp3.getStatus()==0){
-                    resp3.setResponseObject(ayu);
-                    response.setMensaje("Ok");
-                    response.setResponseObject(resp3.getResponseObject());
-                    response.setStatus(VALIDATION_EXP);
-                }else{
-                    response.setMensaje("Algo salio mal");
-                    response.setResponseObject(null);
-                    response.setStatus(VALIDATION_EXP_ERROR);
-                }
-            }
-        }else{
+        }catch(Exception e){
             response.setMensaje("Algo salio mal");
             response.setResponseObject(null);
             response.setStatus(VALIDATION_EXP_ERROR);
         }
+       
         
        
         
@@ -180,7 +188,15 @@ public class AlumnosmDAO {
         return edad;
         
     }
+
+    private static DatosAlumnoMB getInfo(java.lang.String usuario, java.lang.String contrasenia)
+    {
+        ws.GetInfoMov_Service service = new ws.GetInfoMov_Service();
+        ws.GetInfoMov port = service.getGetInfoMovPort();
+        return port.getInfo(usuario, contrasenia);
+    }
     
-    
-    
+
+   
+   
 }

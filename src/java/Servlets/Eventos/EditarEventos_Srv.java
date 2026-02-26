@@ -85,15 +85,14 @@ public class EditarEventos_Srv extends HttpServlet {
         String fecha = request.getParameter("fecha");
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");        
                 
-        System.out.println(fecha);
+//        System.out.println(fecha);
         Date fechaEvento=null;        
        
         try{
             
             fechaEvento= f.parse(fecha);
-            System.out.println("Fecha parseada correctamente: " + f.format(fechaEvento));
+//            System.out.println("Fecha parseada correctamente: " + f.format(fechaEvento));
         } catch (ParseException ex) {
-            System.out.println("salio mal");
             Logger.getLogger(EditarEventos_Srv.class.getName()).log(Level.SEVERE, null, ex);
             fechaEvento=null;
             

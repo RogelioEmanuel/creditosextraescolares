@@ -77,7 +77,7 @@ public class App_RegistrarAsistenciaEvento_Srv extends HttpServlet {
             String jsonResponse = json.toJson(resp);
 
             // Imprimir en la consola
-            System.out.println("JSON Response: " + jsonResponse);
+//            System.out.println("JSON Response: " + jsonResponse);
 
             // Imprimir en la respuesta HTTP
             out.print(jsonResponse);

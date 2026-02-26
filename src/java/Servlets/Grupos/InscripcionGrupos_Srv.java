@@ -113,9 +113,7 @@ public class InscripcionGrupos_Srv extends HttpServlet {
          Grupos_MB grupo = GruposAlumno_Inscripcion_DAO.consultarGrupo(idGrupo);
         
          Alumnos_MB alumno = GruposAlumno_Inscripcion_DAO.consultarAlumno(a.getIdUsuario());
-         System.out.println("Hasta aqui todo bien1");
          if(GruposAlumno_Inscripcion_DAO.estaInscrito(alumno,grupo,resp)||GruposAlumno_Inscripcion_DAO.estaInscrito2(alumno, resp)){
-             System.out.println("Hasta aqui todo bien2");
              resp.setMensaje("El alumno ya se encuentra inscrito a un grupo");
              resp.setStatus(800);
          }else{

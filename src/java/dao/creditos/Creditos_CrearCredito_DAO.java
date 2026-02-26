@@ -50,16 +50,16 @@ public class Creditos_CrearCredito_DAO {
                 }
                 
                 respuesta.setMensaje("Ok");
-                System.out.println(respuesta.getMensaje());                
+//                System.out.println(respuesta.getMensaje());                
                 respuesta.setStatus(Validaciones.VALIDATION_EXP);
-                System.out.println(respuesta.getStatus());
+//                System.out.println(respuesta.getStatus());
                 respuesta.setResponseObject(null);
             }
         } catch (SQLException ex) {
             respuesta.setStatus(Validaciones.VALIDATION_ERROR);
             
             respuesta.setMensaje(ex.toString());
-            System.out.println(respuesta.getMensaje());
+//            System.out.println(respuesta.getMensaje());
             respuesta.setResponseObject(null);
         } finally{
             try {
@@ -104,7 +104,7 @@ public class Creditos_CrearCredito_DAO {
                         si=true;
                     }
                     
-                    System.out.println("Si existe");
+//                    System.out.println("Si existe");
                 }
                 if (!conn.isClosed()) {
                     conn.close();
@@ -157,7 +157,7 @@ public class Creditos_CrearCredito_DAO {
                 while (rs.next()) {
                     //creditos=convertirCredito(rs);
                     si=true;
-                    System.out.println("Si existe");
+//                    System.out.println("Si existe");
                 }
                 if (!conn.isClosed()) {
                     conn.close();
@@ -226,16 +226,16 @@ public class Creditos_CrearCredito_DAO {
                 }
                 
                 respuesta.setMensaje("Ok");
-                System.out.println(respuesta.getMensaje());                
+//                System.out.println(respuesta.getMensaje());                
                 respuesta.setStatus(Validaciones.VALIDATION_EXP);
-                System.out.println(respuesta.getStatus());
+//                System.out.println(respuesta.getStatus());
                 respuesta.setResponseObject(null);
             }
         } catch (SQLException ex) {
             respuesta.setStatus(Validaciones.VALIDATION_ERROR);
             
             respuesta.setMensaje(ex.toString());
-            System.out.println(respuesta.getMensaje());
+//            System.out.println(respuesta.getMensaje());
             respuesta.setResponseObject(null);
         } finally{
             try {
@@ -274,7 +274,7 @@ public class Creditos_CrearCredito_DAO {
                 while (rs.next()) {
                     //creditos=convertirCredito(rs);
                     si=true;
-                    System.out.println("Si existe");
+//                    System.out.println("Si existe");
                 }
                 if (!conn.isClosed()) {
                     conn.close();

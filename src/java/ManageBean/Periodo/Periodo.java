@@ -12,6 +12,8 @@ public class Periodo {
     private int anio;
     private Date fecha_inicio;
     private Date fecha_fin;
+    private String jefaturaDepartamento;
+    private String jefaturaPromocion;
 
     public Periodo(int id, int insscripcion, int cierre, String periodo, int anio, Date fecha_inicio, Date fecha_fin) {
         this.id = id;
@@ -89,6 +91,22 @@ public class Periodo {
 
     public void setFecha_fin(Date fecha_fin) {
         this.fecha_fin = fecha_fin;
+    }
+
+    public String getJefaturaDepartamento() {
+        return jefaturaDepartamento;
+    }
+
+    public void setJefaturaDepartamento(String jefaturaDepartamento) {
+        this.jefaturaDepartamento = jefaturaDepartamento;
+    }
+
+    public String getJefaturaPromocion() {
+        return jefaturaPromocion;
+    }
+
+    public void setJefaturaPromocion(String jefaturaPromocion) {
+        this.jefaturaPromocion = jefaturaPromocion;
     }
     
     

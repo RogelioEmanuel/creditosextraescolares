@@ -49,7 +49,7 @@ public class Login_Srv extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");        
         PrintWriter out = response.getWriter();
-        String us  =  request.getParameter("itt_username");
+        String us  =  request.getParameter("itt_username");        
         String pas = request.getParameter("itt_password");        
         //String itt_captcha = request.getParameter("itt_captcha");
         //String txtInput = request.getParameter("txtInput");
@@ -61,11 +61,9 @@ public class Login_Srv extends HttpServlet {
             
             GenericResponse<Empleado> respuesta = new GenericResponse();
             Login_DAO.revisaUsuarioInt(us, pas,respuesta);
-            System.out.println("Busco en BD");
+           
             //Si esta en la base de datos
             if(respuesta.getStatus()== Validaciones.VALIDATION_EXP){
-                
-                System.out.println("Encontro en BD");
                 HttpSession session = request.getSession(true);       
                 Periodo per = Periodo_DAO.consultar();            
                 session.setAttribute("periodo", per);
@@ -73,77 +71,59 @@ public class Login_Srv extends HttpServlet {
                 Empleado usua = respuesta.getResponseObject();
                 if(usua.getNombrePuesto().equals("Estudiante")){
                     Usuario uwu= Login_DAO.convertir(respuesta.getResponseObject());
-                    //respuesta.setResponseObject(uwu);
                     session.setAttribute("usuario", uwu);
                 }else{
                     session.setAttribute("usuario", respuesta.getResponseObject());
                     Empleado usuarioenSesion = (Empleado) session.getAttribute("usuario");
                     session.setAttribute("rol",usuarioenSesion.getNombrePuesto());
                 }
-
-
-                //session.setAttribute("rol", respuesta.getRol() );
-                //session.setAttribute("mensaje", 0 + "");
+                
             }else{
 
-                    //GenericResponse<Empleado> respuesta2 = new GenericResponse();
-                    //Web service Terminado
-                    System.out.println("Busco en Web Service");
+                                      
+                    Login_DAO.validaUsuario(us, pas, respuesta);
+                        
+                       
+                    if(respuesta.getStatus() == Validaciones.VALIDATION_EXP){
+                            HttpSession session = request.getSession(true);
+                            //String horaActual = new SimpleDateFormat("HHmm:ss").format(Calendar.getInstance().getTime());
+                            session.setAttribute("usuario", respuesta.getResponseObject());
+                            Empleado usuarioEnSesion = (Empleado) session.getAttribute("usuario");
+                            usuarioEnSesion.setNombrePuesto("Admin");
+                            session.setAttribute("rol",usuarioEnSesion.getNombrePuesto());                            
+                            session.setAttribute("mensaje", 0 + "");
+                            Periodo per = Periodo_DAO.consultar();            
+                            session.setAttribute("periodo", per);                   
+
+                    }else {
+                        
                         GenericResponse<Alumnos_MB> resp = new GenericResponse<>();                        
                         AlumnosmDAO.getAlumno(us,pas,resp);
                         GenericResponse<Empleado> emp = new GenericResponse();
                         Alumnos_MB al = (Alumnos_MB) resp.getResponseObject();
-                        System.out.println("Resp"+ resp.getMensaje());
-
-                    if(al!=null){
-                        System.out.println("Encontro en Web Service");
-                        HttpSession session = request.getSession(true); 
-                        Periodo per = Periodo_DAO.consultar();   
-                        session.setAttribute("periodo", per);
-                        Empleado usuarioenSesion = new Empleado();
-                        usuarioenSesion.setNombrePuesto("Estudiante");
-                        session.setAttribute("usu", usuarioenSesion);
-                        Usuario us2 = new Usuario();
-                        us2.setIdUsuario(us);
-                        us2.setNombrePuesto("Estudiante");
-                        us2.setNombre(al.getNombre());
-                        session.setAttribute("rol",usuarioenSesion.getNombrePuesto());
-                        session.setAttribute("usuario", us2);
-                    
-                    
-
-                    }else {
+                        System.out.print(resp.getResponseObject());                                              
                         
-                        
-                       //Si esta en el master
-                        Login_DAO.validaUsuario(us, pas, respuesta);
-                        String token = Login_DAO.getToken(respuesta.getResponseObject().getIdEmpleado(), respuesta);
-
-                        if (respuesta.getStatus() == Validaciones.VALIDATION_EXP) {
-
-                            HttpSession session = request.getSession(true);
-                            String horaActual = new SimpleDateFormat("HHmm:ss").format(Calendar.getInstance().getTime());
-                            session.setAttribute("user", respuesta.getResponseObject());
-                            Empleado usuarioEnSesion = (Empleado) session.getAttribute("usuario");
-                            session.setAttribute("rol",usuarioEnSesion.getNombrePuesto());
-                            session.setAttribute("hora", horaActual);
-                            //session.setAttribute("nivel", nivel + "");
-                            session.setAttribute("mensaje", 0 + "");
-                            Periodo per = Periodo_DAO.consultar();            
-                            session.setAttribute("periodo", per);                         
-
-                            
-                            
+                        if ( al!=null ) {                                   
+                           
+                            HttpSession session = request.getSession(true); 
+                            Periodo per = Periodo_DAO.consultar();   
+                            session.setAttribute("periodo", per);
+                            Empleado usuarioenSesion = new Empleado();
+                            usuarioenSesion.setNombrePuesto("Estudiante");
+                            session.setAttribute("usu", usuarioenSesion);
+                            Usuario us2 = new Usuario();
+                            us2.setIdUsuario(us);
+                            us2.setNombrePuesto("Estudiante");
+                            us2.setNombre(al.getNombre());
+                            session.setAttribute("rol",usuarioenSesion.getNombrePuesto());
+                            session.setAttribute("usuario", us2);   
                         
                         }else{
-                            respuesta.setStatus(-404);
+                            respuesta.setStatus(404);
                             respuesta.setMensaje("Datos incorrectos");
                         }
 
                     }
-
-
-
 
             }
 

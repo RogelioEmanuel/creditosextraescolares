@@ -30,10 +30,10 @@ public class AsistenciasRegistrar_DAO {
       LocalDate fechaActual = LocalDate.now();  
       int diaActual = fechaActual.getDayOfMonth();
       DayOfWeek diaSemana = fechaActual.getDayOfWeek();
-      System.out.println(diaSemana);
+//      System.out.println(diaSemana);
       String dia = diaSemana.toString();
       String diaSemanaEnEspanol = diaSemana.getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
-      System.out.println(diaSemanaEnEspanol);
+//      System.out.println(diaSemanaEnEspanol);
       
       return diaSemanaEnEspanol;
     }
@@ -110,7 +110,7 @@ public class AsistenciasRegistrar_DAO {
                 
                 rs = ps2.executeQuery();
                 while(rs.next()){
-                    System.out.println("Dia ok");
+//                    System.out.println("Dia ok");
                     if(esenhora(rs.getString("HoraInicio"),rs.getString("HoraFinal"))){
                        a=true; 
                     }

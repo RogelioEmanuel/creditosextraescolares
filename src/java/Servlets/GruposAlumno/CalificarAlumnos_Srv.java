@@ -105,7 +105,7 @@ public class CalificarAlumnos_Srv extends HttpServlet {
         calificaciones.forEach((idAlumno, calificacion) -> {
             if(idAlumno!=null&&!idAlumno.isEmpty()&&!idAlumno.equals("undefined")){
                 GenericResponse respuesta = new GenericResponse<>();
-                System.out.println("ID Alumno: " + idAlumno + ", Calificación: " + calificacion);
+//                System.out.println("ID Alumno: " + idAlumno + ", Calificación: " + calificacion);
                 Creditos_EditarCredito_DAO.actualizarCredito(idAlumno,calificacion,idGrupo,respuesta);
             }
             

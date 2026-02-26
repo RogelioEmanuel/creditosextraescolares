@@ -21,9 +21,13 @@ public class GruposAlumno_Selectivo_DAO {
     
     
     public static boolean candidatoValido(Alumnos_MB a){        
-        return a.getRegular() && a.getEdad()<28;        
+        return  a.getEdad()<28;        
     }
     
+    
+    public static boolean regular(Alumnos_MB a){
+        return a.getRegular();
+    }
     public static void actualizarAlumno(Alumnos_MB alumno, Grupos_MB grupo,GenericResponse respuesta) {
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();

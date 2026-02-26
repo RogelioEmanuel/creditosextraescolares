@@ -66,7 +66,7 @@ public class Salir extends HttpServlet {
                 session.invalidate();
             }
             String captcha = CaptchaGenerador.generateCaptcha();
-        System.out.println("Captcha "+captcha);
+//        System.out.println("Captcha "+captcha);
         request.setAttribute("captchaValue", captcha);
 
             // Redirecciona al usuario a la página de inicio de sesión o a otra página deseada

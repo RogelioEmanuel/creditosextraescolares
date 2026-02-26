@@ -5,10 +5,12 @@
  */
 package masterDAO;
 
+import Utilidades.Constantes;
+import config.conexion.ConexionMySQL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import masterDao.conexion;
+import masterDAO.conexion;
 
 /**
  *
@@ -17,10 +19,17 @@ import masterDao.conexion;
 public class EmpleadoDao {
     public static Empleado obtenerDatos(String token) {
         Empleado empleado = null;
-        conexion conne = new conexion();
-
+       // conexion conne = new conexion();
+        
+        ConexionMySQL cone = new ConexionMySQL(Constantes.MASTER_BD2, Constantes.MASTER_USER, Constantes.MASTER_PASS);
+        int statusConexion = cone.conectar();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = cone.getConexion();
         try {
-            Connection con = conne.getConnection();
+            
+            
+//            System.out.println(con);
             String sql = "select rol.crear as Crear, rol.leer as Leer, rol.editar as Editar, rol.eliminar as eliminar, empleado.id_empleado as id_empleado, empleado.nombre as Nombre, empleado.apellidoPa as Apellido_Paterno, empleado.apellidoMa as Apellido_Materno, puest.nombre Nombre_Puesto"
                     + " from sesiones sesion, permisos permiso, paquete_roles rol, empleados empleado, puesto puest"
                     + " where empleado.id_empleado = sesion.id_empleado "
@@ -28,9 +37,9 @@ public class EmpleadoDao {
                     + "and sesion.id_permiso = permiso.id_permiso "
                     + "and rol.id_paquete = permiso.id_paquete  "
                     + "and sesion.token = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             ps.setString(1, token);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
                 int crear = rs.getInt("Crear");
@@ -48,7 +57,7 @@ public class EmpleadoDao {
 
             }
 
-            conne.cerrarConexion(con);
+            cone.desconectar();
             return empleado;
 
         } catch (Exception e) {

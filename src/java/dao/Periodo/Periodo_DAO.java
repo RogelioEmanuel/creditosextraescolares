@@ -35,7 +35,7 @@ public class Periodo_DAO {
 
         try {
             if (conn != null) {
-                String query = "SELECT idPeriodo, Periodo, FechaInicio, FechaFinal, Anio, diasInscipcion,diasCalificacion \n"
+                String query = "SELECT idPeriodo, Periodo, FechaInicio, FechaFinal, Anio, diasInscipcion,diasCalificacion,JefaturaPromocion,JefaturaDepartamento \n"
                         + "FROM periodoactual p \n"
                         + "WHERE idPeriodo = 1";
                 
@@ -86,9 +86,11 @@ public class Periodo_DAO {
         int diasInscipcion = rs.getInt("diasInscipcion");
         int Anio = rs.getInt("Anio");
         int diasCalificacion = rs.getInt("diasCalificacion");
-        
+        String promocion = rs.getString("JefaturaPromocion");
+        String jefatura = rs.getString ("JefaturaDepartamento");
         Periodo periodo2 = new Periodo(idPeriodo,diasInscipcion,diasCalificacion,periodo,Anio,fechaInicio,fechaFinal);
-           
+        periodo2.setJefaturaPromocion(promocion);
+        periodo2.setJefaturaDepartamento(jefatura);
         return periodo2;
     }
      
@@ -113,7 +115,7 @@ public class Periodo_DAO {
         PreparedStatement ps = null;
         try {
             if (conn != null) {
-                String update = "UPDATE periodoactual SET Periodo=?, FechaInicio=?, FechaFinal=?, diasInscipcion=?, diasCalificacion=? "
+                String update = "UPDATE periodoactual SET Periodo=?, FechaInicio=?, FechaFinal=?, diasInscipcion=?, diasCalificacion=? ,JefaturaPromocion=?,JefaturaDepartamento=? "
               + "WHERE idPeriodo=1";
 
                 ps = conn.prepareStatement(update);
@@ -121,9 +123,11 @@ public class Periodo_DAO {
                 ps.setDate(2, fechaInicio);
                 ps.setDate(3, fechaFin);
                // ps.setInt(4, per.getAnio());
+               
                 ps.setInt(4, per.getInsscripcion());
                 ps.setInt(5, per.getCierre());
-                
+                ps.setString(6, per.getJefaturaPromocion());
+                ps.setString(7, per.getJefaturaDepartamento());
                 ps.executeUpdate();
 
                 respuesta.setMensaje("Ok");

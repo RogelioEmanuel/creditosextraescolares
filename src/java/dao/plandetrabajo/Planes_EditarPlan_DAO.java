@@ -21,7 +21,7 @@ public class Planes_EditarPlan_DAO {
         ConexionMySQL cone = new ConexionMySQL(Constantes.EXTRAESCOLARESPRUEBA_BD, Constantes.EXTRAESCOLARESPRUEBA_USER, Constantes.EXTRAESCOLARESPRUEBA_PASS);
         int statusConexion = cone.conectar();
         Connection conn = cone.getConexion();
-        System.out.println("Programa"+plan.getId_plan());
+//        System.out.println("Programa"+plan.getId_plan());
         
         PreparedStatement ps = null;
         try {

@@ -247,8 +247,7 @@ public class Maestros_EditarMaestros_DAO {
         PreparedStatement ps = null;
         try {
             if (conn != null) {
-                System.out.println("Entra");
-                System.out.println(empleado.getIdEmpleado());
+//                System.out.println(empleado.getIdEmpleado());
                 String update =" UPDATE usuarios\n" +
                                     "SET \n" +
                                     "    Usuario = ?,\n" +

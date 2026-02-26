@@ -6,6 +6,9 @@ import Utilidades.Constantes;
 import Utilidades.GenericResponse;
 import Utilidades.Validaciones;
 import config.conexion.ConexionMySQL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,18 +42,20 @@ public class Login_DAO {
                         + "AND password = ? ;";
                 ps = conn.prepareStatement(query);
                 ps.setString(1, usuario);
-                ps.setString(2, contrasenia);
+                ps.setString(2, hashPassword(contrasenia));
                 rs = ps.executeQuery();
                 if (rs.isBeforeFirst()) {
                     while (rs.next()) {
+                        
                         usuarioMB = new Empleado(rs.getInt("id_empleado"),
                                 rs.getString("nombre"),
                                 rs.getString("apellidoPa"),
                                 rs.getString("apellidoMa"));
+                        respuesta.setStatus(Validaciones.VALIDATION_EXP);
+                        respuesta.setMensaje(getToken(usuarioMB.getIdEmpleado(), respuesta));
+                        respuesta.setResponseObject(usuarioMB);
                     }
-                    respuesta.setStatus(Validaciones.VALIDATION_EXP);
-                    respuesta.setMensaje(getToken(usuarioMB.getIdEmpleado(), respuesta));
-                    respuesta.setResponseObject(usuarioMB);
+                    
                 } else {
                     respuesta.setMensaje(Constantes.MSJ_CREDENCIALES_ERRONEAS);
                     respuesta.setStatus(Validaciones.VALIDATION_ERROR_CREDENCIALES);
@@ -145,17 +150,16 @@ public class Login_DAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Empleado usuario = new Empleado();
-        System.out.println("Si revisa");
+        
         try {
             if (conn != null) {
                 String query = "SELECT idUsuario,nombre_usuario, apellidoPaterno,apellidoMaterno,nombrePuesto FROM usuarios  \n"
-                        + "WHERE Usuario = ? AND contrasenia = ?";
+                        + "WHERE nombre_usuario = ? AND contrasenia = ?";
                 
                 ps = conn.prepareStatement(query);
                 ps.setString(1,usu );
                 ps.setString(2,pas );
                 rs = ps.executeQuery();
-                
                 if (rs.isBeforeFirst()) {
                     while (rs.next()) {
                         usuario = new Empleado(rs.getInt("idUsuario"),
@@ -163,13 +167,10 @@ public class Login_DAO {
                                     rs.getString("apellidoPaterno"),
                                     rs.getString("apellidoMaterno"),
                                     rs.getString("nombrePuesto"));
-
-
                     }
                     resp.setStatus(Validaciones.VALIDATION_EXP);
                     resp.setMensaje("Token");
                     resp.setResponseObject(usuario);
-                    System.out.println("Funciona creo");
                 } else {
                     resp.setMensaje(Utilidades.Constantes.MSJ_CREDENCIALES_ERRONEAS);
                     resp.setStatus(Validaciones.VALIDATION_ERROR_CREDENCIALES);
@@ -229,6 +230,25 @@ public class Login_DAO {
         us.setFechaNac(responseObject.getFechaNac());
         
         return us;
+    }
+    
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     
 }

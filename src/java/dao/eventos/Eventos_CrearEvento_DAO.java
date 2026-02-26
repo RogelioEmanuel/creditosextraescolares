@@ -53,16 +53,13 @@ public class Eventos_CrearEvento_DAO {
                 }
                 
                 respuesta.setMensaje("Ok");
-                System.out.println(respuesta.getMensaje());                
                 respuesta.setStatus(Validaciones.VALIDATION_EXP);
-                System.out.println(respuesta.getStatus());
                 respuesta.setResponseObject(null);
             }
         } catch (SQLException ex) {
             respuesta.setStatus(Validaciones.VALIDATION_ERROR);
             
             respuesta.setMensaje(ex.toString());
-            System.out.println(respuesta.getMensaje());
             respuesta.setResponseObject(null);
         } finally{
             try {

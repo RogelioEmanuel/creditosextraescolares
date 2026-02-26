@@ -60,7 +60,6 @@ public class CrearMaestro_Srv extends HttpServlet {
         String curp = request.getParameter("curp");
         
         String direccion = request.getParameter("direccion");
-        System.out.println(direccion);
         String claveinterbancaria= request.getParameter("claveinterbancaria")  ;
         String sexo = request.getParameter("sexo");
         
@@ -75,12 +74,10 @@ public class CrearMaestro_Srv extends HttpServlet {
         try{
             
             fechaMaestro= f.parse(fecha_nacimiento);
-            System.out.println("Fecha parseada correctamente: " + f.format(fechaMaestro));
         } catch (ParseException ex) {
-            System.out.println("salio mal");
             Logger.getLogger(CrearMaestro_Srv.class.getName()).log(Level.SEVERE, null, ex);
             fechaMaestro=null;
-            System.out.println("a ver"+ex);
+            System.out.println(ex);
         }
         
         
@@ -94,7 +91,7 @@ public class CrearMaestro_Srv extends HttpServlet {
         
         
         
-        System.out.println(actividad.getDireccion());
+//        System.out.println(actividad.getDireccion());
         
         Empleado a = new Empleado();
         a.setNombre(nombre);

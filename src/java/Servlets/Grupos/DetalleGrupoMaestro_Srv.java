@@ -51,7 +51,7 @@ public class DetalleGrupoMaestro_Srv extends HttpServlet {
             int noGrupo =grupo.getNoGrupo();
             int horastotales = grupo.getTotalhorassemanales();
             int idMaestros = grupo.getIdMaestros();
-            System.out.println("horas"+horastotales);
+//            System.out.println("horas"+horastotales);
 
             request.setAttribute("noGrupo", noGrupo);
             request.setAttribute("cupo", cupo);

@@ -65,7 +65,7 @@ public class EditarGrupos_Srv extends HttpServlet {
         int noGrupo =grupo.getNoGrupo();
         int horastotales = grupo.getTotalhorassemanales();
         int idMaestros = grupo.getIdMaestros();
-        System.out.println("horas"+horastotales);
+//        System.out.println("horas"+horastotales);
         
         request.setAttribute("noGrupo", noGrupo);
         request.setAttribute("cupo", cupo);
@@ -136,7 +136,7 @@ public class EditarGrupos_Srv extends HttpServlet {
             throws ServletException, IOException {
         
         PrintWriter out = response.getWriter();
-         System.out.println(request.getParameter("idGrupo"));
+//         System.out.println(request.getParameter("idGrupo"));
         int idGrupo = Integer.parseInt(request.getParameter("idGrupo"));
         int noGrupo = Integer.parseInt(request.getParameter("noGrupo"));
         int cupo = Integer.parseInt( request.getParameter("cupo"));

@@ -23,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -35,6 +36,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import masterDAO.Empleado;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -50,9 +52,8 @@ import org.apache.commons.codec.binary.Base64;
  */
 public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
 
-    
 
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -99,19 +100,15 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
 
             //Tipo Actividad
             String tipo = actnombre.getTipo();
-            System.out.println(tipo);
 
             //Obtencion y creacion de logo ITT
-            String imagenUrl = getClass().getClassLoader().getResource("img/header.png").toString().substring(6);            
-            File file = new File(imagenUrl);
+            //String imagenUrl = "/" + getClass().getClassLoader().getResource("img/header.png").toString().substring(6);
+         //   String imagenUrl = getClass().getClassLoader().getResource("img/header.png").toString().substring(6);            
+            File file = new File(Constantes.header);
             InputStream imagenFile = new FileInputStream(file);
-            String jrxmlFile;
+            String jrxmlFile = "/home/mauro/NetBeansProjects/creditosextraescolaresV1.0/creditosextraescolares/src/java/Reportes/Alumnos.jrxml";           
+           
             
-             
-
-            //Ruta Reporte
-            jrxmlFile = getClass().getClassLoader().getResource("Reportes/Alumnos.jrxml").toString().substring(6);        
-
             //Alumnos
             alumnos = ReporteAlumnosInscritos_DAO.consultarAlumnoGrupo(idGrupo2);
 
@@ -136,7 +133,7 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
             horariocompleto=concatenacion.toString();
             
             if(alumnos.isEmpty()){
-                System.out.println("Vacio, sin datos");
+//                System.out.println("Vacio, sin datos");
             
                 respuesta.setMensaje("No hay ningun dato para el reporte");
                 respuesta.setStatus(24);
@@ -166,18 +163,18 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
 
                     //System.out.println(":0 "+ds.toString());
 
-
+                        Empleado usuarioenSesion = (Empleado) session.getAttribute("usuario");
 
                         map.put("Actividad",actividad);
                         map.put("Promocion",tipo);
                         map.put("periodo",periodo);                    
-                        map.put("anio",idGrupo2);
-                        System.out.println(horariocompleto);
+                        map.put("anio",Year.now().getValue());
+//                        System.out.println(horariocompleto);
                         map.put("Horario",horariocompleto);
                         map.put("ds", ds); 
-                        //map.put("jefatura",Constantes.NOMBREJEFATURA);
-                        //map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
-
+                        map.put("departamentoactividad",Constantes.NOMBREJEFATURA);
+                        map.put("oficinacultural",Constantes.NOMBREJEFATURAPROMOCION);
+                        map.put("promotor", (usuarioenSesion.getNombre()+" "+usuarioenSesion.getApellidoPaterno()+ " "+ usuarioenSesion.getApellidoMaterno()));
 
 
                     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);
@@ -212,7 +209,7 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
         }else if(numero==2){
             //Obtener Parametros
             String idGrupo  = request.getParameter("idGrupo");
-            int anio=0;
+            int anio=Year.now().getValue();
             List<Cuenta> cuentas= new ArrayList<>();;
 
             //Grupo 
@@ -226,14 +223,11 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
             ActividadExtraescolar_MB actnombre = ReporteAlumnosInscritos_DAO.consultarActividad(a.getIdActividad());
             String actividad=actnombre.getNombre();
             
-            //Obtencion y creacion de logo ITT
-            String imagenUrl = getClass().getClassLoader().getResource("img/header.png").toString().substring(6);            
-            File file = new File(imagenUrl);
+            //Obtencion y creacion de logo ITT           
+            File file = new File(Constantes.header);
             InputStream imagenFile = new FileInputStream(file);
-            String jrxmlFile;
+            String jrxmlFile = "/home/mauro/NetBeansProjects/creditosextraescolaresV1.0/creditosextraescolares/src/java/Reportes/AlumnosCarreraActividad.jrxml"; 
 
-            //Ruta Reporte
-            jrxmlFile = getClass().getClassLoader().getResource("Reportes/AlumnosCarreraActividad.jrxml").toString().substring(6); 
             
             
             //Datos
@@ -257,7 +251,7 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
                 }
 
                 
-                for(String aux : Constantes.CARRERASABRE){
+                for(String aux : Constantes.CARRERAS){
                     Cuenta cuenta = new Cuenta();
                     cuenta.setCarrera(aux);
                     for(int i=1;i<=13;i++){
@@ -314,18 +308,19 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
                 
                 JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(cuentas);
                 //System.out.println(":0 "+ds.toString());
-                
-
+                //String nombremaestro= session.getAttribute("");
+                    Empleado usuarioenSesion = (Empleado) session.getAttribute("usuario");
                     map.put("TotalM",cuentatotalH);
                     map.put("TotalF",cuentatotalM);
                     map.put("Actividad",actividad);                    
                     map.put("periodo",periodo);                    
                     map.put("anio",anio);
+                    map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
+//                    System.out.println(Constantes.NOMBREJEFATURAPROMOCION+ "Jefatura");
                     map.put("ds", ds); 
                     //map.put("jefatura",Constantes.NOMBREJEFATURA);
-                    map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
-                
-
+                    
+                    map.put("maestro", (usuarioenSesion.getNombre()+" "+usuarioenSesion.getApellidoPaterno()+ " "+ usuarioenSesion.getApellidoMaterno()));
 
                 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);
 
@@ -357,8 +352,6 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
             
         }else if(numero==3){
             
-            System.out.println(":D");
-            
             //Obtener Parametros
             String idGrupo  = request.getParameter("idGrupo");
             int anio;
@@ -377,17 +370,15 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
 
             //Tipo Actividad
             String tipo = actnombre.getTipo();
-            System.out.println(tipo);
+//            System.out.println(tipo);
 
-            //Obtencion y creacion de logo ITT
-            String imagenUrl = getClass().getClassLoader().getResource("img/header.png").toString().substring(6);            
-            File file = new File(imagenUrl);
+            //Obtencion y creacion de logo ITT          
+            File file = new File(Constantes.header);
             InputStream imagenFile = new FileInputStream(file);
-            String jrxmlFile;
-            
-            //Ruta Reporte
-            jrxmlFile = getClass().getClassLoader().getResource("Reportes/Final.jrxml").toString().substring(6);        
 
+            String jrxmlFile = "/home/mauro/NetBeansProjects/creditosextraescolaresV1.0/creditosextraescolares/src/java/Reportes/Final.jrxml"; 
+
+                
             //Alumnos
             alumnos = ReporteAlumnosInscritos_DAO.consultarAlumnoGrupo2(idGrupo2);
 
@@ -412,7 +403,7 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
             horariocompleto=concatenacion.toString();
             
             if(alumnos.isEmpty()){
-                System.out.println("Vacio, sin datos");
+//                System.out.println("Vacio, sin datos");
             
                 respuesta.setMensaje("No hay ningun dato para el reporte");
                 respuesta.setStatus(24);
@@ -441,18 +432,18 @@ public class ReportesAlumnoIsncrito_Srv extends HttpServlet {
 
                     //System.out.println(":0 "+ds.toString());
 
-
-
+                    
+                        Empleado usuarioenSesion = (Empleado) session.getAttribute("usuario");
                         map.put("Actividad",actividad);
                         map.put("Promocion",tipo);
                         map.put("periodo",periodo);                    
                         map.put("anio",idGrupo2);
-                        System.out.println(horariocompleto);
+                        //System.out.println(horariocompleto);
                         map.put("horarios",horariocompleto);
                         map.put("ds", ds); 
-                        //map.put("jefatura",Constantes.NOMBREJEFATURA);
-                        //map.put("oficinaPromocion",Constantes.NOMBREJEFATURAPROMOCION);
-
+                        map.put("departamentoactividad",Constantes.NOMBREJEFATURA);
+                        map.put("oficinacultural",Constantes.NOMBREJEFATURAPROMOCION);
+                        map.put("promotor", (usuarioenSesion.getNombre()+" "+usuarioenSesion.getApellidoPaterno()+ " "+ usuarioenSesion.getApellidoMaterno()));
 
 
                     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);

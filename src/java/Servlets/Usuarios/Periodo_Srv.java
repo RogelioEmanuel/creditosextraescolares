@@ -69,6 +69,11 @@ public class Periodo_Srv extends HttpServlet {
         int diasi = Integer.parseInt(request.getParameter("insscripcion"));
         int diasf = Integer.parseInt(request.getParameter("cierre"));
         String periodo = request.getParameter("periodo");
+        String jefaturaPromocion = request.getParameter("promocion");
+        String jefaturaDepartamento = request.getParameter("departamento");
+        
+        
+        
         try {
             fechaComienzo= f.parse(fechaInicio);                        
         } catch (ParseException ex) {
@@ -132,6 +137,8 @@ public class Periodo_Srv extends HttpServlet {
                         per.setFecha_inicio(fechaComienzo);
                         per.setInsscripcion(diasi);
                         per.setPeriodo(periodo);        
+                        per.setJefaturaPromocion(jefaturaPromocion);
+                        per.setJefaturaDepartamento(jefaturaDepartamento);
                         Periodo_DAO.actualizarPeriodo(per, resp);    
                         
                     

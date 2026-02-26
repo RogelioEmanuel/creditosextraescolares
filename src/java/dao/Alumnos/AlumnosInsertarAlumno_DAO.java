@@ -27,8 +27,10 @@ public class AlumnosInsertarAlumno_DAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Alumnos_MB alumnos = null;
+        nocontrol = nocontrol.toUpperCase();
+        nocontrol = nocontrol.replaceAll("[ALU_]", "");
         
-           System.out.println("busca ");
+           
         try {
             if (conn != null) {
                     String query = "SELECT A.Nocontrol ,A.nombre,  A.semestre,  A.edad, A.regular, A.correo, A.sexo,A.carrera \n"
@@ -41,9 +43,8 @@ public class AlumnosInsertarAlumno_DAO {
                 rs = ps.executeQuery();
                 
                 
-                
                 while (rs.next()) {
-                    System.out.println("encuentra ");
+                    
                     alumnos =convertirAlumno2(rs);
                     
                 }
@@ -133,16 +134,16 @@ public class AlumnosInsertarAlumno_DAO {
                 }
                 
                 respuesta.setMensaje("Ok");
-                System.out.println(respuesta.getMensaje());                
+//                System.out.println(respuesta.getMensaje());                
                 respuesta.setStatus(Validaciones.VALIDATION_EXP);
-                System.out.println(respuesta.getStatus());
+//                System.out.println(respuesta.getStatus());
                 respuesta.setResponseObject(null);
             }
         } catch (SQLException ex) {
             respuesta.setStatus(Validaciones.VALIDATION_ERROR);
             
             respuesta.setMensaje(ex.toString());
-            System.out.println(respuesta.getMensaje());
+//            System.out.println(respuesta.getMensaje());
             respuesta.setResponseObject(null);
         } finally{
             try {

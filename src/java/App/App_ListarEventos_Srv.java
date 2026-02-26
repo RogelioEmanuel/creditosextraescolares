@@ -58,7 +58,7 @@ public class App_ListarEventos_Srv extends HttpServlet {
                 }
             }
         }
-        System.out.println("Etra al servlet");
+//        System.out.println("Etra al servlet");
 
         resp.setStatus(Validaciones.VALIDATION_EXP);
         resp.setMensaje("Ok");
@@ -70,7 +70,7 @@ public class App_ListarEventos_Srv extends HttpServlet {
             Gson json = new Gson();
             out.print(json.toJson(resp));
             String jsonResponse = json.toJson(resp);
-            System.out.println("JSON Response: " + jsonResponse);
+//            System.out.println("JSON Response: " + jsonResponse);
         } catch (Exception e) {
             System.out.println(e);
         }

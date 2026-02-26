@@ -63,7 +63,7 @@ public class Eventos_ListarEventos_DAO {
   
         try {
             if (conn != null) {
-                String query = "SELECT idEventos,NombreEvento, numParticipantesH, numParticipantesM, InstitucionOrganizadora, tipoevento, periodo, anio,  idActividad "
+                String query = "SELECT DISTINCT idEventos,NombreEvento, numParticipantesH, numParticipantesM, InstitucionOrganizadora, tipoevento, periodo, anio,  idActividad "
                         + ",fecha, resultado,numParticipantesHTec,numParticipantesMTec\n"
                         + "FROM eventos f \n"                        
                         + "limit 100";
@@ -115,7 +115,7 @@ public class Eventos_ListarEventos_DAO {
   
         try {
             if (conn != null) {
-                String query = "SELECT eventos.idEventos,eventos.NombreEvento, eventos.numParticipantesH, eventos.numParticipantesM, eventos.InstitucionOrganizadora, "
+                String query = "SELECT DISTINCT eventos.idEventos,eventos.NombreEvento, eventos.numParticipantesH, eventos.numParticipantesM, eventos.InstitucionOrganizadora, "
                         + "eventos.tipoevento, eventos.periodo, eventos.anio,  eventos.idActividad, "
                         + "eventos.fecha, eventos.resultado,eventos.numParticipantesMTec,eventos.numParticipantesHTec\n"
                         + "FROM eventos "

@@ -1,5 +1,7 @@
 package Servlets.Master;
 
+import ManageBean.Periodo.Periodo;
+import dao.Periodo.Periodo_DAO;
 import java.io.IOException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -13,10 +15,7 @@ import masterDAO.EmpleadoDao;
 
 
 
-/**
- *
- * @author kike
- */
+
 @WebServlet(name = "Master_Srv", urlPatterns = {"/Master_Srv"})
 public class Master_Srv extends HttpServlet {
 
@@ -33,12 +32,20 @@ public class Master_Srv extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String token = request.getParameter("token");
+        
         EmpleadoDao empleadoDao = new EmpleadoDao();
         Empleado empleado = EmpleadoDao.obtenerDatos(token);
         if (empleado != null && empleado.getLeer() == 1) {
             myContextParam = request.getSession().getServletContext().getInitParameter("AppName");
             HttpSession session = request.getSession();
-            session.setAttribute("usuario", empleado);
+            empleado.setNombrePuesto("Admin");
+            session.setAttribute("usuario", empleado);            
+            
+            session.setAttribute("rol","Admin");  
+            
+            Periodo per = Periodo_DAO.consultar();        
+            session.setAttribute("periodo", per); 
+            session.setAttribute("mensaje", 0 + "");
             //session.setAttribute("User", empleado.getIdEmpleado() + "");
             //session.setAttribute("Nombre", empleado.getNombre());
             //session.setMaxInactiveInterval(600000);

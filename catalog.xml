@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://192.168.40.112:9090/WebServiceMov/GetInfoMov?WSDL" uri="src/conf/xml-resources/web-services/GetInfoMov/wsdl/192.168.40.112_9090/WebServiceMov/GetInfoMov.wsdl"/>
+    <system systemId="http://192.168.40.112:9090/WebServiceMov/GetInfoMov?xsd=1" uri="src/conf/xml-resources/web-services/GetInfoMov/wsdl/192.168.40.112_9090/WebServiceMov/GetInfoMov.xsd_1.xsd"/>
+    <system systemId="https://portal.ittoluca.edu.mx:9100/WebServiceMov/GetInfoMov?WSDL" uri="src/conf/xml-resources/web-service-references/GetInfoMov/wsdl/portal.ittoluca.edu.mx_9100/WebServiceMov/GetInfoMov.wsdl"/>
+    <system systemId="https://portal.ittoluca.edu.mx:9100/WebServiceMov/GetInfoMov?xsd=1" uri="src/conf/xml-resources/web-service-references/GetInfoMov/wsdl/portal.ittoluca.edu.mx_9100/WebServiceMov/GetInfoMov.xsd_1.xsd"/>
+</catalog>

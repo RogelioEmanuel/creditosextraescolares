@@ -69,8 +69,8 @@ public class AlumnosListarGruposInscrito_DAO {
   
         try {
             if (conn != null) {
-                String query = "SELECT Grupos.idGrupo, Grupos.noGrupo, Grupos.cupo, Grupos.idActividad_extraescolar, Grupos.idMaestros, Grupos.periodo, Grupos.totalhorassemanal \n"
-                                + "FROM Grupos JOIN grupos_y_alumno ON Grupos.idGrupo = grupos_y_alumno.idgrupo WHERE grupos_y_alumno.nocontrolalumno  =  ? ";
+                String query = "SELECT grupos.idGrupo, grupos.noGrupo, grupos.cupo, grupos.idActividad_extraescolar, grupos.idMaestros, grupos.periodo, grupos.totalhorassemanal \n"
+                                + "FROM grupos JOIN grupos_y_alumno ON grupos.idGrupo = grupos_y_alumno.idgrupo WHERE grupos_y_alumno.nocontrolalumno  =  ? ";
 
                 ps = conn.prepareStatement(query);
                 ps.setString(1,id );

@@ -57,6 +57,9 @@ public class EditarAlumno_Srv extends HttpServlet {
         Grupos_MB grupo = new Grupos_MB();
         grupo.setIdGrupo(idGrupo);
         if(GruposAlumno_Selectivo_DAO.candidatoValido(rogelio)){
+            if(!GruposAlumno_Selectivo_DAO.regular(rogelio)){
+                resp.setStatus(705);
+            }
             GruposAlumno_Selectivo_DAO.actualizarAlumno(rogelio, grupo, resp);
         }else{
             

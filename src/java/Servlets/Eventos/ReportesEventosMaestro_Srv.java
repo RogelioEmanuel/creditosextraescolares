@@ -86,7 +86,7 @@ public class ReportesEventosMaestro_Srv extends HttpServlet {
         
         
         if(evento.isEmpty()){
-            System.out.println("Vacio, sin datos");
+//            System.out.println("Vacio, sin datos");
             
             respuesta.setMensaje("No hay ningun dato para el reporte");
             respuesta.setStatus(24);

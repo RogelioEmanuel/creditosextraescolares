@@ -74,7 +74,7 @@ public class ReportesMaestro_Srv extends HttpServlet {
             maestros.addAll(maestros2);
             
             //Obtencion y creacion de logo ITT
-            String imagenUrl = getClass().getClassLoader().getResource("img/header.png").toString().substring(6);            
+            String imagenUrl = getClass().getClassLoader().getResource("home/mauro/NetBeansProjects/creditosextraescolares/web/img/header.png").toString().substring(6);            
             File file = new File(imagenUrl);
             InputStream imagenFile = new FileInputStream(file);
            
@@ -133,10 +133,10 @@ public class ReportesMaestro_Srv extends HttpServlet {
             
             Object[] data = ds.getData();
 
-            for (Object obj : data) {
-                System.out.println(obj.toString());
-                 
-            }
+//            for (Object obj : data) {
+//                System.out.println(obj.toString());
+//                 
+//            }
            
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ds);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

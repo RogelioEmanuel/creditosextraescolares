@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "GetInfoMov", targetNamespace = "http://ws/", wsdlLocation = "http://192.168.40.112:9090/WebServiceMov/GetInfoMov?WSDL")
+@WebServiceClient(name = "GetInfoMov", targetNamespace = "http://ws/", wsdlLocation = "https://portal.ittoluca.edu.mx:9100/WebServiceMov/GetInfoMov?WSDL")
 public class GetInfoMov_Service
     extends Service
 {
@@ -30,7 +30,7 @@ public class GetInfoMov_Service
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://192.168.40.112:9090/WebServiceMov/GetInfoMov?WSDL");
+            url = new URL("https://portal.ittoluca.edu.mx:9100/WebServiceMov/GetInfoMov?WSDL");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

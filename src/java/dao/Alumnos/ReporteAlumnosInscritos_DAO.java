@@ -377,7 +377,7 @@ public class ReporteAlumnosInscritos_DAO {
                     alumnos.add(convertirAlumno(rs));
                     
                     cuenta++;
-                    System.out.println(cuenta);
+//                    System.out.println(cuenta);
                 }
                 if (!conn.isClosed()) {
                     conn.close();
